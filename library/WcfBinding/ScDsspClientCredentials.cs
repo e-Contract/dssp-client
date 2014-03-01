@@ -23,7 +23,6 @@ using System.Linq;
 using System.ServiceModel.Description;
 using System.ServiceModel.Security.Tokens;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client.WcfBinding
 {

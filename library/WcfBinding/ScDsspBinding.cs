@@ -23,7 +23,6 @@ using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client.WcfBinding
 {

@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{708746C9-C5BF-4A76-B83D-3093320DE289}</ProjectGuid>
+    <ProjectGuid>{879F2071-ABD0-4A45-BCFD-6C6AF3F71137}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EContract.Dssp.Client</RootNamespace>
     <AssemblyName>EContract.Dssp.Client</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -19,11 +19,9 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;v3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Debug\EContract.Dssp.Client.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +30,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,41 +38,58 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\library\Document.cs">
+      <Link>Document.cs</Link>
+    </Compile>
+    <Compile Include="..\library\DsspClient.cs">
+      <Link>DsspClient.cs</Link>
+    </Compile>
+    <Compile Include="..\library\DsspSession.cs">
+      <Link>DsspSession.cs</Link>
+    </Compile>
+    <Compile Include="..\library\IncorrectSignatureException.cs">
+      <Link>IncorrectSignatureException.cs</Link>
+    </Compile>
+    <Compile Include="..\library\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\library\Psha1DerivedKeyGenerator.cs">
+      <Link>Psha1DerivedKeyGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\library\RequestError.cs">
+      <Link>RequestError.cs</Link>
+    </Compile>
+    <Compile Include="..\library\SignatureInfo.cs">
+      <Link>SignatureInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\PlainDsspBinding.cs">
+      <Link>WcfBinding\PlainDsspBinding.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspBinding.cs">
+      <Link>WcfBinding\ScDsspBinding.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspClientCredentials.cs">
+      <Link>WcfBinding\ScDsspClientCredentials.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspClientCredentialsSecurityTokenManager.cs">
+      <Link>WcfBinding\ScDsspClientCredentialsSecurityTokenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspSecurityTokenParameter.cs">
+      <Link>WcfBinding\ScDsspSecurityTokenParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspSecurityTokenProvider.cs">
+      <Link>WcfBinding\ScDsspSecurityTokenProvider.cs</Link>
+    </Compile>
     <Compile Include="DigitalSignatureService.cs" />
-    <Compile Include="Document.cs" />
-    <Compile Include="IncorrectSignatureException.cs" />
-    <Compile Include="SignatureInfo.cs" />
-    <Compile Include="WcfBinding\PlainDsspBinding.cs" />
-    <Compile Include="DsspClient.cs" />
-    <Compile Include="DsspSession.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Psha1DerivedKeyGenerator.cs" />
-    <Compile Include="RequestError.cs" />
-    <Compile Include="WcfBinding\ScDsspBinding.cs" />
-    <Compile Include="WcfBinding\ScDsspClientCredentials.cs" />
-    <Compile Include="WcfBinding\ScDsspClientCredentialsSecurityTokenManager.cs" />
-    <Compile Include="WcfBinding\ScDsspSecurityTokenParameter.cs" />
-    <Compile Include="WcfBinding\ScDsspSecurityTokenProvider.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <Compile Include="StreamHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="gen.bat" />
-    <None Include="wsdl\dssp.wsdl">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

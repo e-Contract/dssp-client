@@ -34,12 +34,12 @@ namespace forms_demo
                     Session.Remove("dsspSession");
 
                     //download the signed document
-                    signedDocument = dsspClient.DownloadDocumentAsync(session).Result;
+                    signedDocument = dsspClient.DownloadDocument(session);
 
                     //You should save the signed document about here...
 
                     //For demo purposes, lets validate the signature.  This is purely optional
-                    SecurityInfo securityInfo = dsspClient.VerifyAsync(signedDocument).Result;
+                    SecurityInfo securityInfo = dsspClient.Verify(signedDocument);
 
                     //Display some interesting info about the signed document
                     this.msg.Text = "signed document with timestamp valid until " + securityInfo.TimeStampValidity;

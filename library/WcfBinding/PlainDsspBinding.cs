@@ -25,7 +25,6 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Security;
 using System.ServiceModel.Security.Tokens;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client.WcfBinding
 {

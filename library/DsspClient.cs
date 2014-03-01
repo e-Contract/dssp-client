@@ -32,7 +32,6 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -108,7 +107,18 @@ namespace EContract.Dssp.Client
         /// </remarks>
         /// <param name="document">The document to be signed</param>
         /// <returns>The session, required for the BROWSER/POST protocol and the donwload of the signed message</returns>
-        public async Task<DsspSession> UploadDocumentAsync(Document document)
+        public DsspSession UploadDocument(Document document) 
+#if !v3_5
+        {
+            return UploadDocumentAsync(document).Result;
+        }
+        
+        /// <summary>
+        /// Uploads a document to e-Contract, asynchronously.
+        /// </summary>
+        /// <see cref="UploadDocument"/>
+        public async System.Threading.Tasks.Task<DsspSession> UploadDocumentAsync(Document document) 
+#endif
         {
             if (document == null) throw new ArgumentNullException("document");
 
@@ -152,13 +162,22 @@ namespace EContract.Dssp.Client
             if (memStream == null)
             {
                 memStream = new MemoryStream();
+#if v3_5
+                document.Content.CopyTo(memStream);
+#else
                 await document.Content.CopyToAsync(memStream).ConfigureAwait(false);
+#endif
             }
             request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
 
             //Send
+            SignResponse response;
+#if v3_5
+            response = client.sign(request);
+#else
             signResponse1 responseWrapper = await client.signAsync(request).ConfigureAwait(false);
-            SignResponse response = responseWrapper.SignResponse;
+            response = responseWrapper.SignResponse;
+#endif
             
             //Check response
             switch(response.Result.ResultMajor) 
@@ -192,7 +211,18 @@ namespace EContract.Dssp.Client
         /// <returns>The document with signature, including id and mimeType</returns>
         /// <exception cref="ArgumentException">When the signResponse isn't valid, including its signature</exception>
         /// <exception cref="InvalidOperationException">When the e-contract service returns an error</exception>
-        public async Task<Document> DownloadDocumentAsync(DsspSession session)
+        public Document DownloadDocument(DsspSession session)
+#if !v3_5
+        {
+            return DownloadDocumentAsync(session).Result;
+        }
+
+        /// <summary>
+        /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol, asynchronously.
+        /// </summary>
+        /// <see cref="DownloadDocument"/>
+        public async System.Threading.Tasks.Task<Document> DownloadDocumentAsync(DsspSession session)
+#endif
         {
             if (session == null) throw new ArgumentNullException("session");
 
@@ -214,19 +244,25 @@ namespace EContract.Dssp.Client
             downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.ValueType = "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512/sct";
             downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.URI =  session.KeyId;
 
-            var downloadResponse = await client.pendingRequestAsync(downloadRequest).ConfigureAwait(false);
+            SignResponse downloadResponse;
+#if v3_5
+            downloadResponse = client.pendingRequest(downloadRequest);
+#else
+            pendingRequestResponse downloadResponseWrapper = await client.pendingRequestAsync(downloadRequest).ConfigureAwait(false);
+            downloadResponse = downloadResponseWrapper.SignResponse;
+#endif
 
             //check the download reponse
-            switch (downloadResponse.SignResponse.Result.ResultMajor)
+            switch (downloadResponse.Result.ResultMajor)
             {
                 case "urn:oasis:names:tc:dss:1.0:resultmajor:Success":
                     break;
                 default:
-                    throw new InvalidOperationException(downloadResponse.SignResponse.Result.ResultMajor);
+                    throw new InvalidOperationException(downloadResponse.Result.ResultMajor);
             }
 
             //Return the downloaded document (we assume there is only a single document)
-            var doc = new Document(downloadResponse.SignResponse.OptionalOutputs.DocumentWithSignature.Document);
+            var doc = new Document(downloadResponse.OptionalOutputs.DocumentWithSignature.Document);
 
             return doc;
         }
@@ -240,7 +276,18 @@ namespace EContract.Dssp.Client
         /// <exception cref="IncorrectSignatureException">When the provided document has an invalid signature</exception>
         /// <exception cref="RequestError">When the request was invalid, e.g. unsupported mime type</exception>
         /// <exception cref="InvalidOperationException">All other errors indicated by the service</exception>
-        public async Task<SecurityInfo> VerifyAsync(Document document)
+        public SecurityInfo Verify(Document document)
+#if !v3_5
+        {
+            return VerifyAsync(document).Result;
+        }
+
+        /// <summary>
+        /// Validates the provided document via the e-contract service, asynchronously.
+        /// </summary>
+        /// <see cref="Verify"/>
+        public async System.Threading.Tasks.Task<SecurityInfo> VerifyAsync(Document document)
+#endif
         {
             if (document == null) throw new ArgumentNullException("document");
 
@@ -265,32 +312,43 @@ namespace EContract.Dssp.Client
             if (memStream == null)
             {
                 memStream = new MemoryStream();
+#if v3_5
+                document.Content.CopyTo(memStream);
+#else
                 await document.Content.CopyToAsync(memStream).ConfigureAwait(false);
+#endif
             }
             request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
 
-            var response = await client.verifyAsync(request).ConfigureAwait(false);
+
+            ResponseBaseType response;
+#if v3_5
+            response = client.verify(request);
+#else
+            verifyResponse responseWrapper = await client.verifyAsync(request).ConfigureAwait(false);
+            response = responseWrapper.VerifyResponse1;
+#endif
 
             //Check response
-            switch (response.VerifyResponse1.Result.ResultMajor)
+            switch (response.Result.ResultMajor)
             {
                 case "urn:oasis:names:tc:dss:1.0:resultmajor:Success":
                     break;
                 case "urn:oasis:names:tc:dss:1.0:resultmajor:RequesterError":
-                    if (response.VerifyResponse1.Result.ResultMinor == "urn:oasis:names:tc:dss:1.0:resultminor:invalid:IncorrectSignature")
+                    if (response.Result.ResultMinor == "urn:oasis:names:tc:dss:1.0:resultminor:invalid:IncorrectSignature")
                     {
-                        throw new IncorrectSignatureException(response.VerifyResponse1.Result.ResultMessage.Value);
+                        throw new IncorrectSignatureException(response.Result.ResultMessage.Value);
                     } else {
-                        throw new RequestError(response.VerifyResponse1.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
+                        throw new RequestError(response.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
                     }
                 default:
-                    throw new InvalidOperationException(response.VerifyResponse1.Result.ResultMajor);
+                    throw new InvalidOperationException(response.Result.ResultMajor);
             }
 
             SecurityInfo result = new SecurityInfo();
-            result.TimeStampValidity = response.VerifyResponse1.OptionalOutputs.TimeStampRenewal.Before;
+            result.TimeStampValidity = response.OptionalOutputs.TimeStampRenewal.Before;
             result.Signatures = new List<SignatureInfo>();
-            foreach(var report in response.VerifyResponse1.OptionalOutputs.VerificationReport.IndividualReport)
+            foreach(var report in response.OptionalOutputs.VerificationReport.IndividualReport)
             { 
                 //double check
                 if (report.Result.ResultMajor != "urn:oasis:names:tc:dss:1.0:resultmajor:Success") throw new InvalidOperationException(report.Result.ResultMajor);
