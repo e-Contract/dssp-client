@@ -69,6 +69,16 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Basic constructor.
         /// </summary>
+        /// <param name="address">The address of the e-contract DSS-P service</param>
+        public DsspClient(string address)
+            : this(new EndpointAddress(address))
+        {
+
+        }
+
+        /// <summary>
+        /// Basic constructor.
+        /// </summary>
         /// <remarks>
         /// Client with default signature type for the specified address.
         /// </remarks>
@@ -142,12 +152,12 @@ namespace EContract.Dssp.Client
             if (memStream == null)
             {
                 memStream = new MemoryStream();
-                await document.Content.CopyToAsync(memStream);
+                await document.Content.CopyToAsync(memStream).ConfigureAwait(false);
             }
             request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
 
             //Send
-            signResponse1 responseWrapper = await client.signAsync(request);
+            signResponse1 responseWrapper = await client.signAsync(request).ConfigureAwait(false);
             SignResponse response = responseWrapper.SignResponse;
             
             //Check response
@@ -204,7 +214,7 @@ namespace EContract.Dssp.Client
             downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.ValueType = "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512/sct";
             downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.URI =  session.KeyId;
 
-            var downloadResponse = await client.pendingRequestAsync(downloadRequest);
+            var downloadResponse = await client.pendingRequestAsync(downloadRequest).ConfigureAwait(false);
 
             //check the download reponse
             switch (downloadResponse.SignResponse.Result.ResultMajor)
@@ -255,11 +265,11 @@ namespace EContract.Dssp.Client
             if (memStream == null)
             {
                 memStream = new MemoryStream();
-                await document.Content.CopyToAsync(memStream);
+                await document.Content.CopyToAsync(memStream).ConfigureAwait(false);
             }
             request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
 
-            var response = await client.verifyAsync(request);
+            var response = await client.verifyAsync(request).ConfigureAwait(false);
 
             //Check response
             switch (response.VerifyResponse1.Result.ResultMajor)

@@ -59,7 +59,7 @@ namespace dssp_demo.Controllers
                 if (formField.Key == "SignResponse")
                 {
                     //check if the sign response is correct, keep the signer (currently always null)
-                    NameIdentifierType signer = sessions[id].ValidateSignResponse(formField.Value);
+                    NameIdentifierType newSigner = sessions[id].ValidateSignResponse(formField.Value);
 
                     //get the session and remove it from the store
                     DsspSession session = sessions.Remove(id);
@@ -67,12 +67,12 @@ namespace dssp_demo.Controllers
                     //Download the signed document.
                     Document doc = await dsspClient.DownloadDocumentAsync(session);
 
-                    //For demo purposes, lets validate the signature.
-                    //Don't do this in real code (the document is guaranteed to be signed) unless the additional info like signer & timestamp validity.
+                    //You should save the signed document about here...
+
+                    //For demo purposes, lets validate the signature.  This is purely optional
                     SecurityInfo securityInfo = await dsspClient.VerifyAsync(doc);
 
-                    //indicate that the document is signed
-                    //In real code you should keep the document also
+                    //Keep some interesting info about the signed document
                     docs[id].TimeStampValidity = securityInfo.TimeStampValidity;
                     docs[id].Signatures = new List<SignInfo>();
                     foreach (SignatureInfo info in securityInfo.Signatures)
