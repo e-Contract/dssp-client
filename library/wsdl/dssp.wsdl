@@ -1,0 +1,3806 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:tns="urn:be:e_contract:dssp:ws"
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+  xmlns:ns3="http://schemas.xmlsoap.org/soap/http"
+  xmlns:ns2="urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0"
+  xmlns:ns1="urn:oasis:names:tc:dss:1.0:core:schema"
+  name="DigitalSignatureService"
+  targetNamespace="urn:be:e_contract:dssp:ws">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="urn:oasis:names:tc:dss:1.0:core:schema" targetNamespace="urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0" version="1.0">
+
+      <xs:import namespace="urn:oasis:names:tc:dss:1.0:core:schema"/>
+
+      <xs:element name="PendingRequest">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="ns1:RequestBaseType">
+              <xs:sequence/>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ResponseID" type="xs:string"/>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:oasis:names:tc:dss:1.0:core:schema" xmlns:ns2="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:async="urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:vr="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#" xmlns:dssp="urn:be:e-contract:dssp:1.0" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:dss:1.0:core:schema" version="1.0">
+
+      <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+
+      <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+
+      <xs:import namespace="urn:oasis:names:tc:SAML:1.0:assertion"/>
+
+      <xs:element name="AddTimestamp" type="tns:UpdateSignatureInstructionType"/>
+
+      <xs:element name="AdditionalKeyInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="KeyInfo" type="ns1:KeyInfoType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="AdditionalProfile" type="xs:string"/>
+
+      <xs:element name="AdditionalTimeInfo" type="tns:AdditionalTimeInfoType"/>
+
+      <xs:element name="AttachmentReference" type="tns:AttachmentReferenceType"/>
+
+      <xs:element name="Base64Data">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:base64Binary">
+              <xs:attribute name="MimeType" type="xs:string"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Base64Signature">
+        <xs:complexType>
+          <xs:simpleContent>
+            <xs:extension base="xs:base64Binary">
+              <xs:attribute name="Type" type="xs:anyURI"/>
+            </xs:extension>
+          </xs:simpleContent>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ClaimedIdentity">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Name" type="ns2:NameIdentifierType"/>
+            <xs:element minOccurs="0" name="SupportingInfo" type="tns:AnyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Document" type="tns:DocumentType"/>
+
+      <xs:element name="DocumentHash">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="tns:DocumentBaseType">
+              <xs:sequence>
+                <xs:element minOccurs="0" name="Transforms" type="ns1:TransformsType"/>
+                <xs:element minOccurs="0" name="DigestMethod" type="ns1:DigestMethodType"/>
+                <xs:element name="DigestValue" type="xs:base64Binary"/>
+              </xs:sequence>
+              <xs:attribute name="WhichReference" type="xs:integer"/>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="DocumentWithSignature">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Document" type="tns:DocumentType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="IncludeObject">
+        <xs:complexType>
+          <xs:sequence/>
+          <xs:attribute name="WhichDocument" type="xs:IDREF"/>
+          <xs:attribute name="hasObjectTagsAndAttributesSet" type="xs:boolean"/>
+          <xs:attribute name="ObjId" type="xs:string"/>
+          <xs:attribute name="createReference" type="xs:boolean"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="IntendedAudience">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="Recipient" type="ns2:NameIdentifierType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="KeySelector">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="KeyInfo" type="ns1:KeyInfoType"/>
+            <xs:element minOccurs="0" name="Other" type="tns:AnyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Language" type="xs:string"/>
+
+      <xs:element name="ManifestResult">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ReferenceXpath" type="xs:string"/>
+            <xs:element name="Status" type="xs:anyURI"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="OptionalInputs">
+        <xs:complexType>
+          <xs:all>
+            <xs:element ref="tns:AdditionalProfile" minOccurs="0" />
+            <xs:element ref="wst:RequestSecurityToken" minOccurs="0" />
+            <xs:element ref="tns:SignaturePlacement" minOccurs="0" />
+            <xs:element ref="tns:SignatureType" minOccurs="0" />
+            <xs:element ref="async:ResponseID" minOccurs="0" />
+            <xs:element ref="wsa:MessageID" minOccurs="0" />
+            <xs:element ref="wsu:Timestamp" minOccurs="0" />
+            <xs:element ref="wsa:ReplyTo" minOccurs="0" />
+            <xs:element ref="ns1:Signature" minOccurs="0" />
+            <xs:element ref="tns:ReturnSignerIdentity" minOccurs="0" />
+            <xs:element ref="tns:Language" minOccurs="0" />
+            <xs:element ref="vr:ReturnVerificationReport" minOccurs="0" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="OptionalOutputs">
+        <xs:complexType>
+          <xs:all>
+            <xs:element ref="tns:DocumentWithSignature" minOccurs="0" />
+            <xs:element ref="async:ResponseID" minOccurs="0" />
+            <xs:element ref="wst:RequestSecurityTokenResponseCollection" minOccurs="0" />
+            <xs:element ref="wsa:RelatesTo" minOccurs="0" />
+            <xs:element ref="wsu:Timestamp" minOccurs="0" />
+            <xs:element ref="wsa:To" minOccurs="0" />
+            <xs:element ref="ns1:Signature" minOccurs="0" />
+            <xs:element ref="tns:SignerIdentity" minOccurs="0" />
+            <xs:element ref="vr:VerificationReport" minOccurs="0" />
+            <xs:element ref="dssp:TimeStampRenewal" minOccurs="0" />
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ProcessingDetails">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="ValidDetail" type="tns:DetailType"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="IndeterminateDetail" type="tns:DetailType"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="InvalidDetail" type="tns:DetailType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Properties">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="SignedProperties" type="tns:PropertiesType"/>
+            <xs:element minOccurs="0" name="UnsignedProperties" type="tns:PropertiesType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Property">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Identifier" type="xs:anyURI"/>
+            <xs:element minOccurs="0" name="Value" type="tns:AnyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="RequesterIdentity">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Name" type="ns2:NameIdentifierType"/>
+            <xs:element minOccurs="0" name="SupportingInfo" type="tns:AnyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Response" type="tns:ResponseBaseType"/>
+
+      <xs:element name="Result">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ResultMajor" type="xs:anyURI"/>
+            <xs:element minOccurs="0" name="ResultMinor" type="xs:anyURI"/>
+            <xs:element minOccurs="0" name="ResultMessage" type="tns:InternationalStringType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ReturnProcessingDetails" type="xs:anyType"/>
+
+      <xs:element name="ReturnSignerIdentity">
+        <xs:complexType>
+          <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ReturnSigningTimeInfo" type="xs:anyType"/>
+
+      <xs:element name="ReturnTimestampedSignature" type="tns:UpdateSignatureInstructionType"/>
+
+      <xs:element name="ReturnTransformedDocument">
+        <xs:complexType>
+          <xs:sequence/>
+          <xs:attribute name="WhichReference" type="xs:integer" use="required"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ReturnUpdatedSignature">
+        <xs:complexType>
+          <xs:sequence/>
+          <xs:attribute name="Type" type="xs:anyURI"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ReturnVerificationTimeInfo" type="xs:anyType"/>
+
+      <xs:element name="Schema" type="tns:DocumentType"/>
+
+      <xs:element name="Schemas" type="tns:SchemasType"/>
+
+      <xs:element name="ServicePolicy" type="xs:string"/>
+
+      <xs:element name="SignRequest">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="tns:RequestBaseType">
+              <xs:sequence/>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="SignResponse">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="tns:ResponseBaseType">
+              <xs:sequence>
+                <xs:element minOccurs="0" ref="tns:SignatureObject"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="SignatureObject">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Signature" type="ns1:SignatureType"/>
+            <xs:element minOccurs="0" ref="tns:Timestamp"/>
+            <xs:element minOccurs="0" ref="tns:Base64Signature"/>
+            <xs:element minOccurs="0" ref="tns:SignaturePtr"/>
+            <xs:element minOccurs="0" name="Other" type="tns:AnyType"/>
+          </xs:sequence>
+          <xs:attribute name="SchemaRefs">
+            <xs:simpleType>
+              <xs:list itemType="xs:IDREF"/>
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="SignaturePlacement">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="XPathAfter" type="xs:string"/>
+            <xs:element minOccurs="0" name="XPathFirstChildOf" type="xs:string"/>
+          </xs:sequence>
+          <xs:attribute name="WhichDocument" type="xs:IDREF"/>
+          <xs:attribute name="CreateEnvelopedSignature" type="xs:boolean"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="SignaturePtr">
+        <xs:complexType>
+          <xs:sequence/>
+          <xs:attribute name="WhichDocument" type="xs:IDREF"/>
+          <xs:attribute name="XPath" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="SignatureType" type="xs:string"/>
+
+      <xs:element name="SignedReference">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Transforms" type="ns1:TransformsType"/>
+          </xs:sequence>
+          <xs:attribute name="WhichDocument" type="xs:IDREF" use="required"/>
+          <xs:attribute name="RefURI" type="xs:anyURI"/>
+          <xs:attribute name="RefId" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="SignedReferences">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" ref="tns:SignedReference"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="SignerIdentity" type="ns2:NameIdentifierType"/>
+
+      <xs:element name="SigningTimeInfo" type="tns:SigningTimeInfoType"/>
+
+      <xs:element name="Timestamp">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="Signature" type="ns1:SignatureType"/>
+            <xs:element minOccurs="0" name="RFC3161TimeStampToken" type="xs:base64Binary"/>
+            <xs:element minOccurs="0" name="Other" type="tns:AnyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="TimestampedSignature" type="tns:UpdatedSignatureType"/>
+
+      <xs:element name="TransformedData">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="tns:DocumentBaseType">
+              <xs:sequence>
+                <xs:element minOccurs="0" name="Transforms" type="ns1:TransformsType"/>
+                <xs:element ref="tns:Base64Data"/>
+              </xs:sequence>
+              <xs:attribute name="WhichReference" type="xs:integer"/>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      
+      <xs:element name="InputDocuments">
+        <xs:complexType>
+          <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="Document" type="tns:DocumentType"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:TransformedData"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" ref="tns:DocumentHash"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="Other" type="tns:AnyType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="TransformedDocument">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Document" type="tns:DocumentType"/>
+          </xs:sequence>
+          <xs:attribute name="WhichReference" type="xs:integer" use="required"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="TstInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="SerialNumber" type="xs:integer"/>
+            <xs:element name="CreationTime" type="xs:dateTime"/>
+            <xs:element minOccurs="0" name="Policy" type="xs:anyURI"/>
+            <xs:element minOccurs="0" name="ErrorBound" type="xs:duration"/>
+            <xs:element default="false" minOccurs="0" name="Ordered" type="xs:boolean"/>
+            <xs:element minOccurs="0" name="TSA" type="ns2:NameIdentifierType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="UpdatedSignature" type="tns:UpdatedSignatureType"/>
+
+      <xs:element name="UseVerificationTime" type="xs:anyType"/>
+
+      <xs:element name="VerificationTimeInfo" type="tns:VerificationTimeInfoType"/>
+
+      <xs:element name="VerifyManifestResults" type="tns:VerifyManifestResultsType"/>
+
+      <xs:element name="VerifyRequest">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="tns:RequestBaseType">
+              <xs:sequence>
+                <xs:element minOccurs="0" ref="tns:SignatureObject"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="VerifyResponse" type="tns:ResponseBaseType"/>
+
+      <xs:complexType name="RequestBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="tns:OptionalInputs" />
+          <xs:element minOccurs="0" ref="tns:InputDocuments"/>
+        </xs:sequence>
+        <xs:attribute name="RequestID" type="xs:string"/>
+        <xs:attribute name="Profile" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="AnyType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="DocumentType">
+        <xs:complexContent>
+          <xs:extension base="tns:DocumentBaseType">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="InlineXML" type="tns:InlineXMLType"/>
+              <xs:element minOccurs="0" name="Base64XML" type="xs:base64Binary"/>
+              <xs:element minOccurs="0" name="EscapedXML" type="xs:string"/>
+              <xs:element minOccurs="0" ref="tns:Base64Data"/>
+              <xs:element minOccurs="0" name="AttachmentReference" type="tns:AttachmentReferenceType"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="DocumentBaseType">
+        <xs:sequence/>
+        <xs:attribute name="ID" type="xs:ID"/>
+        <xs:attribute name="RefURI" type="xs:anyURI"/>
+        <xs:attribute name="RefType" type="xs:anyURI"/>
+        <xs:attribute name="SchemaRefs">
+          <xs:simpleType>
+            <xs:list itemType="xs:IDREF"/>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:complexType>
+
+      <xs:complexType name="InlineXMLType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="ignorePIs" type="xs:boolean"/>
+        <xs:attribute name="ignoreComments" type="xs:boolean"/>
+      </xs:complexType>
+
+      <xs:complexType name="AttachmentReferenceType">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns1:DigestMethod"/>
+          <xs:element minOccurs="0" ref="ns1:DigestValue"/>
+        </xs:sequence>
+        <xs:attribute name="AttRefURI" type="xs:anyURI"/>
+        <xs:attribute name="MimeType" type="xs:string"/>
+      </xs:complexType>
+
+      <xs:complexType name="ResponseBaseType">
+        <xs:sequence>
+          <xs:element ref="tns:Result"/>
+          <xs:element minOccurs="0" ref="tns:OptionalOutputs" />
+        </xs:sequence>
+        <xs:attribute name="RequestID" type="xs:string"/>
+        <xs:attribute name="Profile" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="InternationalStringType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute ref="xml:lang" use="required"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="SigningTimeInfoType">
+        <xs:sequence>
+          <xs:element name="SigningTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="SigningTimeBoundaries">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="LowerBoundary" type="xs:dateTime"/>
+                <xs:element minOccurs="0" name="UpperBoundary" type="xs:dateTime"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="UpdateSignatureInstructionType">
+        <xs:sequence/>
+        <xs:attribute name="Type" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="TimeSignatureInstructionType">
+        <xs:complexContent>
+          <xs:extension base="tns:UpdateSignatureInstructionType">
+            <xs:sequence/>
+            <xs:attribute name="TimeStampTheGivenSignature" type="xs:boolean"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="AdditionalTimeInfoType">
+        <xs:simpleContent>
+          <xs:extension base="xs:anySimpleType">
+            <xs:attribute name="Type" type="xs:anyURI" use="required"/>
+            <xs:attribute name="Ref" type="xs:string"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="UpdatedSignatureType">
+        <xs:sequence>
+          <xs:element ref="tns:SignatureObject"/>
+        </xs:sequence>
+        <xs:attribute name="Type" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="SchemasType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="Schema" type="tns:DocumentType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="PropertiesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" ref="tns:Property"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="VerifyManifestResultsType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" ref="tns:ManifestResult"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="DetailType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Code" type="xs:anyURI"/>
+          <xs:element minOccurs="0" name="Message" type="tns:InternationalStringType"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="Type" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="VerificationTimeInfoType">
+        <xs:sequence>
+          <xs:element name="VerificationTime" type="xs:dateTime"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="AdditionalTimeInfo" type="tns:AdditionalTimeInfoType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="UseVerificationTimeType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CurrentTime" type="xs:anyType"/>
+          <xs:element minOccurs="0" name="SpecificTime" type="xs:dateTime"/>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#" xmlns:ns6="http://uri.etsi.org/02231/v2#" xmlns:ns5="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns4="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns3="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns1="urn:oasis:names:tc:dss:1.0:core:schema" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#" version="1.0">
+
+      <xs:import namespace="urn:oasis:names:tc:dss:1.0:core:schema"/>
+
+      <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+
+      <xs:import namespace="urn:oasis:names:tc:SAML:1.0:assertion"/>
+
+      <xs:import namespace="urn:oasis:names:tc:SAML:2.0:assertion"/>
+
+      <xs:import namespace="http://uri.etsi.org/01903/v1.3.2#"/>
+
+      <xs:import namespace="http://uri.etsi.org/02231/v2#"/>
+
+      <xs:element name="DetailedSignatureReport" type="tns:DetailedSignatureReportType"/>
+
+      <xs:element name="EvidenceRecordReport" type="tns:EvidenceRecordValidityType"/>
+
+      <xs:element name="IndividualAttributeCertificateReport" type="tns:AttributeCertificateValidityType"/>
+
+      <xs:element name="IndividualCRLReport" type="tns:CRLValidityType"/>
+
+      <xs:element name="IndividualCertificateReport" type="tns:CertificateValidityType"/>
+
+      <xs:element name="IndividualOCSPReport" type="tns:OCSPValidityType"/>
+
+      <xs:element name="IndividualTimeStampReport" type="tns:TimeStampValidityType"/>
+
+      <xs:element name="ReturnVerificationReport">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element default="true" minOccurs="0" name="IncludeVerifier" type="xs:boolean"/>
+            <xs:element default="false" minOccurs="0" name="IncludeCertificateValues" type="xs:boolean"/>
+            <xs:element default="false" minOccurs="0" name="IncludeRevocationValues" type="xs:boolean"/>
+            <xs:element default="false" minOccurs="0" name="ExpandBinaryValues" type="xs:boolean"/>
+            <xs:element default="urn:oasis:names:tc:dss:1.0:profiles:verificationreport:reportdetail:allDetails" minOccurs="0" name="ReportDetailLevel" type="xs:anyURI"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="VerificationReport" type="tns:VerificationReportType"/>
+
+      <xs:complexType name="VerificationReportType">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns1:VerificationTimeInfo"/>
+          <xs:element minOccurs="0" name="VerifierIdentity" type="tns:IdentifierType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="IndividualReport" type="tns:IndividualReportType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="IdentifierType">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns2:X509Data"/>
+          <xs:element minOccurs="0" name="SAMLv1Identifier" type="ns3:NameIdentifierType"/>
+          <xs:element minOccurs="0" name="SAMLv2Identifier" type="ns4:NameIDType"/>
+          <xs:element minOccurs="0" name="Other" type="ns1:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="IndividualReportType">
+        <xs:sequence>
+          <xs:element name="SignedObjectIdentifier" type="tns:SignedObjectIdentifierType"/>
+          <xs:element ref="ns1:Result"/>
+          <xs:element minOccurs="0" name="Details" >
+            <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" ref="tns:DetailedSignatureReport"/>
+            </xs:sequence>
+              </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SignedObjectIdentifierType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DigestAlgAndValue" type="ns5:DigestAlgAndValueType"/>
+          <xs:element minOccurs="0" ref="ns2:CanonicalizationMethod"/>
+          <xs:element minOccurs="0" name="SignedProperties" type="tns:SignedPropertiesType"/>
+          <xs:element minOccurs="0" ref="ns2:SignatureValue"/>
+          <xs:element minOccurs="0" name="Other" type="ns1:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="WhichDocument" type="xs:IDREF"/>
+        <xs:attribute name="XPath" type="xs:string"/>
+        <xs:attribute name="Offset" type="xs:integer"/>
+        <xs:attribute name="FieldName" type="xs:string"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignedPropertiesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SignedSignatureProperties" type="tns:SignedSignaturePropertiesType"/>
+          <xs:element minOccurs="0" name="SignedDataObjectProperties" type="tns:SignedDataObjectPropertiesType"/>
+          <xs:element minOccurs="0" name="Other" type="ns1:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignedSignaturePropertiesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns5:SigningTime"/>
+          <xs:element minOccurs="0" ref="ns5:SigningCertificate"/>
+          <xs:element minOccurs="0" ref="ns5:SignaturePolicyIdentifier"/>
+          <xs:element minOccurs="0" ref="ns5:SignatureProductionPlace"/>
+          <xs:element minOccurs="0" name="Location" type="xs:string"/>
+          <xs:element minOccurs="0" name="SignerRole" type="tns:SignerRoleType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SignerRoleType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClaimedRoles" type="ns5:ClaimedRolesListType"/>
+          <xs:element minOccurs="0" name="CertifiedRoles" type="tns:CertifiedRolesListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertifiedRolesListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="AttributeCertificateValidity" type="tns:AttributeCertificateValidityType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AttributeCertificateValidityType">
+        <xs:sequence>
+          <xs:element name="AttributeCertificateIdentifier" type="tns:AttrCertIDType"/>
+          <xs:element minOccurs="0" name="AttributeCertificateValue" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="AttributeCertificateContent" type="tns:AttributeCertificateContentType"/>
+          <xs:element name="SignatureOK" type="tns:SignatureValidityType"/>
+          <xs:element name="CertificatePathValidity" type="tns:CertificatePathValidityType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AttrCertIDType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Holder" type="tns:EntityType"/>
+          <xs:element name="Issuer" type="tns:EntityType"/>
+          <xs:element name="SerialNumber" type="xs:integer"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="EntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BaseCertificateID" type="ns2:X509IssuerSerialType"/>
+          <xs:element minOccurs="0" name="Name" type="xs:string"/>
+          <xs:element minOccurs="0" name="Other" type="ns1:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AttributeCertificateContentType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Version" type="xs:integer"/>
+          <xs:element name="Holder" type="tns:EntityType"/>
+          <xs:element name="Issuer" type="tns:EntityType"/>
+          <xs:element name="SignatureAlgorithm" type="xs:anyURI"/>
+          <xs:element name="SerialNumber" type="xs:integer"/>
+          <xs:element name="AttCertValidityPeriod" type="tns:ValidityPeriodType"/>
+          <xs:element name="Attributes">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Attribute" type="tns:AttributeType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="IssuerUniqueID" type="xs:hexBinary"/>
+          <xs:element minOccurs="0" name="Extensions" type="tns:ExtensionsType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ValidityPeriodType">
+        <xs:sequence>
+          <xs:element name="NotBefore" type="xs:dateTime"/>
+          <xs:element name="NotAfter" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AttributeType">
+        <xs:sequence>
+          <xs:element name="Type" type="tns:VerificationResultType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Value" type="ns1:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="VerificationResultType">
+        <xs:sequence>
+          <xs:element name="ResultMajor" type="xs:anyURI"/>
+          <xs:element minOccurs="0" name="ResultMinor" type="xs:anyURI"/>
+          <xs:element minOccurs="0" name="ResultMessage" type="ns1:InternationalStringType"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ExtensionsType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Extension" type="tns:ExtensionType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ExtensionType">
+        <xs:sequence>
+          <xs:element name="ExtnId" type="ns5:ObjectIdentifierType"/>
+          <xs:element name="Critical" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="ExtnValue" type="ns1:AnyType"/>
+          <xs:element name="ExtensionOK" type="tns:VerificationResultType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SignatureValidityType">
+        <xs:sequence>
+          <xs:element name="SigMathOK" type="tns:VerificationResultType"/>
+          <xs:element minOccurs="0" name="SignatureAlgorithm" type="tns:AlgorithmValidityType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AlgorithmValidityType">
+        <xs:sequence>
+          <xs:element name="Algorithm" type="xs:anyURI"/>
+          <xs:element minOccurs="0" name="Parameters" type="ns1:AnyType"/>
+          <xs:element minOccurs="0" name="Suitability" type="tns:VerificationResultType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertificatePathValidityType">
+        <xs:sequence>
+          <xs:element name="PathValiditySummary" type="tns:VerificationResultType"/>
+          <xs:element name="CertificateIdentifier" type="ns2:X509IssuerSerialType"/>
+          <xs:element minOccurs="0" name="PathValidityDetail" type="tns:CertificatePathValidityVerificationDetailType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertificatePathValidityVerificationDetailType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="CertificateValidity" type="tns:CertificateValidityType"/>
+          <xs:element minOccurs="0" name="TSLValidity" type="tns:TrustStatusListValidityType"/>
+          <xs:element name="TrustAnchor" type="tns:VerificationResultType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertificateValidityType">
+        <xs:sequence>
+          <xs:element name="CertificateIdentifier" type="ns2:X509IssuerSerialType"/>
+          <xs:element name="Subject" type="xs:string"/>
+          <xs:element name="ChainingOK" type="tns:VerificationResultType"/>
+          <xs:element name="ValidityPeriodOK" type="tns:VerificationResultType"/>
+          <xs:element name="ExtensionsOK" type="tns:VerificationResultType"/>
+          <xs:element minOccurs="0" name="CertificateValue" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="CertificateContent" type="tns:CertificateContentType"/>
+          <xs:element name="SignatureOK" type="tns:SignatureValidityType"/>
+          <xs:element name="CertificateStatus" type="tns:CertificateStatusType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertificateContentType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Version" type="xs:integer"/>
+          <xs:element name="SerialNumber" type="xs:integer"/>
+          <xs:element name="SignatureAlgorithm" type="xs:anyURI"/>
+          <xs:element name="Issuer" type="xs:string"/>
+          <xs:element name="ValidityPeriod" type="tns:ValidityPeriodType"/>
+          <xs:element name="Subject" type="xs:string"/>
+          <xs:element minOccurs="0" name="Extensions" type="tns:ExtensionsType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertificateStatusType">
+        <xs:sequence>
+          <xs:element name="CertStatusOK" type="tns:VerificationResultType"/>
+          <xs:element minOccurs="0" name="RevocationInfo">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="RevocationDate" type="xs:dateTime"/>
+                <xs:element name="RevocationReason" type="tns:VerificationResultType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="RevocationEvidence">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" name="CRLValidity" type="tns:CRLValidityType"/>
+                <xs:element minOccurs="0" name="CRLReference" type="ns5:CRLIdentifierType"/>
+                <xs:element minOccurs="0" name="OCSPValidity" type="tns:OCSPValidityType"/>
+                <xs:element minOccurs="0" name="OCSPReference" type="ns5:OCSPIdentifierType"/>
+                <xs:element minOccurs="0" name="Other" type="ns1:AnyType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CRLValidityType">
+        <xs:sequence>
+          <xs:element name="CRLIdentifier" type="ns5:CRLIdentifierType"/>
+          <xs:element minOccurs="0" name="CRLValue" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="CRLContent" type="tns:CRLContentType"/>
+          <xs:element name="SignatureOK" type="tns:SignatureValidityType"/>
+          <xs:element name="CertificatePathValidity" type="tns:CertificatePathValidityType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="CRLContentType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Version" type="xs:integer"/>
+          <xs:element name="Signature" type="tns:VerificationResultType"/>
+          <xs:element name="Issuer" type="xs:string"/>
+          <xs:element name="ThisUpdate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="NextUpdate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="RevokedCertificates">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                  <xs:element name="UserCertificate" type="xs:integer"/>
+                  <xs:element name="RevocationDate" type="xs:anySimpleType"/>
+                  <xs:element name="CrlEntryExtensions" type="tns:ExtensionsType"/>
+                </xs:choice>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="CrlExtensions" type="tns:ExtensionsType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="OCSPValidityType">
+        <xs:sequence>
+          <xs:element name="OCSPIdentifier" type="ns5:OCSPIdentifierType"/>
+          <xs:element minOccurs="0" name="OCSPValue" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="OCSPContent" type="tns:OCSPContentType"/>
+          <xs:element name="SignatureOK" type="tns:SignatureValidityType"/>
+          <xs:element name="CertificatePathValidity" type="tns:CertificatePathValidityType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="OCSPContentType">
+        <xs:sequence>
+          <xs:element name="Version" type="xs:integer"/>
+          <xs:element name="ResponderID" type="xs:string"/>
+          <xs:element name="producedAt" type="xs:dateTime"/>
+          <xs:element name="Responses">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="SingleResponse" type="tns:SingleResponseType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="ResponseExtensions" type="tns:ExtensionsType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SingleResponseType">
+        <xs:sequence>
+          <xs:element name="CertID">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="HashAlgorithm" type="xs:anyURI"/>
+                <xs:element name="IssuerNameHash" type="xs:hexBinary"/>
+                <xs:element name="IssuerKeyHash" type="xs:hexBinary"/>
+                <xs:element name="SerialNumber" type="xs:integer"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="CertStatus" type="tns:VerificationResultType"/>
+          <xs:element name="ThisUpdate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="NextUpdate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="SingleExtensions" type="tns:ExtensionsType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="TrustStatusListValidityType">
+        <xs:sequence>
+          <xs:element ref="ns6:SchemeInformation"/>
+          <xs:element minOccurs="0" ref="ns6:TrustServiceProviderList"/>
+          <xs:element name="SignatureOK" type="tns:SignatureValidityType"/>
+        </xs:sequence>
+        <xs:attribute name="TSLTag" type="xs:string" use="required"/>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignedDataObjectPropertiesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="ns5:DataObjectFormat"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="ns5:CommitmentTypeIndication"/>
+          <xs:element minOccurs="0" name="Reason" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="AllDataObjectsTimeStamp" type="tns:TimeStampValidityType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="IndividualDataObjectsTimeStamp" type="tns:TimeStampValidityType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="TimeStampValidityType">
+        <xs:sequence>
+          <xs:element name="FormatOK" type="tns:VerificationResultType"/>
+          <xs:element minOccurs="0" name="TimeStampContent" type="tns:TstContentType"/>
+          <xs:element minOccurs="0" name="MessageHashAlgorithm" type="tns:AlgorithmValidityType"/>
+          <xs:element name="SignatureOK" type="tns:SignatureValidityType"/>
+          <xs:element name="CertificatePathValidity" type="tns:CertificatePathValidityType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="TstContentType">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns1:TstInfo"/>
+          <xs:element minOccurs="0" name="Other" type="ns1:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="DetailedSignatureReportType">
+        <xs:sequence>
+          <xs:element name="FormatOK" type="tns:VerificationResultType"/>
+          <xs:element minOccurs="0" name="Properties" type="tns:PropertiesType"/>
+          <xs:element minOccurs="0" ref="ns1:VerifyManifestResults"/>
+          <xs:element minOccurs="0" name="SignatureHasVisibleContent" type="xs:boolean"/>
+          <xs:element name="SignatureOK" type="tns:SignatureValidityType"/>
+          <xs:element name="CertificatePathValidity" type="tns:CertificatePathValidityType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="PropertiesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SignedProperties" type="tns:SignedPropertiesType"/>
+          <xs:element minOccurs="0" name="UnsignedProperties" type="tns:UnsignedPropertiesType"/>
+        </xs:sequence>
+        <xs:attribute name="Target" type="xs:anyURI"/>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="UnsignedPropertiesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UnsignedSignatureProperties" type="tns:UnsignedSignaturePropertiesType"/>
+          <xs:element minOccurs="0" ref="ns5:UnsignedDataObjectProperties"/>
+          <xs:element minOccurs="0" name="Other" type="ns1:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="UnsignedSignaturePropertiesType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="ns5:CompleteCertificateRefs"/>
+            <xs:element name="ArchiveTimeStamp" type="tns:TimeStampValidityType"/>
+            <xs:element name="RefsOnlyTimeStamp" type="tns:TimeStampValidityType"/>
+            <xs:element ref="ns5:AttributeRevocationRefs"/>
+            <xs:element name="RevocationValues" type="tns:RevocationValuesType"/>
+            <xs:element name="CertificateValues" type="tns:CertificateValuesType"/>
+            <xs:element ref="ns5:CompleteRevocationRefs"/>
+            <xs:element name="SigAndRefsTimeStamp" type="tns:TimeStampValidityType"/>
+            <xs:element ref="ns5:AttributeCertificateRefs"/>
+            <xs:element name="AttributeRevocationValues" type="tns:RevocationValuesType"/>
+            <xs:element name="CounterSignature" type="tns:SignatureValidityType"/>
+            <xs:element name="SignatureTimeStamp" type="tns:TimeStampValidityType"/>
+            <xs:element name="AttrAuthoritiesCertValues" type="tns:CertificateValuesType"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="ArchiveTimeStampValidityType">
+        <xs:sequence>
+          <xs:element name="FormatOK" type="tns:VerificationResultType"/>
+          <xs:element minOccurs="0" name="DigestAlgorithm" type="tns:AlgorithmValidityType"/>
+          <xs:element minOccurs="0" name="Attributes">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="Attribute" type="tns:AttributeType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="ReducedHashTree">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="PartialHashTree">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element maxOccurs="unbounded" name="HashValue" type="tns:HashValueType"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="TimeStamp" type="tns:TimeStampValidityType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="HashValueType">
+        <xs:sequence>
+          <xs:element name="HashValue" type="xs:hexBinary"/>
+        </xs:sequence>
+        <xs:attribute name="HashedObject" type="xs:IDREF"/>
+      </xs:complexType>
+
+      <xs:complexType name="RevocationValuesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CRLValues">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="VerifiedCRL" type="tns:CRLValidityType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="OCSPValues">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="VerifiedOCSPResponse" type="tns:OCSPValidityType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="OtherValues" type="ns1:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="EvidenceRecordValidityType">
+        <xs:sequence>
+          <xs:element name="FormatOK" type="tns:VerificationResultType"/>
+          <xs:element minOccurs="0" name="Version" type="xs:integer"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="DigestAlgorithm" type="tns:AlgorithmValidityType"/>
+          <xs:element minOccurs="0" name="CryptoInfos">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="Attribute" type="tns:AttributeType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="EncryptionInfo">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="EncryptionInfoType" type="tns:AlgorithmValidityType"/>
+                <xs:element name="EncryptionInfoValue" type="ns1:AnyType"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="ArchiveTimeStampSequence">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="ArchiveTimeStampChain">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element maxOccurs="unbounded" minOccurs="0" name="ArchiveTimeStamp" type="tns:ArchiveTimeStampValidityType"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="CertificateValuesType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="EncapsulatedX509Certificate" type="tns:CertificateValidityType"/>
+            <xs:element name="OtherCertificate" type="xs:anyType"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns1="http://www.w3.org/2001/04/xmlenc#" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:SAML:2.0:assertion" version="1.0">
+
+      <xs:import namespace="http://www.w3.org/2001/04/xmlenc#"/>
+
+      <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+
+      <xs:element name="Action" type="tns:ActionType"/>
+
+      <xs:element name="Advice" type="tns:AdviceType"/>
+
+      <xs:element name="Assertion" type="tns:AssertionType"/>
+
+      <xs:element name="AssertionIDRef" type="xs:string"/>
+
+      <xs:element name="AssertionURIRef" type="xs:string"/>
+
+      <xs:element name="Attribute" type="tns:AttributeType"/>
+
+      <xs:element name="AttributeStatement" type="tns:AttributeStatementType"/>
+
+      <xs:element name="AttributeValue" type="xs:anyType"/>
+
+      <xs:element name="Audience" type="xs:string"/>
+
+      <xs:element name="AudienceRestriction" type="tns:AudienceRestrictionType"/>
+
+      <xs:element name="AuthenticatingAuthority" type="xs:string"/>
+
+      <xs:element name="AuthnContext" type="tns:AuthnContextType"/>
+
+      <xs:element name="AuthnContextClassRef" type="xs:string"/>
+
+      <xs:element name="AuthnContextDecl" type="xs:anyType"/>
+
+      <xs:element name="AuthnContextDeclRef" type="xs:string"/>
+
+      <xs:element name="AuthnStatement" type="tns:AuthnStatementType"/>
+
+      <xs:element name="AuthzDecisionStatement" type="tns:AuthzDecisionStatementType"/>
+
+      <xs:element name="BaseID" type="tns:BaseIDAbstractType"/>
+
+      <xs:element name="Condition" type="tns:ConditionAbstractType"/>
+
+      <xs:element name="Conditions" type="tns:ConditionsType"/>
+
+      <xs:element name="EncryptedAssertion" type="tns:EncryptedElementType"/>
+
+      <xs:element name="EncryptedAttribute" type="tns:EncryptedElementType"/>
+
+      <xs:element name="EncryptedID" type="tns:EncryptedElementType"/>
+
+      <xs:element name="Evidence" type="tns:EvidenceType"/>
+
+      <xs:element name="Issuer" type="tns:NameIDType"/>
+
+      <xs:element name="NameID" type="tns:NameIDType"/>
+
+      <xs:element name="OneTimeUse" type="tns:OneTimeUseType"/>
+
+      <xs:element name="ProxyRestriction" type="tns:ProxyRestrictionType"/>
+
+      <xs:element name="Statement" type="tns:StatementAbstractType"/>
+
+      <xs:element name="Subject" type="tns:SubjectType"/>
+
+      <xs:element name="SubjectConfirmation" type="tns:SubjectConfirmationType"/>
+
+      <xs:element name="SubjectConfirmationData" type="tns:SubjectConfirmationDataType"/>
+
+      <xs:element name="SubjectLocality" type="tns:SubjectLocalityType"/>
+
+      <xs:complexType name="AttributeType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="AttributeValue" nillable="true" type="xs:anyType"/>
+        </xs:sequence>
+        <xs:attribute name="Name" type="xs:string" use="required"/>
+        <xs:attribute name="NameFormat" type="xs:anyURI"/>
+        <xs:attribute name="FriendlyName" type="xs:string"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="SubjectType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:SubjectConfirmation"/>
+            <xs:element ref="tns:NameID"/>
+            <xs:element ref="tns:EncryptedID"/>
+            <xs:element ref="tns:BaseID"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="StatementAbstractType">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType name="AuthnStatementType">
+        <xs:complexContent>
+          <xs:extension base="tns:StatementAbstractType">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SubjectLocality" type="tns:SubjectLocalityType"/>
+              <xs:element name="AuthnContext" type="tns:AuthnContextType"/>
+            </xs:sequence>
+            <xs:attribute name="AuthnInstant" type="xs:dateTime" use="required"/>
+            <xs:attribute name="SessionIndex" type="xs:string"/>
+            <xs:attribute name="SessionNotOnOrAfter" type="xs:dateTime"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="SubjectLocalityType">
+        <xs:sequence/>
+        <xs:attribute name="Address" type="xs:string"/>
+        <xs:attribute name="DNSName" type="xs:string"/>
+      </xs:complexType>
+
+      <xs:complexType name="AuthnContextType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:AuthenticatingAuthority"/>
+            <xs:element ref="tns:AuthnContextClassRef"/>
+            <xs:element ref="tns:AuthnContextDeclRef"/>
+            <xs:element ref="tns:AuthnContextDecl"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AuthzDecisionStatementType">
+        <xs:complexContent>
+          <xs:extension base="tns:StatementAbstractType">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Action" type="tns:ActionType"/>
+              <xs:element minOccurs="0" name="Evidence" type="tns:EvidenceType"/>
+            </xs:sequence>
+            <xs:attribute name="Resource" type="xs:anyURI" use="required"/>
+            <xs:attribute name="Decision" type="tns:DecisionType" use="required"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="ActionType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute name="Namespace" type="xs:anyURI" use="required"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="EvidenceType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:EncryptedAssertion"/>
+            <xs:element ref="tns:AssertionIDRef"/>
+            <xs:element ref="tns:AssertionURIRef"/>
+            <xs:element ref="tns:Assertion"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AttributeStatementType">
+        <xs:complexContent>
+          <xs:extension base="tns:StatementAbstractType">
+            <xs:sequence>
+              <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="Attribute" type="tns:AttributeType"/>
+                <xs:element name="EncryptedAttribute" type="tns:EncryptedElementType"/>
+              </xs:choice>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="EncryptedElementType">
+        <xs:sequence>
+          <xs:element ref="ns1:EncryptedData"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" ref="ns1:EncryptedKey"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="ConditionAbstractType">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType name="ProxyRestrictionType">
+        <xs:complexContent>
+          <xs:extension base="tns:ConditionAbstractType">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="Audience" type="xs:anyURI"/>
+            </xs:sequence>
+            <xs:attribute name="Count" type="xs:nonNegativeInteger"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="OneTimeUseType">
+        <xs:complexContent>
+          <xs:extension base="tns:ConditionAbstractType">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="AudienceRestrictionType">
+        <xs:complexContent>
+          <xs:extension base="tns:ConditionAbstractType">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Audience" type="xs:anyURI"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="NameIDType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute name="Format" type="xs:anyURI"/>
+            <xs:attribute name="SPProvidedID" type="xs:string"/>
+            <xs:attribute name="NameQualifier" type="xs:string"/>
+            <xs:attribute name="SPNameQualifier" type="xs:string"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="AssertionType">
+        <xs:sequence>
+          <xs:element name="Issuer" type="tns:NameIDType"/>
+          <xs:element minOccurs="0" ref="ns2:Signature"/>
+          <xs:element minOccurs="0" name="Subject" type="tns:SubjectType"/>
+          <xs:element minOccurs="0" name="Conditions" type="tns:ConditionsType"/>
+          <xs:element minOccurs="0" name="Advice" type="tns:AdviceType"/>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="Statement" type="tns:StatementAbstractType"/>
+            <xs:element name="AuthnStatement" type="tns:AuthnStatementType"/>
+            <xs:element name="AuthzDecisionStatement" type="tns:AuthzDecisionStatementType"/>
+            <xs:element name="AttributeStatement" type="tns:AttributeStatementType"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Version" type="xs:string" use="required"/>
+        <xs:attribute name="ID" type="xs:ID" use="required"/>
+        <xs:attribute name="IssueInstant" type="xs:dateTime" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="ConditionsType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="Condition" type="tns:ConditionAbstractType"/>
+            <xs:element name="AudienceRestriction" type="tns:AudienceRestrictionType"/>
+            <xs:element name="OneTimeUse" type="tns:OneTimeUseType"/>
+            <xs:element name="ProxyRestriction" type="tns:ProxyRestrictionType"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="NotBefore" type="xs:dateTime"/>
+        <xs:attribute name="NotOnOrAfter" type="xs:dateTime"/>
+      </xs:complexType>
+
+      <xs:complexType name="AdviceType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:EncryptedAssertion"/>
+            <xs:element ref="tns:AssertionIDRef"/>
+            <xs:element ref="tns:AssertionURIRef"/>
+            <xs:element ref="tns:Assertion"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="SubjectConfirmationDataType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="NotBefore" type="xs:dateTime"/>
+        <xs:attribute name="NotOnOrAfter" type="xs:dateTime"/>
+        <xs:attribute name="Recipient" type="xs:anyURI"/>
+        <xs:attribute name="InResponseTo" type="xs:NCName"/>
+        <xs:attribute name="Address" type="xs:string"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="KeyInfoConfirmationDataType">
+        <xs:complexContent>
+          <xs:extension base="tns:SubjectConfirmationDataType">
+            <xs:sequence/>
+            <xs:anyAttribute namespace="##other" processContents="skip"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="SubjectConfirmationType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BaseID" type="tns:BaseIDAbstractType"/>
+          <xs:element minOccurs="0" name="NameID" type="tns:NameIDType"/>
+          <xs:element minOccurs="0" name="EncryptedID" type="tns:EncryptedElementType"/>
+          <xs:element minOccurs="0" name="SubjectConfirmationData" type="tns:SubjectConfirmationDataType"/>
+        </xs:sequence>
+        <xs:attribute name="Method" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="BaseIDAbstractType">
+        <xs:sequence/>
+        <xs:attribute name="NameQualifier" type="xs:string"/>
+        <xs:attribute name="SPNameQualifier" type="xs:string"/>
+      </xs:complexType>
+
+      <xs:simpleType name="DecisionType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Permit"/>
+          <xs:enumeration value="Deny"/>
+          <xs:enumeration value="Indeterminate"/>
+        </xs:restriction>
+      </xs:simpleType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:SAML:1.0:assertion" version="1.0">
+
+      <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+
+      <xs:element name="Action" type="tns:ActionType"/>
+
+      <xs:element name="Advice" type="tns:AdviceType"/>
+
+      <xs:element name="Assertion" type="tns:AssertionType"/>
+
+      <xs:element name="AssertionIDReference" type="xs:string"/>
+
+      <xs:element name="Attribute" type="tns:AttributeType"/>
+
+      <xs:element name="AttributeDesignator" type="tns:AttributeDesignatorType"/>
+
+      <xs:element name="AttributeStatement" type="tns:AttributeStatementType"/>
+
+      <xs:element name="AttributeValue" type="xs:anyType"/>
+
+      <xs:element name="Audience" type="xs:string"/>
+
+      <xs:element name="AudienceRestrictionCondition" type="tns:AudienceRestrictionConditionType"/>
+
+      <xs:element name="AuthenticationStatement" type="tns:AuthenticationStatementType"/>
+
+      <xs:element name="AuthorityBinding" type="tns:AuthorityBindingType"/>
+
+      <xs:element name="AuthorizationDecisionStatement" type="tns:AuthorizationDecisionStatementType"/>
+
+      <xs:element name="Condition" type="tns:ConditionAbstractType"/>
+
+      <xs:element name="Conditions" type="tns:ConditionsType"/>
+
+      <xs:element name="ConfirmationMethod" type="xs:string"/>
+
+      <xs:element name="DoNotCacheCondition" type="tns:DoNotCacheConditionType"/>
+
+      <xs:element name="Evidence" type="tns:EvidenceType"/>
+
+      <xs:element name="NameIdentifier" type="tns:NameIdentifierType"/>
+
+      <xs:element name="Statement" type="tns:StatementAbstractType"/>
+
+      <xs:element name="Subject" type="tns:SubjectType"/>
+
+      <xs:element name="SubjectConfirmation" type="tns:SubjectConfirmationType"/>
+
+      <xs:element name="SubjectConfirmationData" type="xs:anyType"/>
+
+      <xs:element name="SubjectLocality" type="tns:SubjectLocalityType"/>
+
+      <xs:element name="SubjectStatement" type="tns:SubjectStatementAbstractType"/>
+
+      <xs:complexType name="NameIdentifierType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute name="NameQualifier" type="xs:string"/>
+            <xs:attribute name="Format" type="xs:anyURI"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="AttributeType">
+        <xs:complexContent>
+          <xs:extension base="tns:AttributeDesignatorType">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="AttributeValue" type="xs:anyType"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="AttributeDesignatorType">
+        <xs:sequence/>
+        <xs:attribute name="AttributeName" type="xs:string" use="required"/>
+        <xs:attribute name="AttributeNamespace" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="SubjectType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:NameIdentifier"/>
+            <xs:element ref="tns:SubjectConfirmation"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="StatementAbstractType">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="SubjectStatementAbstractType">
+        <xs:complexContent>
+          <xs:extension base="tns:StatementAbstractType">
+            <xs:sequence>
+              <xs:element name="Subject" type="tns:SubjectType"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="AuthenticationStatementType">
+        <xs:complexContent>
+          <xs:extension base="tns:SubjectStatementAbstractType">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="SubjectLocality" type="tns:SubjectLocalityType"/>
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="AuthorityBinding" type="tns:AuthorityBindingType"/>
+            </xs:sequence>
+            <xs:attribute name="AuthenticationMethod" type="xs:anyURI" use="required"/>
+            <xs:attribute name="AuthenticationInstant" type="xs:dateTime" use="required"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="SubjectLocalityType">
+        <xs:sequence/>
+        <xs:attribute name="IPAddress" type="xs:string"/>
+        <xs:attribute name="DNSAddress" type="xs:string"/>
+      </xs:complexType>
+
+      <xs:complexType name="AuthorityBindingType">
+        <xs:sequence/>
+        <xs:attribute name="AuthorityKind" type="xs:QName" use="required"/>
+        <xs:attribute name="Location" type="xs:anyURI" use="required"/>
+        <xs:attribute name="Binding" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="AttributeStatementType">
+        <xs:complexContent>
+          <xs:extension base="tns:SubjectStatementAbstractType">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Attribute" type="tns:AttributeType"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="AuthorizationDecisionStatementType">
+        <xs:complexContent>
+          <xs:extension base="tns:SubjectStatementAbstractType">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Action" type="tns:ActionType"/>
+              <xs:element minOccurs="0" name="Evidence" type="tns:EvidenceType"/>
+            </xs:sequence>
+            <xs:attribute name="Resource" type="xs:anyURI" use="required"/>
+            <xs:attribute name="Decision" type="tns:DecisionType" use="required"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="ActionType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute name="Namespace" type="xs:anyURI"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="EvidenceType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:Assertion"/>
+            <xs:element ref="tns:AssertionIDReference"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="ConditionAbstractType">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType name="DoNotCacheConditionType">
+        <xs:complexContent>
+          <xs:extension base="tns:ConditionAbstractType">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="AudienceRestrictionConditionType">
+        <xs:complexContent>
+          <xs:extension base="tns:ConditionAbstractType">
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Audience" type="xs:anyURI"/>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="AssertionType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Conditions" type="tns:ConditionsType"/>
+          <xs:element minOccurs="0" name="Advice" type="tns:AdviceType"/>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="Statement" type="tns:StatementAbstractType"/>
+            <xs:element name="SubjectStatement" type="tns:SubjectStatementAbstractType"/>
+            <xs:element name="AuthenticationStatement" type="tns:AuthenticationStatementType"/>
+            <xs:element name="AuthorizationDecisionStatement" type="tns:AuthorizationDecisionStatementType"/>
+            <xs:element name="AttributeStatement" type="tns:AttributeStatementType"/>
+          </xs:choice>
+          <xs:element minOccurs="0" ref="ns1:Signature"/>
+        </xs:sequence>
+        <xs:attribute name="MajorVersion" type="xs:integer" use="required"/>
+        <xs:attribute name="MinorVersion" type="xs:integer" use="required"/>
+        <xs:attribute name="AssertionID" type="xs:ID" use="required"/>
+        <xs:attribute name="Issuer" type="xs:string" use="required"/>
+        <xs:attribute name="IssueInstant" type="xs:dateTime" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="ConditionsType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="AudienceRestrictionCondition" type="tns:AudienceRestrictionConditionType"/>
+            <xs:element name="DoNotCacheCondition" type="tns:DoNotCacheConditionType"/>
+            <xs:element name="Condition" type="tns:ConditionAbstractType"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="NotBefore" type="xs:dateTime"/>
+        <xs:attribute name="NotOnOrAfter" type="xs:dateTime"/>
+      </xs:complexType>
+
+      <xs:complexType name="AdviceType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:Assertion"/>
+            <xs:element ref="tns:AssertionIDReference"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SubjectConfirmationType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="ConfirmationMethod" type="xs:anyURI"/>
+          <xs:element minOccurs="0" name="SubjectConfirmationData" type="xs:anyType"/>
+          <xs:element minOccurs="0" ref="ns1:KeyInfo"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:simpleType name="DecisionType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Permit"/>
+          <xs:enumeration value="Deny"/>
+          <xs:enumeration value="Indeterminate"/>
+        </xs:restriction>
+      </xs:simpleType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:be:e-contract:dssp:1.0" targetNamespace="urn:be:e-contract:dssp:1.0" version="1.0">
+
+      <xs:element name="TimeStampRenewal" type="tns:DeadlineType"/>
+
+      <xs:complexType name="DeadlineType">
+        <xs:sequence/>
+        <xs:attribute name="Before" type="xs:dateTime" use="required"/>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/XML/1998/namespace" version="1.0">
+
+      <xs:attribute name="lang" type="xs:string"/>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/04/xmlenc#" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" targetNamespace="http://www.w3.org/2001/04/xmlenc#" version="1.0">
+
+      <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+
+      <xs:element name="AgreementMethod" type="tns:AgreementMethodType"/>
+
+      <xs:element name="CipherData" type="tns:CipherDataType"/>
+
+      <xs:element name="CipherReference" type="tns:CipherReferenceType"/>
+
+      <xs:element name="EncryptedData" type="tns:EncryptedDataType"/>
+
+      <xs:element name="EncryptedKey" type="tns:EncryptedKeyType"/>
+
+      <xs:element name="EncryptionProperties" type="tns:EncryptionPropertiesType"/>
+
+      <xs:element name="EncryptionProperty" type="tns:EncryptionPropertyType"/>
+
+      <xs:element name="ReferenceList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element name="KeyReference" type="tns:ReferenceType"/>
+              <xs:element name="DataReference" type="tns:ReferenceType"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:complexType name="EncryptedDataType">
+        <xs:complexContent>
+          <xs:extension base="tns:EncryptedType">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="EncryptedType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EncryptionMethod" type="tns:EncryptionMethodType"/>
+          <xs:element minOccurs="0" ref="ns1:KeyInfo"/>
+          <xs:element name="CipherData" type="tns:CipherDataType"/>
+          <xs:element minOccurs="0" name="EncryptionProperties" type="tns:EncryptionPropertiesType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+        <xs:attribute name="Type" type="xs:anyURI"/>
+        <xs:attribute name="MimeType" type="xs:string"/>
+        <xs:attribute name="Encoding" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="EncryptionMethodType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="OAEPparams" type="xs:base64Binary"/>
+            <xs:element name="KeySize" type="xs:integer"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Algorithm" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="ReferenceType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="URI" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="TransformsType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" ref="ns1:Transform"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="AgreementMethodType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="KA-Nonce" type="xs:base64Binary"/>
+            <xs:element name="OriginatorKeyInfo" type="ns1:KeyInfoType"/>
+            <xs:element name="RecipientKeyInfo" type="ns1:KeyInfoType"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Algorithm" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="CipherReferenceType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Transforms" type="tns:TransformsType"/>
+        </xs:sequence>
+        <xs:attribute name="URI" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="EncryptedKeyType">
+        <xs:complexContent>
+          <xs:extension base="tns:EncryptedType">
+            <xs:sequence>
+              <xs:element minOccurs="0" ref="tns:ReferenceList"/>
+              <xs:element minOccurs="0" name="CarriedKeyName" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="Recipient" type="xs:string"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="CipherDataType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CipherValue" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="CipherReference" type="tns:CipherReferenceType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="EncryptionPropertyType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="Target" type="xs:anyURI"/>
+        <xs:attribute name="Id" type="xs:ID"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="EncryptionPropertiesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="EncryptionProperty" type="tns:EncryptionPropertyType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" targetNamespace="http://www.w3.org/2000/09/xmldsig#" version="1.0">
+
+      <xs:element name="CanonicalizationMethod" type="tns:CanonicalizationMethodType"/>
+
+      <xs:element name="DSAKeyValue" type="tns:DSAKeyValueType"/>
+
+      <xs:element name="DigestMethod" type="tns:DigestMethodType"/>
+
+      <xs:element name="DigestValue" type="xs:base64Binary"/>
+
+      <xs:element name="KeyInfo" type="tns:KeyInfoType"/>
+
+      <xs:element name="KeyName" type="xs:string"/>
+
+      <xs:element name="KeyValue" type="tns:KeyValueType"/>
+
+      <xs:element name="Manifest" type="tns:ManifestType"/>
+
+      <xs:element name="MgmtData" type="xs:string"/>
+
+      <xs:element name="Object" type="tns:ObjectType"/>
+
+      <xs:element name="PGPData" type="tns:PGPDataType"/>
+
+      <xs:element name="RSAKeyValue" type="tns:RSAKeyValueType"/>
+
+      <xs:element name="Reference" type="tns:ReferenceType"/>
+
+      <xs:element name="RetrievalMethod" type="tns:RetrievalMethodType"/>
+
+      <xs:element name="SPKIData" type="tns:SPKIDataType"/>
+
+      <xs:element name="Signature" type="tns:SignatureType"/>
+
+      <xs:element name="SignatureMethod" type="tns:SignatureMethodType"/>
+
+      <xs:element name="SignatureProperties" type="tns:SignaturePropertiesType"/>
+
+      <xs:element name="SignatureProperty" type="tns:SignaturePropertyType"/>
+
+      <xs:element name="SignatureValue" type="tns:SignatureValueType"/>
+
+      <xs:element name="SignedInfo" type="tns:SignedInfoType"/>
+
+      <xs:element name="Transform" type="tns:TransformType"/>
+
+      <xs:element name="Transforms" type="tns:TransformsType"/>
+
+      <xs:element name="X509Data" type="tns:X509DataType"/>
+
+      <xs:complexType name="SignatureType">
+        <xs:sequence>
+          <xs:element name="SignedInfo" type="tns:SignedInfoType"/>
+          <xs:element name="SignatureValue" type="tns:SignatureValueType"/>
+          <xs:element minOccurs="0" name="KeyInfo" type="tns:KeyInfoType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Object" type="tns:ObjectType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignedInfoType">
+        <xs:sequence>
+          <xs:element name="CanonicalizationMethod" type="tns:CanonicalizationMethodType"/>
+          <xs:element name="SignatureMethod" type="tns:SignatureMethodType"/>
+          <xs:element maxOccurs="unbounded" name="Reference" type="tns:ReferenceType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="CanonicalizationMethodType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="Algorithm" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="ObjectType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+        <xs:attribute name="MimeType" type="xs:string"/>
+        <xs:attribute name="Encoding" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="ReferenceType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Transforms" type="tns:TransformsType"/>
+          <xs:element name="DigestMethod" type="tns:DigestMethodType"/>
+          <xs:element name="DigestValue" type="xs:base64Binary"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+        <xs:attribute name="URI" type="xs:anyURI"/>
+        <xs:attribute name="Type" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="TransformsType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="Transform" type="tns:TransformType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="TransformType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="XPath" type="xs:string"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Algorithm" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="DigestMethodType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="Algorithm" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="X509IssuerSerialType">
+        <xs:sequence>
+          <xs:element name="X509IssuerName" type="xs:string"/>
+          <xs:element name="X509SerialNumber" type="xs:integer"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="KeyInfoType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:PGPData"/>
+            <xs:element ref="tns:X509Data"/>
+            <xs:element ref="tns:SPKIData"/>
+            <xs:element ref="tns:KeyValue"/>
+            <xs:element ref="tns:MgmtData"/>
+            <xs:element ref="tns:RetrievalMethod"/>
+            <xs:element ref="tns:KeyName"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="RetrievalMethodType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Transforms" type="tns:TransformsType"/>
+        </xs:sequence>
+        <xs:attribute name="URI" type="xs:anyURI"/>
+        <xs:attribute name="Type" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="SignatureMethodType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="HMACOutputLength" type="xs:integer"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Algorithm" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="SPKIDataType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="SPKISexp" type="xs:base64Binary"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="X509DataType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="X509Certificate" type="xs:base64Binary"/>
+            <xs:element name="X509CRL" type="xs:base64Binary"/>
+            <xs:element name="X509SKI" type="xs:base64Binary"/>
+            <xs:element name="X509IssuerSerial" type="tns:X509IssuerSerialType"/>
+            <xs:element name="X509SubjectName" type="xs:string"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="PGPDataType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="PGPKeyPacket" type="xs:base64Binary"/>
+            <xs:element name="PGPKeyID" type="xs:base64Binary"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="DSAKeyValueType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="P" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="Q" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="G" type="xs:base64Binary"/>
+          <xs:element name="Y" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="J" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="Seed" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="PgenCounter" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ManifestType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="Reference" type="tns:ReferenceType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignatureValueType">
+        <xs:simpleContent>
+          <xs:extension base="xs:base64Binary">
+            <xs:attribute name="Id" type="xs:ID"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="RSAKeyValueType">
+        <xs:sequence>
+          <xs:element name="Modulus" type="xs:base64Binary"/>
+          <xs:element name="Exponent" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="SignaturePropertyType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="Target" type="xs:anyURI" use="required"/>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="KeyValueType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:DSAKeyValue"/>
+            <xs:element ref="tns:RSAKeyValue"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SignaturePropertiesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="SignatureProperty" type="tns:SignaturePropertyType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://uri.etsi.org/02231/v2#" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" targetNamespace="http://uri.etsi.org/02231/v2#" version="1.0">
+
+      <xs:import namespace="http://www.w3.org/XML/1998/namespace"/>
+
+      <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+
+      <xs:element name="AdditionalInformation" type="tns:AdditionalInformationType"/>
+
+      <xs:element name="ElectronicAddress" type="tns:ElectronicAddressType"/>
+
+      <xs:element name="Extension" type="tns:ExtensionType"/>
+
+      <xs:element name="NextUpdate" type="tns:NextUpdateType"/>
+
+      <xs:element name="OtherTSLPointer" type="tns:OtherTSLPointerType"/>
+
+      <xs:element name="PointersToOtherTSL" type="tns:OtherTSLPointersType"/>
+
+      <xs:element name="PolicyOrLegalNotice" type="tns:PolicyOrLegalnoticeType"/>
+
+      <xs:element name="PostalAddress" type="tns:PostalAddressType"/>
+
+      <xs:element name="PostalAddresses" type="tns:PostalAddressListType"/>
+
+      <xs:element name="SchemeInformation" type="tns:TSLSchemeInformationType"/>
+
+      <xs:element name="SchemeTerritory" type="xs:string"/>
+
+      <xs:element name="ServiceDigitalIdentity" type="tns:DigitalIdentityListType"/>
+
+      <xs:element name="ServiceHistory" type="tns:ServiceHistoryType"/>
+
+      <xs:element name="ServiceHistoryInstance" type="tns:ServiceHistoryInstanceType"/>
+
+      <xs:element name="ServiceInformation" type="tns:TSPServiceInformationType"/>
+
+      <xs:element name="ServiceStatus" type="xs:string"/>
+
+      <xs:element name="ServiceSupplyPoints" type="tns:ServiceSupplyPointsType"/>
+
+      <xs:element name="ServiceTypeIdentifier" type="xs:string"/>
+
+      <xs:element name="TSPInformation" type="tns:TSPInformationType"/>
+
+      <xs:element name="TSPService" type="tns:TSPServiceType"/>
+
+      <xs:element name="TSPServices" type="tns:TSPServicesListType"/>
+
+      <xs:element name="TrustServiceProvider" type="tns:TSPType"/>
+
+      <xs:element name="TrustServiceProviderList" type="tns:TrustServiceProviderListType"/>
+
+      <xs:element name="TrustServiceStatusList" type="tns:TrustStatusListType"/>
+
+      <xs:complexType name="TSLSchemeInformationType">
+        <xs:sequence>
+          <xs:element name="TSLVersionIdentifier" type="xs:integer"/>
+          <xs:element name="TSLSequenceNumber" type="xs:positiveInteger"/>
+          <xs:element name="TSLType" type="xs:string"/>
+          <xs:element name="SchemeOperatorName" type="tns:InternationalNamesType"/>
+          <xs:element name="SchemeOperatorAddress" type="tns:AddressType"/>
+          <xs:element name="SchemeName" type="tns:InternationalNamesType"/>
+          <xs:element name="SchemeInformationURI" type="tns:NonEmptyMultiLangURIListType"/>
+          <xs:element name="StatusDeterminationApproach" type="xs:string"/>
+          <xs:element minOccurs="0" name="SchemeTypeCommunityRules" type="tns:NonEmptyURIListType"/>
+          <xs:element minOccurs="0" name="SchemeTerritory" type="xs:string"/>
+          <xs:element minOccurs="0" name="PolicyOrLegalNotice" type="tns:PolicyOrLegalnoticeType"/>
+          <xs:element name="HistoricalInformationPeriod" type="xs:nonNegativeInteger"/>
+          <xs:element minOccurs="0" name="PointersToOtherTSL" type="tns:OtherTSLPointersType"/>
+          <xs:element name="ListIssueDateTime" type="xs:dateTime"/>
+          <xs:element name="NextUpdate" type="tns:NextUpdateType"/>
+          <xs:element minOccurs="0" name="SchemeExtensions" type="tns:ExtensionsListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="InternationalNamesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="Name" type="tns:MultiLangNormStringType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="MultiLangNormStringType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute ref="xml:lang" use="required"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="AddressType">
+        <xs:sequence>
+          <xs:element name="PostalAddresses" type="tns:PostalAddressListType"/>
+          <xs:element name="ElectronicAddress" type="tns:ElectronicAddressType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="PostalAddressListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="PostalAddress" type="tns:PostalAddressType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="PostalAddressType">
+        <xs:sequence>
+          <xs:element name="StreetAddress" type="xs:string"/>
+          <xs:element name="Locality" type="xs:string"/>
+          <xs:element minOccurs="0" name="StateOrProvince" type="xs:string"/>
+          <xs:element name="PostalCode" type="xs:string"/>
+          <xs:element name="CountryName" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="ElectronicAddressType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="URI" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="NonEmptyMultiLangURIListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="URI" type="tns:NonEmptyMultiLangURIType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="NonEmptyMultiLangURIType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute ref="xml:lang" use="required"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="NonEmptyURIListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="URI" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="PolicyOrLegalnoticeType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="TSLPolicy" type="tns:NonEmptyMultiLangURIType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="TSLLegalNotice" type="tns:MultiLangStringType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="MultiLangStringType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute ref="xml:lang" use="required"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="OtherTSLPointersType">
+        <xs:sequence>
+          <xs:element name="OtherTSLPointer" type="tns:OtherTSLPointerType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="OtherTSLPointerType">
+        <xs:sequence>
+          <xs:element name="TSLLocation" type="xs:string"/>
+          <xs:element name="AdditionalInformation" type="tns:AdditionalInformationType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AdditionalInformationType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="TextualInformation" type="tns:MultiLangStringType"/>
+            <xs:element name="OtherInformation" type="tns:AnyType"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="AnyType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ExtensionType">
+        <xs:complexContent>
+          <xs:extension base="tns:AnyType">
+            <xs:sequence/>
+            <xs:attribute name="Critical" type="xs:boolean" use="required"/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="ServiceHistoryType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ServiceHistoryInstance" type="tns:ServiceHistoryInstanceType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ServiceHistoryInstanceType">
+        <xs:sequence>
+          <xs:element name="ServiceTypeIdentifier" type="xs:string"/>
+          <xs:element name="ServiceName" type="tns:InternationalNamesType"/>
+          <xs:element name="ServiceDigitalIdentity" type="tns:DigitalIdentityListType"/>
+          <xs:element name="ServiceStatus" type="xs:string"/>
+          <xs:element name="StatusStartingTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="ServiceInformationExtensions" type="tns:ExtensionsListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="DigitalIdentityListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="digitalId" nillable="true" type="tns:DigitalIdentityType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="DigitalIdentityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="X509Certificate" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="X509SubjectName" type="xs:string"/>
+          <xs:element minOccurs="0" ref="ns1:KeyValue"/>
+          <xs:element minOccurs="0" name="X509SKI" type="xs:base64Binary"/>
+          <xs:element minOccurs="0" name="Other" type="tns:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ExtensionsListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="Extension" type="tns:ExtensionType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="TSPServiceInformationType">
+        <xs:sequence>
+          <xs:element name="ServiceTypeIdentifier" type="xs:string"/>
+          <xs:element name="ServiceName" type="tns:InternationalNamesType"/>
+          <xs:element name="ServiceDigitalIdentity" type="tns:DigitalIdentityListType"/>
+          <xs:element name="ServiceStatus" type="xs:string"/>
+          <xs:element name="StatusStartingTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="SchemeServiceDefinitionURI" type="tns:NonEmptyMultiLangURIListType"/>
+          <xs:element minOccurs="0" name="ServiceSupplyPoints" type="tns:ServiceSupplyPointsType"/>
+          <xs:element minOccurs="0" name="TSPServiceDefinitionURI" type="tns:NonEmptyMultiLangURIListType"/>
+          <xs:element minOccurs="0" name="ServiceInformationExtensions" type="tns:ExtensionsListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ServiceSupplyPointsType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="ServiceSupplyPoint" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="TSPServicesListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="TSPService" type="tns:TSPServiceType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="TSPServiceType">
+        <xs:sequence>
+          <xs:element name="ServiceInformation" type="tns:TSPServiceInformationType"/>
+          <xs:element minOccurs="0" name="ServiceHistory" type="tns:ServiceHistoryType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="TrustServiceProviderListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="TrustServiceProvider" type="tns:TSPType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="TSPType">
+        <xs:sequence>
+          <xs:element name="TSPInformation" type="tns:TSPInformationType"/>
+          <xs:element name="TSPServices" type="tns:TSPServicesListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="TSPInformationType">
+        <xs:sequence>
+          <xs:element name="TSPName" type="tns:InternationalNamesType"/>
+          <xs:element minOccurs="0" name="TSPTradeName" type="tns:InternationalNamesType"/>
+          <xs:element name="TSPAddress" type="tns:AddressType"/>
+          <xs:element name="TSPInformationURI" type="tns:NonEmptyMultiLangURIListType"/>
+          <xs:element minOccurs="0" name="TSPInformationExtensions" type="tns:ExtensionsListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="NextUpdateType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dateTime" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="TrustStatusListType">
+        <xs:sequence>
+          <xs:element name="SchemeInformation" type="tns:TSLSchemeInformationType"/>
+          <xs:element minOccurs="0" name="TrustServiceProviderList" type="tns:TrustServiceProviderListType"/>
+          <xs:element ref="ns1:Signature"/>
+        </xs:sequence>
+        <xs:attribute name="TSLTag" type="xs:string" use="required"/>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://uri.etsi.org/01903/v1.3.2#" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" targetNamespace="http://uri.etsi.org/01903/v1.3.2#" version="1.0">
+
+      <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+
+      <xs:element name="AllDataObjectsTimeStamp" type="tns:XAdESTimeStampType"/>
+
+      <xs:element name="Any" type="tns:AnyType"/>
+
+      <xs:element name="ArchiveTimeStamp" type="tns:XAdESTimeStampType"/>
+
+      <xs:element name="AttrAuthoritiesCertValues" type="tns:CertificateValuesType"/>
+
+      <xs:element name="AttributeCertificateRefs" type="tns:CompleteCertificateRefsType"/>
+
+      <xs:element name="AttributeRevocationRefs" type="tns:CompleteRevocationRefsType"/>
+
+      <xs:element name="AttributeRevocationValues" type="tns:RevocationValuesType"/>
+
+      <xs:element name="CertificateValues" type="tns:CertificateValuesType"/>
+
+      <xs:element name="CommitmentTypeIndication" type="tns:CommitmentTypeIndicationType"/>
+
+      <xs:element name="CompleteCertificateRefs" type="tns:CompleteCertificateRefsType"/>
+
+      <xs:element name="CompleteRevocationRefs" type="tns:CompleteRevocationRefsType"/>
+
+      <xs:element name="CounterSignature" type="tns:CounterSignatureType"/>
+
+      <xs:element name="DataObjectFormat" type="tns:DataObjectFormatType"/>
+
+      <xs:element name="EncapsulatedPKIData" type="tns:EncapsulatedPKIDataType"/>
+
+      <xs:element name="Include" type="tns:IncludeType"/>
+
+      <xs:element name="IndividualDataObjectsTimeStamp" type="tns:XAdESTimeStampType"/>
+
+      <xs:element name="ObjectIdentifier" type="tns:ObjectIdentifierType"/>
+
+      <xs:element name="OtherTimeStamp" type="tns:OtherTimeStampType"/>
+
+      <xs:element name="QualifyingProperties" type="tns:QualifyingPropertiesType"/>
+
+      <xs:element name="QualifyingPropertiesReference" type="tns:QualifyingPropertiesReferenceType"/>
+
+      <xs:element name="ReferenceInfo" type="tns:ReferenceInfoType"/>
+
+      <xs:element name="RefsOnlyTimeStamp" type="tns:XAdESTimeStampType"/>
+
+      <xs:element name="RevocationValues" type="tns:RevocationValuesType"/>
+
+      <xs:element name="SPURI" type="xs:string"/>
+
+      <xs:element name="SPUserNotice" type="tns:SPUserNoticeType"/>
+
+      <xs:element name="SigAndRefsTimeStamp" type="tns:XAdESTimeStampType"/>
+
+      <xs:element name="SignaturePolicyIdentifier" type="tns:SignaturePolicyIdentifierType"/>
+
+      <xs:element name="SignatureProductionPlace" type="tns:SignatureProductionPlaceType"/>
+
+      <xs:element name="SignatureTimeStamp" type="tns:XAdESTimeStampType"/>
+
+      <xs:element name="SignedDataObjectProperties" type="tns:SignedDataObjectPropertiesType"/>
+
+      <xs:element name="SignedProperties" type="tns:SignedPropertiesType"/>
+
+      <xs:element name="SignedSignatureProperties" type="tns:SignedSignaturePropertiesType"/>
+
+      <xs:element name="SignerRole" type="tns:SignerRoleType"/>
+
+      <xs:element name="SigningCertificate" type="tns:CertIDListType"/>
+
+      <xs:element name="SigningTime" type="xs:anySimpleType"/>
+
+      <xs:element name="UnsignedDataObjectProperties" type="tns:UnsignedDataObjectPropertiesType"/>
+
+      <xs:element name="UnsignedProperties" type="tns:UnsignedPropertiesType"/>
+
+      <xs:element name="UnsignedSignatureProperties" type="tns:UnsignedSignaturePropertiesType"/>
+
+      <xs:element name="XAdESTimeStamp" type="tns:XAdESTimeStampType"/>
+
+      <xs:complexType name="DigestAlgAndValueType">
+        <xs:sequence>
+          <xs:element ref="ns1:DigestMethod"/>
+          <xs:element ref="ns1:DigestValue"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertIDListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="Cert" type="tns:CertIDType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertIDType">
+        <xs:sequence>
+          <xs:element name="CertDigest" type="tns:DigestAlgAndValueType"/>
+          <xs:element name="IssuerSerial" type="ns1:X509IssuerSerialType"/>
+        </xs:sequence>
+        <xs:attribute name="URI" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignaturePolicyIdentifierType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SignaturePolicyId" type="tns:SignaturePolicyIdType"/>
+          <xs:element minOccurs="0" name="SignaturePolicyImplied" type="xs:anyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SignaturePolicyIdType">
+        <xs:sequence>
+          <xs:element name="SigPolicyId" type="tns:ObjectIdentifierType"/>
+          <xs:element minOccurs="0" ref="ns1:Transforms"/>
+          <xs:element name="SigPolicyHash" type="tns:DigestAlgAndValueType"/>
+          <xs:element minOccurs="0" name="SigPolicyQualifiers" type="tns:SigPolicyQualifiersListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ObjectIdentifierType">
+        <xs:sequence>
+          <xs:element name="Identifier" type="tns:IdentifierType"/>
+          <xs:element minOccurs="0" name="Description" type="xs:string"/>
+          <xs:element minOccurs="0" name="DocumentationReferences" type="tns:DocumentationReferencesType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="IdentifierType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute name="Qualifier" type="tns:QualifierType"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="DocumentationReferencesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="DocumentationReference" type="xs:anyURI"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SigPolicyQualifiersListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="SigPolicyQualifier" type="tns:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType mixed="true" name="AnyType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignedPropertiesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SignedSignatureProperties" type="tns:SignedSignaturePropertiesType"/>
+          <xs:element minOccurs="0" name="SignedDataObjectProperties" type="tns:SignedDataObjectPropertiesType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignedSignaturePropertiesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SigningTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="SigningCertificate" type="tns:CertIDListType"/>
+          <xs:element minOccurs="0" name="SignaturePolicyIdentifier" type="tns:SignaturePolicyIdentifierType"/>
+          <xs:element minOccurs="0" name="SignatureProductionPlace" type="tns:SignatureProductionPlaceType"/>
+          <xs:element minOccurs="0" name="SignerRole" type="tns:SignerRoleType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignatureProductionPlaceType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="City" type="xs:string"/>
+          <xs:element minOccurs="0" name="StateOrProvince" type="xs:string"/>
+          <xs:element minOccurs="0" name="PostalCode" type="xs:string"/>
+          <xs:element minOccurs="0" name="CountryName" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="SignerRoleType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ClaimedRoles" type="tns:ClaimedRolesListType"/>
+          <xs:element minOccurs="0" name="CertifiedRoles" type="tns:CertifiedRolesListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ClaimedRolesListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="ClaimedRole" type="tns:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertifiedRolesListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="CertifiedRole" type="tns:EncapsulatedPKIDataType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="EncapsulatedPKIDataType">
+        <xs:simpleContent>
+          <xs:extension base="xs:base64Binary">
+            <xs:attribute name="Id" type="xs:ID"/>
+            <xs:attribute name="Encoding" type="xs:anyURI"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="SignedDataObjectPropertiesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="DataObjectFormat" type="tns:DataObjectFormatType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="CommitmentTypeIndication" type="tns:CommitmentTypeIndicationType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="AllDataObjectsTimeStamp" type="tns:XAdESTimeStampType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="IndividualDataObjectsTimeStamp" type="tns:XAdESTimeStampType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="DataObjectFormatType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" type="xs:string"/>
+          <xs:element minOccurs="0" name="ObjectIdentifier" type="tns:ObjectIdentifierType"/>
+          <xs:element minOccurs="0" name="MimeType" type="xs:string"/>
+          <xs:element minOccurs="0" name="Encoding" type="xs:anyURI"/>
+        </xs:sequence>
+        <xs:attribute name="ObjectReference" type="xs:anyURI" use="required"/>
+      </xs:complexType>
+
+      <xs:complexType name="CommitmentTypeIndicationType">
+        <xs:sequence>
+          <xs:element name="CommitmentTypeId" type="tns:ObjectIdentifierType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ObjectReference" type="xs:anyURI"/>
+          <xs:element minOccurs="0" name="AllSignedDataObjects" type="xs:anyType"/>
+          <xs:element minOccurs="0" name="CommitmentTypeQualifiers" type="tns:CommitmentTypeQualifiersListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CommitmentTypeQualifiersListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="CommitmentTypeQualifier" type="tns:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="XAdESTimeStampType">
+        <xs:complexContent>
+          <xs:extension base="tns:GenericTimeStampType">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType abstract="true" name="GenericTimeStampType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Include" type="tns:IncludeType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ReferenceInfo" type="tns:ReferenceInfoType"/>
+          <xs:element minOccurs="0" ref="ns1:CanonicalizationMethod"/>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="EncapsulatedTimeStamp" type="tns:EncapsulatedPKIDataType"/>
+            <xs:element name="XMLTimeStamp" type="tns:AnyType"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="IncludeType">
+        <xs:sequence/>
+        <xs:attribute name="URI" type="xs:anyURI" use="required"/>
+        <xs:attribute name="referencedData" type="xs:boolean"/>
+      </xs:complexType>
+
+      <xs:complexType name="ReferenceInfoType">
+        <xs:sequence>
+          <xs:element ref="ns1:DigestMethod"/>
+          <xs:element ref="ns1:DigestValue"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+        <xs:attribute name="URI" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="OtherTimeStampType">
+        <xs:complexContent>
+          <xs:extension base="tns:GenericTimeStampType">
+            <xs:sequence/>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+
+      <xs:complexType name="RevocationValuesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CRLValues" type="tns:CRLValuesType"/>
+          <xs:element minOccurs="0" name="OCSPValues" type="tns:OCSPValuesType"/>
+          <xs:element minOccurs="0" name="OtherValues" type="tns:OtherCertStatusValuesType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="CRLValuesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="EncapsulatedCRLValue" type="tns:EncapsulatedPKIDataType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="OCSPValuesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="EncapsulatedOCSPValue" type="tns:EncapsulatedPKIDataType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="OtherCertStatusValuesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="OtherValue" type="tns:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CertificateValuesType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="EncapsulatedX509Certificate" type="tns:EncapsulatedPKIDataType"/>
+            <xs:element name="OtherCertificate" type="tns:AnyType"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="UnsignedPropertiesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="UnsignedSignatureProperties" type="tns:UnsignedSignaturePropertiesType"/>
+          <xs:element minOccurs="0" name="UnsignedDataObjectProperties" type="tns:UnsignedDataObjectPropertiesType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="UnsignedSignaturePropertiesType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="AttrAuthoritiesCertValues" type="tns:CertificateValuesType"/>
+            <xs:element name="CompleteRevocationRefs" type="tns:CompleteRevocationRefsType"/>
+            <xs:element name="AttributeRevocationRefs" type="tns:CompleteRevocationRefsType"/>
+            <xs:element name="AttributeCertificateRefs" type="tns:CompleteCertificateRefsType"/>
+            <xs:element name="CompleteCertificateRefs" type="tns:CompleteCertificateRefsType"/>
+            <xs:element name="RevocationValues" type="tns:RevocationValuesType"/>
+            <xs:element name="RefsOnlyTimeStamp" type="tns:XAdESTimeStampType"/>
+            <xs:element name="CertificateValues" type="tns:CertificateValuesType"/>
+            <xs:element name="AttributeRevocationValues" type="tns:RevocationValuesType"/>
+            <xs:element name="CounterSignature" type="tns:CounterSignatureType"/>
+            <xs:element name="SignatureTimeStamp" type="tns:XAdESTimeStampType"/>
+            <xs:element name="SigAndRefsTimeStamp" type="tns:XAdESTimeStampType"/>
+            <xs:element name="ArchiveTimeStamp" type="tns:XAdESTimeStampType"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="UnsignedDataObjectPropertiesType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="UnsignedDataObjectProperty" type="tns:AnyType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="CounterSignatureType">
+        <xs:sequence>
+          <xs:element ref="ns1:Signature"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="QualifyingPropertiesReferenceType">
+        <xs:sequence/>
+        <xs:attribute name="URI" type="xs:anyURI" use="required"/>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="CompleteCertificateRefsType">
+        <xs:sequence>
+          <xs:element name="CertRefs" type="tns:CertIDListType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="CompleteRevocationRefsType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CRLRefs" type="tns:CRLRefsType"/>
+          <xs:element minOccurs="0" name="OCSPRefs" type="tns:OCSPRefsType"/>
+          <xs:element minOccurs="0" name="OtherRefs" type="tns:OtherCertStatusRefsType"/>
+        </xs:sequence>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="CRLRefsType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="CRLRef" type="tns:CRLRefType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CRLRefType">
+        <xs:sequence>
+          <xs:element name="DigestAlgAndValue" type="tns:DigestAlgAndValueType"/>
+          <xs:element minOccurs="0" name="CRLIdentifier" type="tns:CRLIdentifierType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CRLIdentifierType">
+        <xs:sequence>
+          <xs:element name="Issuer" type="xs:string"/>
+          <xs:element name="IssueTime" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="Number" type="xs:integer"/>
+        </xs:sequence>
+        <xs:attribute name="URI" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="OCSPRefsType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="OCSPRef" type="tns:OCSPRefType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="OCSPRefType">
+        <xs:sequence>
+          <xs:element name="OCSPIdentifier" type="tns:OCSPIdentifierType"/>
+          <xs:element minOccurs="0" name="DigestAlgAndValue" type="tns:DigestAlgAndValueType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="OCSPIdentifierType">
+        <xs:sequence>
+          <xs:element name="ResponderID" type="tns:ResponderIDType"/>
+          <xs:element name="ProducedAt" type="xs:dateTime"/>
+        </xs:sequence>
+        <xs:attribute name="URI" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="ResponderIDType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ByName" type="xs:string"/>
+          <xs:element minOccurs="0" name="ByKey" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="OtherCertStatusRefsType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="OtherRef" type="tns:AnyType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="QualifyingPropertiesType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SignedProperties" type="tns:SignedPropertiesType"/>
+          <xs:element minOccurs="0" name="UnsignedProperties" type="tns:UnsignedPropertiesType"/>
+        </xs:sequence>
+        <xs:attribute name="Target" type="xs:anyURI" use="required"/>
+        <xs:attribute name="Id" type="xs:ID"/>
+      </xs:complexType>
+
+      <xs:complexType name="SPUserNoticeType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NoticeRef" type="tns:NoticeReferenceType"/>
+          <xs:element minOccurs="0" name="ExplicitText" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="NoticeReferenceType">
+        <xs:sequence>
+          <xs:element name="Organization" type="xs:string"/>
+          <xs:element name="NoticeNumbers" type="tns:IntegerListType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="IntegerListType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="int" type="xs:integer"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:simpleType name="QualifierType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="OIDAsURI"/>
+          <xs:enumeration value="OIDAsURN"/>
+        </xs:restriction>
+      </xs:simpleType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:ns1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" elementFormDefault="qualified" targetNamespace="http://schemas.xmlsoap.org/ws/2004/09/policy" version="1.0">
+
+      <xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"/>
+
+      <xs:element name="All" type="tns:OperatorContentType"/>
+
+      <xs:element name="AppliesTo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+          </xs:sequence>
+          <xs:anyAttribute namespace="##other" processContents="skip"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ExactlyOne" type="tns:OperatorContentType"/>
+
+      <xs:element name="Policy">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="tns:OperatorContentType">
+              <xs:sequence/>
+              <xs:attribute name="Name" type="xs:anyURI"/>
+              <xs:attribute ref="ns1:Id"/>
+              <xs:anyAttribute namespace="##other" processContents="skip"/>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="PolicyAttachment">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:AppliesTo"/>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element ref="tns:Policy"/>
+              <xs:element ref="tns:PolicyReference"/>
+            </xs:choice>
+            <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+          </xs:sequence>
+          <xs:anyAttribute namespace="##other" processContents="skip"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="PolicyReference">
+        <xs:complexType>
+          <xs:sequence/>
+          <xs:attribute name="URI" type="xs:anyURI" use="required"/>
+          <xs:attribute name="Digest" type="xs:base64Binary"/>
+          <xs:attribute name="DigestAlgorithm" type="xs:anyURI"/>
+          <xs:anyAttribute namespace="##other" processContents="skip"/>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:complexType name="OperatorContentType">
+        <xs:sequence>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="tns:ExactlyOne"/>
+            <xs:element ref="tns:PolicyReference"/>
+            <xs:element ref="tns:All"/>
+            <xs:element ref="tns:Policy"/>
+            <xs:any namespace="##other" processContents="lax"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" version="1.0">
+
+      <xs:element name="Created" type="tns:AttributedDateTime"/>
+
+      <xs:element name="Expires" type="tns:AttributedDateTime"/>
+
+      <xs:element name="Timestamp" type="tns:TimestampType"/>
+
+      <xs:complexType name="AttributedDateTime">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute ref="tns:Id"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="TimestampType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Created" type="tns:AttributedDateTime"/>
+          <xs:element minOccurs="0" name="Expires" type="tns:AttributedDateTime"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute ref="tns:Id"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="AttributedURI">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute ref="tns:Id"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:attribute name="Id" type="xs:string"/>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:ns1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" version="1.0">
+
+      <xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"/>
+
+      <xs:element name="BinarySecurityToken" type="tns:BinarySecurityTokenType"/>
+
+      <xs:element name="Embedded" type="tns:EmbeddedType"/>
+
+      <xs:element name="KeyIdentifier" type="tns:KeyIdentifierType"/>
+
+      <xs:element name="Nonce" type="tns:EncodedString"/>
+
+      <xs:element name="Password" type="tns:PasswordString"/>
+
+      <xs:element name="Reference" type="tns:ReferenceType"/>
+
+      <xs:element name="Security" type="tns:SecurityHeaderType"/>
+
+      <xs:element name="SecurityTokenReference" type="tns:SecurityTokenReferenceType"/>
+
+      <xs:element name="TransformationParameters" type="tns:TransformationParametersType"/>
+
+      <xs:element name="UsernameToken" type="tns:UsernameTokenType"/>
+
+      <xs:complexType name="SecurityTokenReferenceType">
+        <xs:sequence>
+          <!--xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/-->
+          <xs:element minOccurs="0" ref="tns:Reference" />
+        </xs:sequence>
+        <xs:attribute ref="ns1:Id"/>
+        <xs:attribute ref="tns:Usage"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="SecurityHeaderType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="ReferenceType">
+        <xs:sequence/>
+        <xs:attribute name="URI" type="xs:anyURI"/>
+        <xs:attribute name="ValueType" type="xs:anyURI"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="EncodedString">
+        <xs:simpleContent>
+          <xs:extension base="tns:AttributedString">
+            <xs:attribute name="EncodingType" type="xs:anyURI"/>
+            <xs:anyAttribute namespace="##other" processContents="skip"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="AttributedString">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute ref="ns1:Id"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="PasswordString">
+        <xs:simpleContent>
+          <xs:extension base="tns:AttributedString">
+            <xs:attribute name="Type" type="xs:anyURI"/>
+            <xs:anyAttribute namespace="##other" processContents="skip"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="BinarySecurityTokenType">
+        <xs:simpleContent>
+          <xs:extension base="tns:EncodedString">
+            <xs:attribute name="ValueType" type="xs:anyURI"/>
+            <xs:anyAttribute namespace="##other" processContents="skip"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="KeyIdentifierType">
+        <xs:simpleContent>
+          <xs:extension base="tns:EncodedString">
+            <xs:attribute name="ValueType" type="xs:anyURI"/>
+            <xs:anyAttribute namespace="##other" processContents="skip"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="EmbeddedType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="ValueType" type="xs:anyURI"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="TransformationParametersType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="UsernameTokenType">
+        <xs:sequence>
+          <xs:element name="Username" type="tns:AttributedString"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute ref="ns1:Id"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:attribute name="Usage">
+        <xs:simpleType>
+          <xs:list itemType="xs:string"/>
+        </xs:simpleType>
+      </xs:attribute>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:ns3="http://www.w3.org/2005/08/addressing" xmlns:wsc="http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512" xmlns:ns2="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:ns1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512" version="1.0">
+
+      <xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
+
+      <xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"/>
+
+      <xs:import namespace="http://www.w3.org/2005/08/addressing" schemaLocation="http://localhost:8180/dss-ws/dss?xsd=http://www.w3.org/2006/03/addressing/ws-addr.xsd"/>
+
+      <xs:element name="AllowPostdating" type="tns:AllowPostdatingType"/>
+
+      <xs:element name="AuthenticationType" type="xs:string"/>
+
+      <xs:element name="Authenticator" type="tns:AuthenticatorType"/>
+
+      <xs:element name="BinaryExchange" type="tns:BinaryExchangeType"/>
+
+      <xs:element name="BinarySecret" type="tns:BinarySecretType"/>
+
+      <xs:element name="CancelTarget" type="tns:CancelTargetType"/>
+
+      <xs:element name="CanonicalizationAlgorithm" type="xs:string"/>
+
+      <xs:element name="Challenge" type="xs:string"/>
+
+      <xs:element name="Claims" type="tns:ClaimsType"/>
+
+      <xs:element name="CombinedHash" type="xs:base64Binary"/>
+
+      <xs:element name="ComputedKey" type="xs:string"/>
+
+      <xs:element name="ComputedKeyAlgorithm" type="xs:string"/>
+
+      <xs:element name="Delegatable" type="xs:boolean"/>
+
+      <xs:element name="DelegateTo" type="tns:DelegateToType"/>
+
+      <xs:element name="EncryptWith" type="xs:string"/>
+
+      <xs:element name="Encryption" type="tns:EncryptionType"/>
+
+      <xs:element name="EncryptionAlgorithm" type="xs:string"/>
+
+      <xs:element name="Entropy" type="tns:EntropyType"/>
+
+      <xs:element name="Forwardable" type="xs:boolean"/>
+
+      <xs:element name="IssuedTokens" type="tns:RequestSecurityTokenResponseCollectionType"/>
+
+      <xs:element name="Issuer" type="ns3:EndpointReferenceType"/>
+
+      <xs:element name="KeyExchangeToken" type="tns:KeyExchangeTokenType"/>
+
+      <xs:element name="KeySize" type="xs:long"/>
+
+      <xs:element name="KeyType" type="xs:string"/>
+
+      <xs:element name="KeyWrapAlgorithm" type="xs:string"/>
+
+      <xs:element name="Lifetime" type="tns:LifetimeType"/>
+
+      <xs:element name="OnBehalfOf" type="tns:OnBehalfOfType"/>
+
+      <xs:element name="Participants" type="tns:ParticipantsType"/>
+
+      <xs:element name="ProofEncryption" type="tns:ProofEncryptionType"/>
+
+      <xs:element name="RenewTarget" type="tns:RenewTargetType"/>
+
+      <xs:element name="Renewing" type="tns:RenewingType"/>
+
+      <xs:element name="RequestKET" type="tns:RequestKETType"/>
+
+      <xs:element name="RequestSecurityToken" type="tns:RequestSecurityTokenType"/>
+
+      <xs:element name="RequestSecurityTokenCollection" type="tns:RequestSecurityTokenCollectionType"/>
+
+      <xs:element name="RequestSecurityTokenResponse" type="tns:RequestSecurityTokenResponseType"/>
+
+      <xs:element name="RequestSecurityTokenResponseCollection" type="tns:RequestSecurityTokenResponseCollectionType"/>
+
+      <xs:element name="RequestType" type="xs:string"/>
+
+      <xs:element name="RequestedAttachedReference" type="tns:RequestedReferenceType"/>
+
+      <xs:element name="RequestedProofToken" type="tns:RequestedProofTokenType"/>
+
+      <xs:element name="RequestedSecurityToken" type="tns:RequestedSecurityTokenType"/>
+
+      <xs:element name="RequestedTokenCancelled" type="tns:RequestedTokenCancelledType"/>
+
+      <xs:element name="RequestedUnattachedReference" type="tns:RequestedReferenceType"/>
+
+      <xs:element name="SignChallenge" type="tns:SignChallengeType"/>
+
+      <xs:element name="SignChallengeResponse" type="tns:SignChallengeType"/>
+
+      <xs:element name="SignWith" type="xs:string"/>
+
+      <xs:element name="SignatureAlgorithm" type="xs:string"/>
+
+      <xs:element name="Status" type="tns:StatusType"/>
+
+      <xs:element name="TokenType" type="xs:string"/>
+
+      <xs:element name="UseKey" type="tns:UseKeyType"/>
+
+      <xs:element name="ValidateTarget" type="tns:ValidateTargetType"/>
+
+      <xs:complexType name="RequestSecurityTokenResponseCollectionType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="RequestSecurityTokenResponse" type="tns:RequestSecurityTokenResponseType"/>
+        </xs:sequence>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="RequestSecurityTokenResponseType">
+        <xs:all>
+          <!--xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/-->
+          <xs:element ref="tns:TokenType" minOccurs="0" />
+          <xs:element ref="tns:RequestedSecurityToken" minOccurs="0" />
+          <xs:element ref="tns:RequestedAttachedReference" minOccurs="0" />
+          <xs:element ref="tns:RequestedUnattachedReference" minOccurs="0" />
+          <xs:element ref="tns:RequestedProofToken" minOccurs="0" />
+          <xs:element ref="tns:Entropy" minOccurs="0" />
+          <xs:element ref="tns:KeySize" minOccurs="0" />
+          <xs:element ref="tns:Lifetime" minOccurs="0" />
+        </xs:all>
+        <xs:attribute name="Context" type="xs:anyURI"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="RequestedSecurityTokenType">
+        <xs:sequence>
+          <xs:element ref="wsc:SecurityContextToken" minOccurs="0" />
+          <!--xs:any namespace="##other" processContents="lax"/-->
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="RequestedReferenceType">
+        <xs:sequence>
+          <xs:element ref="ns1:SecurityTokenReference"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="RequestedProofTokenType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="EntropyType">
+        <xs:sequence>
+          <!--xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/-->
+          <xs:element ref="tns:BinarySecret" minOccurs="0" /> 
+        </xs:sequence>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="BinarySecretType">
+        <xs:simpleContent>
+          <xs:extension base="xs:base64Binary">
+            <xs:attribute name="Type" type="xs:string"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+      <xs:complexType name="LifetimeType">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns2:Created"/>
+          <xs:element minOccurs="0" ref="ns2:Expires"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="RequestedTokenCancelledType">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType name="RequestSecurityTokenType">
+        <xs:all>
+          <!--xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/-->
+          <xs:element ref="tns:TokenType" minOccurs="0" />
+          <xs:element ref="tns:RequestType" minOccurs="0" />
+          <xs:element ref="tns:Entropy" minOccurs="0" />
+          <xs:element ref="tns:KeySize" minOccurs="0" />
+          <xs:element ref="tns:CancelTarget" minOccurs="0" />
+        </xs:all>
+        <xs:attribute name="Context" type="xs:anyURI"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="SignChallengeType">
+        <xs:sequence>
+          <xs:element name="Challenge" type="xs:string"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="AuthenticatorType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CombinedHash" type="xs:base64Binary"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="AllowPostdatingType">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType name="RequestKETType">
+        <xs:sequence/>
+      </xs:complexType>
+
+      <xs:complexType name="DelegateToType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="UseKeyType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="Sig" type="xs:anyURI"/>
+      </xs:complexType>
+
+      <xs:complexType name="EncryptionType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ClaimsType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+        <xs:attribute name="Dialect" type="xs:anyURI"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="RenewTargetType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="KeyExchangeTokenType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="OnBehalfOfType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="RequestSecurityTokenCollectionType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="RequestSecurityToken" type="tns:RequestSecurityTokenType"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ParticipantsType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Primary" type="tns:ParticipantType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Participant" type="tns:ParticipantType"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ParticipantType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="RenewingType">
+        <xs:sequence/>
+        <xs:attribute name="Allow" type="xs:boolean"/>
+        <xs:attribute name="OK" type="xs:boolean"/>
+      </xs:complexType>
+
+      <xs:complexType name="ProofEncryptionType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="StatusType">
+        <xs:sequence>
+          <xs:element name="Code" type="xs:string"/>
+          <xs:element minOccurs="0" name="Reason" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="ValidateTargetType">
+        <xs:sequence>
+          <xs:any namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CancelTargetType">
+        <xs:sequence>
+          <!--xs:any namespace="##other" processContents="lax"/-->
+          <xs:element minOccurs="0" ref="ns1:SecurityTokenReference" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="BinaryExchangeType">
+        <xs:simpleContent>
+          <xs:extension base="xs:string">
+            <xs:attribute name="ValueType" type="xs:anyURI" use="required"/>
+            <xs:attribute name="EncodingType" type="xs:anyURI" use="required"/>
+          </xs:extension>
+        </xs:simpleContent>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512" xmlns:ns2="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:ns1="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" elementFormDefault="qualified" targetNamespace="http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512" version="1.0">
+
+      <xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"/>
+
+      <xs:import namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"/>
+
+      <xs:element name="DerivedKeyToken" type="tns:DerivedKeyTokenType"/>
+
+      <xs:element name="Identifier" type="xs:string"/>
+
+      <xs:element name="Instance" type="xs:string"/>
+
+      <xs:element name="Label" type="xs:string"/>
+
+      <xs:element name="Name" type="xs:string"/>
+
+      <xs:element name="Nonce" type="xs:base64Binary"/>
+
+      <xs:element name="SecurityContextToken" type="tns:SecurityContextTokenType"/>
+
+      <xs:complexType name="SecurityContextTokenType">
+        <xs:sequence>
+          <!--xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/-->
+          <xs:element minOccurs="0" ref="tns:Identifier"/>
+        </xs:sequence>
+        <xs:attribute ref="ns1:Id"/>
+        <xs:anyAttribute namespace="##other" processContents="skip"/>
+      </xs:complexType>
+
+      <xs:complexType name="PropertiesType">
+        <xs:sequence>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="DerivedKeyTokenType">
+        <xs:sequence>
+          <xs:element minOccurs="0" ref="ns2:SecurityTokenReference"/>
+          <xs:element minOccurs="0" name="Properties" type="tns:PropertiesType"/>
+          <xs:element minOccurs="0" name="Generation" type="xs:unsignedLong"/>
+          <xs:element minOccurs="0" name="Offset" type="xs:unsignedLong"/>
+          <xs:element minOccurs="0" name="Length" type="xs:unsignedLong"/>
+          <xs:element minOccurs="0" name="Label" type="xs:string"/>
+          <xs:element minOccurs="0" name="Nonce" type="xs:base64Binary"/>
+        </xs:sequence>
+        <xs:attribute ref="ns1:Id"/>
+        <xs:attribute name="Algorithm" type="xs:anyURI"/>
+      </xs:complexType>
+
+    </xs:schema>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2005/08/addressing" blockDefault="#all" elementFormDefault="qualified" targetNamespace="http://www.w3.org/2005/08/addressing">
+
+      <!-- Constructs from the WS-Addressing Core -->
+
+
+      <xs:element name="EndpointReference" type="tns:EndpointReferenceType"/>
+
+      <xs:complexType name="EndpointReferenceType">
+
+        <xs:sequence>
+
+          <xs:element name="Address" type="tns:AttributedURIType"/>
+
+          <xs:element minOccurs="0" name="ReferenceParameters" type="tns:ReferenceParametersType"/>
+
+          <xs:element minOccurs="0" ref="tns:Metadata"/>
+
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+
+        </xs:sequence>
+
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+      </xs:complexType>
+
+
+      <xs:complexType name="ReferenceParametersType">
+
+        <xs:sequence>
+
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="lax"/>
+
+        </xs:sequence>
+
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+      </xs:complexType>
+
+
+      <xs:element name="Metadata" type="tns:MetadataType"/>
+
+      <xs:complexType name="MetadataType">
+
+        <xs:sequence>
+
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##any" processContents="lax"/>
+
+        </xs:sequence>
+
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+      </xs:complexType>
+
+
+      <xs:element name="MessageID" type="tns:AttributedURIType"/>
+
+      <xs:element name="RelatesTo" type="tns:RelatesToType"/>
+
+      <xs:complexType name="RelatesToType">
+
+        <xs:simpleContent>
+
+          <xs:extension base="xs:anyURI">
+
+            <xs:attribute default="http://www.w3.org/2005/08/addressing/reply" name="RelationshipType" type="tns:RelationshipTypeOpenEnum" use="optional"/>
+
+            <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+          </xs:extension>
+
+        </xs:simpleContent>
+
+      </xs:complexType>
+
+
+      <xs:simpleType name="RelationshipTypeOpenEnum">
+
+        <xs:union memberTypes="tns:RelationshipType xs:anyURI"/>
+
+      </xs:simpleType>
+
+
+      <xs:simpleType name="RelationshipType">
+
+        <xs:restriction base="xs:anyURI">
+
+          <xs:enumeration value="http://www.w3.org/2005/08/addressing/reply"/>
+
+        </xs:restriction>
+
+      </xs:simpleType>
+
+
+      <xs:element name="ReplyTo" type="tns:EndpointReferenceType"/>
+
+      <xs:element name="From" type="tns:EndpointReferenceType"/>
+
+      <xs:element name="FaultTo" type="tns:EndpointReferenceType"/>
+
+      <xs:element name="To" type="tns:AttributedURIType"/>
+
+      <xs:element name="Action" type="tns:AttributedURIType"/>
+
+
+      <xs:complexType name="AttributedURIType">
+
+        <xs:simpleContent>
+
+          <xs:extension base="xs:anyURI">
+
+            <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+          </xs:extension>
+
+        </xs:simpleContent>
+
+      </xs:complexType>
+
+      <!-- Constructs from the WS-Addressing SOAP binding -->
+
+
+      <xs:attribute name="IsReferenceParameter" type="xs:boolean"/>
+
+
+      <xs:simpleType name="FaultCodesOpenEnumType">
+
+        <xs:union memberTypes="tns:FaultCodesType xs:QName"/>
+
+      </xs:simpleType>
+
+
+      <xs:simpleType name="FaultCodesType">
+
+        <xs:restriction base="xs:QName">
+
+          <xs:enumeration value="tns:InvalidAddressingHeader"/>
+
+          <xs:enumeration value="tns:InvalidAddress"/>
+
+          <xs:enumeration value="tns:InvalidEPR"/>
+
+          <xs:enumeration value="tns:InvalidCardinality"/>
+
+          <xs:enumeration value="tns:MissingAddressInEPR"/>
+
+          <xs:enumeration value="tns:DuplicateMessageID"/>
+
+          <xs:enumeration value="tns:ActionMismatch"/>
+
+          <xs:enumeration value="tns:MessageAddressingHeaderRequired"/>
+
+          <xs:enumeration value="tns:DestinationUnreachable"/>
+
+          <xs:enumeration value="tns:ActionNotSupported"/>
+
+          <xs:enumeration value="tns:EndpointUnavailable"/>
+
+        </xs:restriction>
+
+      </xs:simpleType>
+
+
+      <xs:element name="RetryAfter" type="tns:AttributedUnsignedLongType"/>
+
+      <xs:complexType name="AttributedUnsignedLongType">
+
+        <xs:simpleContent>
+
+          <xs:extension base="xs:unsignedLong">
+
+            <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+          </xs:extension>
+
+        </xs:simpleContent>
+
+      </xs:complexType>
+
+
+      <xs:element name="ProblemHeaderQName" type="tns:AttributedQNameType"/>
+
+      <xs:complexType name="AttributedQNameType">
+
+        <xs:simpleContent>
+
+          <xs:extension base="xs:QName">
+
+            <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+          </xs:extension>
+
+        </xs:simpleContent>
+
+      </xs:complexType>
+
+
+      <xs:element name="ProblemHeader" type="tns:AttributedAnyType"/>
+
+      <xs:complexType name="AttributedAnyType">
+
+        <xs:sequence>
+
+          <xs:any namespace="##any" processContents="lax"/>
+
+        </xs:sequence>
+
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+      </xs:complexType>
+
+
+      <xs:element name="ProblemIRI" type="tns:AttributedURIType"/>
+
+
+      <xs:element name="ProblemAction" type="tns:ProblemActionType"/>
+
+      <xs:complexType name="ProblemActionType">
+
+        <xs:sequence>
+
+          <xs:element minOccurs="0" ref="tns:Action"/>
+
+          <xs:element minOccurs="0" name="SoapAction" type="xs:anyURI"/>
+
+        </xs:sequence>
+
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+
+      </xs:complexType>
+
+
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="pendingRequestResponse">
+    <wsdl:part element="ns1:SignResponse" name="SignResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="signResponse">
+    <wsdl:part element="ns1:SignResponse" name="SignResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verify">
+    <wsdl:part element="ns1:VerifyRequest" name="VerifyRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sign">
+    <wsdl:part element="ns1:SignRequest" name="SignRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="verifyResponse">
+    <wsdl:part element="ns1:VerifyResponse" name="VerifyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pendingRequest">
+    <wsdl:part element="ns2:PendingRequest" name="PendingRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DigitalSignatureServicePortType">
+    <wsdl:operation name="verify">
+      <wsdl:input message="tns:verify" name="verify">
+      </wsdl:input>
+      <wsdl:output message="tns:verifyResponse" name="verifyResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sign">
+      <wsdl:input message="tns:sign" name="sign">
+      </wsdl:input>
+      <wsdl:output message="tns:signResponse" name="signResponse">
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pendingRequest">
+      <wsdl:input message="tns:pendingRequest" name="pendingRequest">
+      </wsdl:input>
+      <wsdl:output message="tns:pendingRequestResponse" name="pendingRequestResponse">
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DigitalSignatureServiceSoapBinding" type="tns:DigitalSignatureServicePortType">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="verify">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="verify">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="verifyResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sign">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="sign">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="signResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pendingRequest">
+      <soap12:operation soapAction="" style="document"/>
+      <wsdl:input name="pendingRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pendingRequestResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DigitalSignatureService">
+    <wsdl:port binding="tns:DigitalSignatureServiceSoapBinding" name="DigitalSignatureServicePortImplPort">
+      <soap12:address location="http://localhost:8180/dss-ws/dss"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
