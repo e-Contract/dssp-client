@@ -26,8 +26,15 @@ using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client
 {
+    /// <summary>
+    /// Exception used when the signature is invalid.
+    /// </summary>
     public class IncorrectSignatureException : Exception
     {
+        /// <summary>
+        /// Constuctor
+        /// </summary>
+        /// <param name="message">Exception message</param>
         public IncorrectSignatureException(String message)
             : base(message)
         {

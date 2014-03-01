@@ -41,45 +41,24 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Constructor with basic info.
+        /// Constructor.
         /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
         /// <param name="mimeType">The mime type, must be supported by e-contract</param>
         /// <param name="content">The (binary) content of the document</param>
         public Document(String mimeType, Stream content)
-            : this("doc-" + Guid.NewGuid().ToString(), mimeType, content)
         {
-        }
-
-        /// <summary>
-        /// Constructor with basic info and id.
-        /// </summary>
-        /// <param name="id">The id of the document, mustbe XSD NCName compliant</param>
-        /// <param name="mimeType">The mime type, must be supported by e-contract</param>
-        /// <param name="content">The (binary) content of the document</param>
-        public Document(String id, String mimeType, Stream content)
-        {
-            this.Id = id;
             this.MimeType = mimeType;
             this.Content = content;
         }
 
         internal Document(DocumentType document)
         {
-            this.Id = document.ID;
             this.MimeType = document.Base64Data.MimeType;
             this.Content = new MemoryStream(document.Base64Data.Value);
         }
 
         /// <summary>
-        /// The id of the document to be signed, should by NCName compliant and not more then 80 characters.
-        /// </summary>
-        public string Id { get; set; }
-
-        /// <summary>
-        /// The mime type of the document, e.g. application/pdf.
+        /// The mime type of the document, e.g. "application/pdf".
         /// </summary>
         public string MimeType { get; set; }
 

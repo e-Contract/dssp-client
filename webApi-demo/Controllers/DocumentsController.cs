@@ -24,10 +24,5 @@ namespace dssp_demo.Controllers
             return documents.All;
         }
 
-        public DocInfo Get(string id)
-        {
-            return documents[id];
-        }
-
     }
 }

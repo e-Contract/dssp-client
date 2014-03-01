@@ -61,8 +61,11 @@ namespace dssp_demo.Controllers
                     //check if the sign response is correct, keep the signer (currently always null)
                     NameIdentifierType signer = sessions[id].ValidateSignResponse(formField.Value);
 
+                    //get the session and remove it from the store
+                    DsspSession session = sessions.Remove(id);
+
                     //Download the signed document.
-                    Document doc = await dsspClient.DownloadDocumentAsync(sessions[id]);
+                    Document doc = await dsspClient.DownloadDocumentAsync(session);
 
                     //For demo purposes, lets validate the signature.
                     //Don't do this in real code (the document is guaranteed to be signed) unless the additional info like signer & timestamp validity.
@@ -71,11 +74,19 @@ namespace dssp_demo.Controllers
                     //indicate that the document is signed
                     //In real code you should keep the document also
                     docs[id].TimeStampValidity = securityInfo.TimeStampValidity;
+                    docs[id].Signatures = new List<SignInfo>();
+                    foreach (SignatureInfo info in securityInfo.Signatures)
+                    {
+                        SignInfo i = new SignInfo();
+                        i.Signer = info.Signer.Subject;
+                        i.SignedOn = info.SigningTime;
+                        docs[id].Signatures.Add(i);
+                    }
 
                     //Redirecting back to the main site (via HTML to make sure "Get" is used instead of POST
-                    var builder = new StringBuilder();
+                    var builder = new StringBuilder(); 
                     builder.AppendLine("<html>");
-                    builder.AppendLine("<head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=/\"></head>");
+                    builder.AppendLine("<head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=" + RequestContext.VirtualPathRoot + "/\"></head>");
                     builder.AppendLine("<body><a href=\"/\">done</a></body>");
                     builder.AppendLine("</html>");
 

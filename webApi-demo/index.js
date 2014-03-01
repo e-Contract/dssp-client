@@ -17,7 +17,7 @@ demo.controller('docController', ['$scope', '$http', function($scope, $http) {
 
     $scope.refresh = function () {
 
-        $http.get('/api/documents')
+        $http.get('api/documents')
             .success(function(data, status, headers, config) {
                 $scope.docs = data;
             })

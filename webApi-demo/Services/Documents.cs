@@ -14,6 +14,11 @@ namespace dssp_demo.Services
 
         static Documents()
         {
+            Init();
+        }
+
+        public static void Init()
+        {
             var doc = new DocInfo("_1", "dssp-specs.pdf");
             docs[doc.Id] = doc;
         }

@@ -83,7 +83,7 @@ namespace EContract.Dssp.Client
         /// Full Constructor
         /// </summary>
         /// <param name="address">The address of the e-contract DSS-P service</param>
-        /// <param name="SignatureType">The signature type that is required</param>
+        /// <param name="signatureType">The signature type that is required, see e-contract documentation</param>
         public DsspClient(EndpointAddress address, string signatureType)
         {
             this.Address = address;
@@ -94,16 +94,17 @@ namespace EContract.Dssp.Client
         /// Uploads a document to e-Contract.
         /// </summary>
         /// <remarks>
-        /// Uploads a document to e-Contract and returns the session it created for future references.
+        /// Uploads a document to e-Contract and returns the session for future references.
         /// </remarks>
         /// <param name="document">The document to be signed</param>
-        /// <returns>The content for the "PendingRequest"-input that must be send to e-contract via BROWSER/POST</returns>
+        /// <returns>The session, required for the BROWSER/POST protocol and the donwload of the signed message</returns>
         public async Task<DsspSession> UploadDocumentAsync(Document document)
         {
             if (document == null) throw new ArgumentNullException("document");
 
             //New session & client
-            var session = new DsspSession(document.Id);
+            var session = DsspSession.NewSession();
+            var documentId = "doc-" + Guid.NewGuid().ToString();
             var client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
 
             //Prepare
@@ -128,12 +129,12 @@ namespace EContract.Dssp.Client
             request.OptionalInputs.SignaturePlacement = new SignaturePlacement();
             request.OptionalInputs.SignaturePlacement.CreateEnvelopedSignature = true;
             request.OptionalInputs.SignaturePlacement.CreateEnvelopedSignatureSpecified = true;
-            request.OptionalInputs.SignaturePlacement.WhichDocument = document.Id;
+            request.OptionalInputs.SignaturePlacement.WhichDocument = documentId;
 
             request.InputDocuments = new InputDocuments();
             request.InputDocuments.Document = new DocumentType[1];
             request.InputDocuments.Document[0] = new DocumentType();
-            request.InputDocuments.Document[0].ID = document.Id;
+            request.InputDocuments.Document[0].ID = documentId;
             request.InputDocuments.Document[0].Base64Data = new Base64Data();
             request.InputDocuments.Document[0].Base64Data.MimeType = document.MimeType;
 
@@ -142,8 +143,8 @@ namespace EContract.Dssp.Client
             {
                 memStream = new MemoryStream();
                 await document.Content.CopyToAsync(memStream);
-                request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
             }
+            request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
 
             //Send
             signResponse1 responseWrapper = await client.signAsync(request);
@@ -166,14 +167,18 @@ namespace EContract.Dssp.Client
             session.KeyId = securityTokenResponse.RequestedSecurityToken.SecurityContextToken.Identifier;
             session.KeyValue = pSha1.GenerateDerivedKey(securityTokenResponse.Entropy.BinarySecret.Value, (int)securityTokenResponse.KeySize);
             session.KeyReference = securityTokenResponse.RequestedUnattachedReference.SecurityTokenReference;
+            session.ExpiresOn = securityTokenResponse.Lifetime.Expires.Value;
 
             return session;
         }
 
         /// <summary>
-        /// Downloads the document that was signed via the browser.
+        /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol.
         /// </summary>
-        /// <param name="signResponse">The "SignResponse"-input that was send by e-contract via BROWSER/POST</param>
+        /// <remarks>
+        /// The session is closed when the downloads finishes, it can't be reused afterward and should be removed from the storage.
+        /// </remarks>
+        /// <param name="session">The session linked to the uploaded document</param>
         /// <returns>The document with signature, including id and mimeType</returns>
         /// <exception cref="ArgumentException">When the signResponse isn't valid, including its signature</exception>
         /// <exception cref="InvalidOperationException">When the e-contract service returns an error</exception>
@@ -210,16 +215,17 @@ namespace EContract.Dssp.Client
                     throw new InvalidOperationException(downloadResponse.SignResponse.Result.ResultMajor);
             }
 
-
             //Return the downloaded document (we assume there is only a single document)
-            return new Document(downloadResponse.SignResponse.OptionalOutputs.DocumentWithSignature.Document);
+            var doc = new Document(downloadResponse.SignResponse.OptionalOutputs.DocumentWithSignature.Document);
+
+            return doc;
         }
 
         /// <summary>
         /// Validates the provided document via the e-contract service.
         /// </summary>
         /// <param name="document">The document that contains a signature</param>
-        /// <returns>The security information of the document, containting signature information</returns>
+        /// <returns>The security information of the document, containting information like the signer</returns>
         /// <exception cref="ArgumentNullException">When there is no document provided</exception>
         /// <exception cref="IncorrectSignatureException">When the provided document has an invalid signature</exception>
         /// <exception cref="RequestError">When the request was invalid, e.g. unsupported mime type</exception>
@@ -233,9 +239,6 @@ namespace EContract.Dssp.Client
             var request = new VerifyRequest();
             request.Profile = "urn:be:e-contract:dssp:1.0";
 
-            MemoryStream memStream = new MemoryStream();
-            Task memCopy = document.Content.CopyToAsync(memStream);
-
             request.OptionalInputs = new OptionalInputs();
             request.OptionalInputs.ReturnVerificationReport = new ReturnVerificationReport();
             request.OptionalInputs.ReturnVerificationReport.IncludeVerifier = true;
@@ -244,11 +247,16 @@ namespace EContract.Dssp.Client
             request.InputDocuments = new InputDocuments();
             request.InputDocuments.Document = new DocumentType[1];
             request.InputDocuments.Document[0] = new DocumentType();
-            request.InputDocuments.Document[0].ID = document.Id;
+            request.InputDocuments.Document[0].ID = "doc-" + Guid.NewGuid().ToString();
             request.InputDocuments.Document[0].Base64Data = new Base64Data();
             request.InputDocuments.Document[0].Base64Data.MimeType = document.MimeType;
 
-            memCopy.Wait();
+            var memStream = document.Content as MemoryStream;
+            if (memStream == null)
+            {
+                memStream = new MemoryStream();
+                await document.Content.CopyToAsync(memStream);
+            }
             request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
 
             var response = await client.verifyAsync(request);

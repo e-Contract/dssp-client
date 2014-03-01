@@ -33,50 +33,41 @@ using System.Xml.Serialization;
 
 namespace EContract.Dssp.Client
 {
+    /// <summary>
+    /// Information linked to a single signature session.
+    /// </summary>
+    /// <remarks>
+    /// A signature session consists of the following steps: upload document, start signature, end signature and download document.
+    /// See the e-contract documentation for more information.
+    /// </remarks>
     [Serializable]
     public class DsspSession
     {
+        internal static DsspSession NewSession()
+        {
+            var session = new DsspSession();
+            session.ClientId = "msg-" + Guid.NewGuid().ToString();
+            return session;
+        }
+
         private XmlSerializer requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
         private XmlSerializer responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
         private XmlSerializer tRefSerializer = new XmlSerializer(typeof(SecurityTokenReferenceType), null, new Type[0], new XmlRootAttribute("SecurityTokenReference"), "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
 
-        public DsspSession()
-        {
-
-        }
-
-        internal DsspSession(string documentId)
-        {
-            this.DocumentId = documentId;
-            this.ClientId = "msg-" + Guid.NewGuid().ToString();
-        }
-
-        public DsspSession(string documentId, string clientId, string serverId, string keyId, byte[] keyValue, SecurityTokenReferenceType keyReference)
-        {
-            this.DocumentId = documentId;
-            this.ClientId = clientId;
-            this.ServerId = serverId;
-            this.KeyId = keyId;
-            this.KeyValue = keyValue;
-            this.KeyReference = keyReference;
-        }
-
-        /// <summary>
-        /// The ID of the document that was signed.
-        /// </summary>
-        /// <remarks>
-        /// This is either the document ID you provided or the random r
-        /// </remarks>
-        public String DocumentId { get; set; }
-
         /// <summary>
         /// The session ID, client side
         /// </summary>
+        /// <value>
+        /// This corresponds to the MessageID of the BROWSER/POST protocol.
+        /// </value>
         public String ClientId { get; set; }
 
         /// <summary>
         /// The session ID, server side
         /// </summary>
+        /// <value>
+        /// This corresponds to the ResponseID that is used with all steps.
+        /// </value>
         public string ServerId { get; set; }
 
         /// <summary>
@@ -94,11 +85,32 @@ namespace EContract.Dssp.Client
         /// </summary>
         public SecurityTokenReferenceType KeyReference { get; set; }
 
+        /// <summary>
+        /// Indicates how long the session should be kept.
+        /// </summary>
+        public DateTime ExpiresOn;
+
+        /// <summary>
+        /// Genereates the html page that initialized the BROWSER/POST request for the current session.
+        /// </summary>
+        /// <remarks>
+        /// The default language is used for the e-contract pages.
+        /// </remarks>
+        /// <param name="postAddress">The e-contract address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
+        /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl)
         {
             return GeneratePendingRequestPage(postAddress, landingUrl, null);
         }
 
+        /// <summary>
+        /// Genereates the html page that initialized the BROWSER/POST request for the current session.
+        /// </summary>
+        /// <param name="postAddress">The e-contract address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
+        /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
+        /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language)
         {
             var builder = new StringBuilder();
@@ -121,6 +133,11 @@ namespace EContract.Dssp.Client
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Creates the pending request message for the current session.
+        /// </summary>
+        /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
+        /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl)
         {
             return GeneratePendingRequest(landingUrl, null);
@@ -130,10 +147,11 @@ namespace EContract.Dssp.Client
         /// Creates a new pending request for the provided session.
         /// </summary>
         /// <remarks>
+        /// The default language is used for the e-contract pages.
         /// </remarks>
         /// <param name="landingUrl">The landing page of the SignResponse</param>
-        /// <param name="language">The language of the e-contract pages, <c>null</c> for default</param>
-        /// <returns>The base64 encoded "PendingRequest" value for the BROWSER/POST</returns>
+        /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
+        /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl, string language)
         {
             //Prepare browser post message (to return)
@@ -197,14 +215,14 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Validates the sign response and returns the signer if present.
+        /// Validates the sign response from the BROWSER/POST response.
         /// </summary>
-        /// <param name="signResponse">The received SignResponse</param>
-        /// <exception cref="ArgumentNullException">When the signResponse is null</exception>
+        /// <param name="signResponse">The received SignResponse, i.e. the value of the "SignResponse"-input</param>
+        /// <exception cref="ArgumentNullException">When the parameters are null</exception>
         /// <exception cref="InvalidDataException">When the signResponse isn't the correct format or has invalid values</exception>
-        /// <exception cref="RequestError">When the signResponse indicated there was an error with the request or with the user</exception>
-        /// <exception cref="InvalidOperationException">When the signRespoinse indicates an unkown error</exception>
-        /// <returns>The signer of the document (currently not returned by the service)</returns>
+        /// <exception cref="RequestError">When the signResponse indicated there was an error with the request or with the user (e.g. if he cancels)</exception>
+        /// <exception cref="InvalidOperationException">When the signRespoinse indicates an unknown error</exception>
+        /// <returns>The signer of the document, currently always <c>null</c></returns>
         public NameIdentifierType ValidateSignResponse(string signResponse)
         {
             if (signResponse == null) throw new ArgumentNullException("signResponse");

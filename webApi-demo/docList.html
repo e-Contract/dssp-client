@@ -1,8 +1,17 @@
 ﻿<div>
     <ul class="unstyled">
         <li ng-repeat="doc in docs">
-            <span ng-hide="doc.Signed"><a href="/api/documents/{{doc.Id}}/signing">{{doc.Name}}</a></span>
-            <span ng-show="doc.Signed">{{doc.Name}} (until {{doc.TimeStampValidity}})</span>
+            <div ng-hide="doc.Signed">
+                Unsigned doc: <a href="api/documents/{{doc.Id}}/signing">{{doc.Name}}</a>
+            </div>
+            <div ng-show="doc.Signed">
+                Signed  doc: {{doc.Name}}, time stamp valid until {{doc.TimeStampValidity}}
+                <ul>
+                    <li ng-repeat="signature in doc.Signatures">
+                        Singed by "{{signature.Signer}}" on {{signature.SignedOn}}
+                    </li>
+                </ul>
+            </div>
         </li>
     </ul>
     <button ng-click="refresh()">Refresh</button>

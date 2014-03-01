@@ -19,6 +19,7 @@ namespace dssp_demo.Models
         public string Id;
         public string Name;
         public DateTime? TimeStampValidity;
+        public IList<SignInfo> Signatures;
 
         public bool Signed
         {
@@ -31,11 +32,17 @@ namespace dssp_demo.Models
         public Document ToDocument()
         {
             Document d = new Document();
-            d.Id = this.Id;
             d.MimeType = "application/pdf";
             d.Content = File.OpenRead(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"App_Data\" + this.Name));
 
             return d;
         }
+    }
+
+    public class SignInfo
+    {
+        public string Signer;
+        public DateTime SignedOn;
+
     }
 }

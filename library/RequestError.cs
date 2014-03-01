@@ -25,8 +25,15 @@ using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client
 {
+    /// <summary>
+    /// Exception representing an Request Error returned by e-contract.
+    /// </summary>
     public class RequestError : Exception
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="message">The exception message</param>
         public RequestError(String message) : base(message)
         {
 
