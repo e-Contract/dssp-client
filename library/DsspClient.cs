@@ -47,20 +47,11 @@ namespace EContract.Dssp.Client
     /// </remarks>
     public class DsspClient
     {
-        private TraceSource msgTrace = new TraceSource("EContract.Dssp.Client.MessageLogging");
 
         private readonly Random rand = new Random();
         private XmlSerializer requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
         private XmlSerializer responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
         private XmlSerializer tRefSerializer = new XmlSerializer(typeof(SecurityTokenReferenceType), null, new Type[0], new XmlRootAttribute("SecurityTokenReference"), "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
-
-        /// <summary>
-        /// The own URL at which e-contract must post the SignResponse.
-        /// </summary>
-        /// <value>
-        /// The default is empty, must be provide in in order to use the <see cref="UploadDocumentAsync()"/> method.
-        /// </value>
-        public Uri LandingPage { get; set; }
 
         /// <summary>
         /// The e-contract signature type.
@@ -70,59 +61,49 @@ namespace EContract.Dssp.Client
         /// </value>
         public string SignatureType { get; set; }
 
-
-        /// <summary>
-        /// The total time the signature process may take, including the user interaction.
-        /// </summary>
-        /// <value>
-        /// Default to 30 minutes.
-        /// </value>
-        public TimeSpan TransactionTimeout { get; set; }
-
-        /// <summary>
-        /// The place where session should be kept.
-        /// </summary>
-        /// <remarks>
-        /// The library comes with 2 implementation <see cref="DsspSessionHttpSessionStore"/> and <see cref=" DsspSessionMemoryStore"/>.
-        /// The former is prefered due the additional security it provides, but can't be used in controllers.
-        /// </remarks>
-        public IDsspSessionStore SessionStore { get; set; }
-
         /// <summary>
         /// The address of e-contract DSS-P service.
         /// </summary>
         public EndpointAddress Address { get; set; }
 
         /// <summary>
-        /// Client for the DSS-P service of e-contract.
+        /// Basic constructor.
         /// </summary>
-        /// <param name="landingPage">The url of the own application that will recieve the responses.</param>
+        /// <remarks>
+        /// Client with default signature type for the specified address.
+        /// </remarks>
         /// <param name="address">The address of the e-contract DSS-P service</param>
-        /// <param name="store">Implementation where to store the session, e.g. <see cref="DsspSessionHttpSessionStore"/></param>
-        public DsspClient(Uri landingPage, EndpointAddress address, IDsspSessionStore store)
+        public DsspClient(EndpointAddress address)
+            : this(address, null)
         {
-            this.LandingPage = landingPage;
-            this.Address = address;
-            this.SessionStore = store;
 
-            this.TransactionTimeout = new TimeSpan(0, 30, 0);
         }
 
         /// <summary>
-        /// Uploads a document to be signed via the browser.
+        /// Full Constructor
+        /// </summary>
+        /// <param name="address">The address of the e-contract DSS-P service</param>
+        /// <param name="SignatureType">The signature type that is required</param>
+        public DsspClient(EndpointAddress address, string signatureType)
+        {
+            this.Address = address;
+            this.SignatureType = SignatureType;
+        }
+
+        /// <summary>
+        /// Uploads a document to e-Contract.
         /// </summary>
         /// <remarks>
-        /// This method uploads the document to e-contract and returns the "PendingRequest" value for the
-        /// BROWSER/POST.
+        /// Uploads a document to e-Contract and returns the session it created for future references.
         /// </remarks>
         /// <param name="document">The document to be signed</param>
         /// <returns>The content for the "PendingRequest"-input that must be send to e-contract via BROWSER/POST</returns>
-        public async Task<byte[]> UploadDocumentAsync(Document document)
+        public async Task<DsspSession> UploadDocumentAsync(Document document)
         {
-            //TODO: Asserts!
+            if (document == null) throw new ArgumentNullException("document");
 
             //New session & client
-            var session = DsspSession.New(document.Id);
+            var session = new DsspSession(document.Id);
             var client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
 
             //Prepare
@@ -156,9 +137,13 @@ namespace EContract.Dssp.Client
             request.InputDocuments.Document[0].Base64Data = new Base64Data();
             request.InputDocuments.Document[0].Base64Data.MimeType = document.MimeType;
 
-            MemoryStream memStream = new MemoryStream();
-            await document.Content.CopyToAsync(memStream); //TODO: maybe put in advance so we can wait later
-            request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
+            var memStream = document.Content as MemoryStream;
+            if (memStream == null)
+            {
+                memStream = new MemoryStream();
+                await document.Content.CopyToAsync(memStream);
+                request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
+            }
 
             //Send
             signResponse1 responseWrapper = await client.signAsync(request);
@@ -180,125 +165,21 @@ namespace EContract.Dssp.Client
             var securityTokenResponse = response.OptionalOutputs.RequestSecurityTokenResponseCollection.RequestSecurityTokenResponse[0];
             session.KeyId = securityTokenResponse.RequestedSecurityToken.SecurityContextToken.Identifier;
             session.KeyValue = pSha1.GenerateDerivedKey(securityTokenResponse.Entropy.BinarySecret.Value, (int)securityTokenResponse.KeySize);
-            SessionStore.Store(session);
+            session.KeyReference = securityTokenResponse.RequestedUnattachedReference.SecurityTokenReference;
 
-            //Prepare browser post message (to return)
-            PendingRequest pendingRequest = new PendingRequest();
-            pendingRequest.OptionalInputs = new OptionalInputs();
-            pendingRequest.OptionalInputs.AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing";
-            pendingRequest.OptionalInputs.ResponseID = session.ServerId;
-            pendingRequest.OptionalInputs.MessageID = new AttributedURIType();
-            pendingRequest.OptionalInputs.MessageID.Value = session.ClientId;
-            pendingRequest.OptionalInputs.Timestamp = new TimestampType();
-            pendingRequest.OptionalInputs.Timestamp.Created = new AttributedDateTime();
-            pendingRequest.OptionalInputs.Timestamp.Created.Value = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssK");
-            pendingRequest.OptionalInputs.Timestamp.Expires = new AttributedDateTime();
-            pendingRequest.OptionalInputs.Timestamp.Expires.Value = DateTime.UtcNow.AddMinutes(10).ToString("yyyy-MM-ddTHH:mm:ssK");
-            pendingRequest.OptionalInputs.ReplyTo = new EndpointReferenceType();
-            pendingRequest.OptionalInputs.ReplyTo.Address = new AttributedURIType();
-            pendingRequest.OptionalInputs.ReplyTo.Address.Value = LandingPage.AbsoluteUri;
-
-            pendingRequest.OptionalInputs.ReturnSignerIdentity = new ReturnSignerIdentity();
-
-            if (document.Language != null) pendingRequest.OptionalInputs.Language = document.Language;
-
-            //Sign
-            MemoryStream stream = new MemoryStream();
-            requestSerializer.Serialize(stream, pendingRequest);
-            stream.Position = 0;
-
-            XmlDocument xml = new XmlDocument();
-            xml.PreserveWhitespace = true;
-            xml.Load(stream);
-
-            SignedXml signedXml = new SignedXml(xml);
-            signedXml.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
-            signedXml.SignedInfo.SignatureMethod = SignedXml.XmlDsigHMACSHA1Url; 
-            var docRef = new Reference("");
-            docRef.DigestMethod = "http://www.w3.org/2000/09/xmldsig#sha1";
-            docRef.AddTransform(new XmlDsigEnvelopedSignatureTransform());
-            docRef.AddTransform(new XmlDsigExcC14NTransform());
-            signedXml.AddReference(docRef);
-
-            stream = new MemoryStream();
-            tRefSerializer.Serialize(stream, securityTokenResponse.RequestedUnattachedReference.SecurityTokenReference);
-            stream.Position = 0;
-            XmlDocument keyInfoXml = new XmlDocument();
-            keyInfoXml.Load(stream);
-
-            signedXml.KeyInfo = new KeyInfo();
-            signedXml.KeyInfo.AddClause(new KeyInfoNode(keyInfoXml.DocumentElement));
-            
-            signedXml.ComputeSignature(new HMACSHA1(session.KeyValue));
-
-            stream = new MemoryStream();
-            var nsmgr = new XmlNamespaceManager(xml.NameTable);
-            nsmgr.AddNamespace("async", "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
-            nsmgr.AddNamespace("dss", "urn:oasis:names:tc:dss:1.0:core:schema");
-            xml.SelectSingleNode("/async:PendingRequest/dss:OptionalInputs", nsmgr).AppendChild(signedXml.GetXml());
-            xml.Save(stream);
-
-            //msgTrace.TraceData(TraceEventType.Information, 1, Encoding.UTF8.GetString(stream.ToArray()));
-
-            return stream.ToArray();
+            return session;
         }
 
         /// <summary>
         /// Downloads the document that was signed via the browser.
         /// </summary>
-        /// <remarks>
-        /// This method gets the document from e-contract that corresponds to the provided "SignResponse" value which was
-        /// received via BROWSER/POST.  The SignedDocument already forsees the signer information, which is currently
-        /// foreseen by e-contact but not yet implemented.
-        /// </remarks>
         /// <param name="signResponse">The "SignResponse"-input that was send by e-contract via BROWSER/POST</param>
-        /// <returns>The signed document, with signer information (currently not provided)</returns>
+        /// <returns>The document with signature, including id and mimeType</returns>
         /// <exception cref="ArgumentException">When the signResponse isn't valid, including its signature</exception>
-        public async Task<SignedDocument> DownloadDocumentAsync(byte[] signResponse)
+        /// <exception cref="InvalidOperationException">When the e-contract service returns an error</exception>
+        public async Task<Document> DownloadDocumentAsync(DsspSession session)
         {
-            //msgTrace.TraceData(TraceEventType.Information, 2, Encoding.UTF8.GetString(signResponse));
-
-            //Parse it.
-            SignResponse response;
-            try
-            {
-                response = (SignResponse)responseSerializer.Deserialize(new MemoryStream(signResponse));
-            }
-            catch (Exception e)
-            {
-                throw new ArgumentException("The signResponse didn't have the right structure", "signResponse", e);
-            }
-
-            //lets find the session
-            DsspSession session = SessionStore.Load(response.OptionalOutputs.RelatesTo.Value);
-
-            //Before we continue, lest make sure the receive message is valid.
-            XmlDocument xml = new XmlDocument();
-            xml.PreserveWhitespace = true;
-            xml.Load(new MemoryStream(signResponse));
-
-            var nsmgr = new XmlNamespaceManager(xml.NameTable);
-            nsmgr.AddNamespace("ds", "http://www.w3.org/2000/09/xmldsig#");
-            var xmlSignature = (XmlElement) xml.SelectSingleNode("//ds:Signature", nsmgr);
-
-            SignedXml signedXml = new SignedXml(xml);
-            signedXml.LoadXml(xmlSignature);
-            if (!signedXml.CheckSignature(new HMACSHA1(session.KeyValue)))
-            {
-                throw new ArgumentException("The signResponse has an invalid signature", "signResponse");
-            }
-
-            //Check the result
-            switch (response.Result.ResultMajor)
-            {
-                case "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:resultmajor:Pending":
-                    break;
-                case "urn:oasis:names:tc:dss:1.0:resultmajor:RequesterError":
-                    throw new RequestError(response.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
-                default:
-                    throw new InvalidOperationException(response.Result.ResultMajor);
-            }
-            //TODO, check timestamp...
+            if (session == null) throw new ArgumentNullException("session");
 
             //Download the signed document
             var client = new DigitalSignatureServicePortTypeClient(new ScDsspBinding(), Address);
@@ -326,15 +207,12 @@ namespace EContract.Dssp.Client
                 case "urn:oasis:names:tc:dss:1.0:resultmajor:Success":
                     break;
                 default:
-                    throw new InvalidOperationException(response.Result.ResultMajor);
+                    throw new InvalidOperationException(downloadResponse.SignResponse.Result.ResultMajor);
             }
 
-            //Remove the session from the store
-            SessionStore.Remove(session.Id);
 
             //Return the downloaded document (we assume there is only a single document)
-            return new SignedDocument(response.OptionalOutputs.SignerIdentity,
-                downloadResponse.SignResponse.OptionalOutputs.DocumentWithSignature.Document);
+            return new Document(downloadResponse.SignResponse.OptionalOutputs.DocumentWithSignature.Document);
         }
 
         /// <summary>
@@ -342,9 +220,14 @@ namespace EContract.Dssp.Client
         /// </summary>
         /// <param name="document">The document that contains a signature</param>
         /// <returns>The security information of the document, containting signature information</returns>
+        /// <exception cref="ArgumentNullException">When there is no document provided</exception>
+        /// <exception cref="IncorrectSignatureException">When the provided document has an invalid signature</exception>
         /// <exception cref="RequestError">When the request was invalid, e.g. unsupported mime type</exception>
+        /// <exception cref="InvalidOperationException">All other errors indicated by the service</exception>
         public async Task<SecurityInfo> VerifyAsync(Document document)
         {
+            if (document == null) throw new ArgumentNullException("document");
+
             var client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
 
             var request = new VerifyRequest();

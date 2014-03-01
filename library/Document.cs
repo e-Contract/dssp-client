@@ -43,6 +43,19 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Constructor with basic info.
         /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <param name="mimeType">The mime type, must be supported by e-contract</param>
+        /// <param name="content">The (binary) content of the document</param>
+        public Document(String mimeType, Stream content)
+            : this("doc-" + Guid.NewGuid().ToString(), mimeType, content)
+        {
+        }
+
+        /// <summary>
+        /// Constructor with basic info and id.
+        /// </summary>
         /// <param name="id">The id of the document, mustbe XSD NCName compliant</param>
         /// <param name="mimeType">The mime type, must be supported by e-contract</param>
         /// <param name="content">The (binary) content of the document</param>
@@ -53,17 +66,11 @@ namespace EContract.Dssp.Client
             this.Content = content;
         }
 
-        /// <summary>
-        /// Full constructor with all info.
-        /// </summary>
-        /// <param name="id">The id of the document, mustbe XSD NCName compliant</param>
-        /// <param name="mimeType">The mime type, must be supported by e-contract</param>
-        /// <param name="content">The (binary) content of the document</param>
-        /// <param name="lang">The language of the document, will be used as UI language by e-contract</param>
-        public Document(String id, String mimeType, Stream content, String lang)
-            : this(id, mimeType, content)
+        internal Document(DocumentType document)
         {
-            this.Language = lang;
+            this.Id = document.ID;
+            this.MimeType = document.Base64Data.MimeType;
+            this.Content = new MemoryStream(document.Base64Data.Value);
         }
 
         /// <summary>
@@ -80,10 +87,5 @@ namespace EContract.Dssp.Client
         /// The content of the document.
         /// </summary>
         public Stream Content { get; set; }
-
-        /// <summary>
-        /// Optional lanuage of the document, the e-contract UI will match this language if supported.
-        /// </summary>
-        public string Language { get; set; }
     }
 }

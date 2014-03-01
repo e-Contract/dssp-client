@@ -4,16 +4,8 @@ demo.config(function ($routeProvider) {
     $routeProvider
 		.when('/', {
 		    controller: 'docController',
-		    templateUrl: 'docs.html'
+		    templateUrl: 'docList.html'
 		})
-		.when('/startSign/:docId', {
-		    controller: 'signController',
-		    templateUrl: 'startSign.html'
-		})
-        .when('/finishedSign', {
-            controller: 'signController',
-            templateUrl: 'finishedSign.html'
-        })
 		.otherwise({
 		    redirectTo: '/'
 		});
@@ -37,21 +29,4 @@ demo.controller('docController', ['$scope', '$http', function($scope, $http) {
 
     $scope.refresh();
         
-}]);
-
-demo.controller('signController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
-
-    $scope.init = function () {
-        $http.post('/api/documents/' + $routeParams.docId + "/signing")
-            .success(function (data, status, headers, config) {
-                $scope.SignRequest = data.SignRequest;
-            })
-            .error(function (data, status, headers, config) {
-                alert(status);
-            });
-    
-    }
-
-    $scope.init();
-
 }]);

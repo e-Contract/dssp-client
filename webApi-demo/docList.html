@@ -1,0 +1,9 @@
+﻿<div>
+    <ul class="unstyled">
+        <li ng-repeat="doc in docs">
+            <span ng-hide="doc.Signed"><a href="/api/documents/{{doc.Id}}/signing">{{doc.Name}}</a></span>
+            <span ng-show="doc.Signed">{{doc.Name}} (until {{doc.TimeStampValidity}})</span>
+        </li>
+    </ul>
+    <button ng-click="refresh()">Refresh</button>
+</div>

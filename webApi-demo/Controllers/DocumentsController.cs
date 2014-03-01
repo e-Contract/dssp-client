@@ -1,6 +1,8 @@
 ﻿using dssp_demo.Models;
+using dssp_demo.Services;
 using EContract.Dssp.Client;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,13 +17,17 @@ namespace dssp_demo.Controllers
     public class DocumentsController : ApiController
     {
 
-        
+        private Documents documents = new Documents();
 
-        public DocInfo[] Get()
+        public ICollection<DocInfo> Get()
         {
-            return new DocInfo[] { new DocInfo("_1", "dssp-specs.pdf") };
+            return documents.All;
         }
 
-        
+        public DocInfo Get(string id)
+        {
+            return documents[id];
+        }
+
     }
 }

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using EContract.Dssp.Client;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 
 namespace dssp_demo.Models
 {
@@ -15,5 +18,24 @@ namespace dssp_demo.Models
 
         public string Id;
         public string Name;
+        public DateTime? TimeStampValidity;
+
+        public bool Signed
+        {
+            get
+            {
+                return TimeStampValidity != null;
+            }
+        }
+
+        public Document ToDocument()
+        {
+            Document d = new Document();
+            d.Id = this.Id;
+            d.MimeType = "application/pdf";
+            d.Content = File.OpenRead(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"App_Data\" + this.Name));
+
+            return d;
+        }
     }
 }

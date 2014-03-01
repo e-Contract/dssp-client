@@ -1,6 +1,9 @@
 ﻿using dssp_demo.Models;
+using dssp_demo.Services;
 using EContract.Dssp.Client;
+using EContract.Dssp.Client.Proxy;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +12,7 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.ServiceModel;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
@@ -19,55 +23,66 @@ namespace dssp_demo.Controllers
     [RoutePrefix("api/documents/{id}/signing")]
     public class SignController : ApiController
     {
+        //The DSS-P client for e-contract
+        DsspClient dsspClient = new DsspClient(new EndpointAddress("https://www.e-contract.be/dss-ws/dss"));
 
-        DsspClient dsspClient = new DsspClient(null, new EndpointAddress("https://www.e-contract.be/dss-ws/dss"), DsspSessionMemoryStore.Default);
+        //Reference to the documents
+        Documents docs = new Documents();
+
+        //Reference to the sessions
+        DsspSessions sessions = new DsspSessions();
 
         [Route("")]
-        public async Task<SignInfo> Post(string id)
+        public async Task<HttpResponseMessage> Get(string id)
         {
-            dsspClient.LandingPage = new Uri(Request.RequestUri.ToString() + "/final");
+            //get the requested document and covert it for upload.
+            Document doc = docs[id].ToDocument();
 
-            Document d = new Document();
-            d.Id = id;
-            d.MimeType = "application/pdf";
-            d.Content = File.OpenRead(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"App_Data\dssp-specs.pdf"));  //we should look up the document according to its id.
-            d.Language = "fr";
+            //Upload it, keeping the DSS-P session that is returned
+            sessions[id] = await dsspClient.UploadDocumentAsync(doc);
 
-            try
-            {
-                return new SignInfo(await dsspClient.UploadDocumentAsync(d));
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            
+            //creating the browser post page with the pending request
+            string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri);
+
+            //returning it to the browser to execute
+            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+            result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(browserPostPage));
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+            return result;
         }
 
-        [Route("final")]
+        [Route("")]
         public async Task<HttpResponseMessage> Post(string id, [FromBody] FormDataCollection formData)
         {
             foreach(KeyValuePair<String, String> formField in formData)
             {
                 if (formField.Key == "SignResponse")
                 {
-                    byte[] signResponse = Convert.FromBase64String(formField.Value);
+                    //check if the sign response is correct, keep the signer (currently always null)
+                    NameIdentifierType signer = sessions[id].ValidateSignResponse(formField.Value);
 
-                    Document doc;
+                    //Download the signed document.
+                    Document doc = await dsspClient.DownloadDocumentAsync(sessions[id]);
 
-                    try
-                    {
-                        doc = await dsspClient.DownloadDocumentAsync(signResponse);
-                        HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-                        result.Content = new StreamContent(doc.Content);
-                        result.Content.Headers.ContentLength = doc.Content.Length;
-                        result.Content.Headers.ContentType = new MediaTypeHeaderValue(doc.MimeType);
-                        return result;
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
+                    //For demo purposes, lets validate the signature.
+                    //Don't do this in real code (the document is guaranteed to be signed) unless the additional info like signer & timestamp validity.
+                    SecurityInfo securityInfo = await dsspClient.VerifyAsync(doc);
+
+                    //indicate that the document is signed
+                    //In real code you should keep the document also
+                    docs[id].TimeStampValidity = securityInfo.TimeStampValidity;
+
+                    //Redirecting back to the main site (via HTML to make sure "Get" is used instead of POST
+                    var builder = new StringBuilder();
+                    builder.AppendLine("<html>");
+                    builder.AppendLine("<head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=/\"></head>");
+                    builder.AppendLine("<body><a href=\"/\">done</a></body>");
+                    builder.AppendLine("</html>");
+
+                    HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                    result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(builder.ToString()));
+                    result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+                    return result;
                 }
             }
             return Request.CreateResponse(HttpStatusCode.BadRequest);

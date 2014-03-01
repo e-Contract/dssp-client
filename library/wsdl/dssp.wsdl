@@ -2971,7 +2971,7 @@
 
       <xs:complexType name="AttributedDateTime">
         <xs:simpleContent>
-          <xs:extension base="xs:string">
+          <xs:extension base="xs:dateTime">
             <xs:attribute ref="tns:Id"/>
           </xs:extension>
         </xs:simpleContent>
