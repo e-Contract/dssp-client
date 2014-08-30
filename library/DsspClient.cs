@@ -106,7 +106,7 @@ namespace EContract.Dssp.Client
         /// Uploads a document to e-Contract and returns the session for future references.
         /// </remarks>
         /// <param name="document">The document to be signed</param>
-        /// <returns>The session, required for the BROWSER/POST protocol and the donwload of the signed message</returns>
+        /// <returns>The session, required for the BROWSER/POST protocol and the download of the signed message</returns>
         public DsspSession UploadDocument(Document document) 
 #if !v3_5
         {

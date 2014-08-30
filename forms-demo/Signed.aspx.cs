@@ -18,16 +18,16 @@ namespace forms_demo
         {
             if (!IsPostBack)
             {
-                //Retreive the content
+                //Retrieve the content
                 string signResponse = Request.Form.Get("SignResponse");
 
-                //Retreive the session
+                //Retrieve the session
                 DsspSession session = (DsspSession)Session["dsspSession"];
 
                 Document signedDocument;
                 try
                 {
-                    //Check if the content is valid, this isn't required but stongly adviced.
+                    //Check if the content is valid, this isn't required but strongly advised.
                     NameIdentifierType newSigner = session.ValidateSignResponse(signResponse);
 
                     //Remove the DSS-P Session from the HTTP Session 
