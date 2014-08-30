@@ -52,6 +52,11 @@ namespace EContract.Dssp.Client
         public X509Certificate2 Signer { get; set; }
 
         /// <summary>
+        /// The subject of the signer certificate (in DSS-P format)
+        /// </summary>
+        public string SignerSubject { get; set; }
+
+        /// <summary>
         /// The time at which the document was signed.
         /// </summary>
         public DateTime SigningTime { get; set; }

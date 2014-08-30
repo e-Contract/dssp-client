@@ -80,13 +80,13 @@ namespace dssp_demo.Controllers
 
                     //Keep some interesting info about the signed document
                     docs[id].TimeStampValidity = securityInfo.TimeStampValidity;
+                    docs[id].NewSignatureBy = newSigner.Value;
                     docs[id].Signatures = new List<SignInfo>();
                     foreach (SignatureInfo info in securityInfo.Signatures)
                     {
                         SignInfo i = new SignInfo();
-                        i.Signer = info.Signer.Subject;
+                        i.Signer = info.SignerSubject;
                         i.SignedOn = info.SigningTime;
-                        i.IsNew = info.Signer.Subject == newSigner.Value;
                         docs[id].Signatures.Add(i);
                     }
 

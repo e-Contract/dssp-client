@@ -19,6 +19,7 @@ namespace dssp_demo.Models
         public string Id;
         public string Name;
         public DateTime? TimeStampValidity;
+        public string NewSignatureBy;
         public IList<SignInfo> Signatures;
 
         public bool Signed
@@ -41,7 +42,6 @@ namespace dssp_demo.Models
 
     public class SignInfo
     {
-        public bool IsNew;
         public string Signer;
         public DateTime SignedOn;
 

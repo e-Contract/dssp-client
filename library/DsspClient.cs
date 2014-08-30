@@ -379,6 +379,7 @@ namespace EContract.Dssp.Client
                 var info = new SignatureInfo();
                 info.SigningTime = DateTime.Parse(report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SigningTime, CultureInfo.InvariantCulture);
                 info.Signer = new X509Certificate2(report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].CertificateValue);
+                info.SignerSubject = report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].Subject;
                 result.Signatures.Add(info);
             }
             return result;
