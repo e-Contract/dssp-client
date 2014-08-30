@@ -45,7 +45,14 @@ namespace forms_demo
                     this.msg.Text = "signed document with timestamp valid until " + securityInfo.TimeStampValidity;
                     foreach(SignatureInfo signature in securityInfo.Signatures)
                     {
-                        this.signatures.Items.Add("Singed by " + signature.Signer.Subject + " on " + signature.SigningTime);
+                        if (signature.Signer.Subject == newSigner.Value)
+                        {
+                            this.signatures.Items.Add("Signed by " + signature.Signer.Subject + " on " + signature.SigningTime);
+                        }
+                        else
+                        {
+                            this.signatures.Items.Add("Signed by " + signature.Signer.Subject + " (new signer) on " + signature.SigningTime);
+                        }
                     }
                 }
                 catch (RequestError error)

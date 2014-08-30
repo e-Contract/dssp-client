@@ -8,7 +8,7 @@
                 Signed  doc: {{doc.Name}}, time stamp valid until {{doc.TimeStampValidity}}
                 <ul>
                     <li ng-repeat="signature in doc.Signatures">
-                        Singed by "{{signature.Signer}}" on {{signature.SignedOn}}
+                        Singed by "{{signature.Signer}}" <span ng-show="signature.IsNew">(new signer) </span>on {{signature.signedon}}
                     </li>
                 </ul>
             </div>

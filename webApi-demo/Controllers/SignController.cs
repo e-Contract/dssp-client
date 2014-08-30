@@ -32,6 +32,12 @@ namespace dssp_demo.Controllers
         //Reference to the sessions
         DsspSessions sessions = new DsspSessions();
 
+        public SignController()
+        {
+            dsspClient.ApplicationName = "egelke";
+            dsspClient.ApplicationPassword = "egelke";
+        }
+
         [Route("")]
         public async Task<HttpResponseMessage> Get(string id)
         {
@@ -80,6 +86,7 @@ namespace dssp_demo.Controllers
                         SignInfo i = new SignInfo();
                         i.Signer = info.Signer.Subject;
                         i.SignedOn = info.SigningTime;
+                        i.IsNew = info.Signer.Subject == newSigner.Value;
                         docs[id].Signatures.Add(i);
                     }
 

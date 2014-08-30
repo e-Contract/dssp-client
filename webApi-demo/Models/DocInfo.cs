@@ -41,6 +41,7 @@ namespace dssp_demo.Models
 
     public class SignInfo
     {
+        public bool IsNew;
         public string Signer;
         public DateTime SignedOn;
 

@@ -50,6 +50,7 @@
     <Compile Include="Document.cs" />
     <Compile Include="IncorrectSignatureException.cs" />
     <Compile Include="SignatureInfo.cs" />
+    <Compile Include="WcfBinding\UTDsspBinding.cs" />
     <Compile Include="WcfBinding\PlainDsspBinding.cs" />
     <Compile Include="DsspClient.cs" />
     <Compile Include="DsspSession.cs" />

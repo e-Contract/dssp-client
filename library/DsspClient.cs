@@ -31,6 +31,7 @@ using System.Security.Cryptography.Xml;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
+using System.ServiceModel.Security;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -64,6 +65,17 @@ namespace EContract.Dssp.Client
         /// The address of e-contract DSS-P service.
         /// </summary>
         public EndpointAddress Address { get; set; }
+
+        /// <summary>
+        /// The user name of your (the DSS-P client) application.  This is optional.
+        /// </summary>
+        public string ApplicationName { get; set; }
+
+        /// <summary>
+        /// Te password of your (the DSS-P client) application.  This is optional.
+        /// </summary>
+        public string ApplicationPassword { get; set; }
+
 
         /// <summary>
         /// Basic constructor.
@@ -125,7 +137,18 @@ namespace EContract.Dssp.Client
             //New session & client
             var session = DsspSession.NewSession();
             var documentId = "doc-" + Guid.NewGuid().ToString();
-            var client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
+            DigitalSignatureServicePortTypeClient client;
+            if (this.ApplicationName == null)
+            {
+                client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
+            }
+            else
+            {
+                client = new DigitalSignatureServicePortTypeClient(new UTDsspBinding(), Address);
+                client.ClientCredentials.UserName.UserName = this.ApplicationName;
+                client.ClientCredentials.UserName.Password = this.ApplicationPassword;
+            }
+
 
             //Prepare
             byte[] clientNonce = new byte[32];
