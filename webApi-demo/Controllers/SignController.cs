@@ -49,7 +49,8 @@ namespace dssp_demo.Controllers
 
             //creating the browser post page with the pending request
             string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, "en", 
-                new SignatureProperties() { SignatureProductionPlace = "Denderleeuw", SignerRoles = new string[] { "zaakvoerder", "aandeelhouder" }});
+                new SignatureProperties() { SignatureProductionPlace = "Denderleeuw", SignerRoles = new string[] { "zaakvoerder", "aandeelhouder" }},
+                ".*CN=Iryna Brouckaert.*");
 
             //returning it to the browser to execute
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);

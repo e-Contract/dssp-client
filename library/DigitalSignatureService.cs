@@ -20,21 +20,8 @@ namespace EContract.Dssp.Client.Proxy
         // CODEGEN: Generating message contract since the operation verify is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute()]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SPUserNoticeType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EvidenceRecordValidityType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TrustStatusListType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AgreementMethodType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EvidenceRecordValidityType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(StatusType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RenewingType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ParticipantsType))]
@@ -46,7 +33,20 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AuthenticatorType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignChallengeType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestedTokenCancelledType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TrustStatusListType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SPUserNoticeType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType1))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignaturePropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ManifestType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UseVerificationTimeType))]
@@ -55,6 +55,7 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UpdateSignatureInstructionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SigningTimeInfoType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DocumentBaseType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ExpressionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestBaseType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.verifyResponse verify(EContract.Dssp.Client.Proxy.verify request);
@@ -65,21 +66,8 @@ namespace EContract.Dssp.Client.Proxy
         // CODEGEN: Generating message contract since the operation sign is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute()]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SPUserNoticeType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EvidenceRecordValidityType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TrustStatusListType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AgreementMethodType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EvidenceRecordValidityType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(StatusType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RenewingType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ParticipantsType))]
@@ -91,7 +79,20 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AuthenticatorType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignChallengeType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestedTokenCancelledType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TrustStatusListType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SPUserNoticeType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType1))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignaturePropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ManifestType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UseVerificationTimeType))]
@@ -100,6 +101,7 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UpdateSignatureInstructionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SigningTimeInfoType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DocumentBaseType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ExpressionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestBaseType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.signResponse1 sign(EContract.Dssp.Client.Proxy.sign request);
@@ -110,21 +112,8 @@ namespace EContract.Dssp.Client.Proxy
         // CODEGEN: Generating message contract since the operation pendingRequest is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute()]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SPUserNoticeType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EvidenceRecordValidityType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TrustStatusListType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AgreementMethodType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EvidenceRecordValidityType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(StatusType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RenewingType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ParticipantsType))]
@@ -136,7 +125,20 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AuthenticatorType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignChallengeType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestedTokenCancelledType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TrustStatusListType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SPUserNoticeType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType1))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignaturePropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ManifestType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UseVerificationTimeType))]
@@ -145,6 +147,7 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UpdateSignatureInstructionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SigningTimeInfoType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DocumentBaseType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ExpressionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestBaseType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.pendingRequestResponse pendingRequest(EContract.Dssp.Client.Proxy.pendingRequest1 request);
@@ -497,784 +500,13 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class NoticeReferenceType
-    {
-        
-        private string organizationField;
-        
-        private string[] noticeNumbersField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string Organization
-        {
-            get
-            {
-                return this.organizationField;
-            }
-            set
-            {
-                this.organizationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("int", DataType="integer", IsNullable=false)]
-        public string[] NoticeNumbers
-        {
-            get
-            {
-                return this.noticeNumbersField;
-            }
-            set
-            {
-                this.noticeNumbersField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SPUserNoticeType
-    {
-        
-        private NoticeReferenceType noticeRefField;
-        
-        private string explicitTextField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public NoticeReferenceType NoticeRef
-        {
-            get
-            {
-                return this.noticeRefField;
-            }
-            set
-            {
-                this.noticeRefField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string ExplicitText
-        {
-            get
-            {
-                return this.explicitTextField;
-            }
-            set
-            {
-                this.explicitTextField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class QualifyingPropertiesType
-    {
-        
-        private SignedPropertiesType1 signedPropertiesField;
-        
-        private UnsignedPropertiesType1 unsignedPropertiesField;
-        
-        private string targetField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public SignedPropertiesType1 SignedProperties
-        {
-            get
-            {
-                return this.signedPropertiesField;
-            }
-            set
-            {
-                this.signedPropertiesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public UnsignedPropertiesType1 UnsignedProperties
-        {
-            get
-            {
-                return this.unsignedPropertiesField;
-            }
-            set
-            {
-                this.unsignedPropertiesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Target
-        {
-            get
-            {
-                return this.targetField;
-            }
-            set
-            {
-                this.targetField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SignedPropertiesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SignedPropertiesType1
-    {
-        
-        private SignedSignaturePropertiesType1 signedSignaturePropertiesField;
-        
-        private SignedDataObjectPropertiesType1 signedDataObjectPropertiesField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public SignedSignaturePropertiesType1 SignedSignatureProperties
-        {
-            get
-            {
-                return this.signedSignaturePropertiesField;
-            }
-            set
-            {
-                this.signedSignaturePropertiesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public SignedDataObjectPropertiesType1 SignedDataObjectProperties
-        {
-            get
-            {
-                return this.signedDataObjectPropertiesField;
-            }
-            set
-            {
-                this.signedDataObjectPropertiesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SignedSignaturePropertiesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SignedSignaturePropertiesType1
-    {
-        
-        private System.DateTime signingTimeField;
-        
-        private bool signingTimeFieldSpecified;
-        
-        private CertIDType[] signingCertificateField;
-        
-        private SignaturePolicyIdentifierType signaturePolicyIdentifierField;
-        
-        private SignatureProductionPlaceType signatureProductionPlaceField;
-        
-        private SignerRoleType1 signerRoleField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public System.DateTime SigningTime
-        {
-            get
-            {
-                return this.signingTimeField;
-            }
-            set
-            {
-                this.signingTimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool SigningTimeSpecified
-        {
-            get
-            {
-                return this.signingTimeFieldSpecified;
-            }
-            set
-            {
-                this.signingTimeFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Cert", IsNullable=false)]
-        public CertIDType[] SigningCertificate
-        {
-            get
-            {
-                return this.signingCertificateField;
-            }
-            set
-            {
-                this.signingCertificateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public SignaturePolicyIdentifierType SignaturePolicyIdentifier
-        {
-            get
-            {
-                return this.signaturePolicyIdentifierField;
-            }
-            set
-            {
-                this.signaturePolicyIdentifierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public SignatureProductionPlaceType SignatureProductionPlace
-        {
-            get
-            {
-                return this.signatureProductionPlaceField;
-            }
-            set
-            {
-                this.signatureProductionPlaceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public SignerRoleType1 SignerRole
-        {
-            get
-            {
-                return this.signerRoleField;
-            }
-            set
-            {
-                this.signerRoleField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CertIDType
-    {
-        
-        private DigestAlgAndValueType certDigestField;
-        
-        private X509IssuerSerialType issuerSerialField;
-        
-        private string uRIField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public DigestAlgAndValueType CertDigest
-        {
-            get
-            {
-                return this.certDigestField;
-            }
-            set
-            {
-                this.certDigestField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public X509IssuerSerialType IssuerSerial
-        {
-            get
-            {
-                return this.issuerSerialField;
-            }
-            set
-            {
-                this.issuerSerialField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class DigestAlgAndValueType
-    {
-        
-        private DigestMethodType digestMethodField;
-        
-        private byte[] digestValueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=0)]
-        public DigestMethodType DigestMethod
-        {
-            get
-            {
-                return this.digestMethodField;
-            }
-            set
-            {
-                this.digestMethodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", DataType="base64Binary", Order=1)]
-        public byte[] DigestValue
-        {
-            get
-            {
-                return this.digestValueField;
-            }
-            set
-            {
-                this.digestValueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class DigestMethodType
-    {
-        
-        private System.Xml.XmlNode[] anyField;
-        
-        private string algorithmField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlNode[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Algorithm
-        {
-            get
-            {
-                return this.algorithmField;
-            }
-            set
-            {
-                this.algorithmField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class X509IssuerSerialType
-    {
-        
-        private string x509IssuerNameField;
-        
-        private string x509SerialNumberField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string X509IssuerName
-        {
-            get
-            {
-                return this.x509IssuerNameField;
-            }
-            set
-            {
-                this.x509IssuerNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", Order=1)]
-        public string X509SerialNumber
-        {
-            get
-            {
-                return this.x509SerialNumberField;
-            }
-            set
-            {
-                this.x509SerialNumberField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SignaturePolicyIdentifierType
-    {
-        
-        private SignaturePolicyIdType signaturePolicyIdField;
-        
-        private object signaturePolicyImpliedField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public SignaturePolicyIdType SignaturePolicyId
-        {
-            get
-            {
-                return this.signaturePolicyIdField;
-            }
-            set
-            {
-                this.signaturePolicyIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public object SignaturePolicyImplied
-        {
-            get
-            {
-                return this.signaturePolicyImpliedField;
-            }
-            set
-            {
-                this.signaturePolicyImpliedField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SignaturePolicyIdType
-    {
-        
-        private ObjectIdentifierType sigPolicyIdField;
-        
-        private TransformType[] transformsField;
-        
-        private DigestAlgAndValueType sigPolicyHashField;
-        
-        private SigPolicyQualifiersListType sigPolicyQualifiersField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public ObjectIdentifierType SigPolicyId
-        {
-            get
-            {
-                return this.sigPolicyIdField;
-            }
-            set
-            {
-                this.sigPolicyIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Transform", IsNullable=false)]
-        public TransformType[] Transforms
-        {
-            get
-            {
-                return this.transformsField;
-            }
-            set
-            {
-                this.transformsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public DigestAlgAndValueType SigPolicyHash
-        {
-            get
-            {
-                return this.sigPolicyHashField;
-            }
-            set
-            {
-                this.sigPolicyHashField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public SigPolicyQualifiersListType SigPolicyQualifiers
-        {
-            get
-            {
-                return this.sigPolicyQualifiersField;
-            }
-            set
-            {
-                this.sigPolicyQualifiersField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class ObjectIdentifierType
-    {
-        
-        private IdentifierType1 identifierField;
-        
-        private string descriptionField;
-        
-        private string[] documentationReferencesField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public IdentifierType1 Identifier
-        {
-            get
-            {
-                return this.identifierField;
-            }
-            set
-            {
-                this.identifierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string Description
-        {
-            get
-            {
-                return this.descriptionField;
-            }
-            set
-            {
-                this.descriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=2)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("DocumentationReference", DataType="anyURI", IsNullable=false)]
-        public string[] DocumentationReferences
-        {
-            get
-            {
-                return this.documentationReferencesField;
-            }
-            set
-            {
-                this.documentationReferencesField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="IdentifierType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class IdentifierType1
-    {
-        
-        private QualifierType qualifierField;
-        
-        private bool qualifierFieldSpecified;
-        
-        private string valueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public QualifierType Qualifier
-        {
-            get
-            {
-                return this.qualifierField;
-            }
-            set
-            {
-                this.qualifierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool QualifierSpecified
-        {
-            get
-            {
-                return this.qualifierFieldSpecified;
-            }
-            set
-            {
-                this.qualifierFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value
-        {
-            get
-            {
-                return this.valueField;
-            }
-            set
-            {
-                this.valueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public enum QualifierType
-    {
-        
-        /// <remarks/>
-        OIDAsURI,
-        
-        /// <remarks/>
-        OIDAsURN,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class TransformType
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class AgreementMethodType
     {
         
         private object[] itemsField;
+        
+        private ItemsChoiceType13[] itemsElementNameField;
         
         private string[] textField;
         
@@ -1282,863 +514,9 @@ namespace EContract.Dssp.Client.Proxy
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("XPath", typeof(string), Order=0)]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string[] Text
-        {
-            get
-            {
-                return this.textField;
-            }
-            set
-            {
-                this.textField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Algorithm
-        {
-            get
-            {
-                return this.algorithmField;
-            }
-            set
-            {
-                this.algorithmField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SigPolicyQualifiersListType
-    {
-        
-        private System.Xml.XmlElement[] sigPolicyQualifierField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Name="SigPolicyQualifier", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
-        public System.Xml.XmlElement[] SigPolicyQualifier
-        {
-            get
-            {
-                return this.sigPolicyQualifierField;
-            }
-            set
-            {
-                this.sigPolicyQualifierField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SignatureProductionPlaceType
-    {
-        
-        private string cityField;
-        
-        private string stateOrProvinceField;
-        
-        private string postalCodeField;
-        
-        private string countryNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string City
-        {
-            get
-            {
-                return this.cityField;
-            }
-            set
-            {
-                this.cityField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string StateOrProvince
-        {
-            get
-            {
-                return this.stateOrProvinceField;
-            }
-            set
-            {
-                this.stateOrProvinceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string PostalCode
-        {
-            get
-            {
-                return this.postalCodeField;
-            }
-            set
-            {
-                this.postalCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public string CountryName
-        {
-            get
-            {
-                return this.countryNameField;
-            }
-            set
-            {
-                this.countryNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SignerRoleType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SignerRoleType1
-    {
-        
-        private string[] claimedRolesField;
-        
-        private EncapsulatedPKIDataType[] certifiedRolesField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("ClaimedRole", IsNullable=false)]
-        public string[] ClaimedRoles
-        {
-            get
-            {
-                return this.claimedRolesField;
-            }
-            set
-            {
-                this.claimedRolesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("CertifiedRole", IsNullable=false)]
-        public EncapsulatedPKIDataType[] CertifiedRoles
-        {
-            get
-            {
-                return this.certifiedRolesField;
-            }
-            set
-            {
-                this.certifiedRolesField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class EncapsulatedPKIDataType
-    {
-        
-        private string idField;
-        
-        private string encodingField;
-        
-        private byte[] valueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Encoding
-        {
-            get
-            {
-                return this.encodingField;
-            }
-            set
-            {
-                this.encodingField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute(DataType="base64Binary")]
-        public byte[] Value
-        {
-            get
-            {
-                return this.valueField;
-            }
-            set
-            {
-                this.valueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SignedDataObjectPropertiesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class SignedDataObjectPropertiesType1
-    {
-        
-        private DataObjectFormatType[] dataObjectFormatField;
-        
-        private CommitmentTypeIndicationType[] commitmentTypeIndicationField;
-        
-        private XAdESTimeStampType[] allDataObjectsTimeStampField;
-        
-        private XAdESTimeStampType[] individualDataObjectsTimeStampField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DataObjectFormat", Order=0)]
-        public DataObjectFormatType[] DataObjectFormat
-        {
-            get
-            {
-                return this.dataObjectFormatField;
-            }
-            set
-            {
-                this.dataObjectFormatField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CommitmentTypeIndication", Order=1)]
-        public CommitmentTypeIndicationType[] CommitmentTypeIndication
-        {
-            get
-            {
-                return this.commitmentTypeIndicationField;
-            }
-            set
-            {
-                this.commitmentTypeIndicationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AllDataObjectsTimeStamp", Order=2)]
-        public XAdESTimeStampType[] AllDataObjectsTimeStamp
-        {
-            get
-            {
-                return this.allDataObjectsTimeStampField;
-            }
-            set
-            {
-                this.allDataObjectsTimeStampField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("IndividualDataObjectsTimeStamp", Order=3)]
-        public XAdESTimeStampType[] IndividualDataObjectsTimeStamp
-        {
-            get
-            {
-                return this.individualDataObjectsTimeStampField;
-            }
-            set
-            {
-                this.individualDataObjectsTimeStampField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class DataObjectFormatType
-    {
-        
-        private string descriptionField;
-        
-        private ObjectIdentifierType objectIdentifierField;
-        
-        private string mimeTypeField;
-        
-        private string encodingField;
-        
-        private string objectReferenceField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string Description
-        {
-            get
-            {
-                return this.descriptionField;
-            }
-            set
-            {
-                this.descriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public ObjectIdentifierType ObjectIdentifier
-        {
-            get
-            {
-                return this.objectIdentifierField;
-            }
-            set
-            {
-                this.objectIdentifierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public string MimeType
-        {
-            get
-            {
-                return this.mimeTypeField;
-            }
-            set
-            {
-                this.mimeTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="anyURI", Order=3)]
-        public string Encoding
-        {
-            get
-            {
-                return this.encodingField;
-            }
-            set
-            {
-                this.encodingField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string ObjectReference
-        {
-            get
-            {
-                return this.objectReferenceField;
-            }
-            set
-            {
-                this.objectReferenceField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CommitmentTypeIndicationType
-    {
-        
-        private ObjectIdentifierType commitmentTypeIdField;
-        
-        private string[] objectReferenceField;
-        
-        private object allSignedDataObjectsField;
-        
-        private CommitmentTypeQualifiersListType commitmentTypeQualifiersField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public ObjectIdentifierType CommitmentTypeId
-        {
-            get
-            {
-                return this.commitmentTypeIdField;
-            }
-            set
-            {
-                this.commitmentTypeIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ObjectReference", DataType="anyURI", Order=1)]
-        public string[] ObjectReference
-        {
-            get
-            {
-                return this.objectReferenceField;
-            }
-            set
-            {
-                this.objectReferenceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public object AllSignedDataObjects
-        {
-            get
-            {
-                return this.allSignedDataObjectsField;
-            }
-            set
-            {
-                this.allSignedDataObjectsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public CommitmentTypeQualifiersListType CommitmentTypeQualifiers
-        {
-            get
-            {
-                return this.commitmentTypeQualifiersField;
-            }
-            set
-            {
-                this.commitmentTypeQualifiersField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CommitmentTypeQualifiersListType
-    {
-        
-        private System.Xml.XmlElement[] commitmentTypeQualifierField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Name="CommitmentTypeQualifier", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
-        public System.Xml.XmlElement[] CommitmentTypeQualifier
-        {
-            get
-            {
-                return this.commitmentTypeQualifierField;
-            }
-            set
-            {
-                this.commitmentTypeQualifierField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class XAdESTimeStampType : GenericTimeStampType
-    {
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(OtherTimeStampType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(XAdESTimeStampType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public abstract partial class GenericTimeStampType
-    {
-        
-        private IncludeType[] includeField;
-        
-        private ReferenceInfoType[] referenceInfoField;
-        
-        private CanonicalizationMethodType canonicalizationMethodField;
-        
-        private object[] itemsField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Include", Order=0)]
-        public IncludeType[] Include
-        {
-            get
-            {
-                return this.includeField;
-            }
-            set
-            {
-                this.includeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ReferenceInfo", Order=1)]
-        public ReferenceInfoType[] ReferenceInfo
-        {
-            get
-            {
-                return this.referenceInfoField;
-            }
-            set
-            {
-                this.referenceInfoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=2)]
-        public CanonicalizationMethodType CanonicalizationMethod
-        {
-            get
-            {
-                return this.canonicalizationMethodField;
-            }
-            set
-            {
-                this.canonicalizationMethodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("EncapsulatedTimeStamp", typeof(EncapsulatedPKIDataType), Order=3)]
-        [System.Xml.Serialization.XmlAnyElementAttribute(Name="XMLTimeStamp", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=3)]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class IncludeType
-    {
-        
-        private string uRIField;
-        
-        private bool referencedDataField;
-        
-        private bool referencedDataFieldSpecified;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool referencedData
-        {
-            get
-            {
-                return this.referencedDataField;
-            }
-            set
-            {
-                this.referencedDataField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool referencedDataSpecified
-        {
-            get
-            {
-                return this.referencedDataFieldSpecified;
-            }
-            set
-            {
-                this.referencedDataFieldSpecified = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class ReferenceInfoType
-    {
-        
-        private DigestMethodType digestMethodField;
-        
-        private byte[] digestValueField;
-        
-        private string idField;
-        
-        private string uRIField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=0)]
-        public DigestMethodType DigestMethod
-        {
-            get
-            {
-                return this.digestMethodField;
-            }
-            set
-            {
-                this.digestMethodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", DataType="base64Binary", Order=1)]
-        public byte[] DigestValue
-        {
-            get
-            {
-                return this.digestValueField;
-            }
-            set
-            {
-                this.digestValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class OtherTimeStampType : GenericTimeStampType
-    {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="UnsignedPropertiesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class UnsignedPropertiesType1
-    {
-        
-        private UnsignedSignaturePropertiesType1 unsignedSignaturePropertiesField;
-        
-        private UnsignedDataObjectPropertiesType unsignedDataObjectPropertiesField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public UnsignedSignaturePropertiesType1 UnsignedSignatureProperties
-        {
-            get
-            {
-                return this.unsignedSignaturePropertiesField;
-            }
-            set
-            {
-                this.unsignedSignaturePropertiesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public UnsignedDataObjectPropertiesType UnsignedDataObjectProperties
-        {
-            get
-            {
-                return this.unsignedDataObjectPropertiesField;
-            }
-            set
-            {
-                this.unsignedDataObjectPropertiesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="UnsignedSignaturePropertiesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class UnsignedSignaturePropertiesType1
-    {
-        
-        private object[] itemsField;
-        
-        private ItemsChoiceType11[] itemsElementNameField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("ArchiveTimeStamp", typeof(XAdESTimeStampType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AttrAuthoritiesCertValues", typeof(CertificateValuesType1), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AttributeCertificateRefs", typeof(CompleteCertificateRefsType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AttributeRevocationRefs", typeof(CompleteRevocationRefsType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AttributeRevocationValues", typeof(RevocationValuesType2), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("CertificateValues", typeof(CertificateValuesType1), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("CompleteCertificateRefs", typeof(CompleteCertificateRefsType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("CompleteRevocationRefs", typeof(CompleteRevocationRefsType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("CounterSignature", typeof(CounterSignatureType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("RefsOnlyTimeStamp", typeof(XAdESTimeStampType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("RevocationValues", typeof(RevocationValuesType2), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("SigAndRefsTimeStamp", typeof(XAdESTimeStampType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("SignatureTimeStamp", typeof(XAdESTimeStampType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("KA-Nonce", typeof(byte[]), DataType="base64Binary", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("OriginatorKeyInfo", typeof(KeyInfoType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("RecipientKeyInfo", typeof(KeyInfoType), Order=0)]
         [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
         public object[] Items
         {
@@ -2155,7 +533,7 @@ namespace EContract.Dssp.Client.Proxy
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType11[] ItemsElementName
+        public ItemsChoiceType13[] ItemsElementName
         {
             get
             {
@@ -2164,1319 +542,6 @@ namespace EContract.Dssp.Client.Proxy
             set
             {
                 this.itemsElementNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="CertificateValuesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CertificateValuesType1
-    {
-        
-        private object[] itemsField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("EncapsulatedX509Certificate", typeof(EncapsulatedPKIDataType), Order=0)]
-        [System.Xml.Serialization.XmlAnyElementAttribute(Name="OtherCertificate", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CompleteCertificateRefsType
-    {
-        
-        private CertIDType[] certRefsField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Cert", IsNullable=false)]
-        public CertIDType[] CertRefs
-        {
-            get
-            {
-                return this.certRefsField;
-            }
-            set
-            {
-                this.certRefsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CompleteRevocationRefsType
-    {
-        
-        private CRLRefType[] cRLRefsField;
-        
-        private OCSPRefType[] oCSPRefsField;
-        
-        private OtherCertStatusRefsType otherRefsField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("CRLRef", IsNullable=false)]
-        public CRLRefType[] CRLRefs
-        {
-            get
-            {
-                return this.cRLRefsField;
-            }
-            set
-            {
-                this.cRLRefsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("OCSPRef", IsNullable=false)]
-        public OCSPRefType[] OCSPRefs
-        {
-            get
-            {
-                return this.oCSPRefsField;
-            }
-            set
-            {
-                this.oCSPRefsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public OtherCertStatusRefsType OtherRefs
-        {
-            get
-            {
-                return this.otherRefsField;
-            }
-            set
-            {
-                this.otherRefsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CRLRefType
-    {
-        
-        private DigestAlgAndValueType digestAlgAndValueField;
-        
-        private CRLIdentifierType cRLIdentifierField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public DigestAlgAndValueType DigestAlgAndValue
-        {
-            get
-            {
-                return this.digestAlgAndValueField;
-            }
-            set
-            {
-                this.digestAlgAndValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public CRLIdentifierType CRLIdentifier
-        {
-            get
-            {
-                return this.cRLIdentifierField;
-            }
-            set
-            {
-                this.cRLIdentifierField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CRLIdentifierType
-    {
-        
-        private string issuerField;
-        
-        private System.DateTime issueTimeField;
-        
-        private string numberField;
-        
-        private string uRIField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string Issuer
-        {
-            get
-            {
-                return this.issuerField;
-            }
-            set
-            {
-                this.issuerField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public System.DateTime IssueTime
-        {
-            get
-            {
-                return this.issueTimeField;
-            }
-            set
-            {
-                this.issueTimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", Order=2)]
-        public string Number
-        {
-            get
-            {
-                return this.numberField;
-            }
-            set
-            {
-                this.numberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class OCSPRefType
-    {
-        
-        private OCSPIdentifierType oCSPIdentifierField;
-        
-        private DigestAlgAndValueType digestAlgAndValueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public OCSPIdentifierType OCSPIdentifier
-        {
-            get
-            {
-                return this.oCSPIdentifierField;
-            }
-            set
-            {
-                this.oCSPIdentifierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public DigestAlgAndValueType DigestAlgAndValue
-        {
-            get
-            {
-                return this.digestAlgAndValueField;
-            }
-            set
-            {
-                this.digestAlgAndValueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class OCSPIdentifierType
-    {
-        
-        private ResponderIDType responderIDField;
-        
-        private System.DateTime producedAtField;
-        
-        private string uRIField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public ResponderIDType ResponderID
-        {
-            get
-            {
-                return this.responderIDField;
-            }
-            set
-            {
-                this.responderIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public System.DateTime ProducedAt
-        {
-            get
-            {
-                return this.producedAtField;
-            }
-            set
-            {
-                this.producedAtField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class ResponderIDType
-    {
-        
-        private string byNameField;
-        
-        private byte[] byKeyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string ByName
-        {
-            get
-            {
-                return this.byNameField;
-            }
-            set
-            {
-                this.byNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=1)]
-        public byte[] ByKey
-        {
-            get
-            {
-                return this.byKeyField;
-            }
-            set
-            {
-                this.byKeyField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class OtherCertStatusRefsType
-    {
-        
-        private System.Xml.XmlElement[] otherRefField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Name="OtherRef", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
-        public System.Xml.XmlElement[] OtherRef
-        {
-            get
-            {
-                return this.otherRefField;
-            }
-            set
-            {
-                this.otherRefField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="RevocationValuesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class RevocationValuesType2
-    {
-        
-        private EncapsulatedPKIDataType[] cRLValuesField;
-        
-        private EncapsulatedPKIDataType[] oCSPValuesField;
-        
-        private OtherCertStatusValuesType otherValuesField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("EncapsulatedCRLValue", IsNullable=false)]
-        public EncapsulatedPKIDataType[] CRLValues
-        {
-            get
-            {
-                return this.cRLValuesField;
-            }
-            set
-            {
-                this.cRLValuesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("EncapsulatedOCSPValue", IsNullable=false)]
-        public EncapsulatedPKIDataType[] OCSPValues
-        {
-            get
-            {
-                return this.oCSPValuesField;
-            }
-            set
-            {
-                this.oCSPValuesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public OtherCertStatusValuesType OtherValues
-        {
-            get
-            {
-                return this.otherValuesField;
-            }
-            set
-            {
-                this.otherValuesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class OtherCertStatusValuesType
-    {
-        
-        private System.Xml.XmlElement[] otherValueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Name="OtherValue", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
-        public System.Xml.XmlElement[] OtherValue
-        {
-            get
-            {
-                return this.otherValueField;
-            }
-            set
-            {
-                this.otherValueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class CounterSignatureType
-    {
-        
-        private SignatureType signatureField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=0)]
-        public SignatureType Signature
-        {
-            get
-            {
-                return this.signatureField;
-            }
-            set
-            {
-                this.signatureField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#", IncludeInSchema=false)]
-    public enum ItemsChoiceType11
-    {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
-        Item,
-        
-        /// <remarks/>
-        ArchiveTimeStamp,
-        
-        /// <remarks/>
-        AttrAuthoritiesCertValues,
-        
-        /// <remarks/>
-        AttributeCertificateRefs,
-        
-        /// <remarks/>
-        AttributeRevocationRefs,
-        
-        /// <remarks/>
-        AttributeRevocationValues,
-        
-        /// <remarks/>
-        CertificateValues,
-        
-        /// <remarks/>
-        CompleteCertificateRefs,
-        
-        /// <remarks/>
-        CompleteRevocationRefs,
-        
-        /// <remarks/>
-        CounterSignature,
-        
-        /// <remarks/>
-        RefsOnlyTimeStamp,
-        
-        /// <remarks/>
-        RevocationValues,
-        
-        /// <remarks/>
-        SigAndRefsTimeStamp,
-        
-        /// <remarks/>
-        SignatureTimeStamp,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class UnsignedDataObjectPropertiesType
-    {
-        
-        private System.Xml.XmlElement[] unsignedDataObjectPropertyField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Name="UnsignedDataObjectProperty", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
-        public System.Xml.XmlElement[] UnsignedDataObjectProperty
-        {
-            get
-            {
-                return this.unsignedDataObjectPropertyField;
-            }
-            set
-            {
-                this.unsignedDataObjectPropertyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
-    public partial class QualifyingPropertiesReferenceType
-    {
-        
-        private string uRIField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AdviceType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class AdviceType1
-    {
-        
-        private object[] itemsField;
-        
-        private ItemsChoiceType9[] itemsElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("Assertion", typeof(AssertionType1), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AssertionIDRef", typeof(string), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AssertionURIRef", typeof(string), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("EncryptedAssertion", typeof(EncryptedElementType), Order=0)]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType9[] ItemsElementName
-        {
-            get
-            {
-                return this.itemsElementNameField;
-            }
-            set
-            {
-                this.itemsElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AssertionType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class AssertionType1
-    {
-        
-        private NameIDType issuerField;
-        
-        private SignatureType signatureField;
-        
-        private SubjectType1 subjectField;
-        
-        private ConditionsType1 conditionsField;
-        
-        private AdviceType1 adviceField;
-        
-        private StatementAbstractType1[] itemsField;
-        
-        private string versionField;
-        
-        private string idField;
-        
-        private System.DateTime issueInstantField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public NameIDType Issuer
-        {
-            get
-            {
-                return this.issuerField;
-            }
-            set
-            {
-                this.issuerField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=1)]
-        public SignatureType Signature
-        {
-            get
-            {
-                return this.signatureField;
-            }
-            set
-            {
-                this.signatureField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public SubjectType1 Subject
-        {
-            get
-            {
-                return this.subjectField;
-            }
-            set
-            {
-                this.subjectField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public ConditionsType1 Conditions
-        {
-            get
-            {
-                return this.conditionsField;
-            }
-            set
-            {
-                this.conditionsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public AdviceType1 Advice
-        {
-            get
-            {
-                return this.adviceField;
-            }
-            set
-            {
-                this.adviceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AttributeStatement", typeof(AttributeStatementType1), Order=5)]
-        [System.Xml.Serialization.XmlElementAttribute("AuthnStatement", typeof(AuthnStatementType), Order=5)]
-        [System.Xml.Serialization.XmlElementAttribute("AuthzDecisionStatement", typeof(AuthzDecisionStatementType), Order=5)]
-        [System.Xml.Serialization.XmlElementAttribute("Statement", typeof(StatementAbstractType1), Order=5)]
-        public StatementAbstractType1[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Version
-        {
-            get
-            {
-                return this.versionField;
-            }
-            set
-            {
-                this.versionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string ID
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime IssueInstant
-        {
-            get
-            {
-                return this.issueInstantField;
-            }
-            set
-            {
-                this.issueInstantField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class NameIDType
-    {
-        
-        private string formatField;
-        
-        private string sPProvidedIDField;
-        
-        private string nameQualifierField;
-        
-        private string sPNameQualifierField;
-        
-        private string valueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Format
-        {
-            get
-            {
-                return this.formatField;
-            }
-            set
-            {
-                this.formatField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string SPProvidedID
-        {
-            get
-            {
-                return this.sPProvidedIDField;
-            }
-            set
-            {
-                this.sPProvidedIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string NameQualifier
-        {
-            get
-            {
-                return this.nameQualifierField;
-            }
-            set
-            {
-                this.nameQualifierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string SPNameQualifier
-        {
-            get
-            {
-                return this.sPNameQualifierField;
-            }
-            set
-            {
-                this.sPNameQualifierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value
-        {
-            get
-            {
-                return this.valueField;
-            }
-            set
-            {
-                this.valueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SubjectType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class SubjectType1
-    {
-        
-        private object[] itemsField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("BaseID", typeof(BaseIDAbstractType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("EncryptedID", typeof(EncryptedElementType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("NameID", typeof(NameIDType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("SubjectConfirmation", typeof(SubjectConfirmationType1), Order=0)]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public abstract partial class BaseIDAbstractType
-    {
-        
-        private string nameQualifierField;
-        
-        private string sPNameQualifierField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string NameQualifier
-        {
-            get
-            {
-                return this.nameQualifierField;
-            }
-            set
-            {
-                this.nameQualifierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string SPNameQualifier
-        {
-            get
-            {
-                return this.sPNameQualifierField;
-            }
-            set
-            {
-                this.sPNameQualifierField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class EncryptedElementType
-    {
-        
-        private EncryptedDataType encryptedDataField;
-        
-        private EncryptedKeyType[] encryptedKeyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#", Order=0)]
-        public EncryptedDataType EncryptedData
-        {
-            get
-            {
-                return this.encryptedDataField;
-            }
-            set
-            {
-                this.encryptedDataField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("EncryptedKey", Namespace="http://www.w3.org/2001/04/xmlenc#", Order=1)]
-        public EncryptedKeyType[] EncryptedKey
-        {
-            get
-            {
-                return this.encryptedKeyField;
-            }
-            set
-            {
-                this.encryptedKeyField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class EncryptedDataType : EncryptedType
-    {
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EncryptedKeyType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EncryptedDataType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public abstract partial class EncryptedType
-    {
-        
-        private EncryptionMethodType encryptionMethodField;
-        
-        private KeyInfoType keyInfoField;
-        
-        private CipherDataType cipherDataField;
-        
-        private EncryptionPropertiesType encryptionPropertiesField;
-        
-        private string idField;
-        
-        private string typeField;
-        
-        private string mimeTypeField;
-        
-        private string encodingField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public EncryptionMethodType EncryptionMethod
-        {
-            get
-            {
-                return this.encryptionMethodField;
-            }
-            set
-            {
-                this.encryptionMethodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=1)]
-        public KeyInfoType KeyInfo
-        {
-            get
-            {
-                return this.keyInfoField;
-            }
-            set
-            {
-                this.keyInfoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public CipherDataType CipherData
-        {
-            get
-            {
-                return this.cipherDataField;
-            }
-            set
-            {
-                this.cipherDataField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public EncryptionPropertiesType EncryptionProperties
-        {
-            get
-            {
-                return this.encryptionPropertiesField;
-            }
-            set
-            {
-                this.encryptionPropertiesField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Type
-        {
-            get
-            {
-                return this.typeField;
-            }
-            set
-            {
-                this.typeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string MimeType
-        {
-            get
-            {
-                return this.mimeTypeField;
-            }
-            set
-            {
-                this.mimeTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Encoding
-        {
-            get
-            {
-                return this.encodingField;
-            }
-            set
-            {
-                this.encodingField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class EncryptionMethodType
-    {
-        
-        private object[] itemsField;
-        
-        private string[] textField;
-        
-        private string algorithmField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("KeySize", typeof(string), DataType="integer", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("OAEPparams", typeof(byte[]), DataType="base64Binary", Order=0)]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
             }
         }
         
@@ -3929,6 +994,65 @@ namespace EContract.Dssp.Client.Proxy
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
+    public partial class TransformType
+    {
+        
+        private object[] itemsField;
+        
+        private string[] textField;
+        
+        private string algorithmField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("XPath", typeof(string), Order=0)]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text
+        {
+            get
+            {
+                return this.textField;
+            }
+            set
+            {
+                this.textField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Algorithm
+        {
+            get
+            {
+                return this.algorithmField;
+            }
+            set
+            {
+                this.algorithmField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
     public partial class SPKIDataType
     {
         
@@ -4002,6 +1126,48 @@ namespace EContract.Dssp.Client.Proxy
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
     [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
+    public partial class X509IssuerSerialType
+    {
+        
+        private string x509IssuerNameField;
+        
+        private string x509SerialNumberField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string X509IssuerName
+        {
+            get
+            {
+                return this.x509IssuerNameField;
+            }
+            set
+            {
+                this.x509IssuerNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", Order=1)]
+        public string X509SerialNumber
+        {
+            get
+            {
+                return this.x509SerialNumberField;
+            }
+            set
+            {
+                this.x509SerialNumberField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", IncludeInSchema=false)]
     public enum ItemsChoiceType1
     {
@@ -4062,1370 +1228,8 @@ namespace EContract.Dssp.Client.Proxy
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
     [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class CipherDataType
-    {
-        
-        private byte[] cipherValueField;
-        
-        private CipherReferenceType cipherReferenceField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=0)]
-        public byte[] CipherValue
-        {
-            get
-            {
-                return this.cipherValueField;
-            }
-            set
-            {
-                this.cipherValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public CipherReferenceType CipherReference
-        {
-            get
-            {
-                return this.cipherReferenceField;
-            }
-            set
-            {
-                this.cipherReferenceField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class CipherReferenceType
-    {
-        
-        private TransformType[] transformsField;
-        
-        private string uRIField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Transform", Namespace="http://www.w3.org/2000/09/xmldsig#", IsNullable=false)]
-        public TransformType[] Transforms
-        {
-            get
-            {
-                return this.transformsField;
-            }
-            set
-            {
-                this.transformsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class EncryptionPropertiesType
-    {
-        
-        private EncryptionPropertyType[] encryptionPropertyField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("EncryptionProperty", Order=0)]
-        public EncryptionPropertyType[] EncryptionProperty
-        {
-            get
-            {
-                return this.encryptionPropertyField;
-            }
-            set
-            {
-                this.encryptionPropertyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class EncryptionPropertyType
-    {
-        
-        private System.Xml.XmlNode[] anyField;
-        
-        private string targetField;
-        
-        private string idField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlNode[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Target
-        {
-            get
-            {
-                return this.targetField;
-            }
-            set
-            {
-                this.targetField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class EncryptedKeyType : EncryptedType
-    {
-        
-        private ReferenceList referenceListField;
-        
-        private string carriedKeyNameField;
-        
-        private string recipientField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public ReferenceList ReferenceList
-        {
-            get
-            {
-                return this.referenceListField;
-            }
-            set
-            {
-                this.referenceListField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string CarriedKeyName
-        {
-            get
-            {
-                return this.carriedKeyNameField;
-            }
-            set
-            {
-                this.carriedKeyNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Recipient
-        {
-            get
-            {
-                return this.recipientField;
-            }
-            set
-            {
-                this.recipientField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class ReferenceList
-    {
-        
-        private ReferenceType2[] itemsField;
-        
-        private ItemsChoiceType3[] itemsElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("DataReference", typeof(ReferenceType2), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("KeyReference", typeof(ReferenceType2), Order=0)]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public ReferenceType2[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType3[] ItemsElementName
-        {
-            get
-            {
-                return this.itemsElementNameField;
-            }
-            set
-            {
-                this.itemsElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ReferenceType", Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class ReferenceType2
-    {
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        private string uRIField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#", IncludeInSchema=false)]
-    public enum ItemsChoiceType3
-    {
-        
-        /// <remarks/>
-        DataReference,
-        
-        /// <remarks/>
-        KeyReference,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SubjectConfirmationType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class SubjectConfirmationType1
-    {
-        
-        private BaseIDAbstractType baseIDField;
-        
-        private NameIDType nameIDField;
-        
-        private EncryptedElementType encryptedIDField;
-        
-        private SubjectConfirmationDataType subjectConfirmationDataField;
-        
-        private string methodField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public BaseIDAbstractType BaseID
-        {
-            get
-            {
-                return this.baseIDField;
-            }
-            set
-            {
-                this.baseIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public NameIDType NameID
-        {
-            get
-            {
-                return this.nameIDField;
-            }
-            set
-            {
-                this.nameIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public EncryptedElementType EncryptedID
-        {
-            get
-            {
-                return this.encryptedIDField;
-            }
-            set
-            {
-                this.encryptedIDField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public SubjectConfirmationDataType SubjectConfirmationData
-        {
-            get
-            {
-                return this.subjectConfirmationDataField;
-            }
-            set
-            {
-                this.subjectConfirmationDataField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Method
-        {
-            get
-            {
-                return this.methodField;
-            }
-            set
-            {
-                this.methodField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(KeyInfoConfirmationDataType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class SubjectConfirmationDataType
-    {
-        
-        private System.Xml.XmlNode[] anyField;
-        
-        private System.DateTime notBeforeField;
-        
-        private bool notBeforeFieldSpecified;
-        
-        private System.DateTime notOnOrAfterField;
-        
-        private bool notOnOrAfterFieldSpecified;
-        
-        private string recipientField;
-        
-        private string inResponseToField;
-        
-        private string addressField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlNode[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime NotBefore
-        {
-            get
-            {
-                return this.notBeforeField;
-            }
-            set
-            {
-                this.notBeforeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NotBeforeSpecified
-        {
-            get
-            {
-                return this.notBeforeFieldSpecified;
-            }
-            set
-            {
-                this.notBeforeFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime NotOnOrAfter
-        {
-            get
-            {
-                return this.notOnOrAfterField;
-            }
-            set
-            {
-                this.notOnOrAfterField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NotOnOrAfterSpecified
-        {
-            get
-            {
-                return this.notOnOrAfterFieldSpecified;
-            }
-            set
-            {
-                this.notOnOrAfterFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Recipient
-        {
-            get
-            {
-                return this.recipientField;
-            }
-            set
-            {
-                this.recipientField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="NCName")]
-        public string InResponseTo
-        {
-            get
-            {
-                return this.inResponseToField;
-            }
-            set
-            {
-                this.inResponseToField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Address
-        {
-            get
-            {
-                return this.addressField;
-            }
-            set
-            {
-                this.addressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class KeyInfoConfirmationDataType : SubjectConfirmationDataType
-    {
-        
-        private System.Xml.XmlAttribute[] anyAttr1Field;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr1
-        {
-            get
-            {
-                return this.anyAttr1Field;
-            }
-            set
-            {
-                this.anyAttr1Field = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ConditionsType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class ConditionsType1
-    {
-        
-        private ConditionAbstractType1[] itemsField;
-        
-        private System.DateTime notBeforeField;
-        
-        private bool notBeforeFieldSpecified;
-        
-        private System.DateTime notOnOrAfterField;
-        
-        private bool notOnOrAfterFieldSpecified;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AudienceRestriction", typeof(AudienceRestrictionType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("Condition", typeof(ConditionAbstractType1), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("OneTimeUse", typeof(OneTimeUseType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("ProxyRestriction", typeof(ProxyRestrictionType), Order=0)]
-        public ConditionAbstractType1[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime NotBefore
-        {
-            get
-            {
-                return this.notBeforeField;
-            }
-            set
-            {
-                this.notBeforeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NotBeforeSpecified
-        {
-            get
-            {
-                return this.notBeforeFieldSpecified;
-            }
-            set
-            {
-                this.notBeforeFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime NotOnOrAfter
-        {
-            get
-            {
-                return this.notOnOrAfterField;
-            }
-            set
-            {
-                this.notOnOrAfterField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool NotOnOrAfterSpecified
-        {
-            get
-            {
-                return this.notOnOrAfterFieldSpecified;
-            }
-            set
-            {
-                this.notOnOrAfterFieldSpecified = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class AudienceRestrictionType : ConditionAbstractType1
-    {
-        
-        private string[] audienceField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Audience", DataType="anyURI", Order=0)]
-        public string[] Audience
-        {
-            get
-            {
-                return this.audienceField;
-            }
-            set
-            {
-                this.audienceField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudienceRestrictionType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(OneTimeUseType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProxyRestrictionType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ConditionAbstractType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public abstract partial class ConditionAbstractType1
-    {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class OneTimeUseType : ConditionAbstractType1
-    {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class ProxyRestrictionType : ConditionAbstractType1
-    {
-        
-        private string[] audienceField;
-        
-        private string countField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Audience", DataType="anyURI", Order=0)]
-        public string[] Audience
-        {
-            get
-            {
-                return this.audienceField;
-            }
-            set
-            {
-                this.audienceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="nonNegativeInteger")]
-        public string Count
-        {
-            get
-            {
-                return this.countField;
-            }
-            set
-            {
-                this.countField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AttributeStatementType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class AttributeStatementType1 : StatementAbstractType1
-    {
-        
-        private object[] itemsField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Attribute", typeof(AttributeType2), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("EncryptedAttribute", typeof(EncryptedElementType), Order=0)]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AttributeType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class AttributeType2
-    {
-        
-        private object[] attributeValueField;
-        
-        private string nameField;
-        
-        private string nameFormatField;
-        
-        private string friendlyNameField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AttributeValue", IsNullable=true, Order=0)]
-        public object[] AttributeValue
-        {
-            get
-            {
-                return this.attributeValueField;
-            }
-            set
-            {
-                this.attributeValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Name
-        {
-            get
-            {
-                return this.nameField;
-            }
-            set
-            {
-                this.nameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string NameFormat
-        {
-            get
-            {
-                return this.nameFormatField;
-            }
-            set
-            {
-                this.nameFormatField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string FriendlyName
-        {
-            get
-            {
-                return this.friendlyNameField;
-            }
-            set
-            {
-                this.friendlyNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AttributeStatementType1))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthzDecisionStatementType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthnStatementType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="StatementAbstractType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public abstract partial class StatementAbstractType1
-    {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class AuthzDecisionStatementType : StatementAbstractType1
-    {
-        
-        private ActionType1[] actionField;
-        
-        private EvidenceType1 evidenceField;
-        
-        private string resourceField;
-        
-        private DecisionType1 decisionField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Action", Order=0)]
-        public ActionType1[] Action
-        {
-            get
-            {
-                return this.actionField;
-            }
-            set
-            {
-                this.actionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public EvidenceType1 Evidence
-        {
-            get
-            {
-                return this.evidenceField;
-            }
-            set
-            {
-                this.evidenceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Resource
-        {
-            get
-            {
-                return this.resourceField;
-            }
-            set
-            {
-                this.resourceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public DecisionType1 Decision
-        {
-            get
-            {
-                return this.decisionField;
-            }
-            set
-            {
-                this.decisionField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ActionType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class ActionType1
-    {
-        
-        private string namespaceField;
-        
-        private string valueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Namespace
-        {
-            get
-            {
-                return this.namespaceField;
-            }
-            set
-            {
-                this.namespaceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value
-        {
-            get
-            {
-                return this.valueField;
-            }
-            set
-            {
-                this.valueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="EvidenceType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class EvidenceType1
-    {
-        
-        private object[] itemsField;
-        
-        private ItemsChoiceType10[] itemsElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Assertion", typeof(AssertionType1), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AssertionIDRef", typeof(string), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AssertionURIRef", typeof(string), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("EncryptedAssertion", typeof(EncryptedElementType), Order=0)]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType10[] ItemsElementName
-        {
-            get
-            {
-                return this.itemsElementNameField;
-            }
-            set
-            {
-                this.itemsElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion", IncludeInSchema=false)]
-    public enum ItemsChoiceType10
-    {
-        
-        /// <remarks/>
-        Assertion,
-        
-        /// <remarks/>
-        AssertionIDRef,
-        
-        /// <remarks/>
-        AssertionURIRef,
-        
-        /// <remarks/>
-        EncryptedAssertion,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="DecisionType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public enum DecisionType1
-    {
-        
-        /// <remarks/>
-        Permit,
-        
-        /// <remarks/>
-        Deny,
-        
-        /// <remarks/>
-        Indeterminate,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class AuthnStatementType : StatementAbstractType1
-    {
-        
-        private SubjectLocalityType1 subjectLocalityField;
-        
-        private AuthnContextType authnContextField;
-        
-        private System.DateTime authnInstantField;
-        
-        private string sessionIndexField;
-        
-        private System.DateTime sessionNotOnOrAfterField;
-        
-        private bool sessionNotOnOrAfterFieldSpecified;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public SubjectLocalityType1 SubjectLocality
-        {
-            get
-            {
-                return this.subjectLocalityField;
-            }
-            set
-            {
-                this.subjectLocalityField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public AuthnContextType AuthnContext
-        {
-            get
-            {
-                return this.authnContextField;
-            }
-            set
-            {
-                this.authnContextField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime AuthnInstant
-        {
-            get
-            {
-                return this.authnInstantField;
-            }
-            set
-            {
-                this.authnInstantField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string SessionIndex
-        {
-            get
-            {
-                return this.sessionIndexField;
-            }
-            set
-            {
-                this.sessionIndexField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime SessionNotOnOrAfter
-        {
-            get
-            {
-                return this.sessionNotOnOrAfterField;
-            }
-            set
-            {
-                this.sessionNotOnOrAfterField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool SessionNotOnOrAfterSpecified
-        {
-            get
-            {
-                return this.sessionNotOnOrAfterFieldSpecified;
-            }
-            set
-            {
-                this.sessionNotOnOrAfterFieldSpecified = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SubjectLocalityType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class SubjectLocalityType1
-    {
-        
-        private string addressField;
-        
-        private string dNSNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Address
-        {
-            get
-            {
-                return this.addressField;
-            }
-            set
-            {
-                this.addressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string DNSName
-        {
-            get
-            {
-                return this.dNSNameField;
-            }
-            set
-            {
-                this.dNSNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
-    public partial class AuthnContextType
-    {
-        
-        private object[] itemsField;
-        
-        private ItemsChoiceType8[] itemsElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AuthenticatingAuthority", typeof(string), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AuthnContextClassRef", typeof(string), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AuthnContextDecl", typeof(object), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AuthnContextDeclRef", typeof(string), Order=0)]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType8[] ItemsElementName
-        {
-            get
-            {
-                return this.itemsElementNameField;
-            }
-            set
-            {
-                this.itemsElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion", IncludeInSchema=false)]
-    public enum ItemsChoiceType8
-    {
-        
-        /// <remarks/>
-        AuthenticatingAuthority,
-        
-        /// <remarks/>
-        AuthnContextClassRef,
-        
-        /// <remarks/>
-        AuthnContextDecl,
-        
-        /// <remarks/>
-        AuthnContextDeclRef,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion", IncludeInSchema=false)]
-    public enum ItemsChoiceType9
+    public enum ItemsChoiceType13
     {
         
         /// <remarks/>
@@ -5433,221 +1237,14 @@ namespace EContract.Dssp.Client.Proxy
         Item,
         
         /// <remarks/>
-        Assertion,
+        [System.Xml.Serialization.XmlEnumAttribute("KA-Nonce")]
+        KANonce,
         
         /// <remarks/>
-        AssertionIDRef,
+        OriginatorKeyInfo,
         
         /// <remarks/>
-        AssertionURIRef,
-        
-        /// <remarks/>
-        EncryptedAssertion,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.xmlsoap.org/ws/2004/09/policy")]
-    public partial class OperatorContentType
-    {
-        
-        private object[] itemsField;
-        
-        private ItemsChoiceType7[] itemsElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("All", typeof(OperatorContentType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("ExactlyOne", typeof(OperatorContentType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("Policy", typeof(Policy), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("PolicyReference", typeof(PolicyReference), Order=0)]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public object[] Items
-        {
-            get
-            {
-                return this.itemsField;
-            }
-            set
-            {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType7[] ItemsElementName
-        {
-            get
-            {
-                return this.itemsElementNameField;
-            }
-            set
-            {
-                this.itemsElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.xmlsoap.org/ws/2004/09/policy")]
-    public partial class Policy : OperatorContentType
-    {
-        
-        private string nameField;
-        
-        private string idField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Name
-        {
-            get
-            {
-                return this.nameField;
-            }
-            set
-            {
-                this.nameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
-            "d")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.xmlsoap.org/ws/2004/09/policy")]
-    public partial class PolicyReference
-    {
-        
-        private string uRIField;
-        
-        private byte[] digestField;
-        
-        private string digestAlgorithmField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="base64Binary")]
-        public byte[] Digest
-        {
-            get
-            {
-                return this.digestField;
-            }
-            set
-            {
-                this.digestField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string DigestAlgorithm
-        {
-            get
-            {
-                return this.digestAlgorithmField;
-            }
-            set
-            {
-                this.digestAlgorithmField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.xmlsoap.org/ws/2004/09/policy", IncludeInSchema=false)]
-    public enum ItemsChoiceType7
-    {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
-        Item,
-        
-        /// <remarks/>
-        All,
-        
-        /// <remarks/>
-        ExactlyOne,
-        
-        /// <remarks/>
-        Policy,
-        
-        /// <remarks/>
-        PolicyReference,
+        RecipientKeyInfo,
     }
     
     /// <remarks/>
@@ -5665,7 +1262,7 @@ namespace EContract.Dssp.Client.Proxy
         
         private AlgorithmValidityType[] digestAlgorithmField;
         
-        private AttributeType1[] cryptoInfosField;
+        private AttributeType2[] cryptoInfosField;
         
         private EvidenceRecordValidityTypeEncryptionInfo encryptionInfoField;
         
@@ -5718,7 +1315,7 @@ namespace EContract.Dssp.Client.Proxy
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Order=3)]
         [System.Xml.Serialization.XmlArrayItemAttribute("Attribute", IsNullable=false)]
-        public AttributeType1[] CryptoInfos
+        public AttributeType2[] CryptoInfos
         {
             get
             {
@@ -5981,7 +1578,7 @@ namespace EContract.Dssp.Client.Proxy
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(TypeName="AttributeType", Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
-    public partial class AttributeType1
+    public partial class AttributeType2
     {
         
         private VerificationResultType typeField;
@@ -6072,7 +1669,7 @@ namespace EContract.Dssp.Client.Proxy
         
         private AlgorithmValidityType digestAlgorithmField;
         
-        private AttributeType1[] attributesField;
+        private AttributeType2[] attributesField;
         
         private HashValueType[][] reducedHashTreeField;
         
@@ -6111,7 +1708,7 @@ namespace EContract.Dssp.Client.Proxy
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Order=2)]
         [System.Xml.Serialization.XmlArrayItemAttribute("Attribute", IsNullable=false)]
-        public AttributeType1[] Attributes
+        public AttributeType2[] Attributes
         {
             get
             {
@@ -7084,6 +2681,137 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class ObjectIdentifierType
+    {
+        
+        private IdentifierType1 identifierField;
+        
+        private string descriptionField;
+        
+        private string[] documentationReferencesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public IdentifierType1 Identifier
+        {
+            get
+            {
+                return this.identifierField;
+            }
+            set
+            {
+                this.identifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=2)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("DocumentationReference", DataType="anyURI", IsNullable=false)]
+        public string[] DocumentationReferences
+        {
+            get
+            {
+                return this.documentationReferencesField;
+            }
+            set
+            {
+                this.documentationReferencesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="IdentifierType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class IdentifierType1
+    {
+        
+        private QualifierType qualifierField;
+        
+        private bool qualifierFieldSpecified;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public QualifierType Qualifier
+        {
+            get
+            {
+                return this.qualifierField;
+            }
+            set
+            {
+                this.qualifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool QualifierSpecified
+        {
+            get
+            {
+                return this.qualifierFieldSpecified;
+            }
+            set
+            {
+                this.qualifierFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value
+        {
+            get
+            {
+                return this.valueField;
+            }
+            set
+            {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public enum QualifierType
+    {
+        
+        /// <remarks/>
+        OIDAsURI,
+        
+        /// <remarks/>
+        OIDAsURN,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
     public partial class CertificateStatusType
     {
@@ -7380,6 +3108,80 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CRLIdentifierType
+    {
+        
+        private string issuerField;
+        
+        private System.DateTime issueTimeField;
+        
+        private string numberField;
+        
+        private string uRIField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Issuer
+        {
+            get
+            {
+                return this.issuerField;
+            }
+            set
+            {
+                this.issuerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public System.DateTime IssueTime
+        {
+            get
+            {
+                return this.issueTimeField;
+            }
+            set
+            {
+                this.issueTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="integer", Order=2)]
+        public string Number
+        {
+            get
+            {
+                return this.numberField;
+            }
+            set
+            {
+                this.numberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
     public partial class CRLContentType
     {
@@ -7525,7 +3327,7 @@ namespace EContract.Dssp.Client.Proxy
         
         private object[] itemsField;
         
-        private ItemsChoiceType5[] itemsElementNameField;
+        private ItemsChoiceType11[] itemsElementNameField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("CrlEntryExtensions", typeof(ExtensionsType), Order=0)]
@@ -7547,7 +3349,7 @@ namespace EContract.Dssp.Client.Proxy
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType5[] ItemsElementName
+        public ItemsChoiceType11[] ItemsElementName
         {
             get
             {
@@ -7590,7 +3392,7 @@ namespace EContract.Dssp.Client.Proxy
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#", IncludeInSchema=false)]
-    public enum ItemsChoiceType5
+    public enum ItemsChoiceType11
     {
         
         /// <remarks/>
@@ -7705,6 +3507,106 @@ namespace EContract.Dssp.Client.Proxy
             set
             {
                 this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class OCSPIdentifierType
+    {
+        
+        private ResponderIDType responderIDField;
+        
+        private System.DateTime producedAtField;
+        
+        private string uRIField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public ResponderIDType ResponderID
+        {
+            get
+            {
+                return this.responderIDField;
+            }
+            set
+            {
+                this.responderIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public System.DateTime ProducedAt
+        {
+            get
+            {
+                return this.producedAtField;
+            }
+            set
+            {
+                this.producedAtField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class ResponderIDType
+    {
+        
+        private string byNameField;
+        
+        private byte[] byKeyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string ByName
+        {
+            get
+            {
+                return this.byNameField;
+            }
+            set
+            {
+                this.byNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=1)]
+        public byte[] ByKey
+        {
+            get
+            {
+                return this.byKeyField;
+            }
+            set
+            {
+                this.byKeyField = value;
             }
         }
     }
@@ -9397,8 +5299,8 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
-    public partial class CertificateValuesType
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="CertificateValuesType", Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
+    public partial class CertificateValuesType1
     {
         
         private object[] itemsField;
@@ -9440,8 +5342,8 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
-    public partial class RevocationValuesType
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="RevocationValuesType", Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
+    public partial class RevocationValuesType1
     {
         
         private CRLValidityType[] cRLValuesField;
@@ -9516,13 +5418,13 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
-    public partial class UnsignedSignaturePropertiesType
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="UnsignedSignaturePropertiesType", Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
+    public partial class UnsignedSignaturePropertiesType1
     {
         
         private object[] itemsField;
         
-        private ItemsChoiceType6[] itemsElementNameField;
+        private ItemsChoiceType12[] itemsElementNameField;
         
         private string idField;
         
@@ -9532,12 +5434,12 @@ namespace EContract.Dssp.Client.Proxy
         [System.Xml.Serialization.XmlElementAttribute("CompleteCertificateRefs", typeof(CompleteCertificateRefsType), Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("CompleteRevocationRefs", typeof(CompleteRevocationRefsType), Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("ArchiveTimeStamp", typeof(TimeStampValidityType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AttrAuthoritiesCertValues", typeof(CertificateValuesType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("AttributeRevocationValues", typeof(RevocationValuesType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("CertificateValues", typeof(CertificateValuesType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttrAuthoritiesCertValues", typeof(CertificateValuesType1), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttributeRevocationValues", typeof(RevocationValuesType1), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("CertificateValues", typeof(CertificateValuesType1), Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("CounterSignature", typeof(SignatureValidityType), Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("RefsOnlyTimeStamp", typeof(TimeStampValidityType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("RevocationValues", typeof(RevocationValuesType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("RevocationValues", typeof(RevocationValuesType1), Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("SigAndRefsTimeStamp", typeof(TimeStampValidityType), Order=0)]
         [System.Xml.Serialization.XmlElementAttribute("SignatureTimeStamp", typeof(TimeStampValidityType), Order=0)]
         [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
@@ -9556,7 +5458,7 @@ namespace EContract.Dssp.Client.Proxy
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType6[] ItemsElementName
+        public ItemsChoiceType12[] ItemsElementName
         {
             get
             {
@@ -9586,8 +5488,380 @@ namespace EContract.Dssp.Client.Proxy
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
     [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CompleteCertificateRefsType
+    {
+        
+        private CertIDType[] certRefsField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Cert", IsNullable=false)]
+        public CertIDType[] CertRefs
+        {
+            get
+            {
+                return this.certRefsField;
+            }
+            set
+            {
+                this.certRefsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CertIDType
+    {
+        
+        private DigestAlgAndValueType certDigestField;
+        
+        private X509IssuerSerialType issuerSerialField;
+        
+        private string uRIField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public DigestAlgAndValueType CertDigest
+        {
+            get
+            {
+                return this.certDigestField;
+            }
+            set
+            {
+                this.certDigestField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public X509IssuerSerialType IssuerSerial
+        {
+            get
+            {
+                return this.issuerSerialField;
+            }
+            set
+            {
+                this.issuerSerialField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class DigestAlgAndValueType
+    {
+        
+        private DigestMethodType digestMethodField;
+        
+        private byte[] digestValueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=0)]
+        public DigestMethodType DigestMethod
+        {
+            get
+            {
+                return this.digestMethodField;
+            }
+            set
+            {
+                this.digestMethodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", DataType="base64Binary", Order=1)]
+        public byte[] DigestValue
+        {
+            get
+            {
+                return this.digestValueField;
+            }
+            set
+            {
+                this.digestValueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
+    public partial class DigestMethodType
+    {
+        
+        private System.Xml.XmlNode[] anyField;
+        
+        private string algorithmField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlNode[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Algorithm
+        {
+            get
+            {
+                return this.algorithmField;
+            }
+            set
+            {
+                this.algorithmField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CompleteRevocationRefsType
+    {
+        
+        private CRLRefType[] cRLRefsField;
+        
+        private OCSPRefType[] oCSPRefsField;
+        
+        private OtherCertStatusRefsType otherRefsField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("CRLRef", IsNullable=false)]
+        public CRLRefType[] CRLRefs
+        {
+            get
+            {
+                return this.cRLRefsField;
+            }
+            set
+            {
+                this.cRLRefsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("OCSPRef", IsNullable=false)]
+        public OCSPRefType[] OCSPRefs
+        {
+            get
+            {
+                return this.oCSPRefsField;
+            }
+            set
+            {
+                this.oCSPRefsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public OtherCertStatusRefsType OtherRefs
+        {
+            get
+            {
+                return this.otherRefsField;
+            }
+            set
+            {
+                this.otherRefsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CRLRefType
+    {
+        
+        private DigestAlgAndValueType digestAlgAndValueField;
+        
+        private CRLIdentifierType cRLIdentifierField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public DigestAlgAndValueType DigestAlgAndValue
+        {
+            get
+            {
+                return this.digestAlgAndValueField;
+            }
+            set
+            {
+                this.digestAlgAndValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public CRLIdentifierType CRLIdentifier
+        {
+            get
+            {
+                return this.cRLIdentifierField;
+            }
+            set
+            {
+                this.cRLIdentifierField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class OCSPRefType
+    {
+        
+        private OCSPIdentifierType oCSPIdentifierField;
+        
+        private DigestAlgAndValueType digestAlgAndValueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public OCSPIdentifierType OCSPIdentifier
+        {
+            get
+            {
+                return this.oCSPIdentifierField;
+            }
+            set
+            {
+                this.oCSPIdentifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public DigestAlgAndValueType DigestAlgAndValue
+        {
+            get
+            {
+                return this.digestAlgAndValueField;
+            }
+            set
+            {
+                this.digestAlgAndValueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class OtherCertStatusRefsType
+    {
+        
+        private System.Xml.XmlElement[] otherRefField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Name="OtherRef", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
+        public System.Xml.XmlElement[] OtherRef
+        {
+            get
+            {
+                return this.otherRefField;
+            }
+            set
+            {
+                this.otherRefField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#", IncludeInSchema=false)]
-    public enum ItemsChoiceType6
+    public enum ItemsChoiceType12
     {
         
         /// <remarks/>
@@ -9639,11 +5913,11 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
-    public partial class UnsignedPropertiesType
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="UnsignedPropertiesType", Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
+    public partial class UnsignedPropertiesType1
     {
         
-        private UnsignedSignaturePropertiesType unsignedSignaturePropertiesField;
+        private UnsignedSignaturePropertiesType1 unsignedSignaturePropertiesField;
         
         private UnsignedDataObjectPropertiesType unsignedDataObjectPropertiesField;
         
@@ -9653,7 +5927,7 @@ namespace EContract.Dssp.Client.Proxy
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public UnsignedSignaturePropertiesType UnsignedSignatureProperties
+        public UnsignedSignaturePropertiesType1 UnsignedSignatureProperties
         {
             get
             {
@@ -9713,13 +5987,55 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class UnsignedDataObjectPropertiesType
+    {
+        
+        private System.Xml.XmlElement[] unsignedDataObjectPropertyField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Name="UnsignedDataObjectProperty", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
+        public System.Xml.XmlElement[] UnsignedDataObjectProperty
+        {
+            get
+            {
+                return this.unsignedDataObjectPropertyField;
+            }
+            set
+            {
+                this.unsignedDataObjectPropertyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(TypeName="PropertiesType", Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
     public partial class PropertiesType2
     {
         
         private SignedPropertiesType signedPropertiesField;
         
-        private UnsignedPropertiesType unsignedPropertiesField;
+        private UnsignedPropertiesType1 unsignedPropertiesField;
         
         private string targetField;
         
@@ -9741,7 +6057,7 @@ namespace EContract.Dssp.Client.Proxy
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public UnsignedPropertiesType UnsignedProperties
+        public UnsignedPropertiesType1 UnsignedProperties
         {
             get
             {
@@ -9793,7 +6109,7 @@ namespace EContract.Dssp.Client.Proxy
         
         private SignedSignaturePropertiesType signedSignaturePropertiesField;
         
-        private SignedDataObjectPropertiesType signedDataObjectPropertiesField;
+        private SignedDataObjectPropertiesType1 signedDataObjectPropertiesField;
         
         private AnyType otherField;
         
@@ -9815,7 +6131,7 @@ namespace EContract.Dssp.Client.Proxy
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public SignedDataObjectPropertiesType SignedDataObjectProperties
+        public SignedDataObjectPropertiesType1 SignedDataObjectProperties
         {
             get
             {
@@ -9875,7 +6191,7 @@ namespace EContract.Dssp.Client.Proxy
         
         private string locationField;
         
-        private SignerRoleType signerRoleField;
+        private SignerRoleType1 signerRoleField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
@@ -9950,7 +6266,7 @@ namespace EContract.Dssp.Client.Proxy
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=5)]
-        public SignerRoleType SignerRole
+        public SignerRoleType1 SignerRole
         {
             get
             {
@@ -9968,8 +6284,225 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
-    public partial class SignerRoleType
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SignaturePolicyIdentifierType
+    {
+        
+        private SignaturePolicyIdType signaturePolicyIdField;
+        
+        private object signaturePolicyImpliedField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public SignaturePolicyIdType SignaturePolicyId
+        {
+            get
+            {
+                return this.signaturePolicyIdField;
+            }
+            set
+            {
+                this.signaturePolicyIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public object SignaturePolicyImplied
+        {
+            get
+            {
+                return this.signaturePolicyImpliedField;
+            }
+            set
+            {
+                this.signaturePolicyImpliedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SignaturePolicyIdType
+    {
+        
+        private ObjectIdentifierType sigPolicyIdField;
+        
+        private TransformType[] transformsField;
+        
+        private DigestAlgAndValueType sigPolicyHashField;
+        
+        private SigPolicyQualifiersListType sigPolicyQualifiersField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public ObjectIdentifierType SigPolicyId
+        {
+            get
+            {
+                return this.sigPolicyIdField;
+            }
+            set
+            {
+                this.sigPolicyIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=1)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Transform", IsNullable=false)]
+        public TransformType[] Transforms
+        {
+            get
+            {
+                return this.transformsField;
+            }
+            set
+            {
+                this.transformsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public DigestAlgAndValueType SigPolicyHash
+        {
+            get
+            {
+                return this.sigPolicyHashField;
+            }
+            set
+            {
+                this.sigPolicyHashField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public SigPolicyQualifiersListType SigPolicyQualifiers
+        {
+            get
+            {
+                return this.sigPolicyQualifiersField;
+            }
+            set
+            {
+                this.sigPolicyQualifiersField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SigPolicyQualifiersListType
+    {
+        
+        private System.Xml.XmlElement[] sigPolicyQualifierField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Name="SigPolicyQualifier", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
+        public System.Xml.XmlElement[] SigPolicyQualifier
+        {
+            get
+            {
+                return this.sigPolicyQualifierField;
+            }
+            set
+            {
+                this.sigPolicyQualifierField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SignatureProductionPlaceType
+    {
+        
+        private string cityField;
+        
+        private string stateOrProvinceField;
+        
+        private string postalCodeField;
+        
+        private string countryNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string City
+        {
+            get
+            {
+                return this.cityField;
+            }
+            set
+            {
+                this.cityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string StateOrProvince
+        {
+            get
+            {
+                return this.stateOrProvinceField;
+            }
+            set
+            {
+                this.stateOrProvinceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string PostalCode
+        {
+            get
+            {
+                return this.postalCodeField;
+            }
+            set
+            {
+                this.postalCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public string CountryName
+        {
+            get
+            {
+                return this.countryNameField;
+            }
+            set
+            {
+                this.countryNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SignerRoleType", Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
+    public partial class SignerRoleType1
     {
         
         private string[] claimedRolesField;
@@ -10234,7 +6767,7 @@ namespace EContract.Dssp.Client.Proxy
         
         private ValidityPeriodType attCertValidityPeriodField;
         
-        private AttributeType1[] attributesField;
+        private AttributeType2[] attributesField;
         
         private byte[] issuerUniqueIDField;
         
@@ -10327,7 +6860,7 @@ namespace EContract.Dssp.Client.Proxy
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Order=6)]
         [System.Xml.Serialization.XmlArrayItemAttribute("Attribute", IsNullable=false)]
-        public AttributeType1[] Attributes
+        public AttributeType2[] Attributes
         {
             get
             {
@@ -10374,8 +6907,8 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
-    public partial class SignedDataObjectPropertiesType
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SignedDataObjectPropertiesType", Namespace="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#")]
+    public partial class SignedDataObjectPropertiesType1
     {
         
         private DataObjectFormatType[] dataObjectFormatField;
@@ -10471,6 +7004,196 @@ namespace EContract.Dssp.Client.Proxy
             set
             {
                 this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class DataObjectFormatType
+    {
+        
+        private string descriptionField;
+        
+        private ObjectIdentifierType objectIdentifierField;
+        
+        private string mimeTypeField;
+        
+        private string encodingField;
+        
+        private string objectReferenceField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public ObjectIdentifierType ObjectIdentifier
+        {
+            get
+            {
+                return this.objectIdentifierField;
+            }
+            set
+            {
+                this.objectIdentifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public string MimeType
+        {
+            get
+            {
+                return this.mimeTypeField;
+            }
+            set
+            {
+                this.mimeTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="anyURI", Order=3)]
+        public string Encoding
+        {
+            get
+            {
+                return this.encodingField;
+            }
+            set
+            {
+                this.encodingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string ObjectReference
+        {
+            get
+            {
+                return this.objectReferenceField;
+            }
+            set
+            {
+                this.objectReferenceField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CommitmentTypeIndicationType
+    {
+        
+        private ObjectIdentifierType commitmentTypeIdField;
+        
+        private string[] objectReferenceField;
+        
+        private object allSignedDataObjectsField;
+        
+        private CommitmentTypeQualifiersListType commitmentTypeQualifiersField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public ObjectIdentifierType CommitmentTypeId
+        {
+            get
+            {
+                return this.commitmentTypeIdField;
+            }
+            set
+            {
+                this.commitmentTypeIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ObjectReference", DataType="anyURI", Order=1)]
+        public string[] ObjectReference
+        {
+            get
+            {
+                return this.objectReferenceField;
+            }
+            set
+            {
+                this.objectReferenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public object AllSignedDataObjects
+        {
+            get
+            {
+                return this.allSignedDataObjectsField;
+            }
+            set
+            {
+                this.allSignedDataObjectsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public CommitmentTypeQualifiersListType CommitmentTypeQualifiers
+        {
+            get
+            {
+                return this.commitmentTypeQualifiersField;
+            }
+            set
+            {
+                this.commitmentTypeQualifiersField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CommitmentTypeQualifiersListType
+    {
+        
+        private System.Xml.XmlElement[] commitmentTypeQualifierField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Name="CommitmentTypeQualifier", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
+        public System.Xml.XmlElement[] CommitmentTypeQualifier
+        {
+            get
+            {
+                return this.commitmentTypeQualifierField;
+            }
+            set
+            {
+                this.commitmentTypeQualifierField = value;
             }
         }
     }
@@ -10645,6 +7368,3729 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:be:e-contract:dssp:1.0")]
+    public partial class DeadlineType
+    {
+        
+        private System.DateTime beforeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime Before
+        {
+            get
+            {
+                return this.beforeField;
+            }
+            set
+            {
+                this.beforeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class StatusType
+    {
+        
+        private string codeField;
+        
+        private string reasonField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Code
+        {
+            get
+            {
+                return this.codeField;
+            }
+            set
+            {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Reason
+        {
+            get
+            {
+                return this.reasonField;
+            }
+            set
+            {
+                this.reasonField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class RenewingType
+    {
+        
+        private bool allowField;
+        
+        private bool allowFieldSpecified;
+        
+        private bool okField;
+        
+        private bool okFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool Allow
+        {
+            get
+            {
+                return this.allowField;
+            }
+            set
+            {
+                this.allowField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool AllowSpecified
+        {
+            get
+            {
+                return this.allowFieldSpecified;
+            }
+            set
+            {
+                this.allowFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool OK
+        {
+            get
+            {
+                return this.okField;
+            }
+            set
+            {
+                this.okField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool OKSpecified
+        {
+            get
+            {
+                return this.okFieldSpecified;
+            }
+            set
+            {
+                this.okFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class ParticipantsType
+    {
+        
+        private System.Xml.XmlElement primaryField;
+        
+        private System.Xml.XmlElement[] participantField;
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public System.Xml.XmlElement Primary
+        {
+            get
+            {
+                return this.primaryField;
+            }
+            set
+            {
+                this.primaryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Participant", Order=1)]
+        public System.Xml.XmlElement[] Participant
+        {
+            get
+            {
+                return this.participantField;
+            }
+            set
+            {
+                this.participantField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=2)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class KeyExchangeTokenType
+    {
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class ClaimsType
+    {
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        private string dialectField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Dialect
+        {
+            get
+            {
+                return this.dialectField;
+            }
+            set
+            {
+                this.dialectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class UseKeyType
+    {
+        
+        private System.Xml.XmlElement anyField;
+        
+        private string sigField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlElement Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Sig
+        {
+            get
+            {
+                return this.sigField;
+            }
+            set
+            {
+                this.sigField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class RequestKETType
+    {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class AllowPostdatingType
+    {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class AuthenticatorType
+    {
+        
+        private byte[] combinedHashField;
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=0)]
+        public byte[] CombinedHash
+        {
+            get
+            {
+                return this.combinedHashField;
+            }
+            set
+            {
+                this.combinedHashField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=1)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class SignChallengeType
+    {
+        
+        private string challengeField;
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Challenge
+        {
+            get
+            {
+                return this.challengeField;
+            }
+            set
+            {
+                this.challengeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=1)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
+    public partial class RequestedTokenCancelledType
+    {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/02231/v2#")]
+    public partial class TrustStatusListType
+    {
+        
+        private TSLSchemeInformationType schemeInformationField;
+        
+        private TSPType[] trustServiceProviderListField;
+        
+        private SignatureType signatureField;
+        
+        private string tSLTagField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public TSLSchemeInformationType SchemeInformation
+        {
+            get
+            {
+                return this.schemeInformationField;
+            }
+            set
+            {
+                this.schemeInformationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("TrustServiceProvider", IsNullable=false)]
+        public TSPType[] TrustServiceProviderList
+        {
+            get
+            {
+                return this.trustServiceProviderListField;
+            }
+            set
+            {
+                this.trustServiceProviderListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=2)]
+        public SignatureType Signature
+        {
+            get
+            {
+                return this.signatureField;
+            }
+            set
+            {
+                this.signatureField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TSLTag
+        {
+            get
+            {
+                return this.tSLTagField;
+            }
+            set
+            {
+                this.tSLTagField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class NoticeReferenceType
+    {
+        
+        private string organizationField;
+        
+        private string[] noticeNumbersField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Organization
+        {
+            get
+            {
+                return this.organizationField;
+            }
+            set
+            {
+                this.organizationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("int", DataType="integer", IsNullable=false)]
+        public string[] NoticeNumbers
+        {
+            get
+            {
+                return this.noticeNumbersField;
+            }
+            set
+            {
+                this.noticeNumbersField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SPUserNoticeType
+    {
+        
+        private NoticeReferenceType noticeRefField;
+        
+        private string explicitTextField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public NoticeReferenceType NoticeRef
+        {
+            get
+            {
+                return this.noticeRefField;
+            }
+            set
+            {
+                this.noticeRefField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string ExplicitText
+        {
+            get
+            {
+                return this.explicitTextField;
+            }
+            set
+            {
+                this.explicitTextField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class QualifyingPropertiesType
+    {
+        
+        private SignedPropertiesType1 signedPropertiesField;
+        
+        private UnsignedPropertiesType unsignedPropertiesField;
+        
+        private string targetField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public SignedPropertiesType1 SignedProperties
+        {
+            get
+            {
+                return this.signedPropertiesField;
+            }
+            set
+            {
+                this.signedPropertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public UnsignedPropertiesType UnsignedProperties
+        {
+            get
+            {
+                return this.unsignedPropertiesField;
+            }
+            set
+            {
+                this.unsignedPropertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Target
+        {
+            get
+            {
+                return this.targetField;
+            }
+            set
+            {
+                this.targetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SignedPropertiesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SignedPropertiesType1
+    {
+        
+        private SignedSignaturePropertiesType1 signedSignaturePropertiesField;
+        
+        private SignedDataObjectPropertiesType signedDataObjectPropertiesField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public SignedSignaturePropertiesType1 SignedSignatureProperties
+        {
+            get
+            {
+                return this.signedSignaturePropertiesField;
+            }
+            set
+            {
+                this.signedSignaturePropertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public SignedDataObjectPropertiesType SignedDataObjectProperties
+        {
+            get
+            {
+                return this.signedDataObjectPropertiesField;
+            }
+            set
+            {
+                this.signedDataObjectPropertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SignedSignaturePropertiesType", Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SignedSignaturePropertiesType1
+    {
+        
+        private System.DateTime signingTimeField;
+        
+        private bool signingTimeFieldSpecified;
+        
+        private CertIDType[] signingCertificateField;
+        
+        private SignaturePolicyIdentifierType signaturePolicyIdentifierField;
+        
+        private SignatureProductionPlaceType signatureProductionPlaceField;
+        
+        private SignerRoleType signerRoleField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public System.DateTime SigningTime
+        {
+            get
+            {
+                return this.signingTimeField;
+            }
+            set
+            {
+                this.signingTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool SigningTimeSpecified
+        {
+            get
+            {
+                return this.signingTimeFieldSpecified;
+            }
+            set
+            {
+                this.signingTimeFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Cert", IsNullable=false)]
+        public CertIDType[] SigningCertificate
+        {
+            get
+            {
+                return this.signingCertificateField;
+            }
+            set
+            {
+                this.signingCertificateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public SignaturePolicyIdentifierType SignaturePolicyIdentifier
+        {
+            get
+            {
+                return this.signaturePolicyIdentifierField;
+            }
+            set
+            {
+                this.signaturePolicyIdentifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public SignatureProductionPlaceType SignatureProductionPlace
+        {
+            get
+            {
+                return this.signatureProductionPlaceField;
+            }
+            set
+            {
+                this.signatureProductionPlaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public SignerRoleType SignerRole
+        {
+            get
+            {
+                return this.signerRoleField;
+            }
+            set
+            {
+                this.signerRoleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SignerRoleType
+    {
+        
+        private string[] claimedRolesField;
+        
+        private EncapsulatedPKIDataType[] certifiedRolesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("ClaimedRole", IsNullable=false)]
+        public string[] ClaimedRoles
+        {
+            get
+            {
+                return this.claimedRolesField;
+            }
+            set
+            {
+                this.claimedRolesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("CertifiedRole", IsNullable=false)]
+        public EncapsulatedPKIDataType[] CertifiedRoles
+        {
+            get
+            {
+                return this.certifiedRolesField;
+            }
+            set
+            {
+                this.certifiedRolesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class EncapsulatedPKIDataType
+    {
+        
+        private string idField;
+        
+        private string encodingField;
+        
+        private byte[] valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Encoding
+        {
+            get
+            {
+                return this.encodingField;
+            }
+            set
+            {
+                this.encodingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute(DataType="base64Binary")]
+        public byte[] Value
+        {
+            get
+            {
+                return this.valueField;
+            }
+            set
+            {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class SignedDataObjectPropertiesType
+    {
+        
+        private DataObjectFormatType[] dataObjectFormatField;
+        
+        private CommitmentTypeIndicationType[] commitmentTypeIndicationField;
+        
+        private XAdESTimeStampType[] allDataObjectsTimeStampField;
+        
+        private XAdESTimeStampType[] individualDataObjectsTimeStampField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("DataObjectFormat", Order=0)]
+        public DataObjectFormatType[] DataObjectFormat
+        {
+            get
+            {
+                return this.dataObjectFormatField;
+            }
+            set
+            {
+                this.dataObjectFormatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CommitmentTypeIndication", Order=1)]
+        public CommitmentTypeIndicationType[] CommitmentTypeIndication
+        {
+            get
+            {
+                return this.commitmentTypeIndicationField;
+            }
+            set
+            {
+                this.commitmentTypeIndicationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AllDataObjectsTimeStamp", Order=2)]
+        public XAdESTimeStampType[] AllDataObjectsTimeStamp
+        {
+            get
+            {
+                return this.allDataObjectsTimeStampField;
+            }
+            set
+            {
+                this.allDataObjectsTimeStampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("IndividualDataObjectsTimeStamp", Order=3)]
+        public XAdESTimeStampType[] IndividualDataObjectsTimeStamp
+        {
+            get
+            {
+                return this.individualDataObjectsTimeStampField;
+            }
+            set
+            {
+                this.individualDataObjectsTimeStampField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class XAdESTimeStampType : GenericTimeStampType
+    {
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(OtherTimeStampType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(XAdESTimeStampType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public abstract partial class GenericTimeStampType
+    {
+        
+        private IncludeType[] includeField;
+        
+        private ReferenceInfoType[] referenceInfoField;
+        
+        private CanonicalizationMethodType canonicalizationMethodField;
+        
+        private object[] itemsField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Include", Order=0)]
+        public IncludeType[] Include
+        {
+            get
+            {
+                return this.includeField;
+            }
+            set
+            {
+                this.includeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ReferenceInfo", Order=1)]
+        public ReferenceInfoType[] ReferenceInfo
+        {
+            get
+            {
+                return this.referenceInfoField;
+            }
+            set
+            {
+                this.referenceInfoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=2)]
+        public CanonicalizationMethodType CanonicalizationMethod
+        {
+            get
+            {
+                return this.canonicalizationMethodField;
+            }
+            set
+            {
+                this.canonicalizationMethodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("EncapsulatedTimeStamp", typeof(EncapsulatedPKIDataType), Order=3)]
+        [System.Xml.Serialization.XmlAnyElementAttribute(Name="XMLTimeStamp", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=3)]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class IncludeType
+    {
+        
+        private string uRIField;
+        
+        private bool referencedDataField;
+        
+        private bool referencedDataFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool referencedData
+        {
+            get
+            {
+                return this.referencedDataField;
+            }
+            set
+            {
+                this.referencedDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool referencedDataSpecified
+        {
+            get
+            {
+                return this.referencedDataFieldSpecified;
+            }
+            set
+            {
+                this.referencedDataFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class ReferenceInfoType
+    {
+        
+        private DigestMethodType digestMethodField;
+        
+        private byte[] digestValueField;
+        
+        private string idField;
+        
+        private string uRIField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=0)]
+        public DigestMethodType DigestMethod
+        {
+            get
+            {
+                return this.digestMethodField;
+            }
+            set
+            {
+                this.digestMethodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", DataType="base64Binary", Order=1)]
+        public byte[] DigestValue
+        {
+            get
+            {
+                return this.digestValueField;
+            }
+            set
+            {
+                this.digestValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class OtherTimeStampType : GenericTimeStampType
+    {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class UnsignedPropertiesType
+    {
+        
+        private UnsignedSignaturePropertiesType unsignedSignaturePropertiesField;
+        
+        private UnsignedDataObjectPropertiesType unsignedDataObjectPropertiesField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public UnsignedSignaturePropertiesType UnsignedSignatureProperties
+        {
+            get
+            {
+                return this.unsignedSignaturePropertiesField;
+            }
+            set
+            {
+                this.unsignedSignaturePropertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public UnsignedDataObjectPropertiesType UnsignedDataObjectProperties
+        {
+            get
+            {
+                return this.unsignedDataObjectPropertiesField;
+            }
+            set
+            {
+                this.unsignedDataObjectPropertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class UnsignedSignaturePropertiesType
+    {
+        
+        private object[] itemsField;
+        
+        private ItemsChoiceType10[] itemsElementNameField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("ArchiveTimeStamp", typeof(XAdESTimeStampType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttrAuthoritiesCertValues", typeof(CertificateValuesType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttributeCertificateRefs", typeof(CompleteCertificateRefsType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttributeRevocationRefs", typeof(CompleteRevocationRefsType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttributeRevocationValues", typeof(RevocationValuesType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("CertificateValues", typeof(CertificateValuesType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("CompleteCertificateRefs", typeof(CompleteCertificateRefsType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("CompleteRevocationRefs", typeof(CompleteRevocationRefsType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("CounterSignature", typeof(CounterSignatureType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("RefsOnlyTimeStamp", typeof(XAdESTimeStampType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("RevocationValues", typeof(RevocationValuesType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("SigAndRefsTimeStamp", typeof(XAdESTimeStampType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("SignatureTimeStamp", typeof(XAdESTimeStampType), Order=0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemsChoiceType10[] ItemsElementName
+        {
+            get
+            {
+                return this.itemsElementNameField;
+            }
+            set
+            {
+                this.itemsElementNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CertificateValuesType
+    {
+        
+        private object[] itemsField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("EncapsulatedX509Certificate", typeof(EncapsulatedPKIDataType), Order=0)]
+        [System.Xml.Serialization.XmlAnyElementAttribute(Name="OtherCertificate", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class RevocationValuesType
+    {
+        
+        private EncapsulatedPKIDataType[] cRLValuesField;
+        
+        private EncapsulatedPKIDataType[] oCSPValuesField;
+        
+        private OtherCertStatusValuesType otherValuesField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("EncapsulatedCRLValue", IsNullable=false)]
+        public EncapsulatedPKIDataType[] CRLValues
+        {
+            get
+            {
+                return this.cRLValuesField;
+            }
+            set
+            {
+                this.cRLValuesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("EncapsulatedOCSPValue", IsNullable=false)]
+        public EncapsulatedPKIDataType[] OCSPValues
+        {
+            get
+            {
+                return this.oCSPValuesField;
+            }
+            set
+            {
+                this.oCSPValuesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public OtherCertStatusValuesType OtherValues
+        {
+            get
+            {
+                return this.otherValuesField;
+            }
+            set
+            {
+                this.otherValuesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class OtherCertStatusValuesType
+    {
+        
+        private System.Xml.XmlElement[] otherValueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Name="OtherValue", Namespace="http://uri.etsi.org/01903/v1.3.2#", Order=0)]
+        public System.Xml.XmlElement[] OtherValue
+        {
+            get
+            {
+                return this.otherValueField;
+            }
+            set
+            {
+                this.otherValueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class CounterSignatureType
+    {
+        
+        private SignatureType signatureField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=0)]
+        public SignatureType Signature
+        {
+            get
+            {
+                return this.signatureField;
+            }
+            set
+            {
+                this.signatureField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#", IncludeInSchema=false)]
+    public enum ItemsChoiceType10
+    {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
+        Item,
+        
+        /// <remarks/>
+        ArchiveTimeStamp,
+        
+        /// <remarks/>
+        AttrAuthoritiesCertValues,
+        
+        /// <remarks/>
+        AttributeCertificateRefs,
+        
+        /// <remarks/>
+        AttributeRevocationRefs,
+        
+        /// <remarks/>
+        AttributeRevocationValues,
+        
+        /// <remarks/>
+        CertificateValues,
+        
+        /// <remarks/>
+        CompleteCertificateRefs,
+        
+        /// <remarks/>
+        CompleteRevocationRefs,
+        
+        /// <remarks/>
+        CounterSignature,
+        
+        /// <remarks/>
+        RefsOnlyTimeStamp,
+        
+        /// <remarks/>
+        RevocationValues,
+        
+        /// <remarks/>
+        SigAndRefsTimeStamp,
+        
+        /// <remarks/>
+        SignatureTimeStamp,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/01903/v1.3.2#")]
+    public partial class QualifyingPropertiesReferenceType
+    {
+        
+        private string uRIField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AdviceType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class AdviceType1
+    {
+        
+        private object[] itemsField;
+        
+        private ItemsChoiceType8[] itemsElementNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Assertion", typeof(AssertionType1), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AssertionIDRef", typeof(string), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AssertionURIRef", typeof(string), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("EncryptedAssertion", typeof(EncryptedElementType), Order=0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemsChoiceType8[] ItemsElementName
+        {
+            get
+            {
+                return this.itemsElementNameField;
+            }
+            set
+            {
+                this.itemsElementNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AssertionType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class AssertionType1
+    {
+        
+        private NameIDType issuerField;
+        
+        private SignatureType signatureField;
+        
+        private SubjectType2 subjectField;
+        
+        private ConditionsType1 conditionsField;
+        
+        private AdviceType1 adviceField;
+        
+        private StatementAbstractType1[] itemsField;
+        
+        private string versionField;
+        
+        private string idField;
+        
+        private System.DateTime issueInstantField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public NameIDType Issuer
+        {
+            get
+            {
+                return this.issuerField;
+            }
+            set
+            {
+                this.issuerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=1)]
+        public SignatureType Signature
+        {
+            get
+            {
+                return this.signatureField;
+            }
+            set
+            {
+                this.signatureField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public SubjectType2 Subject
+        {
+            get
+            {
+                return this.subjectField;
+            }
+            set
+            {
+                this.subjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public ConditionsType1 Conditions
+        {
+            get
+            {
+                return this.conditionsField;
+            }
+            set
+            {
+                this.conditionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public AdviceType1 Advice
+        {
+            get
+            {
+                return this.adviceField;
+            }
+            set
+            {
+                this.adviceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AttributeStatement", typeof(AttributeStatementType1), Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute("AuthnStatement", typeof(AuthnStatementType), Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute("AuthzDecisionStatement", typeof(AuthzDecisionStatementType), Order=5)]
+        [System.Xml.Serialization.XmlElementAttribute("Statement", typeof(StatementAbstractType1), Order=5)]
+        public StatementAbstractType1[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Version
+        {
+            get
+            {
+                return this.versionField;
+            }
+            set
+            {
+                this.versionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string ID
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime IssueInstant
+        {
+            get
+            {
+                return this.issueInstantField;
+            }
+            set
+            {
+                this.issueInstantField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class NameIDType
+    {
+        
+        private string formatField;
+        
+        private string sPProvidedIDField;
+        
+        private string nameQualifierField;
+        
+        private string sPNameQualifierField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Format
+        {
+            get
+            {
+                return this.formatField;
+            }
+            set
+            {
+                this.formatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SPProvidedID
+        {
+            get
+            {
+                return this.sPProvidedIDField;
+            }
+            set
+            {
+                this.sPProvidedIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameQualifier
+        {
+            get
+            {
+                return this.nameQualifierField;
+            }
+            set
+            {
+                this.nameQualifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SPNameQualifier
+        {
+            get
+            {
+                return this.sPNameQualifierField;
+            }
+            set
+            {
+                this.sPNameQualifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value
+        {
+            get
+            {
+                return this.valueField;
+            }
+            set
+            {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SubjectType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class SubjectType2
+    {
+        
+        private object[] itemsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("BaseID", typeof(BaseIDAbstractType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("EncryptedID", typeof(EncryptedElementType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("NameID", typeof(NameIDType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("SubjectConfirmation", typeof(SubjectConfirmationType1), Order=0)]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public abstract partial class BaseIDAbstractType
+    {
+        
+        private string nameQualifierField;
+        
+        private string sPNameQualifierField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameQualifier
+        {
+            get
+            {
+                return this.nameQualifierField;
+            }
+            set
+            {
+                this.nameQualifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SPNameQualifier
+        {
+            get
+            {
+                return this.sPNameQualifierField;
+            }
+            set
+            {
+                this.sPNameQualifierField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class EncryptedElementType
+    {
+        
+        private EncryptedDataType encryptedDataField;
+        
+        private EncryptedKeyType[] encryptedKeyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#", Order=0)]
+        public EncryptedDataType EncryptedData
+        {
+            get
+            {
+                return this.encryptedDataField;
+            }
+            set
+            {
+                this.encryptedDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("EncryptedKey", Namespace="http://www.w3.org/2001/04/xmlenc#", Order=1)]
+        public EncryptedKeyType[] EncryptedKey
+        {
+            get
+            {
+                return this.encryptedKeyField;
+            }
+            set
+            {
+                this.encryptedKeyField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class EncryptedDataType : EncryptedType
+    {
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EncryptedKeyType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EncryptedDataType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public abstract partial class EncryptedType
+    {
+        
+        private EncryptionMethodType encryptionMethodField;
+        
+        private KeyInfoType keyInfoField;
+        
+        private CipherDataType cipherDataField;
+        
+        private EncryptionPropertiesType encryptionPropertiesField;
+        
+        private string idField;
+        
+        private string typeField;
+        
+        private string mimeTypeField;
+        
+        private string encodingField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public EncryptionMethodType EncryptionMethod
+        {
+            get
+            {
+                return this.encryptionMethodField;
+            }
+            set
+            {
+                this.encryptionMethodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=1)]
+        public KeyInfoType KeyInfo
+        {
+            get
+            {
+                return this.keyInfoField;
+            }
+            set
+            {
+                this.keyInfoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public CipherDataType CipherData
+        {
+            get
+            {
+                return this.cipherDataField;
+            }
+            set
+            {
+                this.cipherDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public EncryptionPropertiesType EncryptionProperties
+        {
+            get
+            {
+                return this.encryptionPropertiesField;
+            }
+            set
+            {
+                this.encryptionPropertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Type
+        {
+            get
+            {
+                return this.typeField;
+            }
+            set
+            {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string MimeType
+        {
+            get
+            {
+                return this.mimeTypeField;
+            }
+            set
+            {
+                this.mimeTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Encoding
+        {
+            get
+            {
+                return this.encodingField;
+            }
+            set
+            {
+                this.encodingField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class EncryptionMethodType
+    {
+        
+        private object[] itemsField;
+        
+        private string[] textField;
+        
+        private string algorithmField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("KeySize", typeof(string), DataType="integer", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("OAEPparams", typeof(byte[]), DataType="base64Binary", Order=0)]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string[] Text
+        {
+            get
+            {
+                return this.textField;
+            }
+            set
+            {
+                this.textField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Algorithm
+        {
+            get
+            {
+                return this.algorithmField;
+            }
+            set
+            {
+                this.algorithmField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class CipherDataType
+    {
+        
+        private byte[] cipherValueField;
+        
+        private CipherReferenceType cipherReferenceField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=0)]
+        public byte[] CipherValue
+        {
+            get
+            {
+                return this.cipherValueField;
+            }
+            set
+            {
+                this.cipherValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public CipherReferenceType CipherReference
+        {
+            get
+            {
+                return this.cipherReferenceField;
+            }
+            set
+            {
+                this.cipherReferenceField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class CipherReferenceType
+    {
+        
+        private TransformType[] transformsField;
+        
+        private string uRIField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Transform", Namespace="http://www.w3.org/2000/09/xmldsig#", IsNullable=false)]
+        public TransformType[] Transforms
+        {
+            get
+            {
+                return this.transformsField;
+            }
+            set
+            {
+                this.transformsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class EncryptionPropertiesType
+    {
+        
+        private EncryptionPropertyType[] encryptionPropertyField;
+        
+        private string idField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("EncryptionProperty", Order=0)]
+        public EncryptionPropertyType[] EncryptionProperty
+        {
+            get
+            {
+                return this.encryptionPropertyField;
+            }
+            set
+            {
+                this.encryptionPropertyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class EncryptionPropertyType
+    {
+        
+        private System.Xml.XmlNode[] anyField;
+        
+        private string targetField;
+        
+        private string idField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlNode[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Target
+        {
+            get
+            {
+                return this.targetField;
+            }
+            set
+            {
+                this.targetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class EncryptedKeyType : EncryptedType
+    {
+        
+        private ReferenceList referenceListField;
+        
+        private string carriedKeyNameField;
+        
+        private string recipientField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public ReferenceList ReferenceList
+        {
+            get
+            {
+                return this.referenceListField;
+            }
+            set
+            {
+                this.referenceListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string CarriedKeyName
+        {
+            get
+            {
+                return this.carriedKeyNameField;
+            }
+            set
+            {
+                this.carriedKeyNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Recipient
+        {
+            get
+            {
+                return this.recipientField;
+            }
+            set
+            {
+                this.recipientField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class ReferenceList
+    {
+        
+        private ReferenceType2[] itemsField;
+        
+        private ItemsChoiceType6[] itemsElementNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("DataReference", typeof(ReferenceType2), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("KeyReference", typeof(ReferenceType2), Order=0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+        public ReferenceType2[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemsChoiceType6[] ItemsElementName
+        {
+            get
+            {
+                return this.itemsElementNameField;
+            }
+            set
+            {
+                this.itemsElementNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ReferenceType", Namespace="http://www.w3.org/2001/04/xmlenc#")]
+    public partial class ReferenceType2
+    {
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        private string uRIField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#", IncludeInSchema=false)]
+    public enum ItemsChoiceType6
+    {
+        
+        /// <remarks/>
+        DataReference,
+        
+        /// <remarks/>
+        KeyReference,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SubjectConfirmationType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class SubjectConfirmationType1
+    {
+        
+        private BaseIDAbstractType baseIDField;
+        
+        private NameIDType nameIDField;
+        
+        private EncryptedElementType encryptedIDField;
+        
+        private SubjectConfirmationDataType subjectConfirmationDataField;
+        
+        private string methodField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public BaseIDAbstractType BaseID
+        {
+            get
+            {
+                return this.baseIDField;
+            }
+            set
+            {
+                this.baseIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public NameIDType NameID
+        {
+            get
+            {
+                return this.nameIDField;
+            }
+            set
+            {
+                this.nameIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public EncryptedElementType EncryptedID
+        {
+            get
+            {
+                return this.encryptedIDField;
+            }
+            set
+            {
+                this.encryptedIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public SubjectConfirmationDataType SubjectConfirmationData
+        {
+            get
+            {
+                return this.subjectConfirmationDataField;
+            }
+            set
+            {
+                this.subjectConfirmationDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Method
+        {
+            get
+            {
+                return this.methodField;
+            }
+            set
+            {
+                this.methodField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(KeyInfoConfirmationDataType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class SubjectConfirmationDataType
+    {
+        
+        private System.Xml.XmlNode[] anyField;
+        
+        private System.DateTime notBeforeField;
+        
+        private bool notBeforeFieldSpecified;
+        
+        private System.DateTime notOnOrAfterField;
+        
+        private bool notOnOrAfterFieldSpecified;
+        
+        private string recipientField;
+        
+        private string inResponseToField;
+        
+        private string addressField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlNode[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime NotBefore
+        {
+            get
+            {
+                return this.notBeforeField;
+            }
+            set
+            {
+                this.notBeforeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NotBeforeSpecified
+        {
+            get
+            {
+                return this.notBeforeFieldSpecified;
+            }
+            set
+            {
+                this.notBeforeFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime NotOnOrAfter
+        {
+            get
+            {
+                return this.notOnOrAfterField;
+            }
+            set
+            {
+                this.notOnOrAfterField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NotOnOrAfterSpecified
+        {
+            get
+            {
+                return this.notOnOrAfterFieldSpecified;
+            }
+            set
+            {
+                this.notOnOrAfterFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Recipient
+        {
+            get
+            {
+                return this.recipientField;
+            }
+            set
+            {
+                this.recipientField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="NCName")]
+        public string InResponseTo
+        {
+            get
+            {
+                return this.inResponseToField;
+            }
+            set
+            {
+                this.inResponseToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Address
+        {
+            get
+            {
+                return this.addressField;
+            }
+            set
+            {
+                this.addressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class KeyInfoConfirmationDataType : SubjectConfirmationDataType
+    {
+        
+        private System.Xml.XmlAttribute[] anyAttr1Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr1
+        {
+            get
+            {
+                return this.anyAttr1Field;
+            }
+            set
+            {
+                this.anyAttr1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ConditionsType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class ConditionsType1
+    {
+        
+        private ConditionAbstractType1[] itemsField;
+        
+        private System.DateTime notBeforeField;
+        
+        private bool notBeforeFieldSpecified;
+        
+        private System.DateTime notOnOrAfterField;
+        
+        private bool notOnOrAfterFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AudienceRestriction", typeof(AudienceRestrictionType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Condition", typeof(ConditionAbstractType1), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("OneTimeUse", typeof(OneTimeUseType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("ProxyRestriction", typeof(ProxyRestrictionType), Order=0)]
+        public ConditionAbstractType1[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime NotBefore
+        {
+            get
+            {
+                return this.notBeforeField;
+            }
+            set
+            {
+                this.notBeforeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NotBeforeSpecified
+        {
+            get
+            {
+                return this.notBeforeFieldSpecified;
+            }
+            set
+            {
+                this.notBeforeFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime NotOnOrAfter
+        {
+            get
+            {
+                return this.notOnOrAfterField;
+            }
+            set
+            {
+                this.notOnOrAfterField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool NotOnOrAfterSpecified
+        {
+            get
+            {
+                return this.notOnOrAfterFieldSpecified;
+            }
+            set
+            {
+                this.notOnOrAfterFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class AudienceRestrictionType : ConditionAbstractType1
+    {
+        
+        private string[] audienceField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Audience", DataType="anyURI", Order=0)]
+        public string[] Audience
+        {
+            get
+            {
+                return this.audienceField;
+            }
+            set
+            {
+                this.audienceField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AudienceRestrictionType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(OneTimeUseType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ProxyRestrictionType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ConditionAbstractType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public abstract partial class ConditionAbstractType1
+    {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class OneTimeUseType : ConditionAbstractType1
+    {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class ProxyRestrictionType : ConditionAbstractType1
+    {
+        
+        private string[] audienceField;
+        
+        private string countField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Audience", DataType="anyURI", Order=0)]
+        public string[] Audience
+        {
+            get
+            {
+                return this.audienceField;
+            }
+            set
+            {
+                this.audienceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="nonNegativeInteger")]
+        public string Count
+        {
+            get
+            {
+                return this.countField;
+            }
+            set
+            {
+                this.countField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AttributeStatementType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class AttributeStatementType1 : StatementAbstractType1
+    {
+        
+        private object[] itemsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Attribute", typeof(AttributeType1), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("EncryptedAttribute", typeof(EncryptedElementType), Order=0)]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AttributeType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class AttributeType1
+    {
+        
+        private object[] attributeValueField;
+        
+        private string nameField;
+        
+        private string nameFormatField;
+        
+        private string friendlyNameField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AttributeValue", IsNullable=true, Order=0)]
+        public object[] AttributeValue
+        {
+            get
+            {
+                return this.attributeValueField;
+            }
+            set
+            {
+                this.attributeValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this.nameField;
+            }
+            set
+            {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string NameFormat
+        {
+            get
+            {
+                return this.nameFormatField;
+            }
+            set
+            {
+                this.nameFormatField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FriendlyName
+        {
+            get
+            {
+                return this.friendlyNameField;
+            }
+            set
+            {
+                this.friendlyNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AttributeStatementType1))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthzDecisionStatementType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AuthnStatementType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="StatementAbstractType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public abstract partial class StatementAbstractType1
+    {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class AuthzDecisionStatementType : StatementAbstractType1
+    {
+        
+        private ActionType2[] actionField;
+        
+        private EvidenceType1 evidenceField;
+        
+        private string resourceField;
+        
+        private DecisionType1 decisionField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Action", Order=0)]
+        public ActionType2[] Action
+        {
+            get
+            {
+                return this.actionField;
+            }
+            set
+            {
+                this.actionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public EvidenceType1 Evidence
+        {
+            get
+            {
+                return this.evidenceField;
+            }
+            set
+            {
+                this.evidenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Resource
+        {
+            get
+            {
+                return this.resourceField;
+            }
+            set
+            {
+                this.resourceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public DecisionType1 Decision
+        {
+            get
+            {
+                return this.decisionField;
+            }
+            set
+            {
+                this.decisionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ActionType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class ActionType2
+    {
+        
+        private string namespaceField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Namespace
+        {
+            get
+            {
+                return this.namespaceField;
+            }
+            set
+            {
+                this.namespaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value
+        {
+            get
+            {
+                return this.valueField;
+            }
+            set
+            {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="EvidenceType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class EvidenceType1
+    {
+        
+        private object[] itemsField;
+        
+        private ItemsChoiceType9[] itemsElementNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Assertion", typeof(AssertionType1), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AssertionIDRef", typeof(string), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AssertionURIRef", typeof(string), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("EncryptedAssertion", typeof(EncryptedElementType), Order=0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemsChoiceType9[] ItemsElementName
+        {
+            get
+            {
+                return this.itemsElementNameField;
+            }
+            set
+            {
+                this.itemsElementNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion", IncludeInSchema=false)]
+    public enum ItemsChoiceType9
+    {
+        
+        /// <remarks/>
+        Assertion,
+        
+        /// <remarks/>
+        AssertionIDRef,
+        
+        /// <remarks/>
+        AssertionURIRef,
+        
+        /// <remarks/>
+        EncryptedAssertion,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="DecisionType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public enum DecisionType1
+    {
+        
+        /// <remarks/>
+        Permit,
+        
+        /// <remarks/>
+        Deny,
+        
+        /// <remarks/>
+        Indeterminate,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class AuthnStatementType : StatementAbstractType1
+    {
+        
+        private SubjectLocalityType1 subjectLocalityField;
+        
+        private AuthnContextType authnContextField;
+        
+        private System.DateTime authnInstantField;
+        
+        private string sessionIndexField;
+        
+        private System.DateTime sessionNotOnOrAfterField;
+        
+        private bool sessionNotOnOrAfterFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public SubjectLocalityType1 SubjectLocality
+        {
+            get
+            {
+                return this.subjectLocalityField;
+            }
+            set
+            {
+                this.subjectLocalityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public AuthnContextType AuthnContext
+        {
+            get
+            {
+                return this.authnContextField;
+            }
+            set
+            {
+                this.authnContextField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime AuthnInstant
+        {
+            get
+            {
+                return this.authnInstantField;
+            }
+            set
+            {
+                this.authnInstantField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SessionIndex
+        {
+            get
+            {
+                return this.sessionIndexField;
+            }
+            set
+            {
+                this.sessionIndexField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime SessionNotOnOrAfter
+        {
+            get
+            {
+                return this.sessionNotOnOrAfterField;
+            }
+            set
+            {
+                this.sessionNotOnOrAfterField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool SessionNotOnOrAfterSpecified
+        {
+            get
+            {
+                return this.sessionNotOnOrAfterFieldSpecified;
+            }
+            set
+            {
+                this.sessionNotOnOrAfterFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SubjectLocalityType", Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class SubjectLocalityType1
+    {
+        
+        private string addressField;
+        
+        private string dNSNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Address
+        {
+            get
+            {
+                return this.addressField;
+            }
+            set
+            {
+                this.addressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string DNSName
+        {
+            get
+            {
+                return this.dNSNameField;
+            }
+            set
+            {
+                this.dNSNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion")]
+    public partial class AuthnContextType
+    {
+        
+        private object[] itemsField;
+        
+        private ItemsChoiceType7[] itemsElementNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AuthenticatingAuthority", typeof(string), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AuthnContextClassRef", typeof(string), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AuthnContextDecl", typeof(object), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AuthnContextDeclRef", typeof(string), Order=0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemsChoiceType7[] ItemsElementName
+        {
+            get
+            {
+                return this.itemsElementNameField;
+            }
+            set
+            {
+                this.itemsElementNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion", IncludeInSchema=false)]
+    public enum ItemsChoiceType7
+    {
+        
+        /// <remarks/>
+        AuthenticatingAuthority,
+        
+        /// <remarks/>
+        AuthnContextClassRef,
+        
+        /// <remarks/>
+        AuthnContextDecl,
+        
+        /// <remarks/>
+        AuthnContextDeclRef,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:2.0:assertion", IncludeInSchema=false)]
+    public enum ItemsChoiceType8
+    {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
+        Item,
+        
+        /// <remarks/>
+        Assertion,
+        
+        /// <remarks/>
+        AssertionIDRef,
+        
+        /// <remarks/>
+        AssertionURIRef,
+        
+        /// <remarks/>
+        EncryptedAssertion,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2005/08/addressing")]
     public partial class ProblemActionType
     {
@@ -10787,140 +11233,20 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:be:e-contract:dssp:1.0")]
-    public partial class DeadlineType
-    {
-        
-        private System.DateTime beforeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime Before
-        {
-            get
-            {
-                return this.beforeField;
-            }
-            set
-            {
-                this.beforeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://uri.etsi.org/02231/v2#")]
-    public partial class TrustStatusListType
-    {
-        
-        private TSLSchemeInformationType schemeInformationField;
-        
-        private TSPType[] trustServiceProviderListField;
-        
-        private SignatureType signatureField;
-        
-        private string tSLTagField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public TSLSchemeInformationType SchemeInformation
-        {
-            get
-            {
-                return this.schemeInformationField;
-            }
-            set
-            {
-                this.schemeInformationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("TrustServiceProvider", IsNullable=false)]
-        public TSPType[] TrustServiceProviderList
-        {
-            get
-            {
-                return this.trustServiceProviderListField;
-            }
-            set
-            {
-                this.trustServiceProviderListField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", Order=2)]
-        public SignatureType Signature
-        {
-            get
-            {
-                return this.signatureField;
-            }
-            set
-            {
-                this.signatureField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TSLTag
-        {
-            get
-            {
-                return this.tSLTagField;
-            }
-            set
-            {
-                this.tSLTagField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#")]
-    public partial class AgreementMethodType
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.xmlsoap.org/ws/2004/09/policy")]
+    public partial class OperatorContentType
     {
         
         private object[] itemsField;
         
-        private ItemsChoiceType4[] itemsElementNameField;
-        
-        private string[] textField;
-        
-        private string algorithmField;
+        private ItemsChoiceType5[] itemsElementNameField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("KA-Nonce", typeof(byte[]), DataType="base64Binary", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("OriginatorKeyInfo", typeof(KeyInfoType), Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("RecipientKeyInfo", typeof(KeyInfoType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("All", typeof(OperatorContentType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("ExactlyOne", typeof(OperatorContentType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Policy", typeof(Policy), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("PolicyReference", typeof(PolicyReference), Order=0)]
         [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
         public object[] Items
         {
@@ -10937,7 +11263,7 @@ namespace EContract.Dssp.Client.Proxy
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType4[] ItemsElementName
+        public ItemsChoiceType5[] ItemsElementName
         {
             get
             {
@@ -10948,18 +11274,351 @@ namespace EContract.Dssp.Client.Proxy
                 this.itemsElementNameField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.xmlsoap.org/ws/2004/09/policy")]
+    public partial class Policy : OperatorContentType
+    {
+        
+        private string nameField;
+        
+        private string idField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string[] Text
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Name
         {
             get
             {
-                return this.textField;
+                return this.nameField;
             }
             set
             {
-                this.textField = value;
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
+            "d")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://schemas.xmlsoap.org/ws/2004/09/policy")]
+    public partial class PolicyReference
+    {
+        
+        private string uRIField;
+        
+        private byte[] digestField;
+        
+        private string digestAlgorithmField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="base64Binary")]
+        public byte[] Digest
+        {
+            get
+            {
+                return this.digestField;
+            }
+            set
+            {
+                this.digestField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string DigestAlgorithm
+        {
+            get
+            {
+                return this.digestAlgorithmField;
+            }
+            set
+            {
+                this.digestAlgorithmField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://schemas.xmlsoap.org/ws/2004/09/policy", IncludeInSchema=false)]
+    public enum ItemsChoiceType5
+    {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
+        Item,
+        
+        /// <remarks/>
+        All,
+        
+        /// <remarks/>
+        ExactlyOne,
+        
+        /// <remarks/>
+        Policy,
+        
+        /// <remarks/>
+        PolicyReference,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512")]
+    public partial class DerivedKeyTokenType
+    {
+        
+        private SecurityTokenReferenceType securityTokenReferenceField;
+        
+        private PropertiesType1 propertiesField;
+        
+        private ulong generationField;
+        
+        private bool generationFieldSpecified;
+        
+        private ulong offsetField;
+        
+        private bool offsetFieldSpecified;
+        
+        private ulong lengthField;
+        
+        private bool lengthFieldSpecified;
+        
+        private string labelField;
+        
+        private byte[] nonceField;
+        
+        private string idField;
+        
+        private string algorithmField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+            "", Order=0)]
+        public SecurityTokenReferenceType SecurityTokenReference
+        {
+            get
+            {
+                return this.securityTokenReferenceField;
+            }
+            set
+            {
+                this.securityTokenReferenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public PropertiesType1 Properties
+        {
+            get
+            {
+                return this.propertiesField;
+            }
+            set
+            {
+                this.propertiesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public ulong Generation
+        {
+            get
+            {
+                return this.generationField;
+            }
+            set
+            {
+                this.generationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool GenerationSpecified
+        {
+            get
+            {
+                return this.generationFieldSpecified;
+            }
+            set
+            {
+                this.generationFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public ulong Offset
+        {
+            get
+            {
+                return this.offsetField;
+            }
+            set
+            {
+                this.offsetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool OffsetSpecified
+        {
+            get
+            {
+                return this.offsetFieldSpecified;
+            }
+            set
+            {
+                this.offsetFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public ulong Length
+        {
+            get
+            {
+                return this.lengthField;
+            }
+            set
+            {
+                this.lengthField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool LengthSpecified
+        {
+            get
+            {
+                return this.lengthFieldSpecified;
+            }
+            set
+            {
+                this.lengthFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public string Label
+        {
+            get
+            {
+                return this.labelField;
+            }
+            set
+            {
+                this.labelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=6)]
+        public byte[] Nonce
+        {
+            get
+            {
+                return this.nonceField;
+            }
+            set
+            {
+                this.nonceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
+            "d")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
             }
         }
         
@@ -10981,23 +11640,162 @@ namespace EContract.Dssp.Client.Proxy
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2001/04/xmlenc#", IncludeInSchema=false)]
-    public enum ItemsChoiceType4
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class SecurityTokenReferenceType
     {
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
-        Item,
+        private ReferenceType referenceField;
+        
+        private string idField;
+        
+        private string[] usageField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("KA-Nonce")]
-        KANonce,
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public ReferenceType Reference
+        {
+            get
+            {
+                return this.referenceField;
+            }
+            set
+            {
+                this.referenceField = value;
+            }
+        }
         
         /// <remarks/>
-        OriginatorKeyInfo,
+        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
+            "d")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
         
         /// <remarks/>
-        RecipientKeyInfo,
+        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
+        public string[] Usage
+        {
+            get
+            {
+                return this.usageField;
+            }
+            set
+            {
+                this.usageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class ReferenceType
+    {
+        
+        private string uRIField;
+        
+        private string valueTypeField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string URI
+        {
+            get
+            {
+                return this.uRIField;
+            }
+            set
+            {
+                this.uRIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string ValueType
+        {
+            get
+            {
+                return this.valueTypeField;
+            }
+            set
+            {
+                this.valueTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="PropertiesType", Namespace="http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512")]
+    public partial class PropertiesType1
+    {
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -11448,201 +12246,240 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512")]
-    public partial class DerivedKeyTokenType
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class IdReferenceType
     {
         
-        private SecurityTokenReferenceType securityTokenReferenceField;
+        private string versionField;
         
-        private PropertiesType1 propertiesField;
+        private string earliestVersionField;
         
-        private ulong generationField;
+        private string latestVersionField;
         
-        private bool generationFieldSpecified;
-        
-        private ulong offsetField;
-        
-        private bool offsetFieldSpecified;
-        
-        private ulong lengthField;
-        
-        private bool lengthFieldSpecified;
-        
-        private string labelField;
-        
-        private byte[] nonceField;
-        
-        private string idField;
-        
-        private string algorithmField;
+        private string valueField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-            "", Order=0)]
-        public SecurityTokenReferenceType SecurityTokenReference
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Version
         {
             get
             {
-                return this.securityTokenReferenceField;
+                return this.versionField;
             }
             set
             {
-                this.securityTokenReferenceField = value;
+                this.versionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string EarliestVersion
+        {
+            get
+            {
+                return this.earliestVersionField;
+            }
+            set
+            {
+                this.earliestVersionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string LatestVersion
+        {
+            get
+            {
+                return this.latestVersionField;
+            }
+            set
+            {
+                this.latestVersionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute(DataType="anyURI")]
+        public string Value
+        {
+            get
+            {
+                return this.valueField;
+            }
+            set
+            {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class PolicySetType
+    {
+        
+        private string descriptionField;
+        
+        private DefaultsType policySetDefaultsField;
+        
+        private TargetType targetField;
+        
+        private object[] itemsField;
+        
+        private ItemsChoiceType4[] itemsElementNameField;
+        
+        private ObligationType[] obligationsField;
+        
+        private string policySetIdField;
+        
+        private string versionField;
+        
+        private string policyCombiningAlgIdField;
+        
+        public PolicySetType()
+        {
+            this.versionField = "1.0";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public PropertiesType1 Properties
+        public DefaultsType PolicySetDefaults
         {
             get
             {
-                return this.propertiesField;
+                return this.policySetDefaultsField;
             }
             set
             {
-                this.propertiesField = value;
+                this.policySetDefaultsField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=2)]
-        public ulong Generation
+        public TargetType Target
         {
             get
             {
-                return this.generationField;
+                return this.targetField;
             }
             set
             {
-                this.generationField = value;
+                this.targetField = value;
             }
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CombinerParameters", typeof(CombinerParametersType), Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute("Policy", typeof(PolicyType), Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute("PolicyCombinerParameters", typeof(PolicyCombinerParametersType), Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute("PolicyIdReference", typeof(IdReferenceType), Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute("PolicySet", typeof(PolicySetType), Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute("PolicySetCombinerParameters", typeof(PolicySetCombinerParametersType), Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute("PolicySetIdReference", typeof(IdReferenceType), Order=3)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+        public object[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=4)]
         [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool GenerationSpecified
+        public ItemsChoiceType4[] ItemsElementName
         {
             get
             {
-                return this.generationFieldSpecified;
+                return this.itemsElementNameField;
             }
             set
             {
-                this.generationFieldSpecified = value;
+                this.itemsElementNameField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
-        public ulong Offset
+        [System.Xml.Serialization.XmlArrayAttribute(Order=5)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Obligation", IsNullable=false)]
+        public ObligationType[] Obligations
         {
             get
             {
-                return this.offsetField;
+                return this.obligationsField;
             }
             set
             {
-                this.offsetField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool OffsetSpecified
-        {
-            get
-            {
-                return this.offsetFieldSpecified;
-            }
-            set
-            {
-                this.offsetFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
-        public ulong Length
-        {
-            get
-            {
-                return this.lengthField;
-            }
-            set
-            {
-                this.lengthField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool LengthSpecified
-        {
-            get
-            {
-                return this.lengthFieldSpecified;
-            }
-            set
-            {
-                this.lengthFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
-        public string Label
-        {
-            get
-            {
-                return this.labelField;
-            }
-            set
-            {
-                this.labelField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=6)]
-        public byte[] Nonce
-        {
-            get
-            {
-                return this.nonceField;
-            }
-            set
-            {
-                this.nonceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
-            "d")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
+                this.obligationsField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Algorithm
+        public string PolicySetId
         {
             get
             {
-                return this.algorithmField;
+                return this.policySetIdField;
             }
             set
             {
-                this.algorithmField = value;
+                this.policySetIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("1.0")]
+        public string Version
+        {
+            get
+            {
+                return this.versionField;
+            }
+            set
+            {
+                this.versionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string PolicyCombiningAlgId
+        {
+            get
+            {
+                return this.policyCombiningAlgIdField;
+            }
+            set
+            {
+                this.policyCombiningAlgIdField = value;
             }
         }
     }
@@ -11652,416 +12489,222 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class SecurityTokenReferenceType
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class DefaultsType
     {
         
-        private ReferenceType referenceField;
+        private string itemField;
         
-        private string idField;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("XPathVersion", DataType="anyURI", Order=0)]
+        public string Item
+        {
+            get
+            {
+                return this.itemField;
+            }
+            set
+            {
+                this.itemField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class TargetType
+    {
         
-        private string[] usageField;
+        private SubjectMatchType[][] subjectsField;
         
-        private System.Xml.XmlAttribute[] anyAttrField;
+        private ResourceMatchType[][] resourcesField;
+        
+        private ActionMatchType[][] actionsField;
+        
+        private EnvironmentMatchType[][] environmentsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=0)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Subject", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("SubjectMatch", IsNullable=false, NestingLevel=1)]
+        public SubjectMatchType[][] Subjects
+        {
+            get
+            {
+                return this.subjectsField;
+            }
+            set
+            {
+                this.subjectsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=1)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Resource", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("ResourceMatch", IsNullable=false, NestingLevel=1)]
+        public ResourceMatchType[][] Resources
+        {
+            get
+            {
+                return this.resourcesField;
+            }
+            set
+            {
+                this.resourcesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=2)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Action", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("ActionMatch", IsNullable=false, NestingLevel=1)]
+        public ActionMatchType[][] Actions
+        {
+            get
+            {
+                return this.actionsField;
+            }
+            set
+            {
+                this.actionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=3)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Environment", IsNullable=false)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("EnvironmentMatch", IsNullable=false, NestingLevel=1)]
+        public EnvironmentMatchType[][] Environments
+        {
+            get
+            {
+                return this.environmentsField;
+            }
+            set
+            {
+                this.environmentsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class SubjectMatchType
+    {
+        
+        private AttributeValueType attributeValueField;
+        
+        private SubjectAttributeDesignatorType subjectAttributeDesignatorField;
+        
+        private AttributeSelectorType attributeSelectorField;
+        
+        private string matchIdField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public ReferenceType Reference
+        public AttributeValueType AttributeValue
         {
             get
             {
-                return this.referenceField;
+                return this.attributeValueField;
             }
             set
             {
-                this.referenceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
-            "d")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified)]
-        public string[] Usage
-        {
-            get
-            {
-                return this.usageField;
-            }
-            set
-            {
-                this.usageField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class ReferenceType
-    {
-        
-        private string uRIField;
-        
-        private string valueTypeField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string ValueType
-        {
-            get
-            {
-                return this.valueTypeField;
-            }
-            set
-            {
-                this.valueTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(TypeName="PropertiesType", Namespace="http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512")]
-    public partial class PropertiesType1
-    {
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class StatusType
-    {
-        
-        private string codeField;
-        
-        private string reasonField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string Code
-        {
-            get
-            {
-                return this.codeField;
-            }
-            set
-            {
-                this.codeField = value;
+                this.attributeValueField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=1)]
-        public string Reason
+        public SubjectAttributeDesignatorType SubjectAttributeDesignator
         {
             get
             {
-                return this.reasonField;
+                return this.subjectAttributeDesignatorField;
             }
             set
             {
-                this.reasonField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class RenewingType
-    {
-        
-        private bool allowField;
-        
-        private bool allowFieldSpecified;
-        
-        private bool okField;
-        
-        private bool okFieldSpecified;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool Allow
-        {
-            get
-            {
-                return this.allowField;
-            }
-            set
-            {
-                this.allowField = value;
+                this.subjectAttributeDesignatorField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool AllowSpecified
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public AttributeSelectorType AttributeSelector
         {
             get
             {
-                return this.allowFieldSpecified;
+                return this.attributeSelectorField;
             }
             set
             {
-                this.allowFieldSpecified = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool OK
-        {
-            get
-            {
-                return this.okField;
-            }
-            set
-            {
-                this.okField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool OKSpecified
-        {
-            get
-            {
-                return this.okFieldSpecified;
-            }
-            set
-            {
-                this.okFieldSpecified = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class ParticipantsType
-    {
-        
-        private System.Xml.XmlElement primaryField;
-        
-        private System.Xml.XmlElement[] participantField;
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public System.Xml.XmlElement Primary
-        {
-            get
-            {
-                return this.primaryField;
-            }
-            set
-            {
-                this.primaryField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Participant", Order=1)]
-        public System.Xml.XmlElement[] Participant
-        {
-            get
-            {
-                return this.participantField;
-            }
-            set
-            {
-                this.participantField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=2)]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class KeyExchangeTokenType
-    {
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class ClaimsType
-    {
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        private string dialectField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
+                this.attributeSelectorField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Dialect
+        public string MatchId
         {
             get
             {
-                return this.dialectField;
+                return this.matchIdField;
             }
             set
             {
-                this.dialectField = value;
+                this.matchIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AttributeAssignmentType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class AttributeValueType
+    {
+        
+        private string dataTypeField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string DataType
+        {
+            get
+            {
+                return this.dataTypeField;
+            }
+            set
+            {
+                this.dataTypeField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value
         {
             get
             {
-                return this.anyAttrField;
+                return this.valueField;
             }
             set
             {
-                this.anyAttrField = value;
+                this.valueField = value;
             }
         }
     }
@@ -12071,101 +12714,219 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class UseKeyType
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class AttributeAssignmentType : AttributeValueType
     {
         
-        private System.Xml.XmlElement anyField;
-        
-        private string sigField;
+        private string attributeIdField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlElement Any
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string AttributeId
         {
             get
             {
-                return this.anyField;
+                return this.attributeIdField;
             }
             set
             {
-                this.anyField = value;
+                this.attributeIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class SubjectAttributeDesignatorType : AttributeDesignatorType
+    {
+        
+        private string subjectCategoryField;
+        
+        public SubjectAttributeDesignatorType()
+        {
+            this.subjectCategoryField = "urn:oasis:names:tc:xacml:1.0:subject-category:access-subject";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        [System.ComponentModel.DefaultValueAttribute("urn:oasis:names:tc:xacml:1.0:subject-category:access-subject")]
+        public string SubjectCategory
+        {
+            get
+            {
+                return this.subjectCategoryField;
+            }
+            set
+            {
+                this.subjectCategoryField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SubjectAttributeDesignatorType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class AttributeDesignatorType : ExpressionType
+    {
+        
+        private string attributeIdField;
+        
+        private string dataTypeField;
+        
+        private string issuerField;
+        
+        private bool mustBePresentField;
+        
+        public AttributeDesignatorType()
+        {
+            this.mustBePresentField = false;
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string AttributeId
+        {
+            get
+            {
+                return this.attributeIdField;
+            }
+            set
+            {
+                this.attributeIdField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Sig
+        public string DataType
         {
             get
             {
-                return this.sigField;
+                return this.dataTypeField;
             }
             set
             {
-                this.sigField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class RequestKETType
-    {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class AllowPostdatingType
-    {
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class AuthenticatorType
-    {
-        
-        private byte[] combinedHashField;
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=0)]
-        public byte[] CombinedHash
-        {
-            get
-            {
-                return this.combinedHashField;
-            }
-            set
-            {
-                this.combinedHashField = value;
+                this.dataTypeField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=1)]
-        public System.Xml.XmlElement[] Any
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Issuer
         {
             get
             {
-                return this.anyField;
+                return this.issuerField;
             }
             set
             {
-                this.anyField = value;
+                this.issuerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
+        public bool MustBePresent
+        {
+            get
+            {
+                return this.mustBePresentField;
+            }
+            set
+            {
+                this.mustBePresentField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ApplyType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(FunctionType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AttributeDesignatorType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SubjectAttributeDesignatorType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AttributeSelectorType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(VariableReferenceType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public abstract partial class ExpressionType
+    {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class ApplyType : ExpressionType
+    {
+        
+        private ExpressionType[] itemsField;
+        
+        private ItemsChoiceType3[] itemsElementNameField;
+        
+        private string functionIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ActionAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Apply", typeof(ApplyType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("EnvironmentAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Function", typeof(FunctionType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("ResourceAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("SubjectAttributeDesignator", typeof(SubjectAttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("VariableReference", typeof(VariableReferenceType), Order=0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
+        public ExpressionType[] Items
+        {
+            get
+            {
+                return this.itemsField;
+            }
+            set
+            {
+                this.itemsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName", Order=1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemsChoiceType3[] ItemsElementName
+        {
+            get
+            {
+                return this.itemsElementNameField;
+            }
+            set
+            {
+                this.itemsElementNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string FunctionId
+        {
+            get
+            {
+                return this.functionIdField;
+            }
+            set
+            {
+                this.functionIdField = value;
             }
         }
     }
@@ -12175,55 +12936,219 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class SignChallengeType
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class AttributeSelectorType : ExpressionType
     {
         
-        private string challengeField;
+        private string requestContextPathField;
         
-        private System.Xml.XmlElement[] anyField;
+        private string dataTypeField;
         
-        private System.Xml.XmlAttribute[] anyAttrField;
+        private bool mustBePresentField;
+        
+        public AttributeSelectorType()
+        {
+            this.mustBePresentField = false;
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string RequestContextPath
+        {
+            get
+            {
+                return this.requestContextPathField;
+            }
+            set
+            {
+                this.requestContextPathField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string DataType
+        {
+            get
+            {
+                return this.dataTypeField;
+            }
+            set
+            {
+                this.dataTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(false)]
+        public bool MustBePresent
+        {
+            get
+            {
+                return this.mustBePresentField;
+            }
+            set
+            {
+                this.mustBePresentField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class FunctionType : ExpressionType
+    {
+        
+        private string functionIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string FunctionId
+        {
+            get
+            {
+                return this.functionIdField;
+            }
+            set
+            {
+                this.functionIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class VariableReferenceType : ExpressionType
+    {
+        
+        private string variableIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string VariableId
+        {
+            get
+            {
+                return this.variableIdField;
+            }
+            set
+            {
+                this.variableIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os", IncludeInSchema=false)]
+    public enum ItemsChoiceType3
+    {
+        
+        /// <remarks/>
+        ActionAttributeDesignator,
+        
+        /// <remarks/>
+        Apply,
+        
+        /// <remarks/>
+        AttributeSelector,
+        
+        /// <remarks/>
+        EnvironmentAttributeDesignator,
+        
+        /// <remarks/>
+        Function,
+        
+        /// <remarks/>
+        ResourceAttributeDesignator,
+        
+        /// <remarks/>
+        SubjectAttributeDesignator,
+        
+        /// <remarks/>
+        VariableReference,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class ResourceMatchType
+    {
+        
+        private AttributeValueType attributeValueField;
+        
+        private AttributeDesignatorType resourceAttributeDesignatorField;
+        
+        private AttributeSelectorType attributeSelectorField;
+        
+        private string matchIdField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public string Challenge
+        public AttributeValueType AttributeValue
         {
             get
             {
-                return this.challengeField;
+                return this.attributeValueField;
             }
             set
             {
-                this.challengeField = value;
+                this.attributeValueField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=1)]
-        public System.Xml.XmlElement[] Any
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public AttributeDesignatorType ResourceAttributeDesignator
         {
             get
             {
-                return this.anyField;
+                return this.resourceAttributeDesignatorField;
             }
             set
             {
-                this.anyField = value;
+                this.resourceAttributeDesignatorField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public AttributeSelectorType AttributeSelector
         {
             get
             {
-                return this.anyAttrField;
+                return this.attributeSelectorField;
             }
             set
             {
-                this.anyAttrField = value;
+                this.attributeSelectorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string MatchId
+        {
+            get
+            {
+                return this.matchIdField;
+            }
+            set
+            {
+                this.matchIdField = value;
             }
         }
     }
@@ -12233,9 +13158,864 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/ws-sx/ws-trust/200512")]
-    public partial class RequestedTokenCancelledType
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class ActionMatchType
     {
+        
+        private AttributeValueType attributeValueField;
+        
+        private AttributeDesignatorType actionAttributeDesignatorField;
+        
+        private AttributeSelectorType attributeSelectorField;
+        
+        private string matchIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public AttributeValueType AttributeValue
+        {
+            get
+            {
+                return this.attributeValueField;
+            }
+            set
+            {
+                this.attributeValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public AttributeDesignatorType ActionAttributeDesignator
+        {
+            get
+            {
+                return this.actionAttributeDesignatorField;
+            }
+            set
+            {
+                this.actionAttributeDesignatorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public AttributeSelectorType AttributeSelector
+        {
+            get
+            {
+                return this.attributeSelectorField;
+            }
+            set
+            {
+                this.attributeSelectorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string MatchId
+        {
+            get
+            {
+                return this.matchIdField;
+            }
+            set
+            {
+                this.matchIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class EnvironmentMatchType
+    {
+        
+        private AttributeValueType attributeValueField;
+        
+        private ExpressionType itemField;
+        
+        private string matchIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public AttributeValueType AttributeValue
+        {
+            get
+            {
+                return this.attributeValueField;
+            }
+            set
+            {
+                this.attributeValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType), Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute("EnvironmentAttributeDesignator", typeof(AttributeDesignatorType), Order=1)]
+        public ExpressionType Item
+        {
+            get
+            {
+                return this.itemField;
+            }
+            set
+            {
+                this.itemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string MatchId
+        {
+            get
+            {
+                return this.matchIdField;
+            }
+            set
+            {
+                this.matchIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolicySetCombinerParametersType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolicyCombinerParametersType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(RuleCombinerParametersType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class CombinerParametersType
+    {
+        
+        private CombinerParameterType[] combinerParameterField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CombinerParameter", Order=0)]
+        public CombinerParameterType[] CombinerParameter
+        {
+            get
+            {
+                return this.combinerParameterField;
+            }
+            set
+            {
+                this.combinerParameterField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class CombinerParameterType
+    {
+        
+        private AttributeValueType attributeValueField;
+        
+        private string parameterNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public AttributeValueType AttributeValue
+        {
+            get
+            {
+                return this.attributeValueField;
+            }
+            set
+            {
+                this.attributeValueField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ParameterName
+        {
+            get
+            {
+                return this.parameterNameField;
+            }
+            set
+            {
+                this.parameterNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class PolicySetCombinerParametersType : CombinerParametersType
+    {
+        
+        private string policySetIdRefField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string PolicySetIdRef
+        {
+            get
+            {
+                return this.policySetIdRefField;
+            }
+            set
+            {
+                this.policySetIdRefField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class PolicyCombinerParametersType : CombinerParametersType
+    {
+        
+        private string policyIdRefField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string PolicyIdRef
+        {
+            get
+            {
+                return this.policyIdRefField;
+            }
+            set
+            {
+                this.policyIdRefField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class RuleCombinerParametersType : CombinerParametersType
+    {
+        
+        private string ruleIdRefField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string RuleIdRef
+        {
+            get
+            {
+                return this.ruleIdRefField;
+            }
+            set
+            {
+                this.ruleIdRefField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class PolicyType
+    {
+        
+        private string descriptionField;
+        
+        private DefaultsType policyDefaultsField;
+        
+        private CombinerParameterType[] combinerParametersField;
+        
+        private TargetType targetField;
+        
+        private CombinerParameterType[][] combinerParameters1Field;
+        
+        private RuleCombinerParametersType[] ruleCombinerParametersField;
+        
+        private VariableDefinitionType[] variableDefinitionField;
+        
+        private RuleType[] ruleField;
+        
+        private ObligationType[] obligationsField;
+        
+        private string policyIdField;
+        
+        private string versionField;
+        
+        private string ruleCombiningAlgIdField;
+        
+        public PolicyType()
+        {
+            this.versionField = "1.0";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public DefaultsType PolicyDefaults
+        {
+            get
+            {
+                return this.policyDefaultsField;
+            }
+            set
+            {
+                this.policyDefaultsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CombinerParameters", typeof(CombinerParameterType), Order = 2)]
+        public CombinerParameterType[] CombinerParameters
+        {
+            get
+            {
+                return this.combinerParametersField;
+            }
+            set
+            {
+                this.combinerParametersField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public TargetType Target
+        {
+            get
+            {
+                return this.targetField;
+            }
+            set
+            {
+                this.targetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute("CombinerParameters", Order=4)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("CombinerParameter", typeof(CombinerParameterType[]), IsNullable=false)]
+        public CombinerParameterType[][] CombinerParameters1
+        {
+            get
+            {
+                return this.combinerParameters1Field;
+            }
+            set
+            {
+                this.combinerParameters1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("RuleCombinerParameters", Order=5)]
+        public RuleCombinerParametersType[] RuleCombinerParameters
+        {
+            get
+            {
+                return this.ruleCombinerParametersField;
+            }
+            set
+            {
+                this.ruleCombinerParametersField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("VariableDefinition", Order=6)]
+        public VariableDefinitionType[] VariableDefinition
+        {
+            get
+            {
+                return this.variableDefinitionField;
+            }
+            set
+            {
+                this.variableDefinitionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Rule", Order=7)]
+        public RuleType[] Rule
+        {
+            get
+            {
+                return this.ruleField;
+            }
+            set
+            {
+                this.ruleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayAttribute(Order=8)]
+        [System.Xml.Serialization.XmlArrayItemAttribute("Obligation", IsNullable=false)]
+        public ObligationType[] Obligations
+        {
+            get
+            {
+                return this.obligationsField;
+            }
+            set
+            {
+                this.obligationsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string PolicyId
+        {
+            get
+            {
+                return this.policyIdField;
+            }
+            set
+            {
+                this.policyIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("1.0")]
+        public string Version
+        {
+            get
+            {
+                return this.versionField;
+            }
+            set
+            {
+                this.versionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string RuleCombiningAlgId
+        {
+            get
+            {
+                return this.ruleCombiningAlgIdField;
+            }
+            set
+            {
+                this.ruleCombiningAlgIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class VariableDefinitionType
+    {
+        
+        private ExpressionType itemField;
+        
+        private ItemChoiceType itemElementNameField;
+        
+        private string variableIdField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ActionAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Apply", typeof(ApplyType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("EnvironmentAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Function", typeof(FunctionType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("ResourceAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("SubjectAttributeDesignator", typeof(SubjectAttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("VariableReference", typeof(VariableReferenceType), Order=0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+        public ExpressionType Item
+        {
+            get
+            {
+                return this.itemField;
+            }
+            set
+            {
+                this.itemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemChoiceType ItemElementName
+        {
+            get
+            {
+                return this.itemElementNameField;
+            }
+            set
+            {
+                this.itemElementNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string VariableId
+        {
+            get
+            {
+                return this.variableIdField;
+            }
+            set
+            {
+                this.variableIdField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os", IncludeInSchema=false)]
+    public enum ItemChoiceType
+    {
+        
+        /// <remarks/>
+        ActionAttributeDesignator,
+        
+        /// <remarks/>
+        Apply,
+        
+        /// <remarks/>
+        AttributeSelector,
+        
+        /// <remarks/>
+        EnvironmentAttributeDesignator,
+        
+        /// <remarks/>
+        Function,
+        
+        /// <remarks/>
+        ResourceAttributeDesignator,
+        
+        /// <remarks/>
+        SubjectAttributeDesignator,
+        
+        /// <remarks/>
+        VariableReference,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class RuleType
+    {
+        
+        private string descriptionField;
+        
+        private TargetType targetField;
+        
+        private ConditionType conditionField;
+        
+        private string ruleIdField;
+        
+        private EffectType effectField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string Description
+        {
+            get
+            {
+                return this.descriptionField;
+            }
+            set
+            {
+                this.descriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public TargetType Target
+        {
+            get
+            {
+                return this.targetField;
+            }
+            set
+            {
+                this.targetField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public ConditionType Condition
+        {
+            get
+            {
+                return this.conditionField;
+            }
+            set
+            {
+                this.conditionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string RuleId
+        {
+            get
+            {
+                return this.ruleIdField;
+            }
+            set
+            {
+                this.ruleIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public EffectType Effect
+        {
+            get
+            {
+                return this.effectField;
+            }
+            set
+            {
+                this.effectField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class ConditionType
+    {
+        
+        private ExpressionType itemField;
+        
+        private ItemChoiceType1 itemElementNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ActionAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Apply", typeof(ApplyType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("AttributeSelector", typeof(AttributeSelectorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("EnvironmentAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("Function", typeof(FunctionType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("ResourceAttributeDesignator", typeof(AttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("SubjectAttributeDesignator", typeof(SubjectAttributeDesignatorType), Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("VariableReference", typeof(VariableReferenceType), Order=0)]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+        public ExpressionType Item
+        {
+            get
+            {
+                return this.itemField;
+            }
+            set
+            {
+                this.itemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemChoiceType1 ItemElementName
+        {
+            get
+            {
+                return this.itemElementNameField;
+            }
+            set
+            {
+                this.itemElementNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os", IncludeInSchema=false)]
+    public enum ItemChoiceType1
+    {
+        
+        /// <remarks/>
+        ActionAttributeDesignator,
+        
+        /// <remarks/>
+        Apply,
+        
+        /// <remarks/>
+        AttributeSelector,
+        
+        /// <remarks/>
+        EnvironmentAttributeDesignator,
+        
+        /// <remarks/>
+        Function,
+        
+        /// <remarks/>
+        ResourceAttributeDesignator,
+        
+        /// <remarks/>
+        SubjectAttributeDesignator,
+        
+        /// <remarks/>
+        VariableReference,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public enum EffectType
+    {
+        
+        /// <remarks/>
+        Permit,
+        
+        /// <remarks/>
+        Deny,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+    public partial class ObligationType
+    {
+        
+        private AttributeAssignmentType[] attributeAssignmentField;
+        
+        private string obligationIdField;
+        
+        private EffectType fulfillOnField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AttributeAssignment", Order=0)]
+        public AttributeAssignmentType[] AttributeAssignment
+        {
+            get
+            {
+                return this.attributeAssignmentField;
+            }
+            set
+            {
+                this.attributeAssignmentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string ObligationId
+        {
+            get
+            {
+                return this.obligationIdField;
+            }
+            set
+            {
+                this.obligationIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public EffectType FulfillOn
+        {
+            get
+            {
+                return this.fulfillOnField;
+            }
+            set
+            {
+                this.fulfillOnField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os", IncludeInSchema=false)]
+    public enum ItemsChoiceType4
+    {
+        
+        /// <remarks/>
+        CombinerParameters,
+        
+        /// <remarks/>
+        Policy,
+        
+        /// <remarks/>
+        PolicyCombinerParameters,
+        
+        /// <remarks/>
+        PolicyIdReference,
+        
+        /// <remarks/>
+        PolicySet,
+        
+        /// <remarks/>
+        PolicySetCombinerParameters,
+        
+        /// <remarks/>
+        PolicySetIdReference,
     }
     
     /// <remarks/>
@@ -12596,7 +14376,7 @@ namespace EContract.Dssp.Client.Proxy
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:1.0:assertion")]
-    public partial class AttributeType : AttributeDesignatorType
+    public partial class AttributeType : AttributeDesignatorType1
     {
         
         private object[] attributeValueField;
@@ -12622,8 +14402,8 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:1.0:assertion")]
-    public partial class AttributeDesignatorType
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="AttributeDesignatorType", Namespace="urn:oasis:names:tc:SAML:1.0:assertion")]
+    public partial class AttributeDesignatorType1
     {
         
         private string attributeNameField;
@@ -12671,11 +14451,11 @@ namespace EContract.Dssp.Client.Proxy
     public abstract partial class SubjectStatementAbstractType : StatementAbstractType
     {
         
-        private SubjectType subjectField;
+        private SubjectType1 subjectField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public SubjectType Subject
+        public SubjectType1 Subject
         {
             get
             {
@@ -12693,8 +14473,8 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:1.0:assertion")]
-    public partial class SubjectType
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="SubjectType", Namespace="urn:oasis:names:tc:SAML:1.0:assertion")]
+    public partial class SubjectType1
     {
         
         private object[] itemsField;
@@ -12796,7 +14576,7 @@ namespace EContract.Dssp.Client.Proxy
     public partial class AuthorizationDecisionStatementType : SubjectStatementAbstractType
     {
         
-        private ActionType[] actionField;
+        private ActionType1[] actionField;
         
         private EvidenceType evidenceField;
         
@@ -12806,7 +14586,7 @@ namespace EContract.Dssp.Client.Proxy
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Action", Order=0)]
-        public ActionType[] Action
+        public ActionType1[] Action
         {
             get
             {
@@ -12866,8 +14646,8 @@ namespace EContract.Dssp.Client.Proxy
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:SAML:1.0:assertion")]
-    public partial class ActionType
+    [System.Xml.Serialization.XmlTypeAttribute(TypeName="ActionType", Namespace="urn:oasis:names:tc:SAML:1.0:assertion")]
+    public partial class ActionType1
     {
         
         private string namespaceField;
@@ -17003,6 +18783,8 @@ namespace EContract.Dssp.Client.Proxy
         
         private VisibleSignatureConfigurationType visibleSignatureConfigurationField;
         
+        private PolicyType policyField;
+        
         /// <remarks/>
         public string AdditionalProfile
         {
@@ -17178,6 +18960,20 @@ namespace EContract.Dssp.Client.Proxy
             set
             {
                 this.visibleSignatureConfigurationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
+        public PolicyType Policy
+        {
+            get
+            {
+                return this.policyField;
+            }
+            set
+            {
+                this.policyField = value;
             }
         }
     }
