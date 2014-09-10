@@ -2,7 +2,7 @@
     <ul class="unstyled">
         <li ng-repeat="doc in docs">
             <div ng-hide="doc.Signed">
-                Unsigned doc: <a href="api/documents/{{doc.Id}}/signing">{{doc.Name}}</a>
+                Unsigned doc: <a href="api/documents/{{doc.Id}}/signing">{{doc.Name}}</a> (last attempt by {{doc.SignatureAttemptBy}})
             </div>
             <div ng-show="doc.Signed">
                 Signed  doc: {{doc.Name}}, time stamp valid until {{doc.TimeStampValidity}} (new signature by {{doc.NewSignatureBy}})

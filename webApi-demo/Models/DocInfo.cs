@@ -20,6 +20,7 @@ namespace dssp_demo.Models
         public string Name;
         public DateTime? TimeStampValidity;
         public string NewSignatureBy;
+        public string SignatureAttemptBy;
         public IList<SignInfo> Signatures;
 
         public bool Signed

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authorization.cs" />
+    <Compile Include="AuthorizationError.cs" />
     <Compile Include="DigitalSignatureService.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="IncorrectSignatureException.cs" />

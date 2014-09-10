@@ -422,7 +422,7 @@ namespace EContract.Dssp.Client
         /// <exception cref="InvalidDataException">When the signResponse isn't the correct format or has invalid values</exception>
         /// <exception cref="RequestError">When the signResponse indicated there was an error with the request or with the user (e.g. if he cancels)</exception>
         /// <exception cref="InvalidOperationException">When the signRespoinse indicates an unknown error</exception>
-        /// <returns>The signer of the document, currently always <c>null</c></returns>
+        /// <returns>The signer of the document</returns>
         public NameIdentifierType ValidateSignResponse(string signResponse)
         {
             if (signResponse == null) throw new ArgumentNullException("signResponse");
@@ -462,7 +462,15 @@ namespace EContract.Dssp.Client
                 case "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:resultmajor:Pending":
                     break;
                 case "urn:oasis:names:tc:dss:1.0:resultmajor:RequesterError":
-                    throw new RequestError(signResponseObject.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
+                    switch (signResponseObject.Result.ResultMinor) {
+                        case "urn:be:e-contract:dssp:1.0:resultminor:subject-not-authorized":
+                            throw new AuthorizationError(
+                                signResponseObject.Result.ResultMessage != null ? signResponseObject.Result.ResultMessage.Value : null, 
+                                signResponseObject.OptionalOutputs != null ? signResponseObject.OptionalOutputs.SignerIdentity : null);
+                        default:
+                            throw new RequestError(signResponseObject.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
+                    }
+                    break;
                 default:
                     throw new InvalidOperationException(signResponseObject.Result.ResultMajor);
             }
