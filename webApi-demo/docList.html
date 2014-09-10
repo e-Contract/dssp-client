@@ -8,11 +8,12 @@
                 Signed  doc: {{doc.Name}}, time stamp valid until {{doc.TimeStampValidity}} (new signature by {{doc.NewSignatureBy}})
                 <ul>
                     <li ng-repeat="signature in doc.Signatures">
-                        Singed by "{{signature.Signer}}" on {{signature.SignedOn}}
+                        Singed by "{{signature.Signer}}" as {{signature.Roles}} on {{signature.SignedOn}} at {{signature.Location}}
                     </li>
                 </ul>
             </div>
         </li>
     </ul>
+
     <button ng-click="refresh()">Refresh</button>
 </div>

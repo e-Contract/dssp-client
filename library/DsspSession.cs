@@ -136,6 +136,11 @@ namespace EContract.Dssp.Client
         /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language)
         {
+            return GeneratePendingRequestPage(postAddress, landingUrl, language, null);
+        }
+
+        public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureProperties properties)
+        {
             var builder = new StringBuilder();
 
             builder.AppendLine("<html>");
@@ -144,7 +149,7 @@ namespace EContract.Dssp.Client
             builder.AppendLine("<p>Redirecting to the DSS-P Server...</p>");
             builder.AppendLine("<form name=\"dsspform\" method=\"post\" action=\"" + postAddress.ToString() + "\">");
             builder.Append("<input type=\"hidden\" name=\"PendingRequest\" value=\"");
-            builder.Append(GeneratePendingRequest(landingUrl, language));
+            builder.Append(GeneratePendingRequest(landingUrl, language, properties));
             builder.AppendLine("\"/>");
             builder.AppendLine("</form>");
             builder.AppendLine("<script type=\"text/javascript\">");
@@ -158,6 +163,9 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Creates the pending request message for the current session.
         /// </summary>
+        /// <remarks>
+        /// The default language is used for the e-contract pages.
+        /// </remarks>
         /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(string landingUrl)
@@ -168,6 +176,9 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Creates the pending request message for the current session.
         /// </summary>
+        /// <remarks>
+        /// The default language is used for the e-contract pages.
+        /// </remarks>
         /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl)
@@ -178,9 +189,6 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Creates a new pending request for the provided session.
         /// </summary>
-        /// <remarks>
-        /// The default language is used for the e-contract pages.
-        /// </remarks>
         /// <param name="landingUrl">The landing page of the SignResponse</param>
         /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
@@ -192,13 +200,22 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Creates a new pending request for the provided session.
         /// </summary>
-        /// <remarks>
-        /// The default language is used for the e-contract pages.
-        /// </remarks>
         /// <param name="landingUrl">The landing page of the SignResponse</param>
         /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl, string language)
+        {
+            return GeneratePendingRequest(landingUrl, language, null);
+        }
+
+        /// <summary>
+        /// Creates a new pending request for the provided session.
+        /// </summary>
+        /// <param name="landingUrl">The landing page of the SignResponse</param>
+        /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
+        /// <param name="properties">Additional properties (role/location) that will be added to the signature</param>
+        /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
+        public string GeneratePendingRequest(Uri landingUrl, string language, SignatureProperties properties)
         {
             //Prepare browser post message (to return)
             PendingRequest pendingRequest = new PendingRequest();
@@ -217,6 +234,36 @@ namespace EContract.Dssp.Client
             pendingRequest.OptionalInputs.ReplyTo.Address.Value = landingUrl.AbsoluteUri;
             pendingRequest.OptionalInputs.ReturnSignerIdentity = new ReturnSignerIdentity();
             pendingRequest.OptionalInputs.Language = language;
+            if (properties != null)
+            {
+                var items = new List<VisibleSignatureItemType>();
+                if (properties.SignerRoles != null) {
+                    foreach (string signerRole in properties.SignerRoles)
+                    {
+                        var stringItem = new ItemValueStringType();
+                        stringItem.ItemValue = signerRole;
+
+                        var item = new VisibleSignatureItemType();
+                        item.ItemName = ItemNameEnum.SignatureReason;
+                        item.ItemValue = stringItem;
+                        items.Add(item);
+                    }
+                }
+                if (properties.SignatureProductionPlace != null) {
+                    var stringItem = new ItemValueStringType();
+                    stringItem.ItemValue = properties.SignatureProductionPlace;
+
+                    var item = new VisibleSignatureItemType();
+                    item.ItemName = ItemNameEnum.SignatureProductionPlace;
+                    item.ItemValue = stringItem;
+                    items.Add(item);
+                }
+
+                pendingRequest.OptionalInputs.VisibleSignatureConfiguration = new VisibleSignatureConfigurationType();
+                pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePolicy = VisibleSignaturePolicyType.DocumentSubmissionPolicy;
+                pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration = new VisibleSignatureItemsConfigurationType();
+                pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration.VisibleSignatureItem = items.ToArray<VisibleSignatureItemType>();
+            }
 
             //Prepare Sign
             var pendingRequestXml = new XmlDocument();

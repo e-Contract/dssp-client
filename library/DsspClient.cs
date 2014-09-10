@@ -294,7 +294,7 @@ namespace EContract.Dssp.Client
         /// Validates the provided document via the e-contract service.
         /// </summary>
         /// <param name="document">The document that contains a signature</param>
-        /// <returns>The security information of the document, containting information like the signer</returns>
+        /// <returns>The security information of the document, containing information like the signer</returns>
         /// <exception cref="ArgumentNullException">When there is no document provided</exception>
         /// <exception cref="IncorrectSignatureException">When the provided document has an invalid signature</exception>
         /// <exception cref="RequestError">When the request was invalid, e.g. unsupported mime type</exception>
@@ -380,6 +380,9 @@ namespace EContract.Dssp.Client
                 info.SigningTime = DateTime.Parse(report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SigningTime, CultureInfo.InvariantCulture);
                 info.Signer = new X509Certificate2(report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].CertificateValue);
                 info.SignerSubject = report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].Subject;
+                info.SignatureProductionPlace = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.Location;
+                if (report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole != null)
+                    info.SignerRoles = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles;
                 result.Signatures.Add(info);
             }
             return result;

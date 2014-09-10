@@ -24,7 +24,6 @@ demo.controller('docController', ['$scope', '$http', function($scope, $http) {
             .error(function(data, status, headers, config) {
                 alert(status);
             });
-
     };
 
     $scope.refresh();

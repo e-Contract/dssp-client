@@ -48,7 +48,8 @@ namespace dssp_demo.Controllers
             sessions[id] = await dsspClient.UploadDocumentAsync(doc);
 
             //creating the browser post page with the pending request
-            string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri);
+            string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, "en", 
+                new SignatureProperties() { SignatureProductionPlace = "Denderleeuw", SignerRoles = new string[] { "zaakvoerder", "aandeelhouder" }});
 
             //returning it to the browser to execute
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
@@ -87,6 +88,8 @@ namespace dssp_demo.Controllers
                         SignInfo i = new SignInfo();
                         i.Signer = info.SignerSubject;
                         i.SignedOn = info.SigningTime;
+                        i.Location = info.SignatureProductionPlace;
+                        i.Roles = info.SignerRoles;
                         docs[id].Signatures.Add(i);
                     }
 

@@ -44,6 +44,7 @@ namespace dssp_demo.Models
     {
         public string Signer;
         public DateTime SignedOn;
-
+        public string Location;
+        public string[] Roles;
     }
 }

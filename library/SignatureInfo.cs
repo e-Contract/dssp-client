@@ -44,7 +44,7 @@ namespace EContract.Dssp.Client
     /// <summary>
     /// Security information about a single signature in a document.
     /// </summary>
-    public class SignatureInfo
+    public class SignatureInfo : SignatureProperties
     {
         /// <summary>
         /// The certificate of the person that signed.
