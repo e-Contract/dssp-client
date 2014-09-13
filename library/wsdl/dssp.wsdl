@@ -3992,9 +3992,11 @@
             <xs:element ref="xacml:Policy"/>
             <xs:element ref="xacml:PolicySetIdReference"/>
             <xs:element ref="xacml:PolicyIdReference"/>
+            <!--
             <xs:element ref="xacml:CombinerParameters"/>
             <xs:element ref="xacml:PolicyCombinerParameters"/>
             <xs:element ref="xacml:PolicySetCombinerParameters"/>
+            -->
           </xs:choice>
           <xs:element ref="xacml:Obligations" minOccurs="0"/>
         </xs:sequence>
@@ -4002,14 +4004,14 @@
         <xs:attribute name="Version" type="xacml:VersionType" default="1.0"/>
         <xs:attribute name="PolicyCombiningAlgId" type="xs:anyURI" use="required"/>
       </xs:complexType>
-      <!-- -->
+      <!--
       <xs:element name="CombinerParameters" type="xacml:CombinerParametersType"/>
       <xs:complexType name="CombinerParametersType">
         <xs:sequence>
           <xs:element ref="xacml:CombinerParameter" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
       </xs:complexType>
-      <!-- -->
+
       <xs:element name="CombinerParameter" type="xacml:CombinerParameterType"/>
       <xs:complexType name="CombinerParameterType">
         <xs:sequence>
@@ -4017,7 +4019,7 @@
         </xs:sequence>
         <xs:attribute name="ParameterName" type="xs:string" use="required"/>
       </xs:complexType>
-      <!-- -->
+     
       <xs:element name="RuleCombinerParameters" type="xacml:RuleCombinerParametersType"/>
       <xs:complexType name="RuleCombinerParametersType">
         <xs:complexContent>
@@ -4026,7 +4028,7 @@
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <!-- -->
+
       <xs:element name="PolicyCombinerParameters" type="xacml:PolicyCombinerParametersType"/>
       <xs:complexType name="PolicyCombinerParametersType">
         <xs:complexContent>
@@ -4035,7 +4037,7 @@
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <!-- -->
+
       <xs:element name="PolicySetCombinerParameters" type="xacml:PolicySetCombinerParametersType"/>
       <xs:complexType name="PolicySetCombinerParametersType">
         <xs:complexContent>
@@ -4044,7 +4046,8 @@
           </xs:extension>
         </xs:complexContent>
       </xs:complexType>
-      <!-- -->
+      -->
+      
       <xs:element name="PolicySetIdReference" type="xacml:IdReferenceType"/>
       <xs:element name="PolicyIdReference" type="xacml:IdReferenceType"/>
       <!-- -->
@@ -4087,10 +4090,14 @@
         <xs:sequence>
           <xs:element ref="xacml:Description" minOccurs="0"/>
           <xs:element ref="xacml:PolicyDefaults" minOccurs="0"/>
+          <!--
           <xs:element ref="xacml:CombinerParameters" minOccurs="0"/>
+          -->
           <xs:element ref="xacml:Target"/>
+          <!--
             <xs:element ref="xacml:CombinerParameters" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="xacml:RuleCombinerParameters" minOccurs="0" maxOccurs="unbounded"/>
+            -->
             <xs:element ref="xacml:VariableDefinition" minOccurs="0" maxOccurs="unbounded" />
             <xs:element ref="xacml:Rule" minOccurs="0" maxOccurs="unbounded" />
           <xs:element ref="xacml:Obligations" minOccurs="0"/>

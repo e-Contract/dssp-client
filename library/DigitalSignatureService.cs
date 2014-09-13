@@ -12390,12 +12390,9 @@ namespace EContract.Dssp.Client.Proxy
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CombinerParameters", typeof(CombinerParametersType), Order=3)]
         [System.Xml.Serialization.XmlElementAttribute("Policy", typeof(PolicyType), Order=3)]
-        [System.Xml.Serialization.XmlElementAttribute("PolicyCombinerParameters", typeof(PolicyCombinerParametersType), Order=3)]
         [System.Xml.Serialization.XmlElementAttribute("PolicyIdReference", typeof(IdReferenceType), Order=3)]
         [System.Xml.Serialization.XmlElementAttribute("PolicySet", typeof(PolicySetType), Order=3)]
-        [System.Xml.Serialization.XmlElementAttribute("PolicySetCombinerParameters", typeof(PolicySetCombinerParametersType), Order=3)]
         [System.Xml.Serialization.XmlElementAttribute("PolicySetIdReference", typeof(IdReferenceType), Order=3)]
         [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
         public object[] Items
@@ -13287,155 +13284,6 @@ namespace EContract.Dssp.Client.Proxy
     }
     
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolicySetCombinerParametersType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PolicyCombinerParametersType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(RuleCombinerParametersType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
-    public partial class CombinerParametersType
-    {
-        
-        private CombinerParameterType[] combinerParameterField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CombinerParameter", Order=0)]
-        public CombinerParameterType[] CombinerParameter
-        {
-            get
-            {
-                return this.combinerParameterField;
-            }
-            set
-            {
-                this.combinerParameterField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
-    public partial class CombinerParameterType
-    {
-        
-        private AttributeValueType attributeValueField;
-        
-        private string parameterNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public AttributeValueType AttributeValue
-        {
-            get
-            {
-                return this.attributeValueField;
-            }
-            set
-            {
-                this.attributeValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ParameterName
-        {
-            get
-            {
-                return this.parameterNameField;
-            }
-            set
-            {
-                this.parameterNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
-    public partial class PolicySetCombinerParametersType : CombinerParametersType
-    {
-        
-        private string policySetIdRefField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string PolicySetIdRef
-        {
-            get
-            {
-                return this.policySetIdRefField;
-            }
-            set
-            {
-                this.policySetIdRefField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
-    public partial class PolicyCombinerParametersType : CombinerParametersType
-    {
-        
-        private string policyIdRefField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string PolicyIdRef
-        {
-            get
-            {
-                return this.policyIdRefField;
-            }
-            set
-            {
-                this.policyIdRefField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os")]
-    public partial class RuleCombinerParametersType : CombinerParametersType
-    {
-        
-        private string ruleIdRefField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string RuleIdRef
-        {
-            get
-            {
-                return this.ruleIdRefField;
-            }
-            set
-            {
-                this.ruleIdRefField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.0.30319.18020")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -13448,13 +13296,7 @@ namespace EContract.Dssp.Client.Proxy
         
         private DefaultsType policyDefaultsField;
         
-        private CombinerParameterType[] combinerParametersField;
-        
         private TargetType targetField;
-        
-        private CombinerParameterType[][] combinerParameters1Field;
-        
-        private RuleCombinerParametersType[] ruleCombinerParametersField;
         
         private VariableDefinitionType[] variableDefinitionField;
         
@@ -13502,21 +13344,7 @@ namespace EContract.Dssp.Client.Proxy
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("CombinerParameters", typeof(CombinerParameterType), Order = 2)]
-        public CombinerParameterType[] CombinerParameters
-        {
-            get
-            {
-                return this.combinerParametersField;
-            }
-            set
-            {
-                this.combinerParametersField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
         public TargetType Target
         {
             get
@@ -13530,36 +13358,7 @@ namespace EContract.Dssp.Client.Proxy
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute("CombinerParameters", Order=4)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("CombinerParameter", typeof(CombinerParameterType[]), IsNullable=false)]
-        public CombinerParameterType[][] CombinerParameters1
-        {
-            get
-            {
-                return this.combinerParameters1Field;
-            }
-            set
-            {
-                this.combinerParameters1Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("RuleCombinerParameters", Order=5)]
-        public RuleCombinerParametersType[] RuleCombinerParameters
-        {
-            get
-            {
-                return this.ruleCombinerParametersField;
-            }
-            set
-            {
-                this.ruleCombinerParametersField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("VariableDefinition", Order=6)]
+        [System.Xml.Serialization.XmlElementAttribute("VariableDefinition", Order=3)]
         public VariableDefinitionType[] VariableDefinition
         {
             get
@@ -13573,7 +13372,7 @@ namespace EContract.Dssp.Client.Proxy
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Rule", Order=7)]
+        [System.Xml.Serialization.XmlElementAttribute("Rule", Order=4)]
         public RuleType[] Rule
         {
             get
@@ -13587,7 +13386,7 @@ namespace EContract.Dssp.Client.Proxy
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayAttribute(Order=8)]
+        [System.Xml.Serialization.XmlArrayAttribute(Order=5)]
         [System.Xml.Serialization.XmlArrayItemAttribute("Obligation", IsNullable=false)]
         public ObligationType[] Obligations
         {
@@ -13997,22 +13796,13 @@ namespace EContract.Dssp.Client.Proxy
     {
         
         /// <remarks/>
-        CombinerParameters,
-        
-        /// <remarks/>
         Policy,
-        
-        /// <remarks/>
-        PolicyCombinerParameters,
         
         /// <remarks/>
         PolicyIdReference,
         
         /// <remarks/>
         PolicySet,
-        
-        /// <remarks/>
-        PolicySetCombinerParameters,
         
         /// <remarks/>
         PolicySetIdReference,
