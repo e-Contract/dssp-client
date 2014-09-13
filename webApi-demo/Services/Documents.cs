@@ -19,7 +19,11 @@ namespace dssp_demo.Services
 
         public static void Init()
         {
-            var doc = new DocInfo("_1", "dssp-specs.pdf");
+            DocInfo doc;
+
+            doc = new DocInfo("_1", "dssp-specs-0.9.0.pdf", "Digital Signature Service Protocol Specifications version 0.9.0");
+            docs[doc.Id] = doc;
+            doc = new DocInfo("_2", "dssp-specs-1.1.0.pdf", "Digital Signature Service Protocol Specifications version 1.1.0");
             docs[doc.Id] = doc;
         }
 

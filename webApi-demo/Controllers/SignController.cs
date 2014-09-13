@@ -39,7 +39,7 @@ namespace dssp_demo.Controllers
         }
 
         [Route("")]
-        public async Task<HttpResponseMessage> Get(string id)
+        public async Task<HttpResponseMessage> Get(string id, string location, string role)
         {
             //get the requested document and covert it for upload.
             Document doc = docs[id].ToDocument();
@@ -49,7 +49,7 @@ namespace dssp_demo.Controllers
 
             //creating the browser post page with the pending request
             string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, "en", 
-                new SignatureProperties() { SignatureProductionPlace = "Denderleeuw", SignerRole = "Zaakvoerder"},
+                new SignatureProperties() { SignatureProductionPlace = location, SignerRole = role},
                 ".*CN=Bryan Brouckaert.*");
 
             //returning it to the browser to execute
@@ -62,60 +62,74 @@ namespace dssp_demo.Controllers
         [Route("")]
         public async Task<HttpResponseMessage> Post(string id, [FromBody] FormDataCollection formData)
         {
-            foreach(KeyValuePair<String, String> formField in formData)
+            NameIdentifierType newSigner = null;
+            try
             {
-                if (formField.Key == "SignResponse")
+                foreach (KeyValuePair<String, String> formField in formData)
                 {
-                    try
+                    if (formField.Key == "SignResponse")
                     {
-                        //check if the sign response is correct, keep the signer
-                        NameIdentifierType newSigner = sessions[id].ValidateSignResponse(formField.Value);
-
-                        //get the session and remove it from the store
-                        DsspSession session = sessions.Remove(id);
-
-                        //Download the signed document.
-                        Document doc = await dsspClient.DownloadDocumentAsync(session);
-
-                        //You should save the signed document about here...
-
-                        //For demo purposes, lets validate the signature.  This is purely optional
-                        SecurityInfo securityInfo = await dsspClient.VerifyAsync(doc);
-
-                        //Keep some interesting info about the signed document
-                        docs[id].TimeStampValidity = securityInfo.TimeStampValidity;
-                        docs[id].NewSignatureBy = newSigner.Value;
-                        docs[id].Signatures = new List<SignInfo>();
-                        foreach (SignatureInfo info in securityInfo.Signatures)
+                        try
                         {
-                            SignInfo i = new SignInfo();
-                            i.Signer = info.SignerSubject;
-                            i.SignedOn = info.SigningTime;
-                            i.Location = info.SignatureProductionPlace;
-                            i.Role = info.SignerRole;
-                            docs[id].Signatures.Add(i);
+                            //check if the sign response is correct, keep the signer
+                            newSigner = sessions[id].ValidateSignResponse(formField.Value);
+                            docs[id].Alert = new Alert() { Message = "New signature by " + newSigner.Value, Type = "success" };
+
+                            //get the session and remove it from the store
+                            DsspSession session = sessions.Remove(id);
+
+                            //Download the signed document.
+                            Document doc = await dsspClient.DownloadDocumentAsync(session);
+
+                            //You should save the signed document about here...
+
+                            //For demo purposes, lets validate the signature.  This is purely optional
+                            SecurityInfo securityInfo = await dsspClient.VerifyAsync(doc);
+
+                            //Keep some interesting info about the signed document
+                            docs[id].TimeStampValidity = securityInfo.TimeStampValidity;
+                            docs[id].Signatures = new List<SignInfo>();
+                            foreach (SignatureInfo info in securityInfo.Signatures)
+                            {
+                                SignInfo i = new SignInfo();
+                                i.Signer = info.SignerSubject;
+                                i.SignedOn = info.SigningTime;
+                                i.Location = info.SignatureProductionPlace;
+                                i.Role = info.SignerRole;
+                                docs[id].Signatures.Add(i);
+                            }
+                        }
+                        catch (AuthorizationError ae)
+                        {
+                            newSigner = ae.AttemptedSigner;
+                            docs[id].Alert = new Alert() { Message = "Failed signature attempt by " + ae.AttemptedSigner.Value, Type = "warning" };
+
+                            sessions.Remove(id); //we can remove now, it is no longer valid
                         }
                     }
-                    catch (AuthorizationError ae)
-                    {
-                        sessions.Remove(id); //we can remove now, it is no longer valid
-                        docs[id].SignatureAttemptBy = ae.AttemptedSigner.Value;
-                    }
+                }
 
-                    //Redirecting back to the main site (via HTML to make sure "Get" is used instead of POST
-                    var builder = new StringBuilder(); 
-                    builder.AppendLine("<html>");
-                    builder.AppendLine("<head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=" + RequestContext.VirtualPathRoot + "/\"></head>");
-                    builder.AppendLine("<body><a href=\"/\">done</a></body>");
-                    builder.AppendLine("</html>");
-
-                    HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-                    result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(builder.ToString()));
-                    result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-                    return result;
+                if (newSigner == null)
+                {
+                    docs[id].Alert = new Alert() { Message = "No new signature found", Type = "danger" };
                 }
             }
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            catch (Exception e)
+            {
+                docs[id].Alert = new Alert() { Message = "Internal error: " + e.Message, Type = "danger" };
+            }
+
+            //Redirecting back to the main site (via HTML to make sure "Get" is used instead of POST
+            var builder = new StringBuilder();
+            builder.AppendLine("<html>");
+            builder.AppendLine("<head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=" + RequestContext.VirtualPathRoot + "/\"></head>");
+            builder.AppendLine("<body><a href=\"/\">done</a></body>");
+            builder.AppendLine("</html>");
+
+            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+            result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(builder.ToString()));
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+            return result;
         }
     }
 }

@@ -10,17 +10,18 @@ namespace dssp_demo.Models
 {
     public class DocInfo
     {
-        public DocInfo(string id, string name)
+        public DocInfo(string id, string name, string description)
         {
             this.Id = id;
             this.Name = name;
+            this.Description = description;
         }
 
         public string Id;
         public string Name;
+        public string Description;
+        public Alert Alert;
         public DateTime? TimeStampValidity;
-        public string NewSignatureBy;
-        public string SignatureAttemptBy;
         public IList<SignInfo> Signatures;
 
         public bool Signed
@@ -28,6 +29,14 @@ namespace dssp_demo.Models
             get
             {
                 return TimeStampValidity != null;
+            }
+        }
+
+        public bool HasAlert
+        {
+            get
+            {
+                return Alert != null;
             }
         }
 
@@ -39,6 +48,12 @@ namespace dssp_demo.Models
 
             return d;
         }
+    }
+
+    public class Alert
+    {
+        public string Message;
+        public string Type;
     }
 
     public class SignInfo

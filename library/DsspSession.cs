@@ -282,10 +282,11 @@ namespace EContract.Dssp.Client
             pendingRequest.OptionalInputs.ReplyTo.Address.Value = landingUrl.AbsoluteUri;
             pendingRequest.OptionalInputs.ReturnSignerIdentity = new ReturnSignerIdentity();
             pendingRequest.OptionalInputs.Language = language;
-            if (properties != null)
+            if (properties != null 
+                && (!string.IsNullOrWhiteSpace(properties.SignerRole) || !string.IsNullOrWhiteSpace(properties.SignatureProductionPlace)))
             {
                 var items = new List<VisibleSignatureItemType>();
-                if (properties.SignerRole != null)
+                if (!string.IsNullOrWhiteSpace(properties.SignerRole))
                 {
                     var stringItem = new ItemValueStringType();
                     stringItem.ItemValue = properties.SignerRole;
@@ -295,7 +296,7 @@ namespace EContract.Dssp.Client
                     item.ItemValue = stringItem;
                     items.Add(item);
                 }
-                if (properties.SignatureProductionPlace != null) {
+                if (!string.IsNullOrWhiteSpace(properties.SignatureProductionPlace)) {
                     var stringItem = new ItemValueStringType();
                     stringItem.ItemValue = properties.SignatureProductionPlace;
 
@@ -310,7 +311,7 @@ namespace EContract.Dssp.Client
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration = new VisibleSignatureItemsConfigurationType();
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration.VisibleSignatureItem = items.ToArray<VisibleSignatureItemType>();
             }
-            if (authorization != null)
+            if (authorization != null && authorization.Subjects.Length > 0 && !string.IsNullOrWhiteSpace(authorization.Subjects[0].MatchValue))
             {
                 var subjects = new List<SubjectMatchType>();
                 foreach (Subject subject in authorization.Subjects)

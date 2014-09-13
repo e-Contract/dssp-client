@@ -1,19 +1,32 @@
 ﻿<div>
-    <ul class="unstyled">
-        <li ng-repeat="doc in docs">
-            <div ng-hide="doc.Signed">
-                Unsigned doc: <a href="api/documents/{{doc.Id}}/signing">{{doc.Name}}</a> (last attempt by {{doc.SignatureAttemptBy}})
-            </div>
+    <accordion>
+        <accordion-group ng-repeat="doc in docs">
+            <accordion-heading>
+                {{doc.Name}}: {{doc.Description}} <span ng-show="{{doc.Signed}}">(Signed)</span>
+            </accordion-heading>
+            <alert ng-show="{{doc.Alert}}" type="{{doc.Alert.Type}}">
+                {{doc.Alert.Message}}
+            </alert>
             <div ng-show="doc.Signed">
-                Signed  doc: {{doc.Name}}, time stamp valid until {{doc.TimeStampValidity}} (new signature by {{doc.NewSignatureBy}})
-                <ul>
-                    <li ng-repeat="signature in doc.Signatures">
-                        Singed by "{{signature.Signer}}" as {{signature.Role}} on {{signature.SignedOn}} at {{signature.Location}}
-                    </li>
-                </ul>
+                <table>
+                    <caption>Signatures (At least valid until {{doc.TimeStampValidity}})</caption>
+                    <tr>
+                        <th>Signer</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Role</th>
+                    </tr>
+                    <tr ng-repeat="signature in doc.Signatures">
+                        <td>{{signature.Signer}}</td>
+                        <td>{{signature.SignedOn}}</td>
+                        <td>{{signature.Location}}</td>
+                        <td>{{signature.Role}}</td>
+                    </tr>
+                </table>
             </div>
-        </li>
-    </ul>
 
-    <button ng-click="refresh()">Refresh</button>
+            <button class="btn btn-default" ng-click="sign(doc)">Sign...</button>
+</accordion-group>
+    </accordion>
+    <button class="btn btn-default" ng-click="refresh()">Refresh</button>
 </div>

@@ -1,4 +1,4 @@
-﻿var demo = angular.module('demo', ['ngRoute']);
+﻿var demo = angular.module('demo', ['ngRoute', 'ui.bootstrap']);
 
 demo.config(function ($routeProvider) {
     $routeProvider
@@ -11,7 +11,7 @@ demo.config(function ($routeProvider) {
 		});
 });
 
-demo.controller('docController', ['$scope', '$http', function($scope, $http) {
+demo.controller('docController', ['$scope', '$http', '$modal', function($scope, $http, $modal) {
 
     $scope.docs = [];
 
@@ -26,6 +26,36 @@ demo.controller('docController', ['$scope', '$http', function($scope, $http) {
             });
     };
 
+    $scope.sign = function (docParam) {
+        $modal.open({
+            templateUrl: 'signDialog.html',
+            controller: 'signControler',
+            resolve: {
+                doc: function () {
+                    return docParam;
+                }
+            }
+        });
+    }
+
     $scope.refresh();
         
+}]);
+
+demo.controller('signControler', ['$scope', '$modalInstance', 'doc', function ($scope, $modalInstance, doc) {
+
+    $scope.doc = doc;
+    $scope.props = {
+        location: undefined,
+        role: undefined
+    };
+
+    $scope.fill = function () {
+        $scope.props.location = "Denderleeuw";
+        $scope.props.role = "Zaakvoerder";
+    }
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 }]);

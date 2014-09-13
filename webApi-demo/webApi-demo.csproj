@@ -79,6 +79,8 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="index.js" />
+    <Content Include="signDialog.html" />
+    <Content Include="ui-bootstrap-tpls-0.11.0.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,7 +103,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="App_Data\dssp-specs.pdf" />
+    <Content Include="App_Data\dssp-specs-0.9.0.pdf" />
+    <Content Include="App_Data\dssp-specs-1.1.0.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
