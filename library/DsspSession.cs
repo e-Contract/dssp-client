@@ -285,17 +285,15 @@ namespace EContract.Dssp.Client
             if (properties != null)
             {
                 var items = new List<VisibleSignatureItemType>();
-                if (properties.SignerRoles != null) {
-                    foreach (string signerRole in properties.SignerRoles)
-                    {
-                        var stringItem = new ItemValueStringType();
-                        stringItem.ItemValue = signerRole;
+                if (properties.SignerRole != null)
+                {
+                    var stringItem = new ItemValueStringType();
+                    stringItem.ItemValue = properties.SignerRole;
 
-                        var item = new VisibleSignatureItemType();
-                        item.ItemName = ItemNameEnum.SignatureReason;
-                        item.ItemValue = stringItem;
-                        items.Add(item);
-                    }
+                    var item = new VisibleSignatureItemType();
+                    item.ItemName = ItemNameEnum.SignatureReason;
+                    item.ItemValue = stringItem;
+                    items.Add(item);
                 }
                 if (properties.SignatureProductionPlace != null) {
                     var stringItem = new ItemValueStringType();

@@ -381,8 +381,10 @@ namespace EContract.Dssp.Client
                 info.Signer = new X509Certificate2(report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].CertificateValue);
                 info.SignerSubject = report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].Subject;
                 info.SignatureProductionPlace = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.Location;
-                if (report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole != null)
-                    info.SignerRoles = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles;
+                if (report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole != null
+                    && report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles != null
+                    && report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles.Length > 0)
+                    info.SignerRole = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles[0];
                 result.Signatures.Add(info);
             }
             return result;

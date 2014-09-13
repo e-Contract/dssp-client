@@ -38,6 +38,6 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Claimed or certified roles assumed by the signer in creating the signature.
         /// </summary>
-        public string[] SignerRoles { get; set; }
+        public string SignerRole { get; set; }
     }
 }

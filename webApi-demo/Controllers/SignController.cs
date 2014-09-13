@@ -49,7 +49,7 @@ namespace dssp_demo.Controllers
 
             //creating the browser post page with the pending request
             string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, "en", 
-                new SignatureProperties() { SignatureProductionPlace = "Denderleeuw", SignerRoles = new string[] { "zaakvoerder", "aandeelhouder" }},
+                new SignatureProperties() { SignatureProductionPlace = "Denderleeuw", SignerRole = "Zaakvoerder"},
                 ".*CN=Bryan Brouckaert.*");
 
             //returning it to the browser to execute
@@ -92,7 +92,7 @@ namespace dssp_demo.Controllers
                             i.Signer = info.SignerSubject;
                             i.SignedOn = info.SigningTime;
                             i.Location = info.SignatureProductionPlace;
-                            i.Roles = info.SignerRoles;
+                            i.Role = info.SignerRole;
                             docs[id].Signatures.Add(i);
                         }
                     }
