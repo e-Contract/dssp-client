@@ -50,7 +50,7 @@ namespace dssp_demo.Controllers
             //creating the browser post page with the pending request
             string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, "en", 
                 new SignatureProperties() { SignatureProductionPlace = location, SignerRole = role},
-                ".*CN=Bryan Brouckaert.*");
+                ".*CN=.*Brouckaert.*");
 
             //returning it to the browser to execute
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
@@ -80,6 +80,7 @@ namespace dssp_demo.Controllers
 
                             //Download the signed document.
                             Document doc = await dsspClient.DownloadDocumentAsync(session);
+                            docs[id].Content = doc.Content;
 
                             //You should save the signed document about here...
 

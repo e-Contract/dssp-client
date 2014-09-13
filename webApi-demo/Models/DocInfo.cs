@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 using System.Web.Hosting;
 
@@ -23,6 +24,8 @@ namespace dssp_demo.Models
         public Alert Alert;
         public DateTime? TimeStampValidity;
         public IList<SignInfo> Signatures;
+        [IgnoreDataMember]
+        public Stream Content;
 
         public bool Signed
         {
@@ -32,19 +35,19 @@ namespace dssp_demo.Models
             }
         }
 
-        public bool HasAlert
-        {
-            get
-            {
-                return Alert != null;
-            }
-        }
-
         public Document ToDocument()
         {
             Document d = new Document();
             d.MimeType = "application/pdf";
-            d.Content = File.OpenRead(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"App_Data\" + this.Name));
+            if (this.Content == null)
+            {
+                this.Content = File.OpenRead(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"App_Data\" + this.Name));
+            }
+            else
+            {
+                this.Content.Seek(0, SeekOrigin.Begin);
+            }
+            d.Content = this.Content;
 
             return d;
         }

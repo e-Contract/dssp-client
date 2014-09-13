@@ -41,6 +41,10 @@ namespace dssp_demo.Services
             {
                 return docs[id];
             }
+            set
+            {
+                docs[id] = value;
+            }
         }
     }
 }
