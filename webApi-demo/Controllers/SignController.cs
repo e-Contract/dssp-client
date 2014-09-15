@@ -32,10 +32,12 @@ namespace dssp_demo.Controllers
         //Reference to the sessions
         DsspSessions sessions = new DsspSessions();
 
+        //Reference to the configuration
+        Configuration configuration = new Configuration();
+
         public SignController()
         {
-            dsspClient.ApplicationName = "egelke";
-            dsspClient.ApplicationPassword = "egelke";
+
         }
 
         [Route("")]
@@ -45,12 +47,13 @@ namespace dssp_demo.Controllers
             Document doc = docs[id].ToDocument();
 
             //Upload it, keeping the DSS-P session that is returned
+            dsspClient.ApplicationName = configuration.Current.AppName;
+            dsspClient.ApplicationPassword = configuration.Current.AppPwd;
             sessions[id] = await dsspClient.UploadDocumentAsync(doc);
 
             //creating the browser post page with the pending request
-            string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, "en", 
-                new SignatureProperties() { SignatureProductionPlace = location, SignerRole = role},
-                ".*CN=.*Brouckaert.*");
+            string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, configuration.Current.Lanuage, 
+                new SignatureProperties() { SignatureProductionPlace = location, SignerRole = role}, configuration.Current.Authorization);
 
             //returning it to the browser to execute
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);

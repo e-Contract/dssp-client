@@ -151,12 +151,15 @@ namespace EContract.Dssp.Client
 
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, string subjectRegex)
         {
-            return GeneratePendingRequestPage(postAddress, landingUrl, language, null, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
+            return GeneratePendingRequestPage(postAddress, landingUrl, language, null, subjectRegex);
         }
 
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureProperties properties, string subjectRegex)
         {
-            return GeneratePendingRequestPage(postAddress, landingUrl, language, properties, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
+            if (String.IsNullOrWhiteSpace(subjectRegex))
+                return GeneratePendingRequestPage(postAddress, landingUrl, language, properties, (Authorization)null);
+            else
+                return GeneratePendingRequestPage(postAddress, landingUrl, language, properties, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
         }
 
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureProperties properties, Authorization authorization)
@@ -247,12 +250,15 @@ namespace EContract.Dssp.Client
 
         public string GeneratePendingRequest(Uri landingUrl, string language, string subjectRegex)
         {
-            return GeneratePendingRequest(landingUrl, language, null, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
+            return GeneratePendingRequest(landingUrl, language, null, subjectRegex);
         }
 
         public string GeneratePendingRequest(Uri landingUrl, string language, SignatureProperties properties, string subjectRegex)
         {
-            return GeneratePendingRequest(landingUrl, language, properties, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
+            if (string.IsNullOrWhiteSpace(subjectRegex))
+                return GeneratePendingRequest(landingUrl, language, properties, (Authorization)null);
+            else
+                return GeneratePendingRequest(landingUrl, language, properties, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
         }
 
         public string GeneratePendingRequest(Uri landingUrl, string language, SignatureProperties properties, Authorization authorization)
