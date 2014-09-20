@@ -69,7 +69,7 @@ demo.controller('docController', ['$scope', '$modal', 'docs', 'docSrv', 'configS
 
     $scope.sign = function (docParam) {
         $modal.open({
-            templateUrl: 'signDialog.html',
+            templateUrl: 'signModal.html',
             controller: 'signControler',
             resolve: {
                 doc: function () {
@@ -77,11 +77,11 @@ demo.controller('docController', ['$scope', '$modal', 'docs', 'docSrv', 'configS
                 }
             }
         });
-    }
+    };
 
     $scope.config = function () {
         var modalInstance = $modal.open({
-            templateUrl: 'config.html',
+            templateUrl: 'configModal.html',
             controller: 'configControler',
             resolve: {
                 config: function () {
@@ -93,9 +93,9 @@ demo.controller('docController', ['$scope', '$modal', 'docs', 'docSrv', 'configS
         modalInstance.result.then(function (config) {
             configSrv.setConfig(config);
         }, function () {
-            
+
         });
-    }
+    };
         
 }]);
 

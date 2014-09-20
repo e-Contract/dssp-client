@@ -26,8 +26,68 @@
             </div>
 
             <button class="btn btn-default" ng-click="sign(doc)">Sign...</button>
-</accordion-group>
+        </accordion-group>
     </accordion>
     <button class="btn btn-default" ng-click="refresh()">Refresh</button>
     <button class="btn btn-default" ng-click="config()">Config...</button>
+
+    <script type="text/ng-template" id="configModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Configuration</h3>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" class="bootstrap-frm">
+                <label>
+                    <span>Name: </span>
+                    <input id="name" type="text" name="name" placeholder="Application Name (optional)" value="{{ config.AppName }}" />
+                </label>
+                <label>
+                    <span>Password: </span>
+                    <input id="pwd" type="text" name="pwd" placeholder="Application Password (optional)" value="{{ config.AppPwd }}" />
+                </label>
+                <label>
+                    <span>Language: </span>
+                    <input id="lanuage" type="text" name="language" placeholder="ISO code" value="{{ config.Lanuage }}" />
+                </label>
+
+                <label>
+                    <span>Authorization: </span>
+                    <input id="auth" type="text" name="auth" placeholder="Regex of allowed subjects (optional)" value="{{ config.Authorization }}" />
+                </label>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="save()">Save</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="signModal.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Signing {{doc.Name}}</h3>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" class="bootstrap-frm">
+                <h1>
+                    Signing properties
+                    <span>Optional properties that will be used during signing</span>
+                </h1>
+                <label>
+                    <span>Location: </span>
+                    <input id="location" type="text" name="location" placeholder="Your City" value="{{props.location}}" />
+                </label>
+
+                <label>
+                    <span>Role: </span>
+                    <input id="role" type="text" name="role" placeholder="Your Role" value="{{props.role}}" />
+                </label>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" ng-click="fill()">Fill defaults</button>
+            <a href="api/documents/{{doc.Id}}/signing?location={{props.location}}&role={{props.role}}" class="btn btn-primary">OK</a>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+     </script>
 </div>

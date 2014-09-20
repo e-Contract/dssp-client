@@ -22,7 +22,6 @@ namespace dssp_demo.Controllers
 
         public ICollection<DocInfo> Get()
         {
-            Thread.Sleep(2000);
             return documents.All;
         }
 
