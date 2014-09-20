@@ -1,4 +1,4 @@
-﻿var demo = angular.module('demo', ['ngRoute', 'ui.bootstrap']);
+﻿var demo = angular.module('demo', ['ngRoute', 'ui.bootstrap', 'angular-loading-bar']);
 
 demo.config(function ($routeProvider) {
     $routeProvider
@@ -15,17 +15,6 @@ demo.config(function ($routeProvider) {
 		    redirectTo: '/'
 		});
 });
-
-demo.run(['$rootScope', function ($root) {
-    $root.$on('$routeChangeStart', function (e, curr, prev) {
-        if (curr.$$route && curr.$$route.resolve) {
-            $root.loadingView = true;
-        }
-    });
-    $root.$on('$routeChangeSuccess', function (e, curr, prev) {
-        $root.loadingView = false;
-    });
-}]);
 
 demo.factory('configSrv', ['$http', '$log', function ($http, $log) {
     var sdo = {
@@ -90,7 +79,7 @@ demo.controller('docController', ['$scope', '$modal', 'docs', 'docSrv', 'configS
         });
     }
 
-    $scope.config = function (config) {
+    $scope.config = function () {
         var modalInstance = $modal.open({
             templateUrl: 'config.html',
             controller: 'configControler',
@@ -128,7 +117,7 @@ demo.controller('signControler', ['$scope', '$modalInstance', 'doc', function ($
     };
 }]);
 
-demo.controller('configControler', ['$scope', '$modalInstance', '$http', 'config', function ($scope, $modalInstance, $http, config) {
+demo.controller('configControler', ['$scope', '$modalInstance', 'config', function ($scope, $modalInstance, config) {
 
     $scope.config = config.data;
 

@@ -5,20 +5,20 @@
     <form action="" method="post" class="bootstrap-frm">
         <label>
             <span>Name: </span>
-            <input id="name" type="text" name="name" placeholder="Application Name (optional)" value="{{config.AppName}}" />
+            <input id="name" type="text" name="name" placeholder="Application Name (optional)" value="{{ config.AppName }}" />
         </label>
         <label>
             <span>Password: </span>
-            <input id="pwd" type="text" name="pwd" placeholder="Application Password (optional)" value="{{config.AppPwd}}" />
+            <input id="pwd" type="text" name="pwd" placeholder="Application Password (optional)" value="{{ config.AppPwd }}" />
         </label>
             <label>
                 <span>Language: </span>
-                <input id="lanuage" type="text" name="language" placeholder="ISO code" value="{{config.Lanuage}}" />
+                <input id="lanuage" type="text" name="language" placeholder="ISO code" value="{{ config.Lanuage }}" />
             </label>
 
             <label>
                 <span>Authorization: </span>
-                <input id="auth" type="text" name="auth" placeholder="Regex of allowed subjects (optional)" value="{{config.Authorization}}" />
+                <input id="auth" type="text" name="auth" placeholder="Regex of allowed subjects (optional)" value="{{ config.Authorization }}" />
             </label>
         </form>
 </div>
