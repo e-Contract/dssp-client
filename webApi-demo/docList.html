@@ -39,20 +39,20 @@
             <form action="" method="post" class="bootstrap-frm">
                 <label>
                     <span>Name: </span>
-                    <input id="name" type="text" name="name" placeholder="Application Name (optional)" value="{{ config.AppName }}" />
+                    <input id="name" type="text" name="name" placeholder="Application Name (optional)" ng-model="config.AppName" />
                 </label>
                 <label>
                     <span>Password: </span>
-                    <input id="pwd" type="text" name="pwd" placeholder="Application Password (optional)" value="{{ config.AppPwd }}" />
+                    <input id="pwd" type="text" name="pwd" placeholder="Application Password (optional)" ng-model="config.AppPwd" />
                 </label>
                 <label>
                     <span>Language: </span>
-                    <input id="lanuage" type="text" name="language" placeholder="ISO code" value="{{ config.Lanuage }}" />
+                    <input id="lanuage" type="text" name="language" placeholder="ISO code" ng-model="config.Lanuage" />
                 </label>
 
                 <label>
                     <span>Authorization: </span>
-                    <input id="auth" type="text" name="auth" placeholder="Regex of allowed subjects (optional)" value="{{ config.Authorization }}" />
+                    <input id="auth" type="text" name="auth" placeholder="Regex of allowed subjects (optional)" ng-model="config.Authorization" />
                 </label>
             </form>
         </div>
@@ -74,12 +74,12 @@
                 </h1>
                 <label>
                     <span>Location: </span>
-                    <input id="location" type="text" name="location" placeholder="Your City" value="{{props.location}}" />
+                    <input id="location" type="text" name="location" placeholder="Your City" ng-model="props.location" />
                 </label>
 
                 <label>
                     <span>Role: </span>
-                    <input id="role" type="text" name="role" placeholder="Your Role" value="{{props.role}}" />
+                    <input id="role" type="text" name="role" placeholder="Your Role" ng-model="props.role" />
                 </label>
 
             </form>

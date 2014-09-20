@@ -43,23 +43,32 @@ namespace dssp_demo.Controllers
         [Route("")]
         public async Task<HttpResponseMessage> Get(string id, string location, string role)
         {
-            //get the requested document and covert it for upload.
-            Document doc = docs[id].ToDocument();
 
-            //Upload it, keeping the DSS-P session that is returned
-            dsspClient.ApplicationName = configuration.Current.AppName;
-            dsspClient.ApplicationPassword = configuration.Current.AppPwd;
-            sessions[id] = await dsspClient.UploadDocumentAsync(doc);
+            try
+            {
+                //get the requested document and covert it for upload.
+                Document doc = docs[id].ToDocument();
 
-            //creating the browser post page with the pending request
-            string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, configuration.Current.Lanuage, 
-                new SignatureProperties() { SignatureProductionPlace = location, SignerRole = role}, configuration.Current.Authorization);
+                //Upload it, keeping the DSS-P session that is returned
+                dsspClient.ApplicationName = configuration.Current.AppName;
+                dsspClient.ApplicationPassword = configuration.Current.AppPwd;
+                sessions[id] = await dsspClient.UploadDocumentAsync(doc);
 
-            //returning it to the browser to execute
-            HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-            result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(browserPostPage));
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
-            return result;
+                //creating the browser post page with the pending request
+                string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, configuration.Current.Lanuage,
+                    new SignatureProperties() { SignatureProductionPlace = location, SignerRole = role }, configuration.Current.Authorization);
+                //returning it to the browser to execute
+                HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
+                result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(browserPostPage));
+                result.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+                return result;
+            }
+            catch (Exception e)
+            {
+                docs[id].Alert = new Alert() { Message = e.Message, Type = "danger" };
+                return RedirectBack();
+            }
+            
         }
 
         [Route("")]
@@ -123,7 +132,12 @@ namespace dssp_demo.Controllers
                 docs[id].Alert = new Alert() { Message = "Internal error: " + e.Message, Type = "danger" };
             }
 
-            //Redirecting back to the main site (via HTML to make sure "Get" is used instead of POST
+            //Redirecting back to the main site (via HTML to make sure "Get" is used instead of POST)
+            return RedirectBack();
+        }
+
+        private HttpResponseMessage RedirectBack()
+        {
             var builder = new StringBuilder();
             builder.AppendLine("<html>");
             builder.AppendLine("<head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=" + RequestContext.VirtualPathRoot + "/\"></head>");
