@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\library\Authorization.cs">
+      <Link>Authorization.cs</Link>
+    </Compile>
+    <Compile Include="..\library\AuthorizationError.cs">
+      <Link>AuthorizationError.cs</Link>
+    </Compile>
     <Compile Include="..\library\Document.cs">
       <Link>Document.cs</Link>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="..\library\SignatureInfo.cs">
       <Link>SignatureInfo.cs</Link>
     </Compile>
+    <Compile Include="..\library\SignatureProperties.cs">
+      <Link>SignatureProperties.cs</Link>
+    </Compile>
     <Compile Include="..\library\WcfBinding\PlainDsspBinding.cs">
       <Link>WcfBinding\PlainDsspBinding.cs</Link>
     </Compile>
@@ -84,6 +93,9 @@
     </Compile>
     <Compile Include="..\library\WcfBinding\ScDsspSecurityTokenProvider.cs">
       <Link>WcfBinding\ScDsspSecurityTokenProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\UTDsspBinding.cs">
+      <Link>WcfBinding\UTDsspBinding.cs</Link>
     </Compile>
     <Compile Include="DigitalSignatureService.cs" />
     <Compile Include="StreamHelper.cs" />

@@ -156,7 +156,7 @@ namespace EContract.Dssp.Client
 
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureProperties properties, string subjectRegex)
         {
-            if (String.IsNullOrWhiteSpace(subjectRegex))
+            if (String.IsNullOrEmpty(subjectRegex))
                 return GeneratePendingRequestPage(postAddress, landingUrl, language, properties, (Authorization)null);
             else
                 return GeneratePendingRequestPage(postAddress, landingUrl, language, properties, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
@@ -255,7 +255,7 @@ namespace EContract.Dssp.Client
 
         public string GeneratePendingRequest(Uri landingUrl, string language, SignatureProperties properties, string subjectRegex)
         {
-            if (string.IsNullOrWhiteSpace(subjectRegex))
+            if (string.IsNullOrEmpty(subjectRegex))
                 return GeneratePendingRequest(landingUrl, language, properties, (Authorization)null);
             else
                 return GeneratePendingRequest(landingUrl, language, properties, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
@@ -266,9 +266,9 @@ namespace EContract.Dssp.Client
             if (landingUrl == null) throw new ArgumentNullException("landingUrl");
             if (authorization != null && (authorization.Subjects == null || authorization.Subjects.Length == 0))
                 throw new ArgumentException("When provided, the authorization parameter must specify at least 1 subject", "authorization");
-            if (authorization != null && string.IsNullOrWhiteSpace(authorization.Resource))
+            if (authorization != null && string.IsNullOrEmpty(authorization.Resource))
                 throw new ArgumentException("When provided, the authorization parameter must specify the resource", "authorization");
-            if (authorization != null && string.IsNullOrWhiteSpace(authorization.Action))
+            if (authorization != null && string.IsNullOrEmpty(authorization.Action))
                 throw new ArgumentException("When provided, the authorization parameter must specify the action", "authorization");
 
             //Prepare browser post message (to return)
@@ -288,11 +288,11 @@ namespace EContract.Dssp.Client
             pendingRequest.OptionalInputs.ReplyTo.Address.Value = landingUrl.AbsoluteUri;
             pendingRequest.OptionalInputs.ReturnSignerIdentity = new ReturnSignerIdentity();
             pendingRequest.OptionalInputs.Language = language;
-            if (properties != null 
-                && (!string.IsNullOrWhiteSpace(properties.SignerRole) || !string.IsNullOrWhiteSpace(properties.SignatureProductionPlace)))
+            if (properties != null
+                && (!string.IsNullOrEmpty(properties.SignerRole) || !string.IsNullOrEmpty(properties.SignatureProductionPlace)))
             {
                 var items = new List<VisibleSignatureItemType>();
-                if (!string.IsNullOrWhiteSpace(properties.SignerRole))
+                if (!string.IsNullOrEmpty(properties.SignerRole))
                 {
                     var stringItem = new ItemValueStringType();
                     stringItem.ItemValue = properties.SignerRole;
@@ -302,7 +302,8 @@ namespace EContract.Dssp.Client
                     item.ItemValue = stringItem;
                     items.Add(item);
                 }
-                if (!string.IsNullOrWhiteSpace(properties.SignatureProductionPlace)) {
+                if (!string.IsNullOrEmpty(properties.SignatureProductionPlace))
+                {
                     var stringItem = new ItemValueStringType();
                     stringItem.ItemValue = properties.SignatureProductionPlace;
 
@@ -317,7 +318,7 @@ namespace EContract.Dssp.Client
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration = new VisibleSignatureItemsConfigurationType();
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration.VisibleSignatureItem = items.ToArray<VisibleSignatureItemType>();
             }
-            if (authorization != null && authorization.Subjects.Length > 0 && !string.IsNullOrWhiteSpace(authorization.Subjects[0].MatchValue))
+            if (authorization != null && authorization.Subjects.Length > 0 && !string.IsNullOrEmpty(authorization.Subjects[0].MatchValue))
             {
                 var subjects = new List<SubjectMatchType>();
                 foreach (Subject subject in authorization.Subjects)

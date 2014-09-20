@@ -45,13 +45,13 @@ namespace forms_demo
                     this.msg.Text = "signed document with timestamp valid until " + securityInfo.TimeStampValidity;
                     foreach(SignatureInfo signature in securityInfo.Signatures)
                     {
-                        if (signature.Signer.Subject == newSigner.Value)
+                        if (signature.SignerSubject == newSigner.Value)
                         {
-                            this.signatures.Items.Add("Signed by " + signature.Signer.Subject + " on " + signature.SigningTime);
+                            this.signatures.Items.Add("New: Signed by " + signature.Signer.Subject + " on " + signature.SigningTime);
                         }
                         else
                         {
-                            this.signatures.Items.Add("Signed by " + signature.Signer.Subject + " (new signer) on " + signature.SigningTime);
+                            this.signatures.Items.Add("Signed by " + signature.Signer.Subject + " on " + signature.SigningTime);
                         }
                     }
                 }

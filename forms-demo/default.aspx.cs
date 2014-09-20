@@ -16,6 +16,8 @@ namespace forms_demo
 
         protected void signButton_Click(object sender, EventArgs e)
         {
+            Session["Location"] = this.location.Text;
+            Session["Role"] = this.role.Text;
             Response.Redirect("Sign.aspx");
         }
     }
