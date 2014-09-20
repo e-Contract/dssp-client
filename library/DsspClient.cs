@@ -172,7 +172,7 @@ namespace EContract.Dssp.Client
         private DigitalSignatureServicePortTypeClient CreateDSSPClient()
         {
             DigitalSignatureServicePortTypeClient client;
-            if (this.ApplicationName == null)
+            if (string.IsNullOrEmpty(this.ApplicationName))
             {
                 client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
             }

@@ -34,7 +34,7 @@ namespace forms_demo.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("egelke")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string AppName {
             get {
                 return ((string)(this["AppName"]));
@@ -43,7 +43,7 @@ namespace forms_demo.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("egelke")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string AppPwd {
             get {
                 return ((string)(this["AppPwd"]));
