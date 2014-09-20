@@ -50,6 +50,7 @@
     <Compile Include="AuthorizationError.cs" />
     <Compile Include="DigitalSignatureService.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="DsspClientAsync.cs" />
     <Compile Include="IncorrectSignatureException.cs" />
     <Compile Include="SignatureInfo.cs" />
     <Compile Include="SignatureProperties.cs" />

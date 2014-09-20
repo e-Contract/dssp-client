@@ -42,10 +42,10 @@ namespace EContract.Dssp.Client
     /// The DSS-P client for e-contract.
     /// </summary>
     /// <remarks>
-    /// This is a wrapper class for the e-contract service.  It does not contain direct support of the BROWSER/POST protocol, but provides the nesesary input
+    /// This is a wrapper class for the e-contract service.  It does not contain direct support of the BROWSER/POST protocol, but provides the necessary input
     /// and processes its output.
     /// </remarks>
-    public class DsspClient
+    public partial class DsspClient
     {
 
         private readonly Random rand = new Random();
@@ -120,23 +120,57 @@ namespace EContract.Dssp.Client
         /// <param name="document">The document to be signed</param>
         /// <returns>The session, required for the BROWSER/POST protocol and the download of the signed message</returns>
         public DsspSession UploadDocument(Document document) 
-#if !v3_5
         {
-            return UploadDocumentAsync(document).Result;
+            byte[] clientNonce;
+            if (document == null) throw new ArgumentNullException("document");
+
+            var client = CreateDSSPClient();
+            var request = CreateSignRequest(document, out clientNonce);
+            SignResponse response = client.sign(request);
+            return ProcessSignResponse(response, clientNonce);
         }
-        
+
         /// <summary>
-        /// Uploads a document to e-Contract, asynchronously.
+        /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol.
         /// </summary>
-        /// <see cref="UploadDocument"/>
-        public async System.Threading.Tasks.Task<DsspSession> UploadDocumentAsync(Document document) 
-#endif
+        /// <remarks>
+        /// The session is closed when the downloads finishes, it can't be reused afterward and should be removed from the storage.
+        /// </remarks>
+        /// <param name="session">The session linked to the uploaded document</param>
+        /// <returns>The document with signature, including id and mimeType</returns>
+        /// <exception cref="ArgumentException">When the signResponse isn't valid, including its signature</exception>
+        /// <exception cref="InvalidOperationException">When the e-contract service returns an error</exception>
+        public Document DownloadDocument(DsspSession session)
+        {
+            if (session == null) throw new ArgumentNullException("session");
+
+            var client = CreateDSSPClient(session);
+            var downloadRequest = CreateDownloadRequest(session);
+            SignResponse downloadResponse = client.pendingRequest(downloadRequest);
+            return ProcessDownloadResponse(downloadResponse);
+        }
+
+        /// <summary>
+        /// Validates the provided document via the e-contract service.
+        /// </summary>
+        /// <param name="document">The document that contains a signature</param>
+        /// <returns>The security information of the document, containing information like the signer</returns>
+        /// <exception cref="ArgumentNullException">When there is no document provided</exception>
+        /// <exception cref="IncorrectSignatureException">When the provided document has an invalid signature</exception>
+        /// <exception cref="RequestError">When the request was invalid, e.g. unsupported mime type</exception>
+        /// <exception cref="InvalidOperationException">All other errors indicated by the service</exception>
+        public SecurityInfo Verify(Document document)
         {
             if (document == null) throw new ArgumentNullException("document");
 
-            //New session & client
-            var session = DsspSession.NewSession();
-            var documentId = "doc-" + Guid.NewGuid().ToString();
+            var client = CreateDSSPClient();
+            var request = CreateVerifyRequest(document);
+            ResponseBaseType response = client.verify(request);
+            return ProcessVerifyResponse(response);
+        }
+
+        private DigitalSignatureServicePortTypeClient CreateDSSPClient()
+        {
             DigitalSignatureServicePortTypeClient client;
             if (this.ApplicationName == null)
             {
@@ -148,15 +182,25 @@ namespace EContract.Dssp.Client
                 client.ClientCredentials.UserName.UserName = this.ApplicationName;
                 client.ClientCredentials.UserName.Password = this.ApplicationPassword;
             }
+            return client;
+        }
 
+        private DigitalSignatureServicePortTypeClient CreateDSSPClient(DsspSession session)
+        {
+            var client = new DigitalSignatureServicePortTypeClient(new ScDsspBinding(), Address);
+            client.ChannelFactory.Endpoint.Behaviors.Remove<ClientCredentials>();
+            client.ChannelFactory.Endpoint.Behaviors.Add(new ScDsspClientCredentials(session.KeyId, session.KeyValue));
+            return client;
+        }
 
-            //Prepare
-            byte[] clientNonce = new byte[32];
+        private SignRequest CreateSignRequest(Document document, out byte[] clientNonce)
+        {
+            var documentId = "doc-" + Guid.NewGuid().ToString();
+
+            clientNonce = new byte[32];
             rand.NextBytes(clientNonce);
-            Psha1DerivedKeyGenerator pSha1 = new Psha1DerivedKeyGenerator(clientNonce);
 
-            //Make request
-            SignRequest request = new SignRequest();
+            var request = new SignRequest();
             request.Profile = "urn:be:e-contract:dssp:1.0";
             request.OptionalInputs = new OptionalInputs();
             request.OptionalInputs.AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing";
@@ -185,75 +229,14 @@ namespace EContract.Dssp.Client
             if (memStream == null)
             {
                 memStream = new MemoryStream();
-#if v3_5
                 document.Content.CopyTo(memStream);
-#else
-                await document.Content.CopyToAsync(memStream).ConfigureAwait(false);
-#endif
             }
             request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
-
-            //Send
-            SignResponse response;
-#if v3_5
-            response = client.sign(request);
-#else
-            signResponse1 responseWrapper = await client.signAsync(request).ConfigureAwait(false);
-            response = responseWrapper.SignResponse;
-#endif
-            
-            //Check response
-            switch(response.Result.ResultMajor) 
-            {
-                case "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:resultmajor:Pending":
-                    break;
-                case "urn:oasis:names:tc:dss:1.0:resultmajor:RequesterError":
-                    throw new RequestError(response.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
-                default:
-                    throw new InvalidOperationException(response.Result.ResultMajor);
-            }
-
-            //Capture session info & store it
-            session.ServerId = response.OptionalOutputs.ResponseID;
-            var securityTokenResponse = response.OptionalOutputs.RequestSecurityTokenResponseCollection.RequestSecurityTokenResponse[0];
-            session.KeyId = securityTokenResponse.RequestedSecurityToken.SecurityContextToken.Identifier;
-            session.KeyValue = pSha1.GenerateDerivedKey(securityTokenResponse.Entropy.BinarySecret.Value, (int)securityTokenResponse.KeySize);
-            session.KeyReference = securityTokenResponse.RequestedUnattachedReference.SecurityTokenReference;
-            session.ExpiresOn = securityTokenResponse.Lifetime.Expires.Value;
-
-            return session;
+            return request;
         }
 
-        /// <summary>
-        /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol.
-        /// </summary>
-        /// <remarks>
-        /// The session is closed when the downloads finishes, it can't be reused afterward and should be removed from the storage.
-        /// </remarks>
-        /// <param name="session">The session linked to the uploaded document</param>
-        /// <returns>The document with signature, including id and mimeType</returns>
-        /// <exception cref="ArgumentException">When the signResponse isn't valid, including its signature</exception>
-        /// <exception cref="InvalidOperationException">When the e-contract service returns an error</exception>
-        public Document DownloadDocument(DsspSession session)
-#if !v3_5
+        private PendingRequest CreateDownloadRequest(DsspSession session)
         {
-            return DownloadDocumentAsync(session).Result;
-        }
-
-        /// <summary>
-        /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol, asynchronously.
-        /// </summary>
-        /// <see cref="DownloadDocument"/>
-        public async System.Threading.Tasks.Task<Document> DownloadDocumentAsync(DsspSession session)
-#endif
-        {
-            if (session == null) throw new ArgumentNullException("session");
-
-            //Download the signed document
-            var client = new DigitalSignatureServicePortTypeClient(new ScDsspBinding(), Address);
-            client.ChannelFactory.Endpoint.Behaviors.Remove<ClientCredentials>();
-            client.ChannelFactory.Endpoint.Behaviors.Add(new ScDsspClientCredentials(session.KeyId, session.KeyValue));
-
             var downloadRequest = new PendingRequest();
             downloadRequest.OptionalInputs = new OptionalInputs();
             downloadRequest.OptionalInputs.AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing";
@@ -265,17 +248,38 @@ namespace EContract.Dssp.Client
             downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference = new SecurityTokenReferenceType();
             downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference = new ReferenceType();
             downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.ValueType = "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512/sct";
-            downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.URI =  session.KeyId;
+            downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.URI = session.KeyId;
+            return downloadRequest;
+        }
 
-            SignResponse downloadResponse;
-#if v3_5
-            downloadResponse = client.pendingRequest(downloadRequest);
-#else
-            pendingRequestResponse downloadResponseWrapper = await client.pendingRequestAsync(downloadRequest).ConfigureAwait(false);
-            downloadResponse = downloadResponseWrapper.SignResponse;
-#endif
+        private DsspSession ProcessSignResponse(SignResponse response, byte[] clientNonce)
+        {
+            //Check response
+            switch (response.Result.ResultMajor)
+            {
+                case "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:resultmajor:Pending":
+                    break;
+                case "urn:oasis:names:tc:dss:1.0:resultmajor:RequesterError":
+                    throw new RequestError(response.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
+                default:
+                    throw new InvalidOperationException(response.Result.ResultMajor);
+            }
 
-            //check the download reponse
+            //Capture session info & store it
+            var session = DsspSession.NewSession();
+            session.ServerId = response.OptionalOutputs.ResponseID;
+            var securityTokenResponse = response.OptionalOutputs.RequestSecurityTokenResponseCollection.RequestSecurityTokenResponse[0];
+            session.KeyId = securityTokenResponse.RequestedSecurityToken.SecurityContextToken.Identifier;
+            session.KeyValue = new Psha1DerivedKeyGenerator(clientNonce).GenerateDerivedKey(securityTokenResponse.Entropy.BinarySecret.Value, (int)securityTokenResponse.KeySize);
+            session.KeyReference = securityTokenResponse.RequestedUnattachedReference.SecurityTokenReference;
+            session.ExpiresOn = securityTokenResponse.Lifetime.Expires.Value;
+
+            return session;
+        }
+
+        private Document ProcessDownloadResponse(SignResponse downloadResponse)
+        {
+            //check the download response
             switch (downloadResponse.Result.ResultMajor)
             {
                 case "urn:oasis:names:tc:dss:1.0:resultmajor:Success":
@@ -285,37 +289,11 @@ namespace EContract.Dssp.Client
             }
 
             //Return the downloaded document (we assume there is only a single document)
-            var doc = new Document(downloadResponse.OptionalOutputs.DocumentWithSignature.Document);
-
-            return doc;
+            return new Document(downloadResponse.OptionalOutputs.DocumentWithSignature.Document);
         }
 
-        /// <summary>
-        /// Validates the provided document via the e-contract service.
-        /// </summary>
-        /// <param name="document">The document that contains a signature</param>
-        /// <returns>The security information of the document, containing information like the signer</returns>
-        /// <exception cref="ArgumentNullException">When there is no document provided</exception>
-        /// <exception cref="IncorrectSignatureException">When the provided document has an invalid signature</exception>
-        /// <exception cref="RequestError">When the request was invalid, e.g. unsupported mime type</exception>
-        /// <exception cref="InvalidOperationException">All other errors indicated by the service</exception>
-        public SecurityInfo Verify(Document document)
-#if !v3_5
+        private VerifyRequest CreateVerifyRequest(Document document)
         {
-            return VerifyAsync(document).Result;
-        }
-
-        /// <summary>
-        /// Validates the provided document via the e-contract service, asynchronously.
-        /// </summary>
-        /// <see cref="Verify"/>
-        public async System.Threading.Tasks.Task<SecurityInfo> VerifyAsync(Document document)
-#endif
-        {
-            if (document == null) throw new ArgumentNullException("document");
-
-            var client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
-
             var request = new VerifyRequest();
             request.Profile = "urn:be:e-contract:dssp:1.0";
 
@@ -335,23 +313,14 @@ namespace EContract.Dssp.Client
             if (memStream == null)
             {
                 memStream = new MemoryStream();
-#if v3_5
                 document.Content.CopyTo(memStream);
-#else
-                await document.Content.CopyToAsync(memStream).ConfigureAwait(false);
-#endif
             }
             request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
+            return request;
+        }
 
-
-            ResponseBaseType response;
-#if v3_5
-            response = client.verify(request);
-#else
-            verifyResponse responseWrapper = await client.verifyAsync(request).ConfigureAwait(false);
-            response = responseWrapper.VerifyResponse1;
-#endif
-
+        private SecurityInfo ProcessVerifyResponse(ResponseBaseType response)
+        {
             //Check response
             switch (response.Result.ResultMajor)
             {
@@ -361,7 +330,9 @@ namespace EContract.Dssp.Client
                     if (response.Result.ResultMinor == "urn:oasis:names:tc:dss:1.0:resultminor:invalid:IncorrectSignature")
                     {
                         throw new IncorrectSignatureException(response.Result.ResultMessage.Value);
-                    } else {
+                    }
+                    else
+                    {
                         throw new RequestError(response.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
                     }
                 default:
@@ -371,8 +342,8 @@ namespace EContract.Dssp.Client
             SecurityInfo result = new SecurityInfo();
             result.TimeStampValidity = response.OptionalOutputs.TimeStampRenewal.Before;
             result.Signatures = new List<SignatureInfo>();
-            foreach(var report in response.OptionalOutputs.VerificationReport.IndividualReport)
-            { 
+            foreach (var report in response.OptionalOutputs.VerificationReport.IndividualReport)
+            {
                 //double check
                 if (report.Result.ResultMajor != "urn:oasis:names:tc:dss:1.0:resultmajor:Success") throw new InvalidOperationException(report.Result.ResultMajor);
 
