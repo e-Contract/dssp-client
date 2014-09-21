@@ -6,10 +6,10 @@
       <Value Profile="(Default)">nl</Value>
     </Setting>
     <Setting Name="AppName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">egelke</Value>
     </Setting>
     <Setting Name="AppPwd" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">egelke</Value>
     </Setting>
     <Setting Name="Authorization" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
