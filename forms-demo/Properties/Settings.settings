@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="forms_demo.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Lanuage" Type="System.String" Scope="Application">
+    <Setting Name="Language" Type="System.String" Scope="Application">
       <Value Profile="(Default)">nl</Value>
     </Setting>
     <Setting Name="AppName" Type="System.String" Scope="Application">
