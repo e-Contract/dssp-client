@@ -1,7 +1,7 @@
 ﻿/*
  *  This file is part of DSS-P client.
  *  Copyright (C) 2014 Egelke BVBA
- *  Copyright (C) 2014 e-contract BVBA
+ *  Copyright (C) 2014 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
@@ -35,7 +35,7 @@ namespace EContract.Dssp.Client
     /// </summary>
     /// <remarks>
     /// A signature session consists of the following steps: upload document, start signature, end signature and download document.
-    /// See the e-contract documentation for more information.
+    /// See the e-contract.be documentation for more information.
     /// </remarks>
     [Serializable]
     public class DsspSession
@@ -88,12 +88,12 @@ namespace EContract.Dssp.Client
         public DateTime ExpiresOn;
 
         /// <summary>
-        /// Genereates the html page that initialized the BROWSER/POST request for the current session.
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
         /// </summary>
         /// <remarks>
         /// The default language is used for the e-contract pages.
         /// </remarks>
-        /// <param name="postAddress">The e-contract address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
         /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
         /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(string postAddress, string landingUrl)
@@ -102,12 +102,12 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Genereates the html page that initialized the BROWSER/POST request for the current session.
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
         /// </summary>
         /// <remarks>
         /// The default language is used for the e-contract pages.
         /// </remarks>
-        /// <param name="postAddress">The e-contract address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
         /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
         /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl)
@@ -116,11 +116,11 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Genereates the html page that initialized the BROWSER/POST request for the current session.
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
         /// </summary>
-        /// <param name="postAddress">The e-contract address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
         /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
-        /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
         /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(string postAddress, string landingUrl, string language)
         {
@@ -128,11 +128,11 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Genereates the html page that initialized the BROWSER/POST request for the current session.
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
         /// </summary>
-        /// <param name="postAddress">The e-contract address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
         /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
-        /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
         /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language)
         {
@@ -187,7 +187,7 @@ namespace EContract.Dssp.Client
         /// Creates the pending request message for the current session.
         /// </summary>
         /// <remarks>
-        /// The default language is used for the e-contract pages.
+        /// The default language is used for the e-contract.be pages.
         /// </remarks>
         /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
@@ -200,7 +200,7 @@ namespace EContract.Dssp.Client
         /// Creates the pending request message for the current session.
         /// </summary>
         /// <remarks>
-        /// The default language is used for the e-contract pages.
+        /// The default language is used for the e-contract.be pages.
         /// </remarks>
         /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
@@ -210,10 +210,10 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Creates a new pending request for the provided session.
+        /// Creates a new pending request for the current session.
         /// </summary>
         /// <param name="landingUrl">The landing page of the SignResponse</param>
-        /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public String GeneratePendingRequest(string landingUrl, string language)
         {
@@ -221,10 +221,10 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Creates a new pending request for the provided session.
+        /// Creates a new pending request for the current session.
         /// </summary>
         /// <param name="landingUrl">The landing page of the SignResponse</param>
-        /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl, string language)
         {
@@ -232,10 +232,10 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Creates a new pending request for the provided session.
+        /// Creates a new pending request for the current session.
         /// </summary>
         /// <param name="landingUrl">The landing page of the SignResponse</param>
-        /// <param name="language">The language of the e-contract pages, <c>null</c> for the default language</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
         /// <param name="properties">Additional properties (role/location) that will be added to the signature</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl, string language, SignatureProperties properties)
