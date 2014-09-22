@@ -1,7 +1,7 @@
 ﻿/*
  *  This file is part of DSS-P client.
  *  Copyright (C) 2014 Egelke BVBA
- *  Copyright (C) 2014 e-contract BVBA
+ *  Copyright (C) 2014 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
