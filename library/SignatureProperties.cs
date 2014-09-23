@@ -29,6 +29,12 @@ namespace EContract.Dssp.Client
     /// </summary>
     public class SignatureProperties
     {
+
+        public SignatureProperties()
+        {
+            VisibleSignature = null;
+        }
+
         /// <summary>
         /// The purported place where the signer claims to have produced the signature.
         /// </summary>
@@ -38,5 +44,36 @@ namespace EContract.Dssp.Client
         /// Claimed or certified roles assumed by the signer in creating the signature.
         /// </summary>
         public string SignerRole { get; set; }
+
+        /// <summary>
+        /// The page for visible signatures. Page starts at 1.
+        /// </summary>
+        public int Page { get; set; }
+        
+        /// <summary>
+        /// The x location for visible signatures.
+        /// </summary>
+        public int X { get; set; }
+
+        /// <summary>
+        /// The y location for visible signatures.
+        /// </summary>
+        public int Y { get; set; }
+
+        /// <summary>
+        /// The type of signature visualization.
+        /// </summary>
+        public VisibleSignatureType? VisibleSignature { get; set; }
+    }
+
+    /// <summary>
+    /// Enumeration of the different supported signature visualizations.
+    /// </summary>
+    public enum VisibleSignatureType
+    {
+        /// <summary>
+        /// eID Photo based signature visualization.
+        /// </summary>
+        Photo
     }
 }

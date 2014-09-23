@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace forms_demo
 {
@@ -37,6 +38,7 @@ namespace forms_demo
                     signedDocument = dsspClient.DownloadDocument(session);
 
                     //You should save the signed document about here...
+                    Session["signedDocument"] = signedDocument;
 
                     //For demo purposes, lets validate the signature.  This is purely optional
                     SecurityInfo securityInfo = dsspClient.Verify(signedDocument);
@@ -54,11 +56,14 @@ namespace forms_demo
                             this.signatures.Items.Add("Signed by " + signature.Signer.Subject + " on " + signature.SigningTime);
                         }
                     }
+
+                    this.view.Enabled = true;
                 }
                 catch (RequestError error)
                 {
                     //Failed, lets display the error
                     this.msg.Text = "signing error: " + error.Message;
+                    this.view.Enabled = false;
                     return;
                 }
             }
@@ -67,6 +72,23 @@ namespace forms_demo
         protected void home_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/");
+        }
+
+        protected void view_Click(object sender, EventArgs e)
+        {
+            Document signedDocument = (Document) Session["signedDocument"];
+            Response.ContentType = signedDocument.MimeType;
+            CopyStream(signedDocument.Content, Response.OutputStream);
+        }
+
+        private static void CopyStream(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[32768];
+            int read;
+            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                output.Write(buffer, 0, read);
+            }
         }
     }
 }
