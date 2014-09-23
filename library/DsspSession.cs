@@ -289,7 +289,8 @@ namespace EContract.Dssp.Client
             pendingRequest.OptionalInputs.ReturnSignerIdentity = new ReturnSignerIdentity();
             pendingRequest.OptionalInputs.Language = language;
             if (properties != null
-                && (!string.IsNullOrEmpty(properties.SignerRole) || !string.IsNullOrEmpty(properties.SignatureProductionPlace)))
+                && (!string.IsNullOrEmpty(properties.SignerRole) || !string.IsNullOrEmpty(properties.SignatureProductionPlace)
+                || properties.VisibleSignature.HasValue))
             {
                 var items = new List<VisibleSignatureItemType>();
                 if (!string.IsNullOrEmpty(properties.SignerRole))
@@ -316,6 +317,24 @@ namespace EContract.Dssp.Client
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration = new VisibleSignatureConfigurationType();
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePolicy = VisibleSignaturePolicyType.DocumentSubmissionPolicy;
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration = new VisibleSignatureItemsConfigurationType();
+                
+                if (properties.VisibleSignature.HasValue)
+                {
+                    PixelVisibleSignaturePositionType pixelVisibleSignaturePosition = new PixelVisibleSignaturePositionType();
+                    pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePosition = pixelVisibleSignaturePosition;
+                    pixelVisibleSignaturePosition.PageNumber = properties.Page.ToString();
+                    pixelVisibleSignaturePosition.x = properties.X.ToString();
+                    pixelVisibleSignaturePosition.y = properties.Y.ToString();
+
+                    var uriItem = new ItemValueURIType();
+                    uriItem.ItemValue = "urn:be:e-contract:dssp:1.0:vs:si:eid-photo";
+
+                    var item = new VisibleSignatureItemType();
+                    item.ItemName = ItemNameEnum.SignerImage;
+                    item.ItemValue = uriItem;
+                    items.Add(item);
+                }
+
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration.VisibleSignatureItem = items.ToArray<VisibleSignatureItemType>();
             }
             if (authorization != null && authorization.Subjects.Length > 0 && !string.IsNullOrEmpty(authorization.Subjects[0].MatchValue))
