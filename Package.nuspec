@@ -31,5 +31,6 @@
   <files>
     <file src="library\bin\Debug\*" target="lib\net40" />
     <file src="library v3.5\bin\Debug\*" target="lib\net35" />
+    <file src="**\*.cs" target="src" />
   </files>
 </package>
