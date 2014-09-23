@@ -26,9 +26,9 @@ namespace forms_demo.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("nl")]
-        public string Lanuage {
+        public string Language {
             get {
-                return ((string)(this["Lanuage"]));
+                return ((string)(this["Language"]));
             }
         }
         

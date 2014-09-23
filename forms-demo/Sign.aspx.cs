@@ -28,7 +28,7 @@ namespace forms_demo
 
             Session["dsspSession"] = dsspSession;
 
-            this.PendingRequest.Value = dsspSession.GeneratePendingRequest(new Uri(Request.Url, ResolveUrl("~/Signed.aspx")), Settings.Default.Lanuage, 
+            this.PendingRequest.Value = dsspSession.GeneratePendingRequest(new Uri(Request.Url, ResolveUrl("~/Signed.aspx")), Settings.Default.Language, 
                 new SignatureProperties() { SignerRole = (string) Session["Role"], SignatureProductionPlace = (string) Session["Location"] },
                 Settings.Default.Authorization);
         }
