@@ -339,8 +339,17 @@ namespace EContract.Dssp.Client
                     throw new InvalidOperationException(response.Result.ResultMajor);
             }
 
+            //Is there security info?
+            if (response.OptionalOutputs == null 
+                || response.OptionalOutputs.VerificationReport == null
+                || response.OptionalOutputs.VerificationReport.IndividualReport == null)
+            {
+                return null;
+            }
+
             SecurityInfo result = new SecurityInfo();
-            result.TimeStampValidity = response.OptionalOutputs.TimeStampRenewal.Before;
+            result.TimeStampValidity = response.OptionalOutputs.TimeStampRenewal != null ?
+                response.OptionalOutputs.TimeStampRenewal.Before : DateTime.MaxValue;
             result.Signatures = new List<SignatureInfo>();
             foreach (var report in response.OptionalOutputs.VerificationReport.IndividualReport)
             {
