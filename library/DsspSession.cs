@@ -495,7 +495,6 @@ namespace EContract.Dssp.Client
                         default:
                             throw new RequestError(signResponseObject.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
                     }
-                    break;
                 default:
                     throw new InvalidOperationException(signResponseObject.Result.ResultMajor);
             }
