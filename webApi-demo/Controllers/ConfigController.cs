@@ -18,7 +18,7 @@ namespace dssp_demo.Controllers
             return configuraton.Current;
         }
 
-        public void Put(Config value)
+        public void Post(Config value)
         {
             configuraton.Current = value;
         }
