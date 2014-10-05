@@ -24,6 +24,10 @@ demo.factory('documents', ['$resource', function ($resource) {
     return $resource('api/documents/:id');
 }]);
 
+demo.factory('files', ['$resource', function ($resource) {
+    return $resource('api/files/:id');
+}]);
+
 demo.controller('docController', ['$scope', '$modal', 'currentDocs', 'documents', 'config', function ($scope, $modal, currentDocs, documents, config) {
 
     $scope.docs = currentDocs;
@@ -32,6 +36,10 @@ demo.controller('docController', ['$scope', '$modal', 'currentDocs', 'documents'
         documents.query(function (value) {
             $scope.docs = value;
         });
+    };
+
+    $scope.open = function (docParam) {
+        window.open('api/files/' + docParam.Id, '_blank', '');
     };
 
     $scope.sign = function (docParam) {
