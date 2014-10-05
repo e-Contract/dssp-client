@@ -25,15 +25,10 @@ using System.Text;
 namespace EContract.Dssp.Client
 {
     /// <summary>
-    /// Additional properties that will be added to the signature
+    /// Additional properties of the signature
     /// </summary>
-    public class SignatureProperties
+    public abstract class SignatureProperties
     {
-
-        public SignatureProperties()
-        {
-            VisibleSignature = null;
-        }
 
         /// <summary>
         /// The purported place where the signer claims to have produced the signature.
@@ -45,35 +40,6 @@ namespace EContract.Dssp.Client
         /// </summary>
         public string SignerRole { get; set; }
 
-        /// <summary>
-        /// The page for visible signatures. Page starts at 1.
-        /// </summary>
-        public int Page { get; set; }
-        
-        /// <summary>
-        /// The x location for visible signatures.
-        /// </summary>
-        public int X { get; set; }
 
-        /// <summary>
-        /// The y location for visible signatures.
-        /// </summary>
-        public int Y { get; set; }
-
-        /// <summary>
-        /// The type of signature visualization.
-        /// </summary>
-        public VisibleSignatureType? VisibleSignature { get; set; }
-    }
-
-    /// <summary>
-    /// Enumeration of the different supported signature visualizations.
-    /// </summary>
-    public enum VisibleSignatureType
-    {
-        /// <summary>
-        /// eID Photo based signature visualization.
-        /// </summary>
-        Photo
     }
 }

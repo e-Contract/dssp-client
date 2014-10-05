@@ -70,11 +70,20 @@
     <Compile Include="..\library\RequestError.cs">
       <Link>RequestError.cs</Link>
     </Compile>
+    <Compile Include="..\library\SecurityInfo.cs">
+      <Link>SecurityInfo.cs</Link>
+    </Compile>
     <Compile Include="..\library\SignatureInfo.cs">
       <Link>SignatureInfo.cs</Link>
     </Compile>
     <Compile Include="..\library\SignatureProperties.cs">
       <Link>SignatureProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\library\SignatureRequestProperties.cs">
+      <Link>SignatureRequestProperties.cs</Link>
+    </Compile>
+    <Compile Include="..\library\VisibleSignatureProperties.cs">
+      <Link>VisibleSignatureProperties.cs</Link>
     </Compile>
     <Compile Include="..\library\WcfBinding\PlainDsspBinding.cs">
       <Link>WcfBinding\PlainDsspBinding.cs</Link>

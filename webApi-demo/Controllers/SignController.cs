@@ -56,7 +56,7 @@ namespace dssp_demo.Controllers
 
                 //creating the browser post page with the pending request
                 string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, configuration.Current.Lanuage,
-                    new SignatureProperties() { SignatureProductionPlace = location, SignerRole = role }, configuration.Current.Authorization);
+                    new SignatureRequestProperties() { SignatureProductionPlace = location, SignerRole = role }, configuration.Current.Authorization);
                 //returning it to the browser to execute
                 HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(browserPostPage));

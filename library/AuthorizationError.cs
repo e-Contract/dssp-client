@@ -31,12 +31,16 @@ namespace EContract.Dssp.Client
     /// </summary>
     public class AuthorizationError : RequestError
     {
+        /// <summary>
+        /// The subject name information of the person that attempted to sign (but was not authorized).
+        /// </summary>
         public NameIdentifierType AttemptedSigner { get; private set; }
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="message">The exception message</param>
+        /// <param name="attemptedSigner">The Attempted Signer subject name information</param>
         public AuthorizationError(String message, NameIdentifierType attemptedSigner)
             : base(message)
         {

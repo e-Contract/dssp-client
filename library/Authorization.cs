@@ -29,6 +29,11 @@ namespace EContract.Dssp.Client
     /// </summary>
     public class Authorization
     {
+        /// <summary>
+        /// Construct an authorization that authorizes signing with DSS if the eID subject matches exactly.
+        /// </summary>
+        /// <param name="subjectName">The subject to match exactly</param>
+        /// <returns>The configured authorization object</returns>
         public static Authorization AllowDssSignIfMatchSubject(string subjectName)
         {
             return new Authorization()
@@ -39,6 +44,11 @@ namespace EContract.Dssp.Client
             };
         }
 
+        /// <summary>
+        /// Construct an authorization that authorizes signing with DSS if the eID subject matches the regular expression.
+        /// </summary>
+        /// <param name="regex">The regular expression the subject must match</param>
+        /// <returns>The configured authorization object</returns>
         public static Authorization AllowDssSignIfMatchSubjectRegex(string regex)
         {
             return new Authorization()
@@ -89,10 +99,10 @@ namespace EContract.Dssp.Client
             };
         }
 
-        // <summary>
+        /// <summary>
         /// Creates a subject that matches the "subject"-field of the signer (eID) certificate via a regular expression.
         /// </summary>
-        /// <param name="subjectName">The regular expression to match against the subject of the signer certificate in DSS-P notation (not the same as .Net)</param>
+        /// <param name="regex">The regular expression to match against the subject of the signer certificate in DSS-P notation (not the same as .Net)</param>
         /// <returns>DSS-P compliant object</returns>
         public static Subject MatchSubjectRegex(string regex)
         {

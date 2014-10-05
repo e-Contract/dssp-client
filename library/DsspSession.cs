@@ -139,22 +139,55 @@ namespace EContract.Dssp.Client
             return GeneratePendingRequestPage(postAddress, landingUrl, language, null, (Authorization) null);
         }
 
-        public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureProperties properties)
+        /// <summary>
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
+        /// </summary>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="properties">Additional properties (location, role, visibility info, ...) for the signature request</param>
+        /// <returns>The html page in the form of a string</returns>
+        public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureRequestProperties properties)
         {
             return GeneratePendingRequestPage(postAddress, landingUrl, language, properties, (Authorization)null);
         }
 
+        /// <summary>
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
+        /// </summary>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="authorization">The authorization that the signer must match too to be authorized</param>
+        /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, Authorization authorization)
         {
             return GeneratePendingRequestPage(postAddress, landingUrl, language, null, authorization);
         }
 
+        /// <summary>
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
+        /// </summary>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="subjectRegex">Regular expression of the eID subject that the signer must match too to be authorized</param>
+        /// <returns>The html page in the form of a string</returns>
         public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, string subjectRegex)
         {
             return GeneratePendingRequestPage(postAddress, landingUrl, language, null, subjectRegex);
         }
 
-        public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureProperties properties, string subjectRegex)
+        /// <summary>
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
+        /// </summary>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="properties">Additional properties (location, role, visibility info, ...) for the signature request</param>
+        /// <param name="subjectRegex">Regular expression of the eID subject that the signer must match too to be authorized</param>
+        /// <returns>The html page in the form of a string</returns>
+        public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureRequestProperties properties, string subjectRegex)
         {
             if (String.IsNullOrEmpty(subjectRegex))
                 return GeneratePendingRequestPage(postAddress, landingUrl, language, properties, (Authorization)null);
@@ -162,7 +195,16 @@ namespace EContract.Dssp.Client
                 return GeneratePendingRequestPage(postAddress, landingUrl, language, properties, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
         }
 
-        public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureProperties properties, Authorization authorization)
+        /// <summary>
+        /// Generates the html page that initiates the BROWSER/POST request for the current session.
+        /// </summary>
+        /// <param name="postAddress">The e-contract.be address, normally "https://www.e-contract.be/dss-ws/start"</param>
+        /// <param name="landingUrl">Own url for the BROWSER/POST "SignResponse" response</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="properties">Additional properties (location, role, visibility info, ...) for the signature request</param>
+        /// <param name="authorization">The authorization that the signer must match too to be authorized</param>
+        /// <returns>The html page in the form of a string</returns>
+        public string GeneratePendingRequestPage(Uri postAddress, Uri landingUrl, string language, SignatureRequestProperties properties, Authorization authorization)
         {
             var builder = new StringBuilder();
 
@@ -183,6 +225,7 @@ namespace EContract.Dssp.Client
 
             return builder.ToString();
         }
+
         /// <summary>
         /// Creates the pending request message for the current session.
         /// </summary>
@@ -236,24 +279,46 @@ namespace EContract.Dssp.Client
         /// </summary>
         /// <param name="landingUrl">The landing page of the SignResponse</param>
         /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
-        /// <param name="properties">Additional properties (role/location) that will be added to the signature</param>
+        /// <param name="properties">Additional properties (location, role, visibility info, ...) for the signature request</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
-        public string GeneratePendingRequest(Uri landingUrl, string language, SignatureProperties properties)
+        public string GeneratePendingRequest(Uri landingUrl, string language, SignatureRequestProperties properties)
         {
             return GeneratePendingRequest(landingUrl, language, properties, (Authorization) null);
         }
 
+        /// <summary>
+        /// Creates a new pending request for the current session.
+        /// </summary>
+        /// <param name="landingUrl">The landing page of the SignResponse</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="authorization">The authorization that the signer must match too to be authorized</param>
+        /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl, string language, Authorization authorization)
         {
             return GeneratePendingRequest(landingUrl, language, null, authorization);
         }
 
+        /// <summary>
+        /// Creates a new pending request for the current session.
+        /// </summary>
+        /// <param name="landingUrl">The landing page of the SignResponse</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="subjectRegex">Regular expression of the eID subject that the signer must match too to be authorized</param>
+        /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl, string language, string subjectRegex)
         {
             return GeneratePendingRequest(landingUrl, language, null, subjectRegex);
         }
 
-        public string GeneratePendingRequest(Uri landingUrl, string language, SignatureProperties properties, string subjectRegex)
+        /// <summary>
+        /// Creates a new pending request for the current session.
+        /// </summary>
+        /// <param name="landingUrl">The landing page of the SignResponse</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="properties">Additional properties (location, role, visibility info, ...) for the signature request</param>
+        /// <param name="subjectRegex">Regular expression of the eID subject that the signer must match too to be authorized</param>
+        /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
+        public string GeneratePendingRequest(Uri landingUrl, string language, SignatureRequestProperties properties, string subjectRegex)
         {
             if (string.IsNullOrEmpty(subjectRegex))
                 return GeneratePendingRequest(landingUrl, language, properties, (Authorization)null);
@@ -261,7 +326,15 @@ namespace EContract.Dssp.Client
                 return GeneratePendingRequest(landingUrl, language, properties, Authorization.AllowDssSignIfMatchSubjectRegex(subjectRegex));
         }
 
-        public string GeneratePendingRequest(Uri landingUrl, string language, SignatureProperties properties, Authorization authorization)
+        /// <summary>
+        /// Creates a new pending request for the current session.
+        /// </summary>
+        /// <param name="landingUrl">The landing page of the SignResponse</param>
+        /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
+        /// <param name="properties">Additional properties (location, role, visibility info, ...) for the signature request</param>
+        /// <param name="authorization">The authorization that the signer must match too to be authorized</param>
+        /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
+        public string GeneratePendingRequest(Uri landingUrl, string language, SignatureRequestProperties properties, Authorization authorization)
         {
             if (landingUrl == null) throw new ArgumentNullException("landingUrl");
             if (authorization != null && (authorization.Subjects == null || authorization.Subjects.Length == 0))
@@ -288,9 +361,9 @@ namespace EContract.Dssp.Client
             pendingRequest.OptionalInputs.ReplyTo.Address.Value = landingUrl.AbsoluteUri;
             pendingRequest.OptionalInputs.ReturnSignerIdentity = new ReturnSignerIdentity();
             pendingRequest.OptionalInputs.Language = language;
-            if (properties != null
-                && (!string.IsNullOrEmpty(properties.SignerRole) || !string.IsNullOrEmpty(properties.SignatureProductionPlace)
-                || properties.VisibleSignature.HasValue))
+            if (properties != null && (!string.IsNullOrEmpty(properties.SignerRole) 
+                    || !string.IsNullOrEmpty(properties.SignatureProductionPlace)
+                    || properties.VisibleSignature != null))
             {
                 var items = new List<VisibleSignatureItemType>();
                 if (!string.IsNullOrEmpty(properties.SignerRole))
@@ -313,28 +386,34 @@ namespace EContract.Dssp.Client
                     item.ItemValue = stringItem;
                     items.Add(item);
                 }
+                if (properties.VisibleSignature != null)
+                {
+                    var photoProp = properties.VisibleSignature as PhotoVisualSignature;
+                    if (photoProp != null)
+                    {
+                        var uriItem = new ItemValueURIType();
+                        uriItem.ItemValue = photoProp.ValueUri;
+
+                        var item = new VisibleSignatureItemType();
+                        item.ItemName = ItemNameEnum.SignerImage;
+                        item.ItemValue = uriItem;
+                        items.Add(item);
+                    }
+                    else
+                    {
+                        throw new ArgumentException("The type of VisibleSignatureProperties (field of SignatureRequestProperties) is unsupported", "properties");
+                    }
+
+                    PixelVisibleSignaturePositionType pixelVisibleSignaturePosition = new PixelVisibleSignaturePositionType();
+                    pixelVisibleSignaturePosition.PageNumber = properties.VisibleSignature.Page.ToString();
+                    pixelVisibleSignaturePosition.x = properties.VisibleSignature.X.ToString();
+                    pixelVisibleSignaturePosition.y = properties.VisibleSignature.Y.ToString();
+                    pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePosition = pixelVisibleSignaturePosition;
+                }
 
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration = new VisibleSignatureConfigurationType();
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePolicy = VisibleSignaturePolicyType.DocumentSubmissionPolicy;
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration = new VisibleSignatureItemsConfigurationType();
-                
-                if (properties.VisibleSignature.HasValue)
-                {
-                    PixelVisibleSignaturePositionType pixelVisibleSignaturePosition = new PixelVisibleSignaturePositionType();
-                    pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePosition = pixelVisibleSignaturePosition;
-                    pixelVisibleSignaturePosition.PageNumber = properties.Page.ToString();
-                    pixelVisibleSignaturePosition.x = properties.X.ToString();
-                    pixelVisibleSignaturePosition.y = properties.Y.ToString();
-
-                    var uriItem = new ItemValueURIType();
-                    uriItem.ItemValue = "urn:be:e-contract:dssp:1.0:vs:si:eid-photo";
-
-                    var item = new VisibleSignatureItemType();
-                    item.ItemName = ItemNameEnum.SignerImage;
-                    item.ItemValue = uriItem;
-                    items.Add(item);
-                }
-
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration.VisibleSignatureItem = items.ToArray<VisibleSignatureItemType>();
             }
             if (authorization != null && authorization.Subjects.Length > 0 && !string.IsNullOrEmpty(authorization.Subjects[0].MatchValue))
