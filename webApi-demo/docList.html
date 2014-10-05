@@ -69,8 +69,8 @@
         <div class="modal-body">
             <form action="" method="post" class="bootstrap-frm">
                 <h1>
-                    Signing properties
-                    <span>Optional properties that will be used during signing</span>
+                    Signature properties
+                    <span>Optional properties that will be part of the signature</span>
                 </h1>
                 <label>
                     <span>Location: </span>
@@ -81,12 +81,36 @@
                     <span>Role: </span>
                     <input id="role" type="text" name="role" placeholder="Your Role" ng-model="props.role" />
                 </label>
-
+            </form>
+            <br />
+            <form action="" method="post" class="bootstrap-frm">
+                <h1>
+                    Visible Signature
+                    <span>Activate and configure the visible signature</span>
+                </h1>
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="props.visible" btn-radio="'None'">None</label>
+                    <label class="btn btn-primary" ng-model="props.visible" btn-radio="'Photo'">Photo</label>
+                </div>
+                <div ng-show="props.visible != 'None'">
+                    <label>
+                        <span>Page: </span>
+                        <input id="page" type="text" name="page" placeholder="page nr (first = 1)" ng-model="props.page" />
+                    </label>
+                    <label>
+                        <span>X: </span>
+                        <input id="x" type="text" name="x" placeholder="X-coordinate" ng-model="props.X" />
+                    </label>
+                    <label>
+                        <span>Y: </span>
+                        <input id="y" type="text" name="y" placeholder="Y-coordinate" ng-model="props.Y" />
+                    </label>
+                </div>
             </form>
         </div>
         <div class="modal-footer">
             <button class="btn" ng-click="fill()">Fill defaults</button>
-            <a href="api/documents/{{doc.Id}}/signing?location={{props.location}}&role={{props.role}}" class="btn btn-primary">OK</a>
+            <a href="api/documents/{{doc.Id}}/signing?location={{props.location}}&role={{props.role}}&visible={{props.visible}}&page={{props.page}}&x={{props.X}}&y={{props.Y}}" class="btn btn-primary">OK</a>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
      </script>

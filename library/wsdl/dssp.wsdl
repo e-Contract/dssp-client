@@ -3779,11 +3779,11 @@
         <xs:complexContent>
           <xs:extension base="VisibleSignaturePositionType">
             <xs:sequence>
-              <xs:element name="PageNumber" type="xs:integer" />
-              <xs:element name="x" type="xs:integer" />
-              <xs:element name="y" type="xs:integer" />
-              <xs:element name="Width" type="xs:integer" minOccurs="0" maxOccurs="1" />
-              <xs:element name="Height" type="xs:integer" minOccurs="0" maxOccurs="1" />
+              <xs:element name="PageNumber" type="xs:int" />
+              <xs:element name="x" type="xs:int" />
+              <xs:element name="y" type="xs:int" />
+              <xs:element name="Width" type="xs:int" minOccurs="0" maxOccurs="1" />
+              <xs:element name="Height" type="xs:int" minOccurs="0" maxOccurs="1" />
             </xs:sequence>
           </xs:extension>
         </xs:complexContent>

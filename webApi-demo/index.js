@@ -79,12 +79,17 @@ demo.controller('signControler', ['$scope', '$modalInstance', 'doc', function ($
     $scope.doc = doc;
     $scope.props = {
         location: undefined,
-        role: undefined
+        role: undefined,
+        visible: 'None'
     };
 
     $scope.fill = function () {
         $scope.props.location = "Denderleeuw";
         $scope.props.role = "Zaakvoerder";
+        $scope.props.visible = "Photo";
+        $scope.props.page = 27;
+        $scope.props.X = 400;
+        $scope.props.Y = 600;
     }
 
     $scope.cancel = function () {

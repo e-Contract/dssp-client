@@ -366,6 +366,8 @@ namespace EContract.Dssp.Client
                     || properties.VisibleSignature != null))
             {
                 var items = new List<VisibleSignatureItemType>();
+                PixelVisibleSignaturePositionType pixelVisibleSignaturePosition = null;
+
                 if (!string.IsNullOrEmpty(properties.SignerRole))
                 {
                     var stringItem = new ItemValueStringType();
@@ -404,17 +406,17 @@ namespace EContract.Dssp.Client
                         throw new ArgumentException("The type of VisibleSignatureProperties (field of SignatureRequestProperties) is unsupported", "properties");
                     }
 
-                    PixelVisibleSignaturePositionType pixelVisibleSignaturePosition = new PixelVisibleSignaturePositionType();
-                    pixelVisibleSignaturePosition.PageNumber = properties.VisibleSignature.Page.ToString();
-                    pixelVisibleSignaturePosition.x = properties.VisibleSignature.X.ToString();
-                    pixelVisibleSignaturePosition.y = properties.VisibleSignature.Y.ToString();
-                    pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePosition = pixelVisibleSignaturePosition;
+                    pixelVisibleSignaturePosition = new PixelVisibleSignaturePositionType();
+                    pixelVisibleSignaturePosition.PageNumber = properties.VisibleSignature.Page;
+                    pixelVisibleSignaturePosition.x = properties.VisibleSignature.X;
+                    pixelVisibleSignaturePosition.y = properties.VisibleSignature.Y;
                 }
 
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration = new VisibleSignatureConfigurationType();
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePolicy = VisibleSignaturePolicyType.DocumentSubmissionPolicy;
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration = new VisibleSignatureItemsConfigurationType();
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration.VisibleSignatureItem = items.ToArray<VisibleSignatureItemType>();
+                pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePosition = pixelVisibleSignaturePosition;
             }
             if (authorization != null && authorization.Subjects.Length > 0 && !string.IsNullOrEmpty(authorization.Subjects[0].MatchValue))
             {

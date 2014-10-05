@@ -41,7 +41,7 @@ namespace dssp_demo.Controllers
         }
 
         [Route("")]
-        public async Task<HttpResponseMessage> Get(string id, string location, string role)
+        public async Task<HttpResponseMessage> Get(string id, string location, string role, string visible, int? page, int? x, int? y)
         {
 
             try
@@ -54,9 +54,21 @@ namespace dssp_demo.Controllers
                 dsspClient.ApplicationPassword = configuration.Current.AppPwd;
                 sessions[id] = await dsspClient.UploadDocumentAsync(doc);
 
+                //Create properties
+                var props = new SignatureRequestProperties() { SignatureProductionPlace = location, SignerRole = role };
+                if (visible == "Photo")
+                {
+                    props.VisibleSignature = new PhotoVisualSignature()
+                    {
+                        Page = page.Value,
+                        X = x.Value,
+                        Y = y.Value
+                    };
+                }
+
                 //creating the browser post page with the pending request
-                string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, configuration.Current.Lanuage,
-                    new SignatureRequestProperties() { SignatureProductionPlace = location, SignerRole = role }, configuration.Current.Authorization);
+                string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, 
+                    configuration.Current.Lanuage, props, configuration.Current.Authorization);
                 //returning it to the browser to execute
                 HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(browserPostPage));
