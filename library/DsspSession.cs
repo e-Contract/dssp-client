@@ -390,7 +390,7 @@ namespace EContract.Dssp.Client
                 }
                 if (properties.VisibleSignature != null)
                 {
-                    var photoProp = properties.VisibleSignature as PhotoVisualSignature;
+                    var photoProp = properties.VisibleSignature as ImageVisibleSignature;
                     if (photoProp != null)
                     {
                         var uriItem = new ItemValueURIType();

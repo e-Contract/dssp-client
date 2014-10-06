@@ -29,7 +29,7 @@ namespace EContract.Dssp.Client
     /// <summary>
     /// Visible signature that exist of the a photo (the eID photo).
     /// </summary>
-    public class PhotoVisualSignature : VisibleSignatureProperties
+    public class ImageVisibleSignature : VisibleSignatureProperties
     {
         /// <summary>
         /// The URI of the photo, defaults to the eID photo.
@@ -42,7 +42,7 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Default constructor.
         /// </summary>
-        public PhotoVisualSignature()
+        public ImageVisibleSignature()
         {
             ValueUri = "urn:be:e-contract:dssp:1.0:vs:si:eid-photo";
         }

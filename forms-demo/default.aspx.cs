@@ -18,7 +18,20 @@ namespace forms_demo
         {
             Session["Location"] = this.location.Text;
             Session["Role"] = this.role.Text;
+            Session["Visible"] = this.visible.SelectedValue;
+            int value;
+            Int32.TryParse(this.PageNr.Text, out value);
+            Session["Page"] = value;
+            Int32.TryParse(this.X.Text, out value);
+            Session["X"] = value;
+            Int32.TryParse(this.Y.Text, out value);
+            Session["Y"] = value;
             Response.Redirect("Sign.aspx");
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.VisiblePanel.Visible = this.visible.SelectedValue != "None";
         }
     }
 }

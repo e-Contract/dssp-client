@@ -25,12 +25,30 @@ namespace forms_demo
             dsspClient.ApplicationName = Settings.Default.AppName;
             dsspClient.ApplicationPassword = Settings.Default.AppPwd;
             DsspSession dsspSession = dsspClient.UploadDocument(document);
-
             Session["dsspSession"] = dsspSession;
 
-            this.PendingRequest.Value = dsspSession.GeneratePendingRequest(new Uri(Request.Url, ResolveUrl("~/Signed.aspx")), Settings.Default.Language, 
-                new SignatureRequestProperties() { SignerRole = (string) Session["Role"], SignatureProductionPlace = (string) Session["Location"]},
-                Settings.Default.Authorization);
+            VisibleSignatureProperties visibleSignature = null;
+            if (Session["Visible"] == "Photo")
+            {
+                visibleSignature = new ImageVisibleSignature()
+                {
+                    Page = (int) Session["Page"],
+                    X = (int) Session["X"],
+                    Y = (int) Session["Y"]
+                };
+            }
+
+            this.PendingRequest.Value = dsspSession.GeneratePendingRequest(
+                new Uri(Request.Url, ResolveUrl("~/Signed.aspx")),
+                Settings.Default.Language,
+                new SignatureRequestProperties() 
+                {
+                    SignerRole = (string)Session["Role"],
+                    SignatureProductionPlace = (string)Session["Location"],
+                    VisibleSignature = visibleSignature
+                },
+                Settings.Default.Authorization
+            );
         }
     }
 }

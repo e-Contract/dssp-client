@@ -58,7 +58,8 @@ namespace dssp_demo.Controllers
                 var props = new SignatureRequestProperties() { SignatureProductionPlace = location, SignerRole = role };
                 if (visible == "Photo")
                 {
-                    props.VisibleSignature = new PhotoVisualSignature()
+                    //Create an image visual signature, which defaults to eID photo
+                    props.VisibleSignature = new ImageVisibleSignature()
                     {
                         Page = page.Value,
                         X = x.Value,
