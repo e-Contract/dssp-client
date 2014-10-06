@@ -41,7 +41,7 @@
   <ItemGroup>
     <Reference Include="EContract.Dssp.Client, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\DSS-P.Client.1.2.0-Beta1\lib\net40\EContract.Dssp.Client.dll</HintPath>
+      <HintPath>..\packages\DSS-P.Client.1.2.0\lib\net40\EContract.Dssp.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.DataSetExtensions" />

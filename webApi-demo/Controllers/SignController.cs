@@ -55,7 +55,11 @@ namespace dssp_demo.Controllers
                 sessions[id] = await dsspClient.UploadDocumentAsync(doc);
 
                 //Create properties
-                var props = new SignatureRequestProperties() { SignatureProductionPlace = location, SignerRole = role };
+                SignatureRequestProperties props = null;
+                if (!configuration.Current.AltMode || visible != "None" || !string.IsNullOrEmpty(location) || !string.IsNullOrEmpty(role))
+                {
+                    props = new SignatureRequestProperties() { SignatureProductionPlace = location, SignerRole = role };
+                }
                 if (visible == "Photo")
                 {
                     //Create an image visual signature, which defaults to eID photo
