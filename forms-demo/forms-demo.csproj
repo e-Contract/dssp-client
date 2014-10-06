@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EContract.Dssp.Client, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DSS-P.Client.1.2.0-Beta1\lib\net35\EContract.Dssp.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -57,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\dssp-specs.pdf" />
+    <Content Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,12 +107,6 @@
     <Compile Include="Signed.aspx.designer.cs">
       <DependentUpon>Signed.aspx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\library v3.5\library v3.5.csproj">
-      <Project>{879f2071-abd0-4a45-bcfd-6c6af3f71137}</Project>
-      <Name>library v3.5</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

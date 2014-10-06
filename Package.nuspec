@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DSS-P.Client</id>
-    <version>1.2.0-Alpha1</version>
+    <version>1.2.0-Beta1</version>
     <authors>Egelke BVBA,e-Contract.be BVBA</authors>
     <owners>Egelke BVBA,e-Contract.be BVBA</owners>
     <licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
@@ -24,7 +24,7 @@
       are very vulnerable to attacks, this new protocol is a huge step forward. This makes the new Digital Signature Service truly unique compared to other
       solutions.
     </summary>
-    <releaseNotes>Upgrade to 1.2.0 specs of DSSP by e-Contract.be</releaseNotes>
+    <releaseNotes>Upgrade to 1.2.0 specs of DSSP by e-Contract.be (final API)</releaseNotes>
     <copyright>2014 © Egelke BVBA and e-Contract.be BVBA</copyright>
     <tags>e-Contract.be DSS eSigning eID</tags>
   </metadata>
