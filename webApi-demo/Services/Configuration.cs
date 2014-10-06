@@ -8,7 +8,7 @@ namespace dssp_demo.Services
 {
     public class Configuration
     {
-        private static Config instance = new Config() { Lanuage = "en", AppName = "egelke", AppPwd="egelke" };
+        private static Config instance = new Config() { AltMode = false,  Lanuage = "en", AppName = "egelke", AppPwd="egelke" };
 
         public Config Current
         {

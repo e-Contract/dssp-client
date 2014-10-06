@@ -68,8 +68,37 @@ namespace dssp_demo.Controllers
                 }
 
                 //creating the browser post page with the pending request
-                string browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri, 
-                    configuration.Current.Lanuage, props, configuration.Current.Authorization);
+                string browserPostPage;
+                if (configuration.Current.AltMode) {
+                    if (string.IsNullOrEmpty(configuration.Current.Lanuage) && props == null && string.IsNullOrEmpty(configuration.Current.Authorization))
+                    {
+                        browserPostPage = sessions[id].GeneratePendingRequestPage("https://www.e-contract.be/dss-ws/start", Request.RequestUri.ToString());
+                    }
+                    else if (props == null && string.IsNullOrEmpty(configuration.Current.Authorization))
+                    {
+                        browserPostPage = sessions[id].GeneratePendingRequestPage("https://www.e-contract.be/dss-ws/start", Request.RequestUri.ToString(),
+                            configuration.Current.Lanuage);
+                    }
+                    else if (string.IsNullOrEmpty(configuration.Current.Authorization) && props != null)
+                    {
+                        browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri,
+                            configuration.Current.Lanuage, props);
+                    }
+                    else if (!string.IsNullOrEmpty(configuration.Current.Authorization) && props == null)
+                    {
+                        browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri,
+                            configuration.Current.Lanuage, EContract.Dssp.Client.Authorization.AllowDssSignIfMatchSubject(configuration.Current.Authorization));
+                    }
+                    else
+                    {
+                        browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri,
+                            configuration.Current.Lanuage, props, EContract.Dssp.Client.Authorization.AllowDssSignIfMatchSubject(configuration.Current.Authorization));
+                    }
+                } else {
+                    browserPostPage = sessions[id].GeneratePendingRequestPage(new Uri("https://www.e-contract.be/dss-ws/start"), Request.RequestUri,
+                        configuration.Current.Lanuage, props, configuration.Current.Authorization);
+                }
+
                 //returning it to the browser to execute
                 HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
                 result.Content = new ByteArrayContent(Encoding.ASCII.GetBytes(browserPostPage));

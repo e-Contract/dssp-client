@@ -345,7 +345,7 @@ namespace EContract.Dssp.Client
                 throw new ArgumentException("When provided, the authorization parameter must specify the action", "authorization");
 
             //Prepare browser post message (to return)
-            PendingRequest pendingRequest = new PendingRequest();
+            var pendingRequest = new PendingRequest();
             pendingRequest.OptionalInputs = new OptionalInputs();
             pendingRequest.OptionalInputs.AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing";
             pendingRequest.OptionalInputs.ResponseID = this.ServerId;
@@ -360,7 +360,8 @@ namespace EContract.Dssp.Client
             pendingRequest.OptionalInputs.ReplyTo.Address = new AttributedURIType();
             pendingRequest.OptionalInputs.ReplyTo.Address.Value = landingUrl.AbsoluteUri;
             pendingRequest.OptionalInputs.ReturnSignerIdentity = new ReturnSignerIdentity();
-            pendingRequest.OptionalInputs.Language = language;
+            pendingRequest.OptionalInputs.Language = string.IsNullOrEmpty(language) ? null : language;
+
             if (properties != null && (!string.IsNullOrEmpty(properties.SignerRole) 
                     || !string.IsNullOrEmpty(properties.SignatureProductionPlace)
                     || properties.VisibleSignature != null))
@@ -486,7 +487,7 @@ namespace EContract.Dssp.Client
                 requestSerializer.Serialize(pendingRequestWriter, pendingRequest);
             }
 
-            SignedXml signedXml = new SignedXml(pendingRequestXml);
+            var signedXml = new SignedXml(pendingRequestXml);
             signedXml.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
             signedXml.SignedInfo.SignatureMethod = SignedXml.XmlDsigHMACSHA1Url;
             var docRef = new Reference("");
@@ -547,7 +548,7 @@ namespace EContract.Dssp.Client
             }
 
             //Check the signature.
-            XmlDocument xml = new XmlDocument();
+            var xml = new XmlDocument();
             xml.PreserveWhitespace = true;
             xml.Load(new MemoryStream(signResponseBytes));
 
@@ -555,7 +556,7 @@ namespace EContract.Dssp.Client
             nsmgr.AddNamespace("ds", "http://www.w3.org/2000/09/xmldsig#");
             var xmlSignature = (XmlElement)xml.SelectSingleNode("//ds:Signature", nsmgr);
 
-            SignedXml signedXml = new SignedXml(xml);
+            var signedXml = new SignedXml(xml);
             signedXml.LoadXml(xmlSignature);
             if (!signedXml.CheckSignature(new HMACSHA1(this.KeyValue)))
             {

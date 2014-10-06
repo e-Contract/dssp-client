@@ -38,6 +38,10 @@
         <div class="modal-body">
             <form action="" method="post" class="bootstrap-frm">
                 <label>
+                    <span>AltMode: </span>
+                    <input id="altmode" type="checkbox" name="Alternative mode (use different API methods, use full match vs regex)" ng-model="config.AltMode" />
+                </label>
+                <label>
                     <span>Name: </span>
                     <input id="name" type="text" name="name" placeholder="Application Name (optional)" ng-model="config.AppName" />
                 </label>
