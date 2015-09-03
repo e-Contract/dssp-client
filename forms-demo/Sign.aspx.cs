@@ -36,6 +36,15 @@ namespace forms_demo
                     X = (int) Session["X"],
                     Y = (int) Session["Y"]
                 };
+            } else if (Session["Visible"] == "Photo and Signer Info")
+            {
+                visibleSignature = new ImageVisibleSignature()
+                {
+                    Page = (int)Session["Page"],
+                    X = (int)Session["X"],
+                    Y = (int)Session["Y"],
+                    ValueUri = "urn:be:e-contract:dssp:1.0:vs:si:eid-photo:signer-info"
+                };
             }
 
             this.PendingRequest.Value = dsspSession.GeneratePendingRequest(

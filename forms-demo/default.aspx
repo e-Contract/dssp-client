@@ -21,6 +21,7 @@
             <asp:DropDownList ID="visible" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="true">
                 <asp:ListItem>None</asp:ListItem>
                 <asp:ListItem>Photo</asp:ListItem>
+                <asp:ListItem>Photo and Signer Info</asp:ListItem>
             </asp:DropDownList>
         </asp:Panel>
         <asp:Panel ID="VisiblePanel" runat="server" Visible="False">
