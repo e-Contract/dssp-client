@@ -43,7 +43,8 @@ namespace forms_demo
                     Page = (int)Session["Page"],
                     X = (int)Session["X"],
                     Y = (int)Session["Y"],
-                    ValueUri = "urn:be:e-contract:dssp:1.0:vs:si:eid-photo:signer-info"
+                    ValueUri = "urn:be:e-contract:dssp:1.0:vs:si:eid-photo:signer-info",
+                    CustomText = (string)Session["CustomText"]
                 };
             }
 

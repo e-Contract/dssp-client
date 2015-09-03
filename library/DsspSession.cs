@@ -401,6 +401,17 @@ namespace EContract.Dssp.Client
                         item.ItemName = ItemNameEnum.SignerImage;
                         item.ItemValue = uriItem;
                         items.Add(item);
+
+                        var customText = photoProp.CustomText;
+                        if (!string.IsNullOrEmpty(customText))
+                        {
+                            var customTextItem = new VisibleSignatureItemType();
+                            customTextItem.ItemName = ItemNameEnum.CustomText;
+                            var customTextItemValue = new ItemValueStringType();
+                            customTextItemValue.ItemValue = customText;
+                            customTextItem.ItemValue = customTextItemValue;
+                            items.Add(customTextItem);
+                        }
                     }
                     else
                     {

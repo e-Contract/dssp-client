@@ -26,6 +26,7 @@ namespace forms_demo
             Session["X"] = value;
             Int32.TryParse(this.Y.Text, out value);
             Session["Y"] = value;
+            Session["CustomText"] = this.CustomText.Text;
             Response.Redirect("Sign.aspx");
         }
 

@@ -40,6 +40,11 @@ namespace EContract.Dssp.Client
         public string ValueUri { get; set; }
 
         /// <summary>
+        /// Optional custom text.
+        /// </summary>
+        public string CustomText { get; set; }
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         public ImageVisibleSignature()

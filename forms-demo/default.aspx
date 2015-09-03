@@ -36,6 +36,9 @@
             <asp:TextBox ID="Y" runat="server"></asp:TextBox>
             <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="Y" ErrorMessage="Must be a positive number" MaximumValue="999999" MinimumValue="0"></asp:RangeValidator>
             <br />
+            <asp:Label ID="CustomTextLabel" runat="server" Text="Custom text: "></asp:Label>
+            <asp:TextBox ID="CustomText" runat="server"></asp:TextBox>
+            <br />
         </asp:Panel>
     
         <asp:Button ID="signButton" runat="server" Text="Sign PDF" OnClick="signButton_Click" />
