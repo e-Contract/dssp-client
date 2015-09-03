@@ -78,7 +78,9 @@ namespace forms_demo
         {
             Document signedDocument = (Document) Session["signedDocument"];
             Response.ContentType = signedDocument.MimeType;
+            Response.AppendHeader("Content-Disposition", "attachment;filename=signed.pdf");
             CopyStream(signedDocument.Content, Response.OutputStream);
+            Response.End();
         }
 
         private static void CopyStream(Stream input, Stream output)
