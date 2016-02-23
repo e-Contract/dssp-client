@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace EContract.Dssp.Client
+﻿namespace EContract.Dssp.Client
 {
     /// <summary>
     /// Base class to define a visible signature.

@@ -18,11 +18,8 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Selectors;
-using System.Linq;
 using System.ServiceModel.Security.Tokens;
-using System.Text;
 
 namespace EContract.Dssp.Client.WcfBinding
 {

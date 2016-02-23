@@ -1,7 +1,7 @@
 ﻿/*
  *  This file is part of DSS-P client.
  *  Copyright (C) 2014 Egelke BVBA
- *  Copyright (C) 2014 e-Contract.be BVBA
+ *  Copyright (C) 2014-2016 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
@@ -21,19 +21,11 @@ using EContract.Dssp.Client.Proxy;
 using EContract.Dssp.Client.WcfBinding;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Xml;
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
-using System.ServiceModel.Security;
-using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace EContract.Dssp.Client

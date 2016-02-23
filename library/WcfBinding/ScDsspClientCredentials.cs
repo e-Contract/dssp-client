@@ -17,12 +17,8 @@
  *  along with DSS-P client.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel.Description;
 using System.ServiceModel.Security.Tokens;
-using System.Text;
 
 namespace EContract.Dssp.Client.WcfBinding
 {
