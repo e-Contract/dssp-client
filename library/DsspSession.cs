@@ -47,8 +47,11 @@ namespace EContract.Dssp.Client
             return session;
         }
 
+        [NonSerialized()]
         private XmlSerializer requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
+        [NonSerialized()]
         private XmlSerializer responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
+        [NonSerialized()]
         private XmlSerializer tRefSerializer = new XmlSerializer(typeof(SecurityTokenReferenceType), null, new Type[0], new XmlRootAttribute("SecurityTokenReference"), "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
 
         /// <summary>
@@ -493,6 +496,10 @@ namespace EContract.Dssp.Client
             //Prepare Sign
             var pendingRequestXml = new XmlDocument();
             pendingRequestXml.PreserveWhitespace = true;
+            if (null == requestSerializer)
+            {
+                requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
+            }
             using (var pendingRequestWriter = pendingRequestXml.CreateNavigator().AppendChild())
             {
                 requestSerializer.Serialize(pendingRequestWriter, pendingRequest);
@@ -510,6 +517,10 @@ namespace EContract.Dssp.Client
             //Add Key Info
             var keyRefXml = new XmlDocument();
             keyRefXml.PreserveWhitespace = true;
+            if (null == tRefSerializer)
+            {
+                tRefSerializer = new XmlSerializer(typeof(SecurityTokenReferenceType), null, new Type[0], new XmlRootAttribute("SecurityTokenReference"), "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
+            }
             using (var keyRefXmlWriter = keyRefXml.CreateNavigator().AppendChild())
             {
                 tRefSerializer.Serialize(keyRefXmlWriter, this.KeyReference);
@@ -544,6 +555,11 @@ namespace EContract.Dssp.Client
         public NameIdentifierType ValidateSignResponse(string signResponse)
         {
             if (signResponse == null) throw new ArgumentNullException("signResponse");
+
+            if (responseSerializer == null)
+            {
+                responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
+            }
 
             //Parse it.
             byte[] signResponseBytes;

@@ -1,12 +1,8 @@
 ﻿using EContract.Dssp.Client;
 using EContract.Dssp.Client.Proxy;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace forms_demo
 {
@@ -24,6 +20,13 @@ namespace forms_demo
 
                 //Retrieve the session
                 DsspSession session = (DsspSession)Session["dsspSession"];
+
+                // verify whether DsspSession is serializable
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                MemoryStream memoryStream = new MemoryStream();
+                binaryFormatter.Serialize(memoryStream, session);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+                session = (DsspSession)binaryFormatter.Deserialize(memoryStream);
 
                 Document signedDocument;
                 try

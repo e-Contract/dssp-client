@@ -1,14 +1,9 @@
 ﻿using EContract.Dssp.Client;
 using forms_demo.Properties;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.ServiceModel;
-using System.Web;
 using System.Web.Hosting;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace forms_demo
 {
@@ -47,6 +42,13 @@ namespace forms_demo
                     CustomText = (string)Session["CustomText"]
                 };
             }
+
+            // verify whether DsspSession is serializable
+            BinaryFormatter binaryFormatter = new BinaryFormatter();
+            MemoryStream memoryStream = new MemoryStream();
+            binaryFormatter.Serialize(memoryStream, dsspSession);
+            memoryStream.Seek(0, SeekOrigin.Begin);
+            dsspSession = (DsspSession) binaryFormatter.Deserialize(memoryStream);
 
             this.PendingRequest.Value = dsspSession.GeneratePendingRequest(
                 new Uri(Request.Url, ResolveUrl("~/Signed.aspx")),
