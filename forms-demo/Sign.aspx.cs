@@ -50,6 +50,11 @@ namespace forms_demo
             memoryStream.Seek(0, SeekOrigin.Begin);
             dsspSession = (DsspSession) binaryFormatter.Deserialize(memoryStream);
 
+            Authorization authorization = new Authorization();
+            //authorization.AddAuthorizedCardNumber("591937284531");
+            //authorization.AddAuthorizedSubjectName("SERIALNUMBER=79102520991, GIVENNAME=Frank Henri, SURNAME=Cornelis, CN=Frank Cornelis (Signature), C=BE");
+            //authorization.AddNonAuthorizedSubjectName("SERIALNUMBER=79102520991, GIVENNAME=Frank Henri, SURNAME=Cornelis, CN=Frank Cornelis (Signature), C=BE");
+
             this.PendingRequest.Value = dsspSession.GeneratePendingRequest(
                 new Uri(Request.Url, ResolveUrl("~/Signed.aspx")),
                 Settings.Default.Language,
@@ -59,7 +64,7 @@ namespace forms_demo
                     SignatureProductionPlace = (string)Session["Location"],
                     VisibleSignature = visibleSignature
                 },
-                Settings.Default.Authorization
+                authorization
             );
         }
     }

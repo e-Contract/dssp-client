@@ -1,7 +1,7 @@
 ﻿/*
  *  This file is part of DSS-P client.
  *  Copyright (C) 2014 Egelke BVBA
- *  Copyright (C) 2014 e-Contract.be BVBA
+ *  Copyright (C) 2014-2016 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
@@ -335,17 +335,11 @@ namespace EContract.Dssp.Client
         /// <param name="landingUrl">The landing page of the SignResponse</param>
         /// <param name="language">The language of the e-contract.be pages, <c>null</c> for the default language</param>
         /// <param name="properties">Additional properties (location, role, visibility info, ...) for the signature request</param>
-        /// <param name="authorization">The authorization that the signer must match too to be authorized</param>
+        /// <param name="authorization">The optional authorization that the signer must match too to be authorized</param>
         /// <returns>The base64 encoded PendingRequest, to be used as value for the "PendingRequest"-input</returns>
         public string GeneratePendingRequest(Uri landingUrl, string language, SignatureRequestProperties properties, Authorization authorization)
         {
             if (landingUrl == null) throw new ArgumentNullException("landingUrl");
-            if (authorization != null && (authorization.Subjects == null || authorization.Subjects.Length == 0))
-                throw new ArgumentException("When provided, the authorization parameter must specify at least 1 subject", "authorization");
-            if (authorization != null && string.IsNullOrEmpty(authorization.Resource))
-                throw new ArgumentException("When provided, the authorization parameter must specify the resource", "authorization");
-            if (authorization != null && string.IsNullOrEmpty(authorization.Action))
-                throw new ArgumentException("When provided, the authorization parameter must specify the action", "authorization");
 
             //Prepare browser post message (to return)
             var pendingRequest = new PendingRequest();
@@ -433,64 +427,10 @@ namespace EContract.Dssp.Client
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration.VisibleSignatureItem = items.ToArray<VisibleSignatureItemType>();
                 pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePosition = pixelVisibleSignaturePosition;
             }
-            if (authorization != null && authorization.Subjects.Length > 0 && !string.IsNullOrEmpty(authorization.Subjects[0].MatchValue))
-            {
-                var subjects = new List<SubjectMatchType>();
-                foreach (Subject subject in authorization.Subjects)
-                {
-                    var subjectMatch = new SubjectMatchType();
-                    subjectMatch.MatchId = subject.MatchType;
-                    subjectMatch.AttributeValue = new AttributeValueType();
-                    subjectMatch.AttributeValue.DataType = subject.MatchDataType;
-                    subjectMatch.AttributeValue.Value = subject.MatchValue;
-                    subjectMatch.SubjectAttributeDesignator = new SubjectAttributeDesignatorType();
-                    subjectMatch.SubjectAttributeDesignator.AttributeId = subject.AttributeId;
-                    subjectMatch.SubjectAttributeDesignator.DataType = subject.AttributeDataType;
-                    subjects.Add(subjectMatch);
-                }
 
-                pendingRequest.OptionalInputs.Policy = new PolicyType();
-                pendingRequest.OptionalInputs.Policy.PolicyId = "urn:egelke:dssp:pendingrequest:policy";
-                pendingRequest.OptionalInputs.Policy.RuleCombiningAlgId = "urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides";
-                pendingRequest.OptionalInputs.Policy.Target = new TargetType();
-                pendingRequest.OptionalInputs.Policy.Rule = new RuleType[1];
-                pendingRequest.OptionalInputs.Policy.Rule[0] = new RuleType();
-                pendingRequest.OptionalInputs.Policy.Rule[0].RuleId = "permit-subject";
-                pendingRequest.OptionalInputs.Policy.Rule[0].Effect = EffectType.Permit;
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target = new TargetType();
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects = new SubjectMatchType[authorization.Subjects.Length][];
-                for (int i=0; i<authorization.Subjects.Length; i++)
-                {
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i] = new SubjectMatchType[1];
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i][0] = new SubjectMatchType();
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i][0].MatchId = authorization.Subjects[i].MatchType;
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i][0].AttributeValue = new AttributeValueType();
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i][0].AttributeValue.Value = authorization.Subjects[i].MatchValue;
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i][0].AttributeValue.DataType = authorization.Subjects[i].MatchDataType;
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i][0].SubjectAttributeDesignator = new SubjectAttributeDesignatorType();
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i][0].SubjectAttributeDesignator.AttributeId = authorization.Subjects[i].AttributeId;
-                    pendingRequest.OptionalInputs.Policy.Rule[0].Target.Subjects[i][0].SubjectAttributeDesignator.DataType = authorization.Subjects[i].AttributeDataType;
-                }
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources = new ResourceMatchType[1][];
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0] = new ResourceMatchType[1];
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0][0] = new ResourceMatchType();
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0][0].MatchId = "urn:oasis:names:tc:xacml:1.0:function:anyURI-equal";
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0][0].AttributeValue = new AttributeValueType();
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0][0].AttributeValue.Value = authorization.Resource;
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0][0].AttributeValue.DataType = "http://www.w3.org/2001/XMLSchema#anyURI";
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0][0].ResourceAttributeDesignator = new AttributeDesignatorType();
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0][0].ResourceAttributeDesignator.AttributeId = "urn:oasis:names:tc:xacml:1.0:resource:resource-id";
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Resources[0][0].ResourceAttributeDesignator.DataType = "http://www.w3.org/2001/XMLSchema#anyURI";
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions = new ActionMatchType[1][];
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0] = new ActionMatchType[1];
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0][0] = new ActionMatchType();
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0][0].MatchId = "urn:oasis:names:tc:xacml:1.0:function:string-equal";
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0][0].AttributeValue = new AttributeValueType();
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0][0].AttributeValue.Value = authorization.Action;
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0][0].AttributeValue.DataType = "http://www.w3.org/2001/XMLSchema#string";
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0][0].ActionAttributeDesignator = new AttributeDesignatorType();
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0][0].ActionAttributeDesignator.AttributeId = "urn:oasis:names:tc:xacml:1.0:action:action-id";
-                pendingRequest.OptionalInputs.Policy.Rule[0].Target.Actions[0][0].ActionAttributeDesignator.DataType = "http://www.w3.org/2001/XMLSchema#string";
+            if (authorization != null)
+            {
+                pendingRequest.OptionalInputs.Policy = authorization.getPolicy();
             }
 
             //Prepare Sign

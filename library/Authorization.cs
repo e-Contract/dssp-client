@@ -1,7 +1,7 @@
 ﻿/*
  *  This file is part of DSS-P client.
  *  Copyright (C) 2014 Egelke BVBA
- *  Copyright (C) 2014 e-Contract.be BVBA
+ *  Copyright (C) 2014-2016 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
@@ -17,7 +17,9 @@
  *  along with DSS-P client.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using EContract.Dssp.Client.Proxy;
 using System;
+using System.Collections.Generic;
 
 namespace EContract.Dssp.Client
 {
@@ -26,6 +28,13 @@ namespace EContract.Dssp.Client
     /// </summary>
     public class Authorization
     {
+        private readonly List<string> authorizedSubjectNames = new List<string>();
+        private readonly List<string> authorizedSubjectRegexps = new List<string>();
+        private readonly List<string> authorizedCardNumbers = new List<string>();
+        private readonly List<string> nonAuthorizedSubjectNames = new List<string>();
+        private readonly List<string> nonAuthorizedSubjectRegexps = new List<string>();
+        private readonly List<string> nonAuthorizedCardNumbers = new List<string>();
+
         /// <summary>
         /// Construct an authorization that authorizes signing with DSS if the eID subject matches exactly.
         /// </summary>
@@ -33,12 +42,9 @@ namespace EContract.Dssp.Client
         /// <returns>The configured authorization object</returns>
         public static Authorization AllowDssSignIfMatchSubject(string subjectName)
         {
-            return new Authorization()
-            {
-                Subjects = new Subject[1] { Subject.MatchSubject(subjectName) },
-                Resource = "urn:be:e-contract:dss",
-                Action = "sign"
-            };
+            Authorization authorization = new Authorization();
+            authorization.authorizedSubjectNames.Add(subjectName);
+            return authorization;
         }
 
         /// <summary>
@@ -48,100 +54,198 @@ namespace EContract.Dssp.Client
         /// <returns>The configured authorization object</returns>
         public static Authorization AllowDssSignIfMatchSubjectRegex(string regex)
         {
-            return new Authorization()
-            {
-                Subjects = new Subject[1] { Subject.MatchSubjectRegex(regex) },
-                Resource = "urn:be:e-contract:dss",
-                Action = "sign"
-            };
+            Authorization authorization = new Authorization();
+            authorization.authorizedSubjectRegexps.Add(regex);
+            return authorization;
         }
 
-        /// <summary>
-        /// The allowed subject.
-        /// </summary>
-        public Subject[] Subjects { get; set; }
-
-        /// <summary>
-        /// The resource it applies to (e.g. "urn:be:e-contract:dss")
-        /// </summary>
-        public String Resource { get; set; }
-
-        /// <summary>
-        /// The action is applies to (e.g. "sign")
-        /// </summary>
-        public String Action { get; set; }
-    }
-
-    /// <summary>
-    /// Defines how to check the subject.
-    /// </summary>
-    public class Subject
-    {
-        /// <summary>
-        /// Creates a subject that exactly matches the "subject"-field of the signer (eID) certificate.
-        /// </summary>
-        /// <param name="subjectName">The subject of the signer certificate in DSS-P notation (not the same as .Net)</param>
-        /// <returns>DSS-P compliant object</returns>
-        public static Subject MatchSubject(string subjectName)
+        public static Authorization DenyDssSignIfMatchSubject(string subjectName)
         {
-            if (subjectName == null) throw new ArgumentNullException("subjectName");
-
-            return new Subject()
-            {
-                MatchType = "urn:oasis:names:tc:xacml:1.0:function:x500Name-equal",
-                MatchValue = subjectName,
-                MatchDataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name",
-                AttributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-id",
-                AttributeDataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name"
-            };
+            Authorization authorization = new Authorization();
+            authorization.nonAuthorizedSubjectNames.Add(subjectName);
+            return authorization;
         }
 
-        /// <summary>
-        /// Creates a subject that matches the "subject"-field of the signer (eID) certificate via a regular expression.
-        /// </summary>
-        /// <param name="regex">The regular expression to match against the subject of the signer certificate in DSS-P notation (not the same as .Net)</param>
-        /// <returns>DSS-P compliant object</returns>
-        public static Subject MatchSubjectRegex(string regex)
+        public static Authorization DenyDssSignIfMatchSubjectRegex(string regex)
         {
-            if (regex == null) throw new ArgumentNullException("regex");
+            Authorization authorization = new Authorization();
+            authorization.nonAuthorizedSubjectRegexps.Add(regex);
+            return authorization;
+        }
 
-            return new Subject()
-            {
-                MatchType = "urn:oasis:names:tc:xacml:2.0:function:x500Name-regexp-match",
-                MatchValue = regex,
-                MatchDataType = "http://www.w3.org/2001/XMLSchema#string",
-                AttributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-id",
-                AttributeDataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name"
-            };
+        public void AddAuthorizedSubjectName(string subjectName)
+        {
+            this.authorizedSubjectNames.Add(subjectName);
+        }
+
+        public void AddAuthorizedSubjectRegExp(string regexp)
+        {
+            this.authorizedSubjectRegexps.Add(regexp);
+        }
+
+        public void AddAuthorizedCardNumber(string cardNumber)
+        {
+            this.authorizedCardNumbers.Add(cardNumber);
+        }
+
+        public void AddNonAuthorizedSubjectName(string subjectName)
+        {
+            this.nonAuthorizedSubjectNames.Add(subjectName);
+        }
+
+        public void AddNonAuthorizedSubjectRegExp(string regexp)
+        {
+            this.nonAuthorizedSubjectRegexps.Add(regexp);
+        }
+
+        public void AddNonAuthorizedCardNumber(string cardNumber)
+        {
+            this.nonAuthorizedCardNumbers.Add(cardNumber);
         }
 
         /// <summary>
-        /// How must the attribute value be matched? Equals the DSS-P "xacmlp:SubjectMatch/@MatchId" value.
+        /// Gives back the XACML policy corresponding with the configured signature authorization.
         /// </summary>
-        public string MatchType {get; set;}
+        /// <returns>The XAML policy object.</returns>
+        public PolicyType getPolicy()
+        {
+            PolicyType policy = new PolicyType();
 
-        /// <summary>
-        /// Which attribute value of the subject must be checked?
-        /// Equals the DSS-P "xacmlp:SubjectMatch/xacmlp:SubjectAttributeDesignator/@AttributeId" value.
-        /// </summary>
-        public string AttributeId { get ; set; }
+            policy.PolicyId = "urn:egelke:dssp:pendingrequest:policy";
+            policy.RuleCombiningAlgId = "urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:deny-overrides";
 
-        /// <summary>
-        /// What is the data type of the attribute value that must be checked?
-        /// Equals the DSS-P "xacmlp:SubjectMatch/xacmlp:SubjectAttributeDesignator/@AttributeId" value.
-        /// </summary>
-        public string AttributeDataType { get; set; }
+            {
+                policy.Target = new TargetType();
+                policy.Target.Resources = new ResourceMatchType[1][];
+                policy.Target.Resources[0] = new ResourceMatchType[1];
+                policy.Target.Resources[0][0] = new ResourceMatchType();
+                policy.Target.Resources[0][0].MatchId = "urn:oasis:names:tc:xacml:1.0:function:anyURI-equal";
+                policy.Target.Resources[0][0].AttributeValue = new AttributeValueType();
+                policy.Target.Resources[0][0].AttributeValue.Value = "urn:be:e-contract:dss";
+                policy.Target.Resources[0][0].AttributeValue.DataType = "http://www.w3.org/2001/XMLSchema#anyURI";
+                policy.Target.Resources[0][0].ResourceAttributeDesignator = new AttributeDesignatorType();
+                policy.Target.Resources[0][0].ResourceAttributeDesignator.AttributeId = "urn:oasis:names:tc:xacml:1.0:resource:resource-id";
+                policy.Target.Resources[0][0].ResourceAttributeDesignator.DataType = "http://www.w3.org/2001/XMLSchema#anyURI";
+                policy.Target.Actions = new ActionMatchType[1][];
+                policy.Target.Actions[0] = new ActionMatchType[1];
+                policy.Target.Actions[0][0] = new ActionMatchType();
+                policy.Target.Actions[0][0].MatchId = "urn:oasis:names:tc:xacml:1.0:function:string-equal";
+                policy.Target.Actions[0][0].AttributeValue = new AttributeValueType();
+                policy.Target.Actions[0][0].AttributeValue.Value = "sign";
+                policy.Target.Actions[0][0].AttributeValue.DataType = "http://www.w3.org/2001/XMLSchema#string";
+                policy.Target.Actions[0][0].ActionAttributeDesignator = new AttributeDesignatorType();
+                policy.Target.Actions[0][0].ActionAttributeDesignator.AttributeId = "urn:oasis:names:tc:xacml:1.0:action:action-id";
+                policy.Target.Actions[0][0].ActionAttributeDesignator.DataType = "http://www.w3.org/2001/XMLSchema#string";
+            }
 
-        /// <summary>
-        /// Against which value must the specified attribute match?
-        /// Equals the DSS-P "xacmlp:SubjectMatch/xacmlp:AttributeValue/text()" value.
-        /// </summary>
-        public string MatchValue { get; set; }
+            if (this.nonAuthorizedSubjectNames.Count != 0 || this.nonAuthorizedSubjectRegexps.Count != 0 ||this.nonAuthorizedCardNumbers.Count != 0)
+            {
+                policy.Rule = new RuleType[2];
+                policy.Rule[1] = new RuleType();
+                policy.Rule[1].RuleId = "deny-subject";
+                policy.Rule[1].Effect = EffectType.Deny;
+                policy.Rule[1].Target = new TargetType();
+                List<SubjectMatchType> subjects = new List<SubjectMatchType>();
+                foreach(string nonAuthorizedSubjectName in this.nonAuthorizedSubjectNames)
+                {
+                    var subjectMatch = new SubjectMatchType();
+                    subjectMatch.MatchId = "urn:oasis:names:tc:xacml:1.0:function:x500Name-equal";
+                    subjectMatch.AttributeValue = new AttributeValueType();
+                    subjectMatch.AttributeValue.DataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name";
+                    subjectMatch.AttributeValue.Value = nonAuthorizedSubjectName;
+                    subjectMatch.SubjectAttributeDesignator = new SubjectAttributeDesignatorType();
+                    subjectMatch.SubjectAttributeDesignator.AttributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-id";
+                    subjectMatch.SubjectAttributeDesignator.DataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name";
+                    subjects.Add(subjectMatch);
+                }
+                foreach(string nonAuthorizedSubjectRegexp in this.nonAuthorizedSubjectRegexps)
+                {
+                    var subjectMatch = new SubjectMatchType();
+                    subjectMatch.MatchId = "urn:oasis:names:tc:xacml:2.0:function:x500Name-regexp-match";
+                    subjectMatch.AttributeValue = new AttributeValueType();
+                    subjectMatch.AttributeValue.DataType = "http://www.w3.org/2001/XMLSchema#string";
+                    subjectMatch.AttributeValue.Value = nonAuthorizedSubjectRegexp;
+                    subjectMatch.SubjectAttributeDesignator = new SubjectAttributeDesignatorType();
+                    subjectMatch.SubjectAttributeDesignator.AttributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-id";
+                    subjectMatch.SubjectAttributeDesignator.DataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name";
+                    subjects.Add(subjectMatch);
+                }
+                foreach (string nonAuthorizedCardNumber in this.nonAuthorizedCardNumbers)
+                {
+                    var subjectMatch = new SubjectMatchType();
+                    subjectMatch.MatchId = "urn:oasis:names:tc:xacml:1.0:function:string-equal";
+                    subjectMatch.AttributeValue = new AttributeValueType();
+                    subjectMatch.AttributeValue.DataType = "http://www.w3.org/2001/XMLSchema#string";
+                    subjectMatch.AttributeValue.Value = nonAuthorizedCardNumber;
+                    subjectMatch.SubjectAttributeDesignator = new SubjectAttributeDesignatorType();
+                    subjectMatch.SubjectAttributeDesignator.AttributeId = "urn:be:e-contract:dss:eid:card-number";
+                    subjectMatch.SubjectAttributeDesignator.DataType = "http://www.w3.org/2001/XMLSchema#string";
+                    subjects.Add(subjectMatch);
+                }
+                policy.Rule[1].Target.Subjects = new SubjectMatchType[subjects.Count][];
+                for (int i = 0; i < subjects.Count; i++)
+                {
+                    policy.Rule[1].Target.Subjects[i] = new SubjectMatchType[1];
+                    policy.Rule[1].Target.Subjects[i][0] = subjects[i];
+                }
+            } else
+            {
+                policy.Rule = new RuleType[1];
+            }
 
-        /// <summary>
-        /// What is the data type of the match value?
-        /// Equals the DSS-P "xacmlp:SubjectMatch/xacmlp:AttributeValue/@DataType" value.
-        /// </summary>
-        public string MatchDataType { get; set; }
+            policy.Rule[0] = new RuleType();
+            policy.Rule[0].RuleId = "permit-subject";
+            policy.Rule[0].Effect = EffectType.Permit;
+
+            if (this.authorizedSubjectNames.Count != 0 || this.authorizedSubjectRegexps.Count != 0 || this.authorizedCardNumbers.Count != 0)
+            {
+                policy.Rule[0].Target = new TargetType();
+                List<SubjectMatchType> subjects = new List<SubjectMatchType>();
+                foreach (string authorizedSubjectName in this.authorizedSubjectNames)
+                {
+                    var subjectMatch = new SubjectMatchType();
+                    subjectMatch.MatchId = "urn:oasis:names:tc:xacml:1.0:function:x500Name-equal";
+                    subjectMatch.AttributeValue = new AttributeValueType();
+                    subjectMatch.AttributeValue.DataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name";
+                    subjectMatch.AttributeValue.Value = authorizedSubjectName;
+                    subjectMatch.SubjectAttributeDesignator = new SubjectAttributeDesignatorType();
+                    subjectMatch.SubjectAttributeDesignator.AttributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-id";
+                    subjectMatch.SubjectAttributeDesignator.DataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name";
+                    subjects.Add(subjectMatch);
+                }
+                foreach (string authorizedSubjectRegexp in this.authorizedSubjectRegexps)
+                {
+                    var subjectMatch = new SubjectMatchType();
+                    subjectMatch.MatchId = "urn:oasis:names:tc:xacml:2.0:function:x500Name-regexp-match";
+                    subjectMatch.AttributeValue = new AttributeValueType();
+                    subjectMatch.AttributeValue.DataType = "http://www.w3.org/2001/XMLSchema#string";
+                    subjectMatch.AttributeValue.Value = authorizedSubjectRegexp;
+                    subjectMatch.SubjectAttributeDesignator = new SubjectAttributeDesignatorType();
+                    subjectMatch.SubjectAttributeDesignator.AttributeId = "urn:oasis:names:tc:xacml:1.0:subject:subject-id";
+                    subjectMatch.SubjectAttributeDesignator.DataType = "urn:oasis:names:tc:xacml:1.0:data-type:x500Name";
+                    subjects.Add(subjectMatch);
+                }
+                foreach (string authorizedCardNumber in this.authorizedCardNumbers)
+                {
+                    var subjectMatch = new SubjectMatchType();
+                    subjectMatch.MatchId = "urn:oasis:names:tc:xacml:1.0:function:string-equal";
+                    subjectMatch.AttributeValue = new AttributeValueType();
+                    subjectMatch.AttributeValue.DataType = "http://www.w3.org/2001/XMLSchema#string";
+                    subjectMatch.AttributeValue.Value = authorizedCardNumber;
+                    subjectMatch.SubjectAttributeDesignator = new SubjectAttributeDesignatorType();
+                    subjectMatch.SubjectAttributeDesignator.AttributeId = "urn:be:e-contract:dss:eid:card-number";
+                    subjectMatch.SubjectAttributeDesignator.DataType = "http://www.w3.org/2001/XMLSchema#string";
+                    subjects.Add(subjectMatch);
+                }
+                policy.Rule[0].Target.Subjects = new SubjectMatchType[subjects.Count][];
+                for (int i = 0; i < subjects.Count; i++)
+                {
+                    policy.Rule[0].Target.Subjects[i] = new SubjectMatchType[1];
+                    policy.Rule[0].Target.Subjects[i][0] = subjects[i];
+                }
+            }
+
+            return policy;
+        }
     }
 }

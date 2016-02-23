@@ -62,6 +62,13 @@ namespace forms_demo
 
                     this.view.Enabled = true;
                 }
+                catch (AuthorizationError error)
+                {
+                    //Failed, lets display the error
+                    this.msg.Text = "authorization error: " + error.AttemptedSigner.Value;
+                    this.view.Enabled = false;
+                    return;
+                }
                 catch (RequestError error)
                 {
                     //Failed, lets display the error
