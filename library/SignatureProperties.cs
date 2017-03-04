@@ -18,6 +18,11 @@
  */
 
 
+using EContract.Dssp.Client.Proxy;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace EContract.Dssp.Client
 {
     /// <summary>
@@ -35,7 +40,6 @@ namespace EContract.Dssp.Client
         /// Claimed or certified roles assumed by the signer in creating the signature.
         /// </summary>
         public string SignerRole { get; set; }
-
 
     }
 }

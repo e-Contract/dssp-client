@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\library\AppCredentials.cs">
+      <Link>AppCredentials.cs</Link>
+    </Compile>
     <Compile Include="..\library\Authorization.cs">
       <Link>Authorization.cs</Link>
     </Compile>
@@ -51,6 +54,9 @@
     </Compile>
     <Compile Include="..\library\Document.cs">
       <Link>Document.cs</Link>
+    </Compile>
+    <Compile Include="..\library\DssHelper.cs">
+      <Link>DssHelper.cs</Link>
     </Compile>
     <Compile Include="..\library\DsspClient.cs">
       <Link>DsspClient.cs</Link>
@@ -105,6 +111,9 @@
     </Compile>
     <Compile Include="..\library\WcfBinding\UTDsspBinding.cs">
       <Link>WcfBinding\UTDsspBinding.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\X509DsspBinding.cs">
+      <Link>WcfBinding\X509DsspBinding.cs</Link>
     </Compile>
     <Compile Include="DigitalSignatureService.cs" />
     <Compile Include="StreamHelper.cs" />

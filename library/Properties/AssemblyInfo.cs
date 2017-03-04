@@ -1,6 +1,6 @@
 ﻿/*
  *  This file is part of DSS-P client.
- *  Copyright (C) 2014 Egelke BVBA
+ *  Copyright (C) 2014-2017 Egelke BVBA
  *  Copyright (C) 2014 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
@@ -26,10 +26,10 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("DSS-P Client")]
 [assembly: AssemblyDescription("Client for the DSS-P Service of e-contract")]
-[assembly: AssemblyConfiguration("RC")]
+[assembly: AssemblyConfiguration("Release")]
 [assembly: AssemblyCompany("Egelke BVBA")]
 [assembly: AssemblyProduct("DSS-P")]
-[assembly: AssemblyCopyright("2014 © Egelke BVBA and e-Contract BVBA")]
+[assembly: AssemblyCopyright("2014-2017 © Egelke BVBA and e-Contract BVBA")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,6 +51,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.0")]
-[assembly: AssemblyFileVersion("1.2.0")]
-[assembly: AssemblyInformationalVersion("1.2.0")]
+[assembly: AssemblyVersion("1.4.0")]
+[assembly: AssemblyFileVersion("1.4.0")]
+[assembly: AssemblyInformationalVersion("1.4.0")]

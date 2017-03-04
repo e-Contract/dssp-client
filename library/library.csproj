@@ -46,10 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppCredentials.cs" />
     <Compile Include="Authorization.cs" />
     <Compile Include="AuthorizationError.cs" />
     <Compile Include="DigitalSignatureService.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="DssHelper.cs" />
     <Compile Include="DsspClientAsync.cs" />
     <Compile Include="IncorrectSignatureException.cs" />
     <Compile Include="SecurityInfo.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="SignatureProperties.cs" />
     <Compile Include="SignatureRequestProperties.cs" />
     <Compile Include="VisibleSignatureProperties.cs" />
+    <Compile Include="WcfBinding\X509DsspBinding.cs" />
     <Compile Include="WcfBinding\UTDsspBinding.cs" />
     <Compile Include="WcfBinding\PlainDsspBinding.cs" />
     <Compile Include="DsspClient.cs" />

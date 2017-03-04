@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EContract.Dssp.Client;
+using forms_demo.Properties;
+using System;
 
 namespace forms_demo
 {
@@ -25,7 +27,9 @@ namespace forms_demo
             Response.Redirect("Sign.aspx");
         }
 
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        
+
+            protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.VisiblePanel.Visible = this.visible.SelectedValue != "None";
         }

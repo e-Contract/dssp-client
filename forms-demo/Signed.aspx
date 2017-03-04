@@ -16,6 +16,7 @@
         
         <asp:Button ID="home" runat="server" Text="Home" OnClick="home_Click" />
         <asp:Button ID="view" runat="server" Text="View" OnClick="view_Click" />
+        <asp:Button ID="seal" runat="server" Text="Seal" OnClick="seal_Click" />
     </div>
     </form>
 </body>

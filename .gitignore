@@ -151,3 +151,7 @@ $RECYCLE.BIN/
 .DS_Store
 /packages
 *.nupkg
+
+#security
+*.key
+*.p12

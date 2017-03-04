@@ -1,6 +1,6 @@
 ﻿/*
  *  This file is part of DSS-P client.
- *  Copyright (C) 2014 Egelke BVBA
+ *  Copyright (C) 2014-2017 Egelke BVBA
  *  Copyright (C) 2014 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
@@ -31,11 +31,10 @@ namespace EContract.Dssp.Client
         /// <see cref="UploadDocument"/>
         public async Task<DsspSession> UploadDocumentAsync(Document document)
         {
-            byte[] clientNonce;
             if (document == null) throw new ArgumentNullException("document");
 
             var client = CreateDSSPClient();
-            var request = CreateSignRequest(document, out clientNonce);
+            var request = CreateSignRequest(document, out var clientNonce);
             signResponse1 responseWrapper = await client.signAsync(request);
             return ProcessSignResponse(responseWrapper.SignResponse, clientNonce);
         }
@@ -51,7 +50,7 @@ namespace EContract.Dssp.Client
             var client = CreateDSSPClient(session);
             var downloadRequest = CreateDownloadRequest(session);
             pendingRequestResponse downloadResponseWrapper = await client.pendingRequestAsync(downloadRequest);
-            return ProcessDownloadResponse(downloadResponseWrapper.SignResponse);
+            return ProcessSignResponse(downloadResponseWrapper.SignResponse);
         }
 
         /// <summary>
@@ -67,6 +66,20 @@ namespace EContract.Dssp.Client
             verifyResponse responseWrapper = await client.verifyAsync(request);
             return ProcessVerifyResponse(responseWrapper.VerifyResponse1);
         }
-        
+
+        /// <summary>
+        /// Add an eSeal to the document via the e-contract service.
+        /// </summary>
+        /// <see cref="Seal(Document, SignatureRequestProperties)"/>
+        public async Task<Document> SealAsync(Document document, SignatureRequestProperties properties)
+        {
+            if (document == null) throw new ArgumentNullException("document");
+
+            var client = CreateDSSPClient();
+            var request = CreateSealRequest(document, properties);
+            signResponse1 responseWrapper = await client.signAsync(request);
+            return ProcessSignResponse(responseWrapper.SignResponse);
+        }
+
     }
 }

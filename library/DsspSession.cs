@@ -1,6 +1,6 @@
 ﻿/*
  *  This file is part of DSS-P client.
- *  Copyright (C) 2014 Egelke BVBA
+ *  Copyright (C) 2014-2017 Egelke BVBA
  *  Copyright (C) 2014-2016 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
@@ -42,9 +42,10 @@ namespace EContract.Dssp.Client
     {
         internal static DsspSession NewSession()
         {
-            var session = new DsspSession();
-            session.ClientId = "msg-" + Guid.NewGuid().ToString();
-            return session;
+            return new DsspSession()
+            {
+                ClientId = "msg-" + Guid.NewGuid().ToString()
+            };
         }
 
         [NonSerialized()]
@@ -342,100 +343,47 @@ namespace EContract.Dssp.Client
             if (landingUrl == null) throw new ArgumentNullException("landingUrl");
 
             //Prepare browser post message (to return)
-            var pendingRequest = new PendingRequest();
-            pendingRequest.OptionalInputs = new OptionalInputs();
-            pendingRequest.OptionalInputs.AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing";
-            pendingRequest.OptionalInputs.ResponseID = this.ServerId;
-            pendingRequest.OptionalInputs.MessageID = new AttributedURIType();
-            pendingRequest.OptionalInputs.MessageID.Value = this.ClientId;
-            pendingRequest.OptionalInputs.Timestamp = new TimestampType();
-            pendingRequest.OptionalInputs.Timestamp.Created = new AttributedDateTime();
-            pendingRequest.OptionalInputs.Timestamp.Created.Value = DateTime.UtcNow;
-            pendingRequest.OptionalInputs.Timestamp.Expires = new AttributedDateTime();
-            pendingRequest.OptionalInputs.Timestamp.Expires.Value = DateTime.UtcNow.AddMinutes(10);
-            pendingRequest.OptionalInputs.ReplyTo = new EndpointReferenceType();
-            pendingRequest.OptionalInputs.ReplyTo.Address = new AttributedURIType();
-            pendingRequest.OptionalInputs.ReplyTo.Address.Value = landingUrl.AbsoluteUri;
-            pendingRequest.OptionalInputs.ReturnSignerIdentity = new ReturnSignerIdentity();
-            pendingRequest.OptionalInputs.Language = string.IsNullOrEmpty(language) ? null : language;
-
-            if (properties != null && (!string.IsNullOrEmpty(properties.SignerRole) 
-                    || !string.IsNullOrEmpty(properties.SignatureProductionPlace)
-                    || properties.VisibleSignature != null))
+            var pendingRequest = new PendingRequest()
             {
-                var items = new List<VisibleSignatureItemType>();
-                PixelVisibleSignaturePositionType pixelVisibleSignaturePosition = null;
-
-                if (!string.IsNullOrEmpty(properties.SignerRole))
+                OptionalInputs = new OptionalInputs()
                 {
-                    var stringItem = new ItemValueStringType();
-                    stringItem.ItemValue = properties.SignerRole;
-
-                    var item = new VisibleSignatureItemType();
-                    item.ItemName = ItemNameEnum.SignatureReason;
-                    item.ItemValue = stringItem;
-                    items.Add(item);
-                }
-                if (!string.IsNullOrEmpty(properties.SignatureProductionPlace))
-                {
-                    var stringItem = new ItemValueStringType();
-                    stringItem.ItemValue = properties.SignatureProductionPlace;
-
-                    var item = new VisibleSignatureItemType();
-                    item.ItemName = ItemNameEnum.SignatureProductionPlace;
-                    item.ItemValue = stringItem;
-                    items.Add(item);
-                }
-                if (properties.VisibleSignature != null)
-                {
-                    var photoProp = properties.VisibleSignature as ImageVisibleSignature;
-                    if (photoProp != null)
+                    AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing",
+                    ResponseID = this.ServerId,
+                    MessageID = new AttributedURIType()
                     {
-                        var uriItem = new ItemValueURIType();
-                        uriItem.ItemValue = photoProp.ValueUri;
-
-                        var item = new VisibleSignatureItemType();
-                        item.ItemName = ItemNameEnum.SignerImage;
-                        item.ItemValue = uriItem;
-                        items.Add(item);
-
-                        var customText = photoProp.CustomText;
-                        if (!string.IsNullOrEmpty(customText))
+                        Value = this.ClientId
+                    },
+                    Timestamp = new TimestampType()
+                    {
+                        Created = new AttributedDateTime()
                         {
-                            var customTextItem = new VisibleSignatureItemType();
-                            customTextItem.ItemName = ItemNameEnum.CustomText;
-                            var customTextItemValue = new ItemValueStringType();
-                            customTextItemValue.ItemValue = customText;
-                            customTextItem.ItemValue = customTextItemValue;
-                            items.Add(customTextItem);
+                            Value = DateTime.UtcNow
+                        },
+                        Expires = new AttributedDateTime()
+                        {
+                            Value = DateTime.UtcNow.AddMinutes(10)
                         }
-                    }
-                    else
+                    },
+                    ReplyTo = new EndpointReferenceType()
                     {
-                        throw new ArgumentException("The type of VisibleSignatureProperties (field of SignatureRequestProperties) is unsupported", "properties");
-                    }
-
-                    pixelVisibleSignaturePosition = new PixelVisibleSignaturePositionType();
-                    pixelVisibleSignaturePosition.PageNumber = properties.VisibleSignature.Page;
-                    pixelVisibleSignaturePosition.x = properties.VisibleSignature.X;
-                    pixelVisibleSignaturePosition.y = properties.VisibleSignature.Y;
-                }
-
-                pendingRequest.OptionalInputs.VisibleSignatureConfiguration = new VisibleSignatureConfigurationType();
-                pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePolicy = VisibleSignaturePolicyType.DocumentSubmissionPolicy;
-                pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration = new VisibleSignatureItemsConfigurationType();
-                pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignatureItemsConfiguration.VisibleSignatureItem = items.ToArray<VisibleSignatureItemType>();
-                pendingRequest.OptionalInputs.VisibleSignatureConfiguration.VisibleSignaturePosition = pixelVisibleSignaturePosition;
-            }
-
-            if (authorization != null)
-            {
-                pendingRequest.OptionalInputs.Policy = authorization.getPolicy();
-            }
+                        Address = new AttributedURIType()
+                        {
+                            Value = landingUrl.AbsoluteUri
+                        }
+                    },
+                    ReturnSignerIdentity = new ReturnSignerIdentity(),
+                    Language = string.IsNullOrEmpty(language) ? null : language,
+                    VisibleSignatureConfiguration = properties?.Configuration,
+                    Policy = authorization?.Policy
+                },
+                
+            };
 
             //Prepare Sign
-            var pendingRequestXml = new XmlDocument();
-            pendingRequestXml.PreserveWhitespace = true;
+            var pendingRequestXml = new XmlDocument()
+            {
+                PreserveWhitespace = true
+            };
             if (null == requestSerializer)
             {
                 requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
@@ -448,15 +396,16 @@ namespace EContract.Dssp.Client
             var signedXml = new SignedXml(pendingRequestXml);
             signedXml.SignedInfo.CanonicalizationMethod = SignedXml.XmlDsigExcC14NTransformUrl;
             signedXml.SignedInfo.SignatureMethod = SignedXml.XmlDsigHMACSHA1Url;
-            var docRef = new Reference("");
-            docRef.DigestMethod = "http://www.w3.org/2000/09/xmldsig#sha1";
+            var docRef = new Reference("")
+            {
+                DigestMethod = "http://www.w3.org/2000/09/xmldsig#sha1"
+            };
             docRef.AddTransform(new XmlDsigEnvelopedSignatureTransform());
             docRef.AddTransform(new XmlDsigExcC14NTransform());
             signedXml.AddReference(docRef);
 
             //Add Key Info
-            var keyRefXml = new XmlDocument();
-            keyRefXml.PreserveWhitespace = true;
+            var keyRefXml = new XmlDocument() { PreserveWhitespace = true };
             if (null == tRefSerializer)
             {
                 tRefSerializer = new XmlSerializer(typeof(SecurityTokenReferenceType), null, new Type[0], new XmlRootAttribute("SecurityTokenReference"), "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
@@ -515,8 +464,7 @@ namespace EContract.Dssp.Client
             }
 
             //Check the signature.
-            var xml = new XmlDocument();
-            xml.PreserveWhitespace = true;
+            var xml = new XmlDocument() { PreserveWhitespace = true };
             xml.Load(new MemoryStream(signResponseBytes));
 
             var nsmgr = new XmlNamespaceManager(xml.NameTable);
@@ -539,8 +487,8 @@ namespace EContract.Dssp.Client
                     switch (signResponseObject.Result.ResultMinor) {
                         case "urn:be:e-contract:dssp:1.0:resultminor:subject-not-authorized":
                             throw new AuthorizationError(
-                                signResponseObject.Result.ResultMessage != null ? signResponseObject.Result.ResultMessage.Value : null, 
-                                signResponseObject.OptionalOutputs != null ? signResponseObject.OptionalOutputs.SignerIdentity : null);
+                                signResponseObject.Result.ResultMessage?.Value, 
+                                signResponseObject.OptionalOutputs?.SignerIdentity);
                         default:
                             throw new RequestError(signResponseObject.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
                     }

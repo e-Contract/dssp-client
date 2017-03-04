@@ -1,6 +1,6 @@
 ﻿/*
  *  This file is part of DSS-P client.
- *  Copyright (C) 2014 Egelke BVBA
+ *  Copyright (C) 2014-2017 Egelke BVBA
  *  Copyright (C) 2014-2016 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
@@ -61,12 +61,37 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// The user name of your (the DSS-P client) application.  This is optional.
         /// </summary>
-        public string ApplicationName { get; set; }
+        [Obsolete("Use Application instead")]
+        public string ApplicationName {
+            get
+            {
+                return Application.UT.Name;
+            }
+            set {
+                Application.UT.Name = value;
+            }
+        }
+
 
         /// <summary>
-        /// Te password of your (the DSS-P client) application.  This is optional.
+        /// The password of your (the DSS-P client) application.  This is optional.
         /// </summary>
-        public string ApplicationPassword { get; set; }
+        [Obsolete("Use Application instead")]
+        public string ApplicationPassword {
+            get
+            {
+                return Application.UT.Password;
+            }
+            set
+            {
+                Application.UT.Password = value;
+            }
+        }
+
+        /// <summary>
+        /// Credentials of your (the DSS-P client) application.
+        /// </summary>
+        public AppCredentials Application { get; }
 
 
         /// <summary>
@@ -101,6 +126,7 @@ namespace EContract.Dssp.Client
         {
             this.Address = address;
             this.SignatureType = SignatureType;
+            this.Application = new AppCredentials();
         }
 
         /// <summary>
@@ -113,11 +139,10 @@ namespace EContract.Dssp.Client
         /// <returns>The session, required for the BROWSER/POST protocol and the download of the signed message</returns>
         public DsspSession UploadDocument(Document document) 
         {
-            byte[] clientNonce;
             if (document == null) throw new ArgumentNullException("document");
 
             var client = CreateDSSPClient();
-            var request = CreateSignRequest(document, out clientNonce);
+            var request = CreateSignRequest(document, out var clientNonce);
             SignResponse response = client.sign(request);
             return ProcessSignResponse(response, clientNonce);
         }
@@ -139,7 +164,7 @@ namespace EContract.Dssp.Client
             var client = CreateDSSPClient(session);
             var downloadRequest = CreateDownloadRequest(session);
             SignResponse downloadResponse = client.pendingRequest(downloadRequest);
-            return ProcessDownloadResponse(downloadResponse);
+            return ProcessSignResponse(downloadResponse);
         }
 
         /// <summary>
@@ -161,18 +186,66 @@ namespace EContract.Dssp.Client
             return ProcessVerifyResponse(response);
         }
 
+        /// <summary>
+        /// Add an eSeal to the document via the e-contract service.
+        /// </summary>
+        /// <remarks>
+        /// The application should authenticate, based on this authentication, the Digital Signature Service will 
+        /// select a key to be used to seal the given document.
+        /// </remarks>
+        /// <param name="document">The document to seal</param>
+        /// <returns>The sealed document</returns>
+        public Document Seal(Document document)
+        {
+            return Seal(document, null);
+        }
+
+        /// <summary>
+        /// Add an eSeal to the document via the e-contract service.
+        /// </summary>
+        /// <remarks>
+        /// The application should authenticate, based on this authentication, the Digital Signature Service will 
+        /// select a key to be used to seal the given document.
+        /// </remarks>
+        /// <param name="document">The document to seal</param>
+        /// <param name="properties">Signature properties</param>
+        /// <returns>The sealed document</returns>
+        public Document Seal(Document document, SignatureRequestProperties properties)
+        {
+            if (document == null) throw new ArgumentNullException("document");
+
+            var client = CreateDSSPClient();
+            var request = CreateSealRequest(document, properties);
+            SignResponse response = client.sign(request);
+            return ProcessSignResponse(response);
+        }
+
         private DigitalSignatureServicePortTypeClient CreateDSSPClient()
         {
             DigitalSignatureServicePortTypeClient client;
-            if (string.IsNullOrEmpty(this.ApplicationName))
+            if (string.IsNullOrEmpty(this.Application.UT.Password) 
+                && this.Application.X509.Certificate == null 
+                && this.Application.X509.FindValue == null)
             {
                 client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
+            }
+            else if (this.Application.X509.Certificate != null)
+            {
+                client = new DigitalSignatureServicePortTypeClient(new X509DsspBinding(), Address);
+                client.ClientCredentials.ClientCertificate.Certificate = this.Application.X509.Certificate;
+                
+            }
+            else if (this.Application.X509.FindValue != null)
+            {
+                client = new DigitalSignatureServicePortTypeClient(new X509DsspBinding(), Address);
+                client.ClientCredentials.ClientCertificate.SetCertificate(this.Application.X509.StoreLocation,
+                     this.Application.X509.StoreName, this.Application.X509.FindType, this.Application.X509.FindValue);
             }
             else
             {
                 client = new DigitalSignatureServicePortTypeClient(new UTDsspBinding(), Address);
-                client.ClientCredentials.UserName.UserName = this.ApplicationName;
-                client.ClientCredentials.UserName.Password = this.ApplicationPassword;
+                client.ClientCredentials.UserName.UserName = this.Application.UT.Name;
+                client.ClientCredentials.UserName.Password = this.Application.UT.Password;
             }
             return client;
         }
@@ -192,56 +265,63 @@ namespace EContract.Dssp.Client
             clientNonce = new byte[32];
             rand.NextBytes(clientNonce);
 
-            var request = new SignRequest();
-            request.Profile = "urn:be:e-contract:dssp:1.0";
-            request.OptionalInputs = new OptionalInputs();
-            request.OptionalInputs.AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing";
-            request.OptionalInputs.RequestSecurityToken = new RequestSecurityTokenType();
-            request.OptionalInputs.RequestSecurityToken.TokenType = "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512/sct";
-            request.OptionalInputs.RequestSecurityToken.RequestType = "http://docs.oasis-open.org/ws-sx/ws-trust/200512/Issue";
-            request.OptionalInputs.RequestSecurityToken.Entropy = new EntropyType();
-            request.OptionalInputs.RequestSecurityToken.Entropy.BinarySecret = new BinarySecretType();
-            request.OptionalInputs.RequestSecurityToken.Entropy.BinarySecret.Type = "http://docs.oasis-open.org/ws-sx/ws-trust/200512/Nonce";
-            request.OptionalInputs.RequestSecurityToken.Entropy.BinarySecret.Value = clientNonce;
-
-            request.OptionalInputs.SignatureType = SignatureType;
-            request.OptionalInputs.SignaturePlacement = new SignaturePlacement();
-            request.OptionalInputs.SignaturePlacement.CreateEnvelopedSignature = true;
-            request.OptionalInputs.SignaturePlacement.CreateEnvelopedSignatureSpecified = true;
-            request.OptionalInputs.SignaturePlacement.WhichDocument = documentId;
-
-            request.InputDocuments = new InputDocuments();
-            request.InputDocuments.Document = new DocumentType[1];
-            request.InputDocuments.Document[0] = new DocumentType();
-            request.InputDocuments.Document[0].ID = documentId;
-            request.InputDocuments.Document[0].Base64Data = new Base64Data();
-            request.InputDocuments.Document[0].Base64Data.MimeType = document.MimeType;
-
-            var memStream = document.Content as MemoryStream;
-            if (memStream == null)
+            return new SignRequest()
             {
-                memStream = new MemoryStream();
-                document.Content.CopyTo(memStream);
-            }
-            request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
-            return request;
+                Profile = "urn:be:e-contract:dssp:1.0",
+                OptionalInputs = new OptionalInputs()
+                {
+                    AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing",
+                    RequestSecurityToken = new RequestSecurityTokenType()
+                    {
+                        TokenType = "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512/sct",
+                        RequestType = "http://docs.oasis-open.org/ws-sx/ws-trust/200512/Issue",
+                        Entropy = new EntropyType()
+                        {
+                            BinarySecret = new BinarySecretType()
+                            {
+                                Type = "http://docs.oasis-open.org/ws-sx/ws-trust/200512/Nonce",
+                                Value = clientNonce
+                            }
+                        }
+                    },
+                    SignatureType = SignatureType,
+                    SignaturePlacement = CreateEnvelopedSignature(documentId)
+                },
+                InputDocuments = new InputDocuments()
+                {
+                    Document = new DocumentType[]
+                    {
+                        CreateDocumentType(documentId, document)
+                    }
+                }
+            };
         }
 
         private PendingRequest CreateDownloadRequest(DsspSession session)
         {
-            var downloadRequest = new PendingRequest();
-            downloadRequest.OptionalInputs = new OptionalInputs();
-            downloadRequest.OptionalInputs.AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing";
-            downloadRequest.OptionalInputs.ResponseID = session.ServerId;
-
-            downloadRequest.OptionalInputs.RequestSecurityToken = new RequestSecurityTokenType();
-            downloadRequest.OptionalInputs.RequestSecurityToken.RequestType = "http://docs.oasis-open.org/ws-sx/ws-trust/200512/Cancel";
-            downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget = new CancelTargetType();
-            downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference = new SecurityTokenReferenceType();
-            downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference = new ReferenceType();
-            downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.ValueType = "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512/sct";
-            downloadRequest.OptionalInputs.RequestSecurityToken.CancelTarget.SecurityTokenReference.Reference.URI = session.KeyId;
-            return downloadRequest;
+            return new PendingRequest()
+            {
+                OptionalInputs = new OptionalInputs()
+                {
+                    AdditionalProfile = "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing",
+                    ResponseID = session.ServerId,
+                    RequestSecurityToken = new RequestSecurityTokenType()
+                    {
+                        RequestType = "http://docs.oasis-open.org/ws-sx/ws-trust/200512/Cancel",
+                        CancelTarget = new CancelTargetType()
+                        {
+                            SecurityTokenReference = new SecurityTokenReferenceType()
+                            {
+                                Reference = new ReferenceType()
+                                {
+                                    ValueType = "http://docs.oasis-open.org/ws-sx/ws-secureconversation/200512/sct",
+                                    URI = session.KeyId
+                                }
+                            }
+                        }
+                    }
+                }
+            };
         }
 
         private DsspSession ProcessSignResponse(SignResponse response, byte[] clientNonce)
@@ -269,7 +349,7 @@ namespace EContract.Dssp.Client
             return session;
         }
 
-        private Document ProcessDownloadResponse(SignResponse downloadResponse)
+        private Document ProcessSignResponse(SignResponse downloadResponse)
         {
             //check the download response
             switch (downloadResponse.Result.ResultMajor)
@@ -286,29 +366,24 @@ namespace EContract.Dssp.Client
 
         private VerifyRequest CreateVerifyRequest(Document document)
         {
-            var request = new VerifyRequest();
-            request.Profile = "urn:be:e-contract:dssp:1.0";
-
-            request.OptionalInputs = new OptionalInputs();
-            request.OptionalInputs.ReturnVerificationReport = new ReturnVerificationReport();
-            request.OptionalInputs.ReturnVerificationReport.IncludeVerifier = true;
-            request.OptionalInputs.ReturnVerificationReport.IncludeCertificateValues = true;
-
-            request.InputDocuments = new InputDocuments();
-            request.InputDocuments.Document = new DocumentType[1];
-            request.InputDocuments.Document[0] = new DocumentType();
-            request.InputDocuments.Document[0].ID = "doc-" + Guid.NewGuid().ToString();
-            request.InputDocuments.Document[0].Base64Data = new Base64Data();
-            request.InputDocuments.Document[0].Base64Data.MimeType = document.MimeType;
-
-            var memStream = document.Content as MemoryStream;
-            if (memStream == null)
+            return new VerifyRequest()
             {
-                memStream = new MemoryStream();
-                document.Content.CopyTo(memStream);
-            }
-            request.InputDocuments.Document[0].Base64Data.Value = memStream.ToArray();
-            return request;
+                Profile = "urn:be:e-contract:dssp:1.0",
+                OptionalInputs = new OptionalInputs()
+                {
+                    ReturnVerificationReport = new ReturnVerificationReport()
+                    {
+                        IncludeVerifier = true,
+                        IncludeCertificateValues = true
+                    }
+                },
+                InputDocuments = new InputDocuments()
+                {
+                    Document = new DocumentType[] {
+                        CreateDocumentType("doc-" + Guid.NewGuid().ToString(), document)
+                    }
+                }
+            };
         }
 
         private SecurityInfo ProcessVerifyResponse(ResponseBaseType response)
@@ -339,27 +414,81 @@ namespace EContract.Dssp.Client
                 return null;
             }
 
-            SecurityInfo result = new SecurityInfo();
-            result.TimeStampValidity = response.OptionalOutputs.TimeStampRenewal != null ?
-                response.OptionalOutputs.TimeStampRenewal.Before : DateTime.MaxValue;
-            result.Signatures = new List<SignatureInfo>();
+            SecurityInfo result = new SecurityInfo()
+            {
+                TimeStampValidity = response.OptionalOutputs.TimeStampRenewal?.Before ?? DateTime.MaxValue,
+                Signatures = new List<SignatureInfo>()
+            };
             foreach (var report in response.OptionalOutputs.VerificationReport.IndividualReport)
             {
                 //double check
                 if (report.Result.ResultMajor != "urn:oasis:names:tc:dss:1.0:resultmajor:Success") throw new InvalidOperationException(report.Result.ResultMajor);
 
-                var info = new SignatureInfo();
-                info.SigningTime = DateTime.Parse(report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SigningTime, CultureInfo.InvariantCulture);
-                info.Signer = new X509Certificate2(report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].CertificateValue);
-                info.SignerSubject = report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].Subject;
-                info.SignatureProductionPlace = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.Location;
-                if (report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole != null
-                    && report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles != null
-                    && report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles.Length > 0)
-                    info.SignerRole = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles[0];
-                result.Signatures.Add(info);
+                result.Signatures.Add(new SignatureInfo()
+                {
+                    SigningTime = DateTime.Parse(report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SigningTime, CultureInfo.InvariantCulture),
+                    Signer = new X509Certificate2(report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].CertificateValue),
+                    SignerSubject = report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].Subject,
+                    SignatureProductionPlace = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.Location,
+                    SignerRole = String.Join(", ", report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties?.SignerRole?.ClaimedRoles ?? new String[0])
+                });
             }
             return result;
+        }
+
+        private SignRequest CreateSealRequest(Document document, SignatureRequestProperties properties)
+        {
+            var documentId = "doc-" + Guid.NewGuid().ToString();
+
+            return new SignRequest()
+            {
+                Profile = "urn:be:e-contract:dssp:eseal:1.0",
+                OptionalInputs = new OptionalInputs()
+                {
+                    SignatureType = SignatureType,
+                    SignaturePlacement = CreateEnvelopedSignature(documentId),
+                    VisibleSignatureConfiguration = properties?.Configuration
+                },
+                InputDocuments = new InputDocuments()
+                {
+                    Document = new DocumentType[] {
+                        CreateDocumentType(documentId, document)
+                    }
+                }
+            };
+        }
+
+
+        private SignaturePlacement CreateEnvelopedSignature(String documentId)
+        {
+            return new SignaturePlacement()
+            {
+                CreateEnvelopedSignature = true,
+                CreateEnvelopedSignatureSpecified = true,
+                WhichDocument = documentId
+            };
+
+        }
+
+        private DocumentType CreateDocumentType(String documentId, Document document)
+        {
+            var memStream = document.Content as MemoryStream;
+            if (memStream == null)
+            {
+                memStream = new MemoryStream();
+                document.Content.CopyTo(memStream);
+            }
+            var value = memStream.ToArray();
+
+            return new DocumentType()
+            {
+                ID = documentId,
+                Base64Data = new Base64Data()
+                {
+                    MimeType = document.MimeType,
+                    Value = value
+                }
+            };
         }
     }
 }
