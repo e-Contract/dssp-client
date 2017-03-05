@@ -19,6 +19,7 @@
 
 using EContract.Dssp.Client.Proxy;
 using System;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client
@@ -39,6 +40,22 @@ namespace EContract.Dssp.Client
             return ProcessAsyncSignResponse(responseWrapper.SignResponse, clientNonce);
         }
 
+        public async Task<Dssp2StepSession> UploadDocumentFor2StepAsync(Document document)
+        {
+            return await UploadDocumentFor2StepAsync(document, null);
+        }
+
+        public async Task<Dssp2StepSession> UploadDocumentFor2StepAsync(Document document, SignatureRequestProperties properties)
+        {
+            if (document == null) throw new ArgumentNullException("document");
+            if (!(Signer?.HasPrivateKey ?? false && Signer?.PrivateKey is RSACryptoServiceProvider)) throw new InvalidOperationException("Singner must be set and have a private key");
+
+            var client = CreateDSSPClient();
+            var request = Create2StepSignRequest(document, properties);
+            signResponse1 response = await client.signAsync(request);
+            return Process2StepSignResponse(response.SignResponse);
+        }
+
         /// <summary>
         /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol, asynchronously.
         /// </summary>
@@ -51,6 +68,16 @@ namespace EContract.Dssp.Client
             var downloadRequest = CreateDownloadRequest(session);
             pendingRequestResponse downloadResponseWrapper = await client.pendingRequestAsync(downloadRequest);
             return ProcessResponseWithSignedDoc(downloadResponseWrapper.SignResponse);
+        }
+
+        public async Task<Document> DownloadDocumentAsync(Dssp2StepSession session)
+        {
+            if (session == null) throw new ArgumentNullException("session");
+
+            var client = CreateDSSPClient();
+            var downloadRequest = CreateDownloadRequest(session);
+            signResponse1 downloadResponse = await client.signAsync(downloadRequest);
+            return ProcessResponseWithSignedDoc(downloadResponse.SignResponse);
         }
 
         /// <summary>

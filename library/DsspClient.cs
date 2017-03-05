@@ -461,7 +461,6 @@ namespace EContract.Dssp.Client
             }
         }
 
-
         private DsspSession ProcessAsyncSignResponse(SignResponse response, byte[] clientNonce)
         {
             //Check response
@@ -574,7 +573,6 @@ namespace EContract.Dssp.Client
             }
             return result;
         }
-
 
         private SignaturePlacement CreateEnvelopedSignature(String documentId)
         {

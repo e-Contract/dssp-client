@@ -41,7 +41,7 @@ namespace wpf_demo
             }
         }
 
-        private void Sign_Click(object sender, RoutedEventArgs e)
+        private async void Sign_Click(object sender, RoutedEventArgs e)
         {
             X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
             store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
@@ -55,35 +55,27 @@ namespace wpf_demo
             dsspClient.Application.UT.Password = Properties.Settings.Default.pwd;
             dsspClient.Signer = scollection.Cast<X509Certificate2>().AsQueryable().FirstOrDefault();
 
-            Dssp2StepSession dsspSession;
-            using (Stream input = File.OpenRead(FilePath.Text)) {
-                var inDoc = new Document()
+            using (new WaitCursor())
+            {
+                Dssp2StepSession dsspSession;
+                using (Stream input = File.OpenRead(FilePath.Text))
                 {
-                    MimeType = "application/pdf",
-                    Content = input
-                };
-                dsspSession = dsspClient.UploadDocumentFor2Step(inDoc);
-            }
+                    var inDoc = new Document()
+                    {
+                        MimeType = "application/pdf",
+                        Content = input
+                    };
+                    dsspSession = await dsspClient.UploadDocumentFor2StepAsync(inDoc);
+                }
 
-            dsspSession.Sign();
+                dsspSession.Sign();
 
-            var outDoc = dsspClient.DownloadDocument(dsspSession);
+                var outDoc = await dsspClient.DownloadDocumentAsync(dsspSession);
 
-            using (Stream output = File.Create(FilePath.Text))
-            {
-                CopyStream(outDoc.Content, output);
-            }
-
-        }
-
-        public static void CopyStream(Stream input, Stream output)
-        {
-            byte[] buffer = new byte[16 * 1024]; // Fairly arbitrary size
-            int bytesRead;
-
-            while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
-            {
-                output.Write(buffer, 0, bytesRead);
+                using (Stream output = File.Create(FilePath.Text))
+                {
+                    await outDoc.Content.CopyToAsync(output);
+                }
             }
         }
     }
