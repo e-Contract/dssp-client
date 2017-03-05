@@ -40,19 +40,16 @@ namespace EContract.Dssp.Client
     [Serializable]
     public class DsspSession
     {
-        internal static DsspSession NewSession()
+        internal DsspSession()
         {
-            return new DsspSession()
-            {
-                ClientId = "msg-" + Guid.NewGuid().ToString()
-            };
+            ClientId = "msg-" + Guid.NewGuid().ToString();
         }
 
-        [NonSerialized()]
+        [NonSerialized]
         private XmlSerializer requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
-        [NonSerialized()]
+        [NonSerialized]
         private XmlSerializer responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
-        [NonSerialized()]
+        [NonSerialized]
         private XmlSerializer tRefSerializer = new XmlSerializer(typeof(SecurityTokenReferenceType), null, new Type[0], new XmlRootAttribute("SecurityTokenReference"), "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
 
         /// <summary>

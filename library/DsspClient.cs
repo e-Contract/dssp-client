@@ -27,6 +27,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Xml.Serialization;
+using System.Linq;
+using System.Security.Cryptography;
 
 namespace EContract.Dssp.Client
 {
@@ -93,6 +95,11 @@ namespace EContract.Dssp.Client
         /// </summary>
         public AppCredentials Application { get; }
 
+        /// <summary>
+        /// The certificate to use in case of two step local signature.
+        /// </summary>
+        public X509Certificate2 Signer { get; set; }
+
 
         /// <summary>
         /// Basic constructor.
@@ -142,9 +149,25 @@ namespace EContract.Dssp.Client
             if (document == null) throw new ArgumentNullException("document");
 
             var client = CreateDSSPClient();
-            var request = CreateSignRequest(document, out var clientNonce);
+            var request = CreateAsyncSignRequest(document, out var clientNonce);
             SignResponse response = client.sign(request);
-            return ProcessSignResponse(response, clientNonce);
+            return ProcessAsyncSignResponse(response, clientNonce);
+        }
+
+        public Dssp2StepSession UploadDocumentFor2Step(Document document)
+        {
+            return UploadDocumentFor2Step(document, null);
+        }
+
+        public Dssp2StepSession UploadDocumentFor2Step(Document document, SignatureRequestProperties properties)
+        {
+            if (document == null) throw new ArgumentNullException("document");
+            if (!(Signer?.HasPrivateKey ?? false && Signer?.PrivateKey is RSACryptoServiceProvider)) throw new InvalidOperationException("Singner must be set and have a private key");
+
+            var client = CreateDSSPClient();
+            var request = Create2StepSignRequest(document, properties);
+            SignResponse response = client.sign(request);
+            return Process2StepSignResponse(response);
         }
 
         /// <summary>
@@ -164,7 +187,17 @@ namespace EContract.Dssp.Client
             var client = CreateDSSPClient(session);
             var downloadRequest = CreateDownloadRequest(session);
             SignResponse downloadResponse = client.pendingRequest(downloadRequest);
-            return ProcessSignResponse(downloadResponse);
+            return ProcessResponseWithSignedDoc(downloadResponse);
+        }
+
+        public Document DownloadDocument(Dssp2StepSession session)
+        {
+            if (session == null) throw new ArgumentNullException("session");
+
+            var client = CreateDSSPClient();
+            var downloadRequest = CreateDownloadRequest(session);
+            SignResponse downloadResponse = client.sign(downloadRequest);
+            return ProcessResponseWithSignedDoc(downloadResponse);
         }
 
         /// <summary>
@@ -217,7 +250,7 @@ namespace EContract.Dssp.Client
             var client = CreateDSSPClient();
             var request = CreateSealRequest(document, properties);
             SignResponse response = client.sign(request);
-            return ProcessSignResponse(response);
+            return ProcessResponseWithSignedDoc(response);
         }
 
         private DigitalSignatureServicePortTypeClient CreateDSSPClient()
@@ -258,7 +291,7 @@ namespace EContract.Dssp.Client
             return client;
         }
 
-        private SignRequest CreateSignRequest(Document document, out byte[] clientNonce)
+        private SignRequest CreateAsyncSignRequest(Document document, out byte[] clientNonce)
         {
             var documentId = "doc-" + Guid.NewGuid().ToString();
 
@@ -297,6 +330,72 @@ namespace EContract.Dssp.Client
             };
         }
 
+        private SignRequest CreateSealRequest(Document document, SignatureRequestProperties properties)
+        {
+            var documentId = "doc-" + Guid.NewGuid().ToString();
+
+            return new SignRequest()
+            {
+                Profile = "urn:be:e-contract:dssp:eseal:1.0",
+                OptionalInputs = new OptionalInputs()
+                {
+                    SignatureType = SignatureType,
+                    SignaturePlacement = CreateEnvelopedSignature(documentId),
+                    VisibleSignatureConfiguration = properties?.Configuration
+                },
+                InputDocuments = new InputDocuments()
+                {
+                    Document = new DocumentType[] {
+                        CreateDocumentType(documentId, document)
+                    }
+                }
+            };
+        }
+
+        private SignRequest Create2StepSignRequest(Document document, SignatureRequestProperties properties)
+        {
+            var documentId = "doc-" + Guid.NewGuid().ToString();
+            var chain = X509Chain.Create();
+            chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+            chain.ChainPolicy.VerificationFlags = X509VerificationFlags.AllFlags;
+            chain.Build(Signer);
+            
+            return new SignRequest()
+            {
+                Profile = "http://docs.oasis-open.org/dss-x/ns/localsig",
+                OptionalInputs = new OptionalInputs()
+                {
+                    SignatureType = SignatureType,
+                    ServicePolicy = "http://docs.oasis-open.org/dss-x/ns/localsig/two-step-approach",
+                    SignaturePlacement = CreateEnvelopedSignature(documentId),
+                    RequestDocumentHash = new RequestDocumentHash()
+                    {
+                        MaintainRequestState = true,
+                        MaintainRequestStateSpecified = true
+                    },
+                    KeySelector = new KeySelector()
+                    {
+                        KeyInfo = new KeyInfoType()
+                        {
+                            X509Data = chain.ChainElements
+                                .Cast<X509ChainElement>()
+                                .AsQueryable()
+                                .Select(x => x.Certificate.RawData)
+                                .ToArray()
+                        }
+                    },
+                    VisibleSignatureConfiguration = properties?.Configuration
+                },
+                InputDocuments = new InputDocuments()
+                {
+                    Document = new DocumentType[]
+                    {
+                        CreateDocumentType(documentId, document)
+                    }
+                }
+            };
+        }
+
         private PendingRequest CreateDownloadRequest(DsspSession session)
         {
             return new PendingRequest()
@@ -324,41 +423,81 @@ namespace EContract.Dssp.Client
             };
         }
 
-        private DsspSession ProcessSignResponse(SignResponse response, byte[] clientNonce)
+        private SignRequest CreateDownloadRequest(Dssp2StepSession session)
         {
-            //Check response
-            switch (response.Result.ResultMajor)
+            return new SignRequest()
             {
-                case "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:resultmajor:Pending":
-                    break;
-                case "urn:oasis:names:tc:dss:1.0:resultmajor:RequesterError":
-                    throw new RequestError(response.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
-                default:
-                    throw new InvalidOperationException(response.Result.ResultMajor);
-            }
-
-            //Capture session info & store it
-            var session = DsspSession.NewSession();
-            session.ServerId = response.OptionalOutputs.ResponseID;
-            var securityTokenResponse = response.OptionalOutputs.RequestSecurityTokenResponseCollection.RequestSecurityTokenResponse[0];
-            session.KeyId = securityTokenResponse.RequestedSecurityToken.SecurityContextToken.Identifier;
-            session.KeyValue = new Psha1DerivedKeyGenerator(clientNonce).GenerateDerivedKey(securityTokenResponse.Entropy.BinarySecret.Value, (int)securityTokenResponse.KeySize);
-            session.KeyReference = securityTokenResponse.RequestedUnattachedReference.SecurityTokenReference;
-            session.ExpiresOn = securityTokenResponse.Lifetime.Expires.Value;
-
-            return session;
+                Profile = "http://docs.oasis-open.org/dss-x/ns/localsig",
+                OptionalInputs = new OptionalInputs()
+                {
+                    SignatureType = SignatureType,
+                    ServicePolicy = "http://docs.oasis-open.org/dss-x/ns/localsig/two-step-approach",
+                    CorrelationID = session.CorrelationId,
+                    SignatureObject = new SignatureObject()
+                    {
+                        Base64Signature = new Base64Signature()
+                        {
+                            Value = session.SignValue
+                        }
+                    }
+                }
+            };
         }
 
-        private Document ProcessSignResponse(SignResponse downloadResponse)
+        private void VerifyResponse(ResponseBaseType response, String ExpectedResultMajor, String ExpectedResultMinor)
+        {
+            if (response?.Result?.ResultMajor == ExpectedResultMajor)
+            {
+                if (ExpectedResultMinor != null && response?.Result?.ResultMinor != ExpectedResultMinor)
+                {
+                    throw new InvalidOperationException(response?.Result?.ResultMinor 
+                        + ": " + response?.Result?.ResultMessage?.Value);
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException(response.Result.ResultMajor + " " + response.Result.ResultMinor
+                    + ": " + response?.Result?.ResultMessage?.Value);
+            }
+        }
+
+
+        private DsspSession ProcessAsyncSignResponse(SignResponse response, byte[] clientNonce)
+        {
+            //Check response
+            VerifyResponse(response, "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:resultmajor:Pending", null);
+
+            //Capture session info & store it
+            var securityTokenResponse = response.OptionalOutputs.RequestSecurityTokenResponseCollection.RequestSecurityTokenResponse[0];
+            return new DsspSession()
+            {
+                ServerId = response.OptionalOutputs.ResponseID,
+                KeyId = securityTokenResponse.RequestedSecurityToken.SecurityContextToken.Identifier,
+                KeyValue = new Psha1DerivedKeyGenerator(clientNonce).GenerateDerivedKey(securityTokenResponse.Entropy.BinarySecret.Value, (int)securityTokenResponse.KeySize),
+                KeyReference = securityTokenResponse.RequestedUnattachedReference.SecurityTokenReference,
+                ExpiresOn = securityTokenResponse.Lifetime.Expires.Value
+            };
+        }
+
+        private Dssp2StepSession Process2StepSignResponse(SignResponse signResponse)
         {
             //check the download response
-            switch (downloadResponse.Result.ResultMajor)
+            VerifyResponse(signResponse, "urn:oasis:names:tc:dss:1.0:resultmajor:Success", "urn:oasis:names:tc:dss:1.0:resultminor:documentHash");
+
+            //Capture session info & store it
+            return new Dssp2StepSession()
             {
-                case "urn:oasis:names:tc:dss:1.0:resultmajor:Success":
-                    break;
-                default:
-                    throw new InvalidOperationException(downloadResponse.Result.ResultMajor);
-            }
+                Signer = this.Signer,
+                CorrelationId = signResponse.OptionalOutputs.CorrelationID,
+                DigestAlgo = signResponse.OptionalOutputs.DocumentHash?.DigestMethod?.Algorithm,
+                DigestValue = signResponse.OptionalOutputs.DocumentHash?.DigestValue
+            };
+        }
+
+        private Document ProcessResponseWithSignedDoc(SignResponse downloadResponse)
+        {
+            //check the download response
+            VerifyResponse(downloadResponse, "urn:oasis:names:tc:dss:1.0:resultmajor:Success", "urn:oasis:names:tc:dss:1.0:resultminor:valid:signature:OnAllDocuments");
 
             //Return the downloaded document (we assume there is only a single document)
             return new Document(downloadResponse.OptionalOutputs.DocumentWithSignature.Document);
@@ -434,28 +573,6 @@ namespace EContract.Dssp.Client
                 });
             }
             return result;
-        }
-
-        private SignRequest CreateSealRequest(Document document, SignatureRequestProperties properties)
-        {
-            var documentId = "doc-" + Guid.NewGuid().ToString();
-
-            return new SignRequest()
-            {
-                Profile = "urn:be:e-contract:dssp:eseal:1.0",
-                OptionalInputs = new OptionalInputs()
-                {
-                    SignatureType = SignatureType,
-                    SignaturePlacement = CreateEnvelopedSignature(documentId),
-                    VisibleSignatureConfiguration = properties?.Configuration
-                },
-                InputDocuments = new InputDocuments()
-                {
-                    Document = new DocumentType[] {
-                        CreateDocumentType(documentId, document)
-                    }
-                }
-            };
         }
 
 

@@ -1,0 +1,16 @@
+﻿<Window x:Class="wpf_demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:wpf_demo"
+        mc:Ignorable="d"
+        Title="DSSP WPF Demo" Height="350" Width="525">
+    <Grid>
+        <Label Content="File:"  HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="FilePath" Width="auto" Margin="90,15,30,10" VerticalAlignment="Top" />
+        <Button x:Name="SelectFile" Content="..." HorizontalAlignment="Right" Margin="0,13,10,10" VerticalAlignment="Top"  Click="SelectFile_Click"/>
+        <Button x:Name="Sign" Content="Sign" Margin="0,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="60" Click="Sign_Click"  />
+
+    </Grid>
+</Window>

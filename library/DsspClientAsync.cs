@@ -34,9 +34,9 @@ namespace EContract.Dssp.Client
             if (document == null) throw new ArgumentNullException("document");
 
             var client = CreateDSSPClient();
-            var request = CreateSignRequest(document, out var clientNonce);
+            var request = CreateAsyncSignRequest(document, out var clientNonce);
             signResponse1 responseWrapper = await client.signAsync(request);
-            return ProcessSignResponse(responseWrapper.SignResponse, clientNonce);
+            return ProcessAsyncSignResponse(responseWrapper.SignResponse, clientNonce);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace EContract.Dssp.Client
             var client = CreateDSSPClient(session);
             var downloadRequest = CreateDownloadRequest(session);
             pendingRequestResponse downloadResponseWrapper = await client.pendingRequestAsync(downloadRequest);
-            return ProcessSignResponse(downloadResponseWrapper.SignResponse);
+            return ProcessResponseWithSignedDoc(downloadResponseWrapper.SignResponse);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace EContract.Dssp.Client
             var client = CreateDSSPClient();
             var request = CreateSealRequest(document, properties);
             signResponse1 responseWrapper = await client.signAsync(request);
-            return ProcessSignResponse(responseWrapper.SignResponse);
+            return ProcessResponseWithSignedDoc(responseWrapper.SignResponse);
         }
 
     }

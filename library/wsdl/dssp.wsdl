@@ -27,7 +27,7 @@
       <xs:element name="ResponseID" type="xs:string"/>
 
     </xs:schema>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:oasis:names:tc:dss:1.0:core:schema" xmlns:ns2="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:async="urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:vr="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#" xmlns:vs="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#" xmlns:dssp="urn:be:e-contract:dssp:1.0" xmlns:xacmlp="urn:oasis:names:tc:xacml:2.0:policy:schema:os" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:dss:1.0:core:schema" version="1.0" >
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:oasis:names:tc:dss:1.0:core:schema" xmlns:ns2="urn:oasis:names:tc:SAML:1.0:assertion" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:async="urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0" xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512" xmlns:vr="urn:oasis:names:tc:dss-x:1.0:profiles:verificationreport:schema#" xmlns:vs="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#" xmlns:dssp="urn:be:e-contract:dssp:1.0" xmlns:xacmlp="urn:oasis:names:tc:xacml:2.0:policy:schema:os" xmlns:localsig="http://docs.oasis-open.org/dss-x/ns/localsig" elementFormDefault="qualified" targetNamespace="urn:oasis:names:tc:dss:1.0:core:schema" version="1.0" >
 
       <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
 
@@ -38,6 +38,8 @@
       <xs:import namespace="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#"/>
 
       <xs:import namespace="urn:oasis:names:tc:xacml:2.0:policy:schema:os" />
+      
+      <xs:import namespace="http://docs.oasis-open.org/dss-x/ns/localsig" />
 
       <xs:element name="AddTimestamp" type="tns:UpdateSignatureInstructionType"/>
 
@@ -91,9 +93,9 @@
           <xs:complexContent>
             <xs:extension base="tns:DocumentBaseType">
               <xs:sequence>
-                <xs:element minOccurs="0" name="Transforms" type="ns1:TransformsType"/>
-                <xs:element minOccurs="0" name="DigestMethod" type="ns1:DigestMethodType"/>
-                <xs:element name="DigestValue" type="xs:base64Binary"/>
+                <xs:element minOccurs="0" ref="ns1:Transforms" />
+                <xs:element minOccurs="0" ref="ns1:DigestMethod" />
+                <xs:element ref="ns1:DigestValue" />
               </xs:sequence>
               <xs:attribute name="WhichReference" type="xs:integer"/>
             </xs:extension>
@@ -130,7 +132,7 @@
       <xs:element name="KeySelector">
         <xs:complexType>
           <xs:sequence>
-            <xs:element minOccurs="0" name="KeyInfo" type="ns1:KeyInfoType"/>
+            <xs:element ref="ns1:KeyInfo" minOccurs="0"/>
             <xs:element minOccurs="0" name="Other" type="tns:AnyType"/>
           </xs:sequence>
         </xs:complexType>
@@ -150,6 +152,7 @@
       <xs:element name="OptionalInputs">
         <xs:complexType>
           <xs:all>
+            <xs:element ref="tns:ServicePolicy" minOccurs="0" />
             <xs:element ref="tns:AdditionalProfile" minOccurs="0" />
             <xs:element ref="wst:RequestSecurityToken" minOccurs="0" />
             <xs:element ref="tns:SignaturePlacement" minOccurs="0" />
@@ -164,6 +167,10 @@
             <xs:element ref="vr:ReturnVerificationReport" minOccurs="0" />
             <xs:element ref="vs:VisibleSignatureConfiguration" minOccurs="0" />
             <xs:element ref="xacmlp:Policy" minOccurs="0" />
+            <xs:element ref="localsig:RequestDocumentHash" minOccurs="0" />
+            <xs:element ref="tns:KeySelector" minOccurs="0" />
+            <xs:element ref="localsig:CorrelationID" minOccurs="0" />
+            <xs:element ref="tns:SignatureObject" minOccurs="0" />
           </xs:all>
         </xs:complexType>
       </xs:element>
@@ -172,6 +179,7 @@
         <xs:complexType>
           <xs:all>
             <xs:element ref="tns:DocumentWithSignature" minOccurs="0" />
+            <xs:element ref="tns:DocumentHash" minOccurs="0" />
             <xs:element ref="async:ResponseID" minOccurs="0" />
             <xs:element ref="wst:RequestSecurityTokenResponseCollection" minOccurs="0" />
             <xs:element ref="wsa:RelatesTo" minOccurs="0" />
@@ -181,6 +189,7 @@
             <xs:element ref="tns:SignerIdentity" minOccurs="0" />
             <xs:element ref="vr:VerificationReport" minOccurs="0" />
             <xs:element ref="dssp:TimeStampRenewal" minOccurs="0" />
+            <xs:element ref="localsig:CorrelationID" minOccurs="0" />
           </xs:all>
         </xs:complexType>
       </xs:element>
@@ -1988,18 +1997,15 @@
       </xs:complexType>
 
       <xs:complexType mixed="true" name="KeyInfoType">
-        <xs:sequence>
-          <xs:choice maxOccurs="unbounded" minOccurs="0">
-            <xs:element ref="tns:PGPData"/>
-            <xs:element ref="tns:X509Data"/>
-            <xs:element ref="tns:SPKIData"/>
-            <xs:element ref="tns:KeyValue"/>
-            <xs:element ref="tns:MgmtData"/>
-            <xs:element ref="tns:RetrievalMethod"/>
-            <xs:element ref="tns:KeyName"/>
-            <xs:any namespace="##other" processContents="lax"/>
-          </xs:choice>
-        </xs:sequence>
+          <xs:all>
+            <xs:element ref="tns:PGPData" minOccurs="0" />
+            <xs:element ref="tns:X509Data" minOccurs="0"/>
+            <xs:element ref="tns:SPKIData" minOccurs="0"/>
+            <xs:element ref="tns:KeyValue" minOccurs="0"/>
+            <xs:element ref="tns:MgmtData" minOccurs="0"/>
+            <xs:element ref="tns:RetrievalMethod" minOccurs="0"/>
+            <xs:element ref="tns:KeyName" minOccurs="0"/>
+          </xs:all>
         <xs:attribute name="Id" type="xs:ID"/>
       </xs:complexType>
 
@@ -2032,14 +2038,14 @@
 
       <xs:complexType name="X509DataType">
         <xs:sequence>
-          <xs:choice maxOccurs="unbounded" minOccurs="0">
-            <xs:element name="X509Certificate" type="xs:base64Binary"/>
-            <xs:element name="X509CRL" type="xs:base64Binary"/>
+          <!--xs:choice maxOccurs="unbounded" minOccurs="0"-->
+            <xs:element name="X509Certificate" type="xs:base64Binary" maxOccurs="unbounded" minOccurs="0"/>
+            <!--xs:element name="X509CRL" type="xs:base64Binary" maxOccurs="unbounded" minOccurs="0"/>
             <xs:element name="X509SKI" type="xs:base64Binary"/>
             <xs:element name="X509IssuerSerial" type="tns:X509IssuerSerialType"/>
             <xs:element name="X509SubjectName" type="xs:string"/>
-            <xs:any namespace="##other" processContents="lax"/>
-          </xs:choice>
+            <xs:any namespace="##other" processContents="lax"/-->
+          <!--/xs:choice-->
         </xs:sequence>
       </xs:complexType>
 
@@ -4047,7 +4053,7 @@
         </xs:complexContent>
       </xs:complexType>
       -->
-      
+
       <xs:element name="PolicySetIdReference" type="xacml:IdReferenceType"/>
       <xs:element name="PolicyIdReference" type="xacml:IdReferenceType"/>
       <!-- -->
@@ -4098,8 +4104,8 @@
             <xs:element ref="xacml:CombinerParameters" minOccurs="0" maxOccurs="unbounded"/>
             <xs:element ref="xacml:RuleCombinerParameters" minOccurs="0" maxOccurs="unbounded"/>
             -->
-            <xs:element ref="xacml:VariableDefinition" minOccurs="0" maxOccurs="unbounded" />
-            <xs:element ref="xacml:Rule" minOccurs="0" maxOccurs="unbounded" />
+          <xs:element ref="xacml:VariableDefinition" minOccurs="0" maxOccurs="unbounded" />
+          <xs:element ref="xacml:Rule" minOccurs="0" maxOccurs="unbounded" />
           <xs:element ref="xacml:Obligations" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="PolicyId" type="xs:anyURI" use="required"/>
@@ -4197,8 +4203,8 @@
       <xs:complexType name="SubjectMatchType">
         <xs:sequence>
           <xs:element ref="xacml:AttributeValue"/>
-            <xs:element ref="xacml:SubjectAttributeDesignator" minOccurs="0" />
-            <xs:element ref="xacml:AttributeSelector" minOccurs="0"/>
+          <xs:element ref="xacml:SubjectAttributeDesignator" minOccurs="0" />
+          <xs:element ref="xacml:AttributeSelector" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="MatchId" type="xs:anyURI" use="required"/>
       </xs:complexType>
@@ -4207,8 +4213,8 @@
       <xs:complexType name="ResourceMatchType">
         <xs:sequence>
           <xs:element ref="xacml:AttributeValue"/>
-            <xs:element ref="xacml:ResourceAttributeDesignator" minOccurs="0"/>
-            <xs:element ref="xacml:AttributeSelector" minOccurs="0"/>
+          <xs:element ref="xacml:ResourceAttributeDesignator" minOccurs="0"/>
+          <xs:element ref="xacml:AttributeSelector" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="MatchId" type="xs:anyURI" use="required"/>
       </xs:complexType>
@@ -4217,8 +4223,8 @@
       <xs:complexType name="ActionMatchType">
         <xs:sequence>
           <xs:element ref="xacml:AttributeValue"/>
-            <xs:element ref="xacml:ActionAttributeDesignator" minOccurs="0"/>
-            <xs:element ref="xacml:AttributeSelector" minOccurs="0"/>
+          <xs:element ref="xacml:ActionAttributeDesignator" minOccurs="0"/>
+          <xs:element ref="xacml:AttributeSelector" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="MatchId" type="xs:anyURI" use="required"/>
       </xs:complexType>
@@ -4352,6 +4358,58 @@
         </xs:simpleContent>
       </xs:complexType>
       <!-- -->
+    </xs:schema>
+    <xs:schema xmlns:localsig="http://docs.oasis-open.org/dss-x/ns/localsig"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+      xmlns:dss="urn:oasis:names:tc:dss:1.0:core:schema"
+      targetNamespace="http://docs.oasis-open.org/dss-x/ns/localsig"
+      elementFormDefault="qualified" attributeFormDefault="unqualified">
+      <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>
+      <xs:import namespace="urn:oasis:names:tc:dss:1.0:core:schema" />
+      <xs:element name="RequestDocumentHash">
+        <xs:annotation>
+          <xs:documentation>This element is part of the Two-Step approach in a SignRequest (as part of the OptionalInputs). </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" ref="ds:DigestMethod"/>
+          </xs:sequence>
+          <xs:attribute name="MaintainRequestState" use="optional" type="xs:boolean"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CorrelationID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>
+            This element is part of the Two-Step approach.
+            The CorrelationID is obtained in the first step, from a SignResponse (as part of the OptionalOutputs)
+            and is provided in the second step, in a SignRequest (as part of the OptionalInputs).
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ChallengeCode" type="xs:NCName">
+        <xs:annotation>
+          <xs:documentation>This element is part of the Third-Party approach in a SignRequest (as part of the OptionalInputs).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseCode" type="xs:NCName">
+        <xs:annotation>
+          <xs:documentation>This element is part of the Third-Party approach in a SignRequest (as part of the OptionalInputs).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DigestMethod" type="ds:DigestMethodType">
+        <xs:annotation>
+          <xs:documentation>This element is part of the User-Agent approach or the Third-Party approach in a SignRequest (as part of the OptionalInputs).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <!-- 
+	The element <dss:DocumentHash> as defined by the DSS-core xml schema definition (see corresponding import).
+	The element is part of the Two-Step approach in the first step, in a SignResponse (as part of the OptionalOutputs).
+    -->
+      <!--
+	The element <dss:SignatureObject> as defined by the DSS-core xml schema definition (see corresponding import). 
+	The element is part of the Two-Step approach in the second step, in a SignRequest (as part of the OptionalInputs).
+    -->
     </xs:schema>
   </wsdl:types>
   <wsdl:message name="pendingRequestResponse">

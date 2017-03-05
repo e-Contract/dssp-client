@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library", "library\library.csproj", "{708746C9-C5BF-4A76-B83D-3093320DE289}"
 EndProject
@@ -21,6 +21,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library v3.5", "library v3.5\library v3.5.csproj", "{879F2071-ABD0-4A45-BCFD-6C6AF3F71137}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{8E2342A2-0109-45CD-802D-B65B8505EC6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf-demo", "wpf-demo\wpf-demo.csproj", "{234C10BA-F6C0-4680-A4D4-6ED6943A07D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "library v4.5", "library v4.5\library v4.5.csproj", "{0402DA5B-E7A3-4357-AD40-D8CE74C0E1FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +52,14 @@ Global
 		{8E2342A2-0109-45CD-802D-B65B8505EC6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E2342A2-0109-45CD-802D-B65B8505EC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E2342A2-0109-45CD-802D-B65B8505EC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{234C10BA-F6C0-4680-A4D4-6ED6943A07D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{234C10BA-F6C0-4680-A4D4-6ED6943A07D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{234C10BA-F6C0-4680-A4D4-6ED6943A07D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{234C10BA-F6C0-4680-A4D4-6ED6943A07D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0402DA5B-E7A3-4357-AD40-D8CE74C0E1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0402DA5B-E7A3-4357-AD40-D8CE74C0E1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0402DA5B-E7A3-4357-AD40-D8CE74C0E1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0402DA5B-E7A3-4357-AD40-D8CE74C0E1FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

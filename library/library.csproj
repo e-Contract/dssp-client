@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EContract.Dssp.Client</RootNamespace>
     <AssemblyName>EContract.Dssp.Client</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -52,6 +52,7 @@
     <Compile Include="DigitalSignatureService.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="DssHelper.cs" />
+    <Compile Include="Dssp2StepSession.cs" />
     <Compile Include="DsspClientAsync.cs" />
     <Compile Include="IncorrectSignatureException.cs" />
     <Compile Include="SecurityInfo.cs" />
