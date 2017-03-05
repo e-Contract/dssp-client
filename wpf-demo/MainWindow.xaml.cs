@@ -58,6 +58,9 @@ namespace wpf_demo
             using (new WaitCursor())
             {
                 Dssp2StepSession dsspSession;
+                var signProps = new SignatureRequestProperties();
+                signProps.SignerRole = this.Role.Text;
+                signProps.SignatureProductionPlace = this.Location.Text;
                 using (Stream input = File.OpenRead(FilePath.Text))
                 {
                     var inDoc = new Document()
@@ -65,7 +68,7 @@ namespace wpf_demo
                         MimeType = "application/pdf",
                         Content = input
                     };
-                    dsspSession = await dsspClient.UploadDocumentFor2StepAsync(inDoc);
+                    dsspSession = await dsspClient.UploadDocumentFor2StepAsync(inDoc, signProps);
                 }
 
                 dsspSession.Sign();

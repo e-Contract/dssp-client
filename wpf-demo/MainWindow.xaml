@@ -6,11 +6,21 @@
         xmlns:local="clr-namespace:wpf_demo"
         mc:Ignorable="d"
         Title="DSSP WPF Demo" Height="350" Width="525">
-    <Grid>
-        <Label Content="File:"  HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="80" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="FilePath" Width="auto" Margin="90,15,30,10" VerticalAlignment="Top" />
-        <Button x:Name="SelectFile" Content="..." HorizontalAlignment="Right" Margin="0,13,10,10" VerticalAlignment="Top"  Click="SelectFile_Click"/>
-        <Button x:Name="Sign" Content="Sign" Margin="0,40,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="60" Click="Sign_Click"  />
+    <WrapPanel Orientation="Vertical">
+        <WrapPanel Orientation="Horizontal" Width="525">
+        <Label Content="File:"  Margin="10,10,0,10" Width="80" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="FilePath" Width="400" Margin="0,10,0,10"  />
+        <Button x:Name="SelectFile" Content="..." Margin="0,10,0,10" Width="15" Click="SelectFile_Click"/>
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Width="525">
+            <Label Content="Location:"  Margin="10,10,0,10" Width="80" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="Location" Width="415" Margin="0,10,0,10"  />
+        </WrapPanel>
+        <WrapPanel Orientation="Horizontal" Width="525">
+            <Label Content="Role:"  Margin="10,10,0,10" Width="80" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="Role" Width="415" Margin="0,10,0,10" Text="owner"  />
+        </WrapPanel>
+        <Button x:Name="Sign" Content="Sign" Margin="0,10,0,0" HorizontalAlignment="Center" Width="60" Click="Sign_Click"  />
 
-    </Grid>
+    </WrapPanel>
 </Window>
