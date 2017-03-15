@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DSS-P.Client</id>
-    <version>1.5.0</version>
+    <version>1.5.0-Alpha1</version>
     <authors>Egelke BVBA,e-Contract.be BVBA</authors>
     <owners>Egelke BVBA,e-Contract.be BVBA</owners>
     <licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>

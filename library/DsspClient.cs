@@ -496,7 +496,7 @@ namespace EContract.Dssp.Client
         private Document ProcessResponseWithSignedDoc(SignResponse downloadResponse)
         {
             //check the download response
-            VerifyResponse(downloadResponse, "urn:oasis:names:tc:dss:1.0:resultmajor:Success", "urn:oasis:names:tc:dss:1.0:resultminor:valid:signature:OnAllDocuments");
+            VerifyResponse(downloadResponse, "urn:oasis:names:tc:dss:1.0:resultmajor:Success", null);
 
             //Return the downloaded document (we assume there is only a single document)
             return new Document(downloadResponse.OptionalOutputs.DocumentWithSignature.Document);
@@ -527,22 +527,7 @@ namespace EContract.Dssp.Client
         private SecurityInfo ProcessVerifyResponse(ResponseBaseType response)
         {
             //Check response
-            switch (response.Result.ResultMajor)
-            {
-                case "urn:oasis:names:tc:dss:1.0:resultmajor:Success":
-                    break;
-                case "urn:oasis:names:tc:dss:1.0:resultmajor:RequesterError":
-                    if (response.Result.ResultMinor == "urn:oasis:names:tc:dss:1.0:resultminor:invalid:IncorrectSignature")
-                    {
-                        throw new IncorrectSignatureException(response.Result.ResultMessage.Value);
-                    }
-                    else
-                    {
-                        throw new RequestError(response.Result.ResultMinor.Replace("urn:be:e-contract:dssp:1.0:resultminor:", ""));
-                    }
-                default:
-                    throw new InvalidOperationException(response.Result.ResultMajor);
-            }
+            VerifyResponse(response, "urn:oasis:names:tc:dss:1.0:resultmajor:Success", null);
 
             //Is there security info?
             if (response.OptionalOutputs == null 
@@ -568,7 +553,8 @@ namespace EContract.Dssp.Client
                     Signer = new X509Certificate2(report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].CertificateValue),
                     SignerSubject = report.Details.DetailedSignatureReport.CertificatePathValidity.PathValidityDetail.CertificateValidity[0].Subject,
                     SignatureProductionPlace = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.Location,
-                    SignerRole = String.Join(", ", report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties?.SignerRole?.ClaimedRoles ?? new String[0])
+                    SignerRole = report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole == null ? null
+                        : String.Join(", ", report.SignedObjectIdentifier.SignedProperties.SignedSignatureProperties.SignerRole.ClaimedRoles)
                 });
             }
             return result;

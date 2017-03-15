@@ -158,8 +158,8 @@ namespace EContract.Dssp.Client
         public void AuthClientPdfSingleSignSync()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
-            dsspClient.ApplicationName = "egelke";
-            dsspClient.ApplicationPassword = "egelke";
+            dsspClient.Application.UT.Name = "egelke";
+            dsspClient.Application.UT.Password = "egelke";
 
             Document d = new Document("application/pdf", File.OpenRead("Signed.pdf"));
             SecurityInfo si = dsspClient.Verify(d);
