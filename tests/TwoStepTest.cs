@@ -49,7 +49,7 @@ namespace EContract.Dssp.Client
 
 
         [TestMethod]
-        public void SealInvisibleProps()
+        public void Sign2StepInvisibleProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
             dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
@@ -64,7 +64,7 @@ namespace EContract.Dssp.Client
             using (Stream i = File.OpenRead("Blank.pdf"))
             {
                 Document id = new Document("application/pdf", i);
-                s = dsspClient.UploadDocumentFor2Step(id);
+                s = dsspClient.UploadDocumentFor2Step(id, props);
             }
 
             s.Sign();
@@ -91,8 +91,8 @@ namespace EContract.Dssp.Client
             Assert.AreEqual("SERIALNUMBER=79021802145, G=Bryan Eduard, SN=Brouckaert, CN=Bryan Brouckaert (Signature), C=BE", si.Signatures[0].Signer.Subject, "Signature 1: Signer.Subject (Windows notation)");
             Assert.IsTrue(si.Signatures[0].SigningTime > (DateTime.Now - TimeSpan.FromMinutes(5))
                 && si.Signatures[0].SigningTime < (DateTime.Now + TimeSpan.FromMinutes(5)), "Signature 1: SigningTime");
-            Assert.AreEqual(null, si.Signatures[0].SignerRole, "Signature 1: SignerRole");
-            Assert.AreEqual(null, si.Signatures[0].SignatureProductionPlace, "Signature 1: SignatureProductionPlace");
+            Assert.AreEqual(role, si.Signatures[0].SignerRole, "Signature 1: SignerRole");
+            Assert.AreEqual(location, si.Signatures[0].SignatureProductionPlace, "Signature 1: SignatureProductionPlace");
 
             //Validate timestamp validity
             Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");

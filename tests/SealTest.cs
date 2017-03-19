@@ -109,8 +109,8 @@ namespace EContract.Dssp.Client
             Assert.AreEqual("SERIALNUMBER=12345, CN=Test Signing Key, C=BE", si.Signatures[0].Signer.Subject, "Signature 1: Signer.Subject (Windows notation)");
             Assert.IsTrue(si.Signatures[0].SigningTime > (DateTime.Now - TimeSpan.FromMinutes(5))
                 && si.Signatures[0].SigningTime < (DateTime.Now + TimeSpan.FromMinutes(5)), "Signature 1: SigningTime");
-            Assert.AreEqual(null, si.Signatures[0].SignerRole, "Signature 1: SignerRole");
-            Assert.AreEqual(null, si.Signatures[0].SignatureProductionPlace, "Signature 1: SignatureProductionPlace");
+            Assert.AreEqual(role, si.Signatures[0].SignerRole, "Signature 1: SignerRole");
+            Assert.AreEqual(location, si.Signatures[0].SignatureProductionPlace, "Signature 1: SignatureProductionPlace");
 
             //Validate timestamp validity
             Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
