@@ -1736,11 +1736,11 @@
       </xs:complexType>
 
     </xs:schema>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/XML/1998/namespace" version="1.0">
+    <!--xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/XML/1998/namespace" version="1.0">
 
       <xs:attribute name="lang" type="xs:string"/>
 
-    </xs:schema>
+    </xs:schema-->
     <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.w3.org/2001/04/xmlenc#" xmlns:ns1="http://www.w3.org/2000/09/xmldsig#" elementFormDefault="qualified" targetNamespace="http://www.w3.org/2001/04/xmlenc#" version="1.0">
 
       <xs:import namespace="http://www.w3.org/2000/09/xmldsig#"/>

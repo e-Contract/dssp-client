@@ -10,36 +10,52 @@ using System.Threading.Tasks;
 namespace EContract.Dssp.Client
 {
     [TestClass]
-    public class SealTest
+    public class TwoStepTest
     {
+        private static X509Certificate2 Signer;
+
+        [ClassInitialize]
+        public static void ClassInit(TestContext ctx)
+        {
+            X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
+
+            X509Certificate2Collection collection = store.Certificates.Find(X509FindType.FindBySubjectName, "Bryan Brouckaert (Signature)", true);
+            Signer = collection.Cast<X509Certificate2>().AsQueryable().FirstOrDefault();
+        }
+
         [TestMethod]
-        public void SealInvisibleNoProps()
+        public void Sign2StepInvisibleNoProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
             dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
+            dsspClient.Signer = Signer;
 
-            Document od;
+            Dssp2StepSession s;
             using (Stream i = File.OpenRead("Blank.pdf")) {
                 Document id = new Document("application/pdf", i);
-                od = dsspClient.Seal(id);
+                s = dsspClient.UploadDocumentFor2Step(id);
             }
 
-            
+            s.Sign();
+            Document od = dsspClient.DownloadDocument(s);
             using (Stream o = File.OpenWrite("Output.pdf")) {
                 od.Content.CopyTo(o);
             }
             od.Content.Seek(0, SeekOrigin.Current);
 
-            VerifySeal(od, null, null);
+            Verify(od, null, null);
         }
+
 
         [TestMethod]
         public void SealInvisibleProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
             dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
+            dsspClient.Signer = Signer;
 
-            Document od;
+            Dssp2StepSession s;
             SignatureRequestProperties props = new SignatureRequestProperties()
             {
                 SignerRole = "Witness",
@@ -48,65 +64,31 @@ namespace EContract.Dssp.Client
             using (Stream i = File.OpenRead("Blank.pdf"))
             {
                 Document id = new Document("application/pdf", i);
-                od = dsspClient.Seal(id, props);
+                s = dsspClient.UploadDocumentFor2Step(id);
             }
 
-
+            s.Sign();
+            Document od = dsspClient.DownloadDocument(s);
             using (Stream o = File.OpenWrite("Output.pdf"))
             {
                 od.Content.CopyTo(o);
             }
             od.Content.Seek(0, SeekOrigin.Current);
 
-            VerifySeal(od, "Witness", "Iddergem");
+            Verify(od, "Witness", "Iddergem");
         }
 
-        [TestMethod]
-        public void SealVisibleProps()
+        private void Verify(Document d, String role, String location)
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
-            dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
 
-            Document od;
-            SignatureRequestProperties props = new SignatureRequestProperties()
-            {
-                SignerRole = "Gard",
-                SignatureProductionPlace = "Iddergem",
-                VisibleSignature = new ImageVisibleSignature()
-                {
-                    Page = 1,
-                    X = 100,
-                    Y = 100
-                }
-            };
-            using (Stream i = File.OpenRead("Blank.pdf"))
-            {
-                Document id = new Document("application/pdf", i);
-                od = dsspClient.Seal(id, props);
-            }
-
-
-            using (Stream o = File.OpenWrite("Output.pdf"))
-            {
-                od.Content.CopyTo(o);
-            }
-            od.Content.Seek(0, SeekOrigin.Current);
-
-            VerifySeal(od, "Gard", "Iddergem");
-        }
-
-        private void VerifySeal(Document d, String role, String location)
-        {
-            DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
-            dsspClient.Application.UT.Name = "egelke";
-            dsspClient.Application.UT.Password = "egelke";
             SecurityInfo si = dsspClient.Verify(d);
 
             Assert.AreEqual(1, si.Signatures.Count, "Signature Count");
 
             //Validate signature 1
-            Assert.AreEqual("SERIALNUMBER=12345, CN=Test Signing Key, C=BE", si.Signatures[0].SignerSubject, "Signature 1: SignerSubject (DSS notation)");
-            Assert.AreEqual("SERIALNUMBER=12345, CN=Test Signing Key, C=BE", si.Signatures[0].Signer.Subject, "Signature 1: Signer.Subject (Windows notation)");
+            Assert.AreEqual("SERIALNUMBER=79021802145, GIVENNAME=Bryan Eduard, SURNAME=Brouckaert, CN=Bryan Brouckaert (Signature), C=BE", si.Signatures[0].SignerSubject, "Signature 1: SignerSubject (DSS notation)");
+            Assert.AreEqual("SERIALNUMBER=79021802145, G=Bryan Eduard, SN=Brouckaert, CN=Bryan Brouckaert (Signature), C=BE", si.Signatures[0].Signer.Subject, "Signature 1: Signer.Subject (Windows notation)");
             Assert.IsTrue(si.Signatures[0].SigningTime > (DateTime.Now - TimeSpan.FromMinutes(5))
                 && si.Signatures[0].SigningTime < (DateTime.Now + TimeSpan.FromMinutes(5)), "Signature 1: SigningTime");
             Assert.AreEqual(null, si.Signatures[0].SignerRole, "Signature 1: SignerRole");
