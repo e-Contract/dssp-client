@@ -33,10 +33,10 @@ using System.Xml.Serialization;
 namespace EContract.Dssp.Client
 {
     /// <summary>
-    /// Information linked to a single signature session.
+    /// Information linked to a single async signature session.
     /// </summary>
     /// <remarks>
-    /// A signature session consists of the following steps: upload document, start signature, end signature and download document.
+    /// An async signature session consists of the following steps: upload document, start signature, end signature and download document.
     /// See the e-contract.be documentation for more information.
     /// </remarks>
     [Serializable]
@@ -49,7 +49,7 @@ namespace EContract.Dssp.Client
         internal DsspSession()
         {
             ClientId = "msg-" + Guid.NewGuid().ToString();
-            initSerializers();
+            InitSerializers();
         }
 
         [NonSerialized]
@@ -62,10 +62,10 @@ namespace EContract.Dssp.Client
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
         {
-            initSerializers();            
+            InitSerializers();            
         }
 
-        private void initSerializers()
+        private void InitSerializers()
         {
             requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
             responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");

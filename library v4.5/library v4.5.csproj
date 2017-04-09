@@ -31,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\EContract.Dssp.Client.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -103,14 +104,30 @@
     <Compile Include="..\library\VisibleSignatureProperties.cs">
       <Link>VisibleSignatureProperties.cs</Link>
     </Compile>
-    <Compile Include="WcfBinding\PlainDsspBinding.cs" />
-    <Compile Include="WcfBinding\ScDsspBinding.cs" />
-    <Compile Include="WcfBinding\ScDsspClientCredentials.cs" />
-    <Compile Include="WcfBinding\ScDsspClientCredentialsSecurityTokenManager.cs" />
-    <Compile Include="WcfBinding\ScDsspSecurityTokenParameter.cs" />
-    <Compile Include="WcfBinding\ScDsspSecurityTokenProvider.cs" />
-    <Compile Include="WcfBinding\UTDsspBinding.cs" />
-    <Compile Include="WcfBinding\X509DsspBinding.cs" />
+    <Compile Include="..\library\WcfBinding\PlainDsspBinding.cs">
+      <Link>WcfBinding\PlainDsspBinding.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspBinding.cs">
+      <Link>WcfBinding\ScDsspBinding.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspClientCredentials.cs">
+      <Link>WcfBinding\ScDsspClientCredentials.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspClientCredentialsSecurityTokenManager.cs">
+      <Link>WcfBinding\ScDsspClientCredentialsSecurityTokenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspSecurityTokenParameter.cs">
+      <Link>WcfBinding\ScDsspSecurityTokenParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\ScDsspSecurityTokenProvider.cs">
+      <Link>WcfBinding\ScDsspSecurityTokenProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\UTDsspBinding.cs">
+      <Link>WcfBinding\UTDsspBinding.cs</Link>
+    </Compile>
+    <Compile Include="..\library\WcfBinding\X509DsspBinding.cs">
+      <Link>WcfBinding\X509DsspBinding.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

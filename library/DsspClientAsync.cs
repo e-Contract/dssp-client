@@ -40,11 +40,19 @@ namespace EContract.Dssp.Client
             return ProcessAsyncSignResponse(responseWrapper.SignResponse, clientNonce);
         }
 
+        /// <summary>
+        /// Uploads a document to e-Contract, asynchronously.
+        /// </summary>
+        /// <see cref="UploadDocumentFor2Step(Document)"/>
         public async Task<Dssp2StepSession> UploadDocumentFor2StepAsync(Document document)
         {
             return await UploadDocumentFor2StepAsync(document, null);
         }
 
+        /// <summary>
+        /// Uploads a document to e-Contract, asynchronously.
+        /// </summary>
+        /// <see cref="UploadDocumentFor2Step(Document, SignatureRequestProperties)"/>
         public async Task<Dssp2StepSession> UploadDocumentFor2StepAsync(Document document, SignatureRequestProperties properties)
         {
             if (document == null) throw new ArgumentNullException("document");
@@ -59,7 +67,7 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol, asynchronously.
         /// </summary>
-        /// <see cref="DownloadDocument"/>
+        /// <see cref="DownloadDocument(DsspSession)"/>
         public async Task<Document> DownloadDocumentAsync(DsspSession session)
         {
             if (session == null) throw new ArgumentNullException("session");
@@ -70,6 +78,10 @@ namespace EContract.Dssp.Client
             return ProcessResponseWithSignedDoc(downloadResponseWrapper.SignResponse);
         }
 
+        /// <summary>
+        /// Downloads the document that was uploaded before and signed offline.
+        /// </summary>
+        /// <see cref="DownloadDocument(Dssp2StepSession)"/>
         public async Task<Document> DownloadDocumentAsync(Dssp2StepSession session)
         {
             if (session == null) throw new ArgumentNullException("session");

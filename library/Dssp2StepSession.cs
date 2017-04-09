@@ -26,17 +26,39 @@ using System.Text;
 
 namespace EContract.Dssp.Client
 {
+    /// <summary>
+    /// Information linked to a single 2 step signature session.
+    /// </summary>
+    /// <remarks>
+    /// A 2 step signature session consists of the following steps: upload document, sign localy and download document.
+    /// See the e-contract.be documentation for more information.
+    /// </remarks>
     [Serializable]
     public class Dssp2StepSession
     {
+        /// <summary>
+        /// The signer of the document
+        /// </summary>
         public X509Certificate2 Signer { get; set; }
 
+        /// <summary>
+        /// The ID of the session
+        /// </summary>
         public String CorrelationId { get; set; }
 
+        /// <summary>
+        /// The digest method that is used to obtain the digest value. 
+        /// </summary>
         public String DigestAlgo { get; set; }
 
+        /// <summary>
+        /// The digest on which the signature must be calculated.
+        /// </summary>
         public byte[] DigestValue { get; set; }
 
+        /// <summary>
+        /// The raw value of the signature
+        /// </summary>
         public byte[] SignValue { get; set; }
 
         internal Dssp2StepSession()
@@ -44,6 +66,12 @@ namespace EContract.Dssp.Client
 
         }
 
+        /// <summary>
+        /// Calculates the signature
+        /// </summary>
+        /// <remarks>
+        /// This step will trigger the OS to ask the PIN to the user via a popup.
+        /// </remarks>
         public void Sign()
         {
             var key = (RSACryptoServiceProvider)Signer.PrivateKey;

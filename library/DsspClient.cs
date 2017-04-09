@@ -137,7 +137,7 @@ namespace EContract.Dssp.Client
         }
 
         /// <summary>
-        /// Uploads a document to e-Contract.
+        /// Uploads a document to e-Contract for online signature.
         /// </summary>
         /// <remarks>
         /// Uploads a document to e-Contract and returns the session for future references.
@@ -154,11 +154,28 @@ namespace EContract.Dssp.Client
             return ProcessAsyncSignResponse(response, clientNonce);
         }
 
+        /// <summary>
+        /// Uploads the document to e-Contract for offline signature.
+        /// </summary>
+        /// <remarks>
+        /// Uploads a document to e-Contract and returns the session for easy signing.
+        /// </remarks>
+        /// <param name="document">The document to be signed</param>
+        /// <returns>The session, required to calculate the signature</returns>
         public Dssp2StepSession UploadDocumentFor2Step(Document document)
         {
             return UploadDocumentFor2Step(document, null);
         }
 
+        /// <summary>
+        /// Uploads the document to e-Contract for offline signature.
+        /// </summary>
+        /// <remarks>
+        /// Uploads a document to e-Contract and returns the session for easy signing.
+        /// </remarks>
+        /// <param name="document">The document to be signed</param>
+        /// <param name="properties">additional signing properties like location, role and visual signature</param>
+        /// <returns>The session, required to calculate the signature</returns>
         public Dssp2StepSession UploadDocumentFor2Step(Document document, SignatureRequestProperties properties)
         {
             if (document == null) throw new ArgumentNullException("document");
@@ -190,6 +207,16 @@ namespace EContract.Dssp.Client
             return ProcessResponseWithSignedDoc(downloadResponse);
         }
 
+        /// <summary>
+        /// Downloads the document that was uploaded before and signed offline.
+        /// </summary>
+        /// <remarks>
+        /// The session is closed when the downloads finishes, it can't be reused afterward and should be removed from the storage.
+        /// </remarks>
+        /// <param name="session">The session linked to the uploaded document</param>
+        /// <returns>The document with signature, including id and mimeType</returns>
+        /// <exception cref="ArgumentException">When the signResponse isn't valid, including its signature</exception>
+        /// <exception cref="InvalidOperationException">When the e-contract service returns an error</exception>
         public Document DownloadDocument(Dssp2StepSession session)
         {
             if (session == null) throw new ArgumentNullException("session");

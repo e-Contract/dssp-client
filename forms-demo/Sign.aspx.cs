@@ -23,7 +23,7 @@ namespace forms_demo
             Session["dsspSession"] = dsspSession;
 
             VisibleSignatureProperties visibleSignature = null;
-            if (Session["Visible"] == "Photo")
+            if ((String)Session["Visible"] == "Photo")
             {
                 visibleSignature = new ImageVisibleSignature()
                 {
@@ -31,7 +31,7 @@ namespace forms_demo
                     X = (int) Session["X"],
                     Y = (int) Session["Y"]
                 };
-            } else if (Session["Visible"] == "Photo and Signer Info")
+            } else if ((String)Session["Visible"] == "Photo and Signer Info")
             {
                 visibleSignature = new ImageVisibleSignature()
                 {

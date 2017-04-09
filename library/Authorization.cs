@@ -60,6 +60,11 @@ namespace EContract.Dssp.Client
             return authorization;
         }
 
+        /// <summary>
+        /// Construct an authorization that authorizes signing with DSS if the eID Card matches the provided nummer.
+        /// </summary>
+        /// <param name="card">The card number that must be matched without seperators (only numbers)</param>
+        /// <returns>The configured authorization object</returns>
         public static Authorization AllowDssSignIfMatchCardNumber(string card)
         {
             Authorization authorization = new Authorization();
@@ -67,6 +72,11 @@ namespace EContract.Dssp.Client
             return authorization;
         }
 
+        /// <summary>
+        /// Construct an authorization that authorizes signing with DSS if the eID subject does NOT match exactly.
+        /// </summary>
+        /// <param name="subjectName">The subject to NOT match exactly</param>
+        /// <returns>The configured authorization object</returns>
         public static Authorization DenyDssSignIfMatchSubject(string subjectName)
         {
             Authorization authorization = new Authorization();
@@ -74,6 +84,11 @@ namespace EContract.Dssp.Client
             return authorization;
         }
 
+        /// <summary>
+        /// Construct an authorization that authorizes signing with DSS if the eID subject does NOT match the regular expression.
+        /// </summary>
+        /// <param name="regex">The regular expression the subject must NOT match</param>
+        /// <returns>The configured authorization object</returns>
         public static Authorization DenyDssSignIfMatchSubjectRegex(string regex)
         {
             Authorization authorization = new Authorization();
@@ -81,6 +96,11 @@ namespace EContract.Dssp.Client
             return authorization;
         }
 
+        /// <summary>
+        /// Construct an authorization that authorizes signing with DSS if the eID Card does NOT match the provided nummer.
+        /// </summary>
+        /// <param name="card">The card number that must NOT be matched without seperators (only numbers)</param>
+        /// <returns>The configured authorization object</returns>
         public static Authorization DenyDssSignIfMatchCardNumber(string card)
         {
             Authorization authorization = new Authorization();
@@ -88,31 +108,55 @@ namespace EContract.Dssp.Client
             return authorization;
         }
 
+        /// <summary>
+        /// Add (additional) subject name to be machted exactly.
+        /// </summary>
+        /// <param name="subjectName">The subject to be matched exactly</param>
         public void AddAuthorizedSubjectName(string subjectName)
         {
             this.authorizedSubjectNames.Add(subjectName);
         }
 
+        /// <summary>
+        /// Add (additional) subject name to be machted via regular expression.
+        /// </summary>
+        /// <param name="regexp">The subject to be matched via regular expression</param>
         public void AddAuthorizedSubjectRegExp(string regexp)
         {
             this.authorizedSubjectRegexps.Add(regexp);
         }
 
+        /// <summary>
+        /// The (additional) card number to match exactly
+        /// </summary>
+        /// <param name="cardNumber">The card number that must be matched without seperators (only numbers)</param>
         public void AddAuthorizedCardNumber(string cardNumber)
         {
             this.authorizedCardNumbers.Add(cardNumber);
         }
 
+        /// <summary>
+        /// Add (additional) subject name to NOT macht exactly.
+        /// </summary>
+        /// <param name="subjectName">The subject to NOT match exactly</param>
         public void AddNonAuthorizedSubjectName(string subjectName)
         {
             this.nonAuthorizedSubjectNames.Add(subjectName);
         }
 
+        /// <summary>
+        /// Add (additional) subject name to NOT macht via regular expression.
+        /// </summary>
+        /// <param name="regexp">The subject to MOT match via regular expression</param>
         public void AddNonAuthorizedSubjectRegExp(string regexp)
         {
             this.nonAuthorizedSubjectRegexps.Add(regexp);
         }
 
+        /// <summary>
+        /// The (additional) card number to NOT match exactly
+        /// </summary>
+        /// <param name="cardNumber">The card number that must NOT be matched without seperators (only numbers)</param>
         public void AddNonAuthorizedCardNumber(string cardNumber)
         {
             this.nonAuthorizedCardNumbers.Add(cardNumber);
