@@ -10,7 +10,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8FC9966B-BB72-4A75-84C8-A0BE3289390E}"
 	ProjectSection(SolutionItems) = preProject
 		Package.nuspec = Package.nuspec
-		test.runsettings = test.runsettings
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "forms-demo", "forms-demo\forms-demo.csproj", "{80439AB4-B43C-4EB3-8B65-39D1785D68F8}"
