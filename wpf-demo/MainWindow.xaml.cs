@@ -81,10 +81,5 @@ namespace wpf_demo
                 }
             }
         }
-
-        private void Seal_Click(object sender, RoutedEventArgs e)
-        {
-            DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
-        }
     }
 }

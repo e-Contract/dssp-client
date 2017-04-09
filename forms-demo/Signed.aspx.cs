@@ -4,6 +4,8 @@ using forms_demo.Properties;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography.X509Certificates;
+using System.Web.Hosting;
 
 namespace forms_demo
 {
@@ -97,21 +99,10 @@ namespace forms_demo
         protected void seal_Click(object sender, EventArgs e)
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
-            dsspClient.Application.UT.Name = Settings.Default.AppName;
-            dsspClient.Application.UT.Password = Settings.Default.AppPwd;
+            dsspClient.Application.X509.Certificate = new X509Certificate2(Path.Combine(HostingEnvironment.ApplicationPhysicalPath, @"App_Data\certificate.p12"), "");
 
             Document sealedDocument = dsspClient.Seal((Document)Session["signedDocument"]);
             Session["signedDocument"] = sealedDocument;
-
-            //For demo purposes, lets validate the signature.  This is purely optional
-            SecurityInfo securityInfo = dsspClient.Verify(sealedDocument);
-
-            //Display some interesting info about the signed document
-            this.msg.Text = "signed document with timestamp valid until " + securityInfo.TimeStampValidity;
-            foreach (SignatureInfo signature in securityInfo.Signatures)
-            {
-                this.signatures.Items.Add("Signed by " + signature.Signer.Subject + " on " + signature.SigningTime);
-            }
         }
 
         private static void CopyStream(Stream input, Stream output)

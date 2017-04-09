@@ -22,7 +22,6 @@
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" >
             <Button x:Name="Sign" Content="Sign" Margin="0,10,0,0" HorizontalAlignment="Center" Width="60" Click="Sign_Click"  />
-            <Button x:Name="Seal" Content="Seal" Margin="10,10,0,0" HorizontalAlignment="Center" Width="60" Click="Seal_Click"  />
         </WrapPanel>
 
     </WrapPanel>
