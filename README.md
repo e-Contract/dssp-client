@@ -1,16 +1,16 @@
 # DSSP client for .NET
 
 This project contains the source code of the Digital Signature Service Protocol SDK for .NET web applications.
-We support .NET version 3.5+.
+We support .NET version 3.5+ and 4.5+
 
 The Digital Signature Service itself can be tested via the [DSS demo portal](https://www.e-contract.be/dss/).
 
 ## Getting started
 
 The `forms-demo` gives you an entry-level example on how to use the DSSP client for .NET.
-A more advanced example is given in `webApi-demo`.
+A more advanced example is given in `webApi-demo`.  For desktop there is the `wpf-demo`.
 
-Check out the source code and open `dssp-client.sln` with for example [Microsoft Visual Studio Express 2013 for Web](http://www.visualstudio.com/en-us/products/visual-studio-express-vs.aspx). The project should compile and run out of the box.
+Check out the source code and open `dssp-client.sln` with for example [Microsoft Visual Studio Community](https://www.visualstudio.com/vs/community/). The project should compile and run out of the box with version 2017 of visual studio.
 
 A [NuGet](https://www.nuget.org/packages/DSS-P.Client/) package has also been make available.
 
