@@ -51,7 +51,7 @@ namespace forms_demo
             dsspSession = (DsspSession) binaryFormatter.Deserialize(memoryStream);
 
             Authorization authorization = new Authorization();
-            //authorization.AddAuthorizedCardNumber("591937284531");
+            //authorization.AddAuthorizedCardNumber("591591588049");
             //authorization.AddAuthorizedSubjectName("SERIALNUMBER=79102520991, GIVENNAME=Frank Henri, SURNAME=Cornelis, CN=Frank Cornelis (Signature), C=BE");
             //authorization.AddNonAuthorizedSubjectName("SERIALNUMBER=79102520991, GIVENNAME=Frank Henri, SURNAME=Cornelis, CN=Frank Cornelis (Signature), C=BE");
 

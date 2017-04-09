@@ -44,7 +44,7 @@ namespace EContract.Dssp.Client
         public static Authorization AllowDssSignIfMatchSubject(string subjectName)
         {
             Authorization authorization = new Authorization();
-            authorization.authorizedSubjectNames.Add(subjectName);
+            authorization.AddAuthorizedSubjectName(subjectName);
             return authorization;
         }
 
@@ -56,21 +56,35 @@ namespace EContract.Dssp.Client
         public static Authorization AllowDssSignIfMatchSubjectRegex(string regex)
         {
             Authorization authorization = new Authorization();
-            authorization.authorizedSubjectRegexps.Add(regex);
+            authorization.AddAuthorizedSubjectRegExp(regex);
+            return authorization;
+        }
+
+        public static Authorization AllowDssSignIfMatchCardNumber(string card)
+        {
+            Authorization authorization = new Authorization();
+            authorization.AddAuthorizedCardNumber(card);
             return authorization;
         }
 
         public static Authorization DenyDssSignIfMatchSubject(string subjectName)
         {
             Authorization authorization = new Authorization();
-            authorization.nonAuthorizedSubjectNames.Add(subjectName);
+            authorization.AddNonAuthorizedSubjectName(subjectName);
             return authorization;
         }
 
         public static Authorization DenyDssSignIfMatchSubjectRegex(string regex)
         {
             Authorization authorization = new Authorization();
-            authorization.nonAuthorizedSubjectRegexps.Add(regex);
+            authorization.AddNonAuthorizedSubjectRegExp(regex);
+            return authorization;
+        }
+
+        public static Authorization DenyDssSignIfMatchCardNumber(string card)
+        {
+            Authorization authorization = new Authorization();
+            authorization.AddNonAuthorizedCardNumber(card);
             return authorization;
         }
 
@@ -108,19 +122,35 @@ namespace EContract.Dssp.Client
         {
             get
             {
-                RuleType allowSubjects = authorizedSubjectNames.Select(x => x.ToSubjectX500NameMatch())
+                SubjectMatchType[] allowSubjects = authorizedSubjectNames.Select(x => x.ToSubjectX500NameMatch())
                     .Concat(authorizedSubjectRegexps.Select(x => x.ToSubjectX500NameRegExMatch()))
                     .Concat(authorizedCardNumbers.Select(x => x.ToEidCardNrMatch()))
-                    .ToArray()
-                    .ToSubjectRule(EffectType.Permit);
-                RuleType denySubjects = nonAuthorizedSubjectNames.Select(x => x.ToSubjectX500NameMatch())
+                    .ToArray();
+                SubjectMatchType[] denySubjects = nonAuthorizedSubjectNames.Select(x => x.ToSubjectX500NameMatch())
                     .Concat(nonAuthorizedSubjectRegexps.Select(x => x.ToSubjectX500NameRegExMatch()))
                     .Concat(nonAuthorizedCardNumbers.Select(x => x.ToEidCardNrMatch()))
-                    .ToArray()
-                    .ToSubjectRule(EffectType.Deny);
-                RuleType[] rules = new RuleType[] { allowSubjects, denySubjects }.Where(x => x != null).ToArray();
+                    .ToArray();
 
-                if (rules.Length == 0) return null;
+                RuleType[] rules;
+                if (allowSubjects.Length == 0 && denySubjects.Length == 0) {
+                    return null;
+                }
+                else if (denySubjects.Length == 0)
+                {
+                    rules = new RuleType[] { allowSubjects.ToSubjectRule(EffectType.Permit) };
+                }
+                else if (allowSubjects.Length == 0)
+                {
+                    RuleType allowedRule = new RuleType();
+                    allowedRule.RuleId = "allow-all-rule";
+                    allowedRule.Effect = EffectType.Permit;
+                    rules = new RuleType[] { allowedRule, denySubjects.ToSubjectRule(EffectType.Deny) };
+                }
+                else
+                {
+                    rules = new RuleType[] { allowSubjects.ToSubjectRule(EffectType.Permit), denySubjects.ToSubjectRule(EffectType.Deny) };
+                }
+
                 return new PolicyType()
                 {
                     PolicyId = "urn:egelke:dssp:pendingrequest:policy",

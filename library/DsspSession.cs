@@ -20,8 +20,10 @@
 using EContract.Dssp.Client.Proxy;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Xml;
 using System.Text;
@@ -40,17 +42,36 @@ namespace EContract.Dssp.Client
     [Serializable]
     public class DsspSession
     {
+        private static readonly TraceSource trace = new TraceSource("EContract.Dssp.Client");
+
+        private static readonly TraceSource msgTrace = new TraceSource("EContract.Dssp.Client.MessageLogging");
+
         internal DsspSession()
         {
             ClientId = "msg-" + Guid.NewGuid().ToString();
+            initSerializers();
         }
 
         [NonSerialized]
-        private XmlSerializer requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
+        private XmlSerializer requestSerializer;
         [NonSerialized]
-        private XmlSerializer responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
+        private XmlSerializer responseSerializer;
         [NonSerialized]
-        private XmlSerializer tRefSerializer = new XmlSerializer(typeof(SecurityTokenReferenceType), null, new Type[0], new XmlRootAttribute("SecurityTokenReference"), "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
+        private XmlSerializer tRefSerializer;
+
+        [OnDeserialized]
+        internal void OnDeserializedMethod(StreamingContext context)
+        {
+            initSerializers();            
+        }
+
+        private void initSerializers()
+        {
+            requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
+            responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
+            tRefSerializer = new XmlSerializer(typeof(SecurityTokenReferenceType), null, new Type[0], new XmlRootAttribute("SecurityTokenReference"), "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd");
+        }
+
 
         /// <summary>
         /// The session ID, client side
@@ -381,10 +402,6 @@ namespace EContract.Dssp.Client
             {
                 PreserveWhitespace = true
             };
-            if (null == requestSerializer)
-            {
-                requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
-            }
             using (var pendingRequestWriter = pendingRequestXml.CreateNavigator().AppendChild())
             {
                 requestSerializer.Serialize(pendingRequestWriter, pendingRequest);
@@ -423,9 +440,13 @@ namespace EContract.Dssp.Client
             nsmgr.AddNamespace("dss", "urn:oasis:names:tc:dss:1.0:core:schema");
             pendingRequestXml.SelectSingleNode("/async:PendingRequest/dss:OptionalInputs", nsmgr).AppendChild(signedXml.GetXml());
 
+            trace.TraceEvent(TraceEventType.Information, 0, "Generated pending request");
+            msgTrace.TraceData(TraceEventType.Information, 0, pendingRequestXml.CreateNavigator());
+
             //Serialize and encode
             var stream = new MemoryStream();
             pendingRequestXml.Save(stream);
+            
             return Convert.ToBase64String(stream.ToArray());
         }
 
@@ -442,18 +463,18 @@ namespace EContract.Dssp.Client
         {
             if (signResponse == null) throw new ArgumentNullException("signResponse");
 
-            if (responseSerializer == null)
-            {
-                responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
-            }
-
             //Parse it.
             byte[] signResponseBytes;
+            XmlDocument signResponseXml;
             SignResponse signResponseObject;
             try
             {
                 signResponseBytes = Convert.FromBase64String(signResponse);
-                signResponseObject = (SignResponse)responseSerializer.Deserialize(new MemoryStream(signResponseBytes));
+                signResponseXml = new XmlDocument() { PreserveWhitespace = true };
+                signResponseXml.Load(new MemoryStream(signResponseBytes));
+                trace.TraceEvent(TraceEventType.Information, 0, "Received sign response");
+                msgTrace.TraceData(TraceEventType.Information, 0, signResponseXml.CreateNavigator());
+                signResponseObject = (SignResponse)responseSerializer.Deserialize(new XmlNodeReader(signResponseXml));
             }
             catch (Exception e)
             {
@@ -461,14 +482,11 @@ namespace EContract.Dssp.Client
             }
 
             //Check the signature.
-            var xml = new XmlDocument() { PreserveWhitespace = true };
-            xml.Load(new MemoryStream(signResponseBytes));
-
-            var nsmgr = new XmlNamespaceManager(xml.NameTable);
+            var nsmgr = new XmlNamespaceManager(signResponseXml.NameTable);
             nsmgr.AddNamespace("ds", "http://www.w3.org/2000/09/xmldsig#");
-            var xmlSignature = (XmlElement)xml.SelectSingleNode("//ds:Signature", nsmgr);
+            var xmlSignature = (XmlElement)signResponseXml.SelectSingleNode("//ds:Signature", nsmgr);
 
-            var signedXml = new SignedXml(xml);
+            var signedXml = new SignedXml(signResponseXml);
             signedXml.LoadXml(xmlSignature);
             if (!signedXml.CheckSignature(new HMACSHA1(this.KeyValue)))
             {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -61,9 +62,9 @@ namespace EContract.Dssp.Client
 
             Verify(od, null, null);
         }
-
-        //[TestMethod]
-        public void SignAsyncAuthZViaSubjectPossitive()
+        
+        [TestMethod]
+        public void SignAsyncAuthZViaSubject()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
             dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
@@ -75,23 +76,157 @@ namespace EContract.Dssp.Client
                 s = dsspClient.UploadDocument(id);
             }
 
-            Authorization authz = Authorization.AllowDssSignIfMatchSubject("SERIALNUMBER = 79021802145, GIVENNAME = Bryan Eduard, SURNAME = Brouckaert, CN = Bryan Brouckaert(Signature), C = BE");
+            String correct = "SERIALNUMBER=79021802145, GIVENNAME=Bryan Eduard, SURNAME=Brouckaert, CN=Bryan Brouckaert (Signature), C=BE";
+            Authorization authz = Authorization.AllowDssSignIfMatchSubject(correct);
             String signResponse = emulateBrowser(
                 s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
                 "View Document");
-
-            NameIdentifierType signer = s.ValidateSignResponse(signResponse);
-            Assert.AreEqual("SERIALNUMBER=79021802145, GIVENNAME=Bryan Eduard, SURNAME=Brouckaert, CN=Bryan Brouckaert (Signature), C=BE", signer.Value);
-
-            Document od = dsspClient.DownloadDocument(s);
-            using (Stream o = File.OpenWrite("Output.pdf"))
+            try
             {
-                od.Content.CopyTo(o);
+                using (Stream i = File.OpenRead("Blank.pdf"))
+                {
+                    Document id = new Document("application/pdf", i);
+                    s = dsspClient.UploadDocument(id);
+                }
+                authz = Authorization.DenyDssSignIfMatchSubject(correct);
+                signResponse = emulateBrowser(
+                    s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
+                    "View Document");
+                Assert.Fail("should fail with wrong");
             }
-            od.Content.Seek(0, SeekOrigin.Current);
+            catch (InvalidOperationException)
+            {
 
-            Verify(od, null, null);
+            }
+
+            try
+            {
+                using (Stream i = File.OpenRead("Blank.pdf"))
+                {
+                    Document id = new Document("application/pdf", i);
+                    s = dsspClient.UploadDocument(id);
+                }
+                authz = Authorization.AllowDssSignIfMatchSubject("SERIALNUMBER=00000000000, GIVENNAME=Bryan Eduard, SURNAME=Brouckaert, CN=Bryan Brouckaert (Signature), C=BE");
+                signResponse = emulateBrowser(
+                    s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
+                    "View Document");
+                Assert.Fail("should fail with wrong");
+            } catch (InvalidOperationException) {
+
+            }
         }
+
+        [TestMethod]
+        public void SignAsyncAuthZViaSubjectRegEx()
+        {
+            DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
+            dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
+
+            DsspSession s;
+            using (Stream i = File.OpenRead("Blank.pdf"))
+            {
+                Document id = new Document("application/pdf", i);
+                s = dsspClient.UploadDocument(id);
+            }
+
+            String correct = ".*Bryan Brouckaert.*";
+            Authorization authz = Authorization.AllowDssSignIfMatchSubjectRegex(correct);
+            String signResponse = emulateBrowser(
+                s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
+                "View Document");
+            try
+            {
+                using (Stream i = File.OpenRead("Blank.pdf"))
+                {
+                    Document id = new Document("application/pdf", i);
+                    s = dsspClient.UploadDocument(id);
+                }
+                authz = Authorization.DenyDssSignIfMatchSubjectRegex(correct);
+                signResponse = emulateBrowser(
+                    s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
+                    "View Document");
+                Assert.Fail("should fail with wrong");
+            }
+            catch (InvalidOperationException)
+            {
+
+            }
+
+            try
+            {
+                using (Stream i = File.OpenRead("Blank.pdf"))
+                {
+                    Document id = new Document("application/pdf", i);
+                    s = dsspClient.UploadDocument(id);
+                }
+                authz = Authorization.AllowDssSignIfMatchSubject(".*Brian Broeckaert.*");
+                signResponse = emulateBrowser(
+                    s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
+                    "View Document");
+                Assert.Fail("should fail with wrong");
+            }
+            catch (InvalidOperationException)
+            {
+
+            }
+        }
+
+        [TestMethod]
+        public void SignAsyncAuthZViaCardNr()
+        {
+            DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
+            dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
+
+            DsspSession s;
+            using (Stream i = File.OpenRead("Blank.pdf"))
+            {
+                Document id = new Document("application/pdf", i);
+                s = dsspClient.UploadDocument(id);
+            }
+
+            String correct = "591591588049";
+            Authorization authz = Authorization.AllowDssSignIfMatchCardNumber(correct);
+            String signResponse = emulateBrowser(
+                s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
+                "View Document");
+            try
+            {
+                using (Stream i = File.OpenRead("Blank.pdf"))
+                {
+                    Document id = new Document("application/pdf", i);
+                    s = dsspClient.UploadDocument(id);
+                }
+                authz = Authorization.DenyDssSignIfMatchCardNumber(correct);
+                signResponse = emulateBrowser(
+                    s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
+                    "View Document");
+                Assert.Fail("should fail with wrong");
+            }
+            catch (InvalidOperationException)
+            {
+
+            }
+
+            try
+            {
+                using (Stream i = File.OpenRead("Blank.pdf"))
+                {
+                    Document id = new Document("application/pdf", i);
+                    s = dsspClient.UploadDocument(id);
+                }
+                authz = Authorization.AllowDssSignIfMatchCardNumber("591-3291070-59");
+                signResponse = emulateBrowser(
+                    s.GeneratePendingRequest(new Uri("http://localhost/dssp"), "EN", authz),
+                    "View Document");
+                Assert.Fail("should fail with wrong");
+            }
+            catch (InvalidOperationException)
+            {
+
+            }
+        }
+
+
 
         [TestMethod]
         public void SignAsyncNLInvisibleNoProps()
@@ -203,6 +338,51 @@ namespace EContract.Dssp.Client
             Verify(od, "Developer", "Oost-Vlaanderen");
         }
 
+        [TestMethod]
+        public void SignAsyncWithSerialization()
+        {
+            MemoryStream ss = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+            DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
+            dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
+
+            DsspSession s;
+            using (Stream i = File.OpenRead("Blank.pdf"))
+            {
+                Document id = new Document("application/pdf", i);
+                s = dsspClient.UploadDocument(id);
+            }
+
+            formatter.Serialize(ss, s);
+            ss.Seek(0, SeekOrigin.Begin);
+            s = (DsspSession)formatter.Deserialize(ss);
+
+            String pr = s.GeneratePendingRequest("http://localhost/dssp");
+
+            formatter.Serialize(ss, s);
+
+            String signResponse = emulateBrowser(pr, "View Document");
+
+            ss.Seek(0, SeekOrigin.Begin);
+            s = (DsspSession)formatter.Deserialize(ss);
+
+            NameIdentifierType signer = s.ValidateSignResponse(signResponse);
+            Assert.AreEqual("SERIALNUMBER=79021802145, GIVENNAME=Bryan Eduard, SURNAME=Brouckaert, CN=Bryan Brouckaert (Signature), C=BE", signer.Value);
+
+            formatter.Serialize(ss, s);
+            ss.Seek(0, SeekOrigin.Begin);
+            s = (DsspSession)formatter.Deserialize(ss);
+
+            Document od = dsspClient.DownloadDocument(s);
+            using (Stream o = File.OpenWrite("Output.pdf"))
+            {
+                od.Content.CopyTo(o);
+            }
+            od.Content.Seek(0, SeekOrigin.Current);
+
+            Verify(od, null, null);
+        }
+
         private String emulateBrowser(String pendingRequest, String title)
         {
             WebRequestHandler webRequestHandler = new WebRequestHandler();
@@ -231,6 +411,8 @@ namespace EContract.Dssp.Client
             Stream signatureRequestStream = rsp.Content.ReadAsStreamAsync().Result;
             XmlDocument doc = new XmlDocument();
             doc.Load(signatureRequestStream);
+            if (doc.DocumentElement.LocalName == "FinishRequest")
+                throw new InvalidOperationException();
             byte[] digestValue = Convert.FromBase64String(doc.GetElementsByTagName("DigestValue", "urn:be:e-contract:eid:protocol:1.0.0")[0].InnerText);
             String digestAlgo = doc.GetElementsByTagName("DigestAlgorithm", "urn:be:e-contract:eid:protocol:1.0.0")[0].InnerText;
 
@@ -273,7 +455,7 @@ namespace EContract.Dssp.Client
             Assert.AreEqual(location, si.Signatures[0].SignatureProductionPlace, "Signature 1: SignatureProductionPlace");
 
             //Validate timestamp validity
-            Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
+            Assert.AreEqual(new DateTime(2020, 8, 18, 19, 11, 6, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
     }
 }
