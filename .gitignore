@@ -155,3 +155,7 @@ $RECYCLE.BIN/
 #security
 *.key
 *.p12
+
+
+#other
+.vs

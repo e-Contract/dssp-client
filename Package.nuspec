@@ -2,12 +2,13 @@
 <package >
   <metadata>
     <id>DSS-P.Client</id>
-    <version>1.5.0</version>
+    <version>1.5.1</version>
     <authors>Egelke BVBA,e-Contract.be BVBA</authors>
     <owners>Egelke BVBA,e-Contract.be BVBA</owners>
     <licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
     <projectUrl>http://www.e-contract.be/</projectUrl>
     <iconUrl>https://egelke-web.sharepoint.com/SiteImages/File-Ok-icon.png</iconUrl>
+    <repository type="git" url="https://github.com/egelke/dssp-client" />
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <title>Digital Signature Service Protocol Client</title>
     <description>Client for the "Digital Signature Service Protocol" as offered by e-Contract.be</description>
@@ -24,8 +25,8 @@
       are very vulnerable to attacks, this new protocol is a huge step forward. This makes the new Digital Signature Service truly unique compared to other
       solutions.
     </summary>
-    <releaseNotes>Allign with 1.5 version of Service and bugfixes</releaseNotes>
-    <copyright>2014-2017 (c) Egelke BVBA and e-Contract.be BVBA</copyright>
+    <releaseNotes>bugfix (memory leak)</releaseNotes>
+    <copyright>2014-2018 (c) Egelke BVBA and e-Contract.be BVBA</copyright>
     <tags>e-Contract.be DSS eSigning eID</tags>
   </metadata>
   <files>
