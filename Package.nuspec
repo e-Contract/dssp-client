@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DSS-P.Client</id>
-    <version>1.5.1</version>
+    <version>1.5.2</version>
     <authors>Egelke BVBA,e-Contract.be BVBA</authors>
     <owners>Egelke BVBA,e-Contract.be BVBA</owners>
     <licenseUrl>http://www.gnu.org/licenses/lgpl.html</licenseUrl>
@@ -30,8 +30,8 @@
     <tags>e-Contract.be DSS eSigning eID</tags>
   </metadata>
   <files>
-    <file src="library v3.5/bin/Release/*" target="lib\net35" />
-    <file src="library v4.5/bin/Release/*" target="lib\net45" />
+    <file src="library v3.5\bin\Release\*" target="lib\net35" />
+    <file src="library v4.5\bin\Release\*" target="lib\net45" />
     <file src="library*/**/*.cs" exclude="library*/obj/**/*" target="src" />
   </files>
 </package>
