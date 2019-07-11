@@ -23,12 +23,12 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Xml.Serialization;
-using System.Linq;
-using System.Security.Cryptography;
 
 namespace EContract.Dssp.Client
 {
@@ -45,7 +45,7 @@ namespace EContract.Dssp.Client
         private readonly Random rand = new Random();
         private XmlSerializer requestSerializer = new XmlSerializer(typeof(PendingRequest), "urn:oasis:names:tc:dss:1.0:profiles:asynchronousprocessing:1.0");
         private XmlSerializer responseSerializer = new XmlSerializer(typeof(SignResponse), "urn:oasis:names:tc:dss:1.0:core:schema");
-        
+
         /// <summary>
         /// The e-contract signature type.
         /// </summary>
@@ -63,12 +63,14 @@ namespace EContract.Dssp.Client
         /// The user name of your (the DSS-P client) application.  This is optional.
         /// </summary>
         [Obsolete("Use Application instead")]
-        public string ApplicationName {
+        public string ApplicationName
+        {
             get
             {
                 return Application.UT.Name;
             }
-            set {
+            set
+            {
                 Application.UT.Name = value;
             }
         }
@@ -78,7 +80,8 @@ namespace EContract.Dssp.Client
         /// The password of your (the DSS-P client) application.  This is optional.
         /// </summary>
         [Obsolete("Use Application instead")]
-        public string ApplicationPassword {
+        public string ApplicationPassword
+        {
             get
             {
                 return Application.UT.Password;
@@ -97,7 +100,37 @@ namespace EContract.Dssp.Client
         /// <summary>
         /// The certificate to use in case of two step local signature.
         /// </summary>
-        public X509Certificate2 Signer { get; set; }
+        /// <remarks>
+        /// Only used when <c>SignerChain</c> is not provided, the chain
+        /// is then constructed from the windows certificate store.
+        /// </remarks>
+        /// <seealso cref="SignerChain"/>
+        [Obsolete("Signer is deprecated, please use SignerChain instead")]
+        public X509Certificate2 Signer
+        {
+            get
+            {
+                if (SignerChain?.Length > 1)
+                    throw new NotSupportedException("This propery isn't suppored with a full chain");
+
+                return SignerChain?[0];
+            }
+            set
+            {
+                SignerChain = new X509Certificate2[] { value };
+            }
+        }
+
+        /// <summary>
+        /// The entire chain of certificiates to be used for 2 stap local signature.
+        /// </summary>
+        /// <value>
+        /// The full chain of certificates (e.g. cert 0=end cert, cert1=intermediate CA, cert2 = root CA) or just the end cert
+        /// </value>
+        /// <remarks>
+        /// When more then 1 cert is provided a full chain is assumed, when only 1 cert is provided the chain will be constructed from the windows certificate store.
+        /// </remarks>
+        public X509Certificate2[] SignerChain { get; set; }
 
 
         /// <summary>
@@ -143,7 +176,7 @@ namespace EContract.Dssp.Client
         /// </remarks>
         /// <param name="document">The document to be signed</param>
         /// <returns>The session, required for the BROWSER/POST protocol and the download of the signed message</returns>
-        public DsspSession UploadDocument(Document document) 
+        public DsspSession UploadDocument(Document document)
         {
             if (document == null) throw new ArgumentNullException("document");
 
@@ -178,7 +211,10 @@ namespace EContract.Dssp.Client
         public Dssp2StepSession UploadDocumentFor2Step(Document document, SignatureRequestProperties properties)
         {
             if (document == null) throw new ArgumentNullException("document");
-            if (!(Signer?.HasPrivateKey ?? false && Signer?.PrivateKey is RSACryptoServiceProvider)) throw new InvalidOperationException("Singner must be set and have a private key");
+            if ((SignerChain?.Length ?? 0) == 0 ||
+                SignerChain?[0] == null ||
+                !(SignerChain?[0].PrivateKey is RSACryptoServiceProvider))
+                throw new InvalidOperationException("SignerChain must be set and the end (first) certificate must have a private key");
 
             var client = CreateDSSPClient();
             var request = Create2StepSignRequest(document, properties);
@@ -282,8 +318,8 @@ namespace EContract.Dssp.Client
         private DigitalSignatureServicePortTypeClient CreateDSSPClient()
         {
             DigitalSignatureServicePortTypeClient client;
-            if (string.IsNullOrEmpty(this.Application.UT.Password) 
-                && this.Application.X509.Certificate == null 
+            if (string.IsNullOrEmpty(this.Application.UT.Password)
+                && this.Application.X509.Certificate == null
                 && this.Application.X509.FindValue == null)
             {
                 client = new DigitalSignatureServicePortTypeClient(new PlainDsspBinding(), Address);
@@ -292,7 +328,7 @@ namespace EContract.Dssp.Client
             {
                 client = new DigitalSignatureServicePortTypeClient(new X509DsspBinding(), Address);
                 client.ClientCredentials.ClientCertificate.Certificate = this.Application.X509.Certificate;
-                
+
             }
             else if (this.Application.X509.FindValue != null)
             {
@@ -381,11 +417,26 @@ namespace EContract.Dssp.Client
         private SignRequest Create2StepSignRequest(Document document, SignatureRequestProperties properties)
         {
             var documentId = "doc-" + Guid.NewGuid().ToString();
-            var chain = X509Chain.Create();
-            chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
-            chain.ChainPolicy.VerificationFlags = X509VerificationFlags.AllFlags;
-            chain.Build(Signer);
-            
+
+            byte[][] x509Chain;
+            if (SignerChain.Length == 1 && SignerChain[0].Issuer != SignerChain[0].Subject)
+            {
+                var chain = X509Chain.Create();
+                chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+                chain.ChainPolicy.VerificationFlags = X509VerificationFlags.AllFlags;
+                chain.Build(SignerChain[0]);
+
+                x509Chain = chain.ChainElements
+                    .Cast<X509ChainElement>()
+                    .AsQueryable()
+                    .Select(x => x.Certificate.RawData)
+                    .ToArray();
+            } else {
+                x509Chain = SignerChain.AsQueryable()
+                    .Select(x => x.RawData)
+                    .ToArray();
+            }
+
             return new SignRequest()
             {
                 Profile = "http://docs.oasis-open.org/dss-x/ns/localsig",
@@ -403,11 +454,7 @@ namespace EContract.Dssp.Client
                     {
                         KeyInfo = new KeyInfoType()
                         {
-                            X509Data = chain.ChainElements
-                                .Cast<X509ChainElement>()
-                                .AsQueryable()
-                                .Select(x => x.Certificate.RawData)
-                                .ToArray()
+                            X509Data = x509Chain
                         }
                     },
                     VisibleSignatureConfiguration = properties?.Configuration
@@ -476,7 +523,7 @@ namespace EContract.Dssp.Client
             {
                 if (ExpectedResultMinor != null && response?.Result?.ResultMinor != ExpectedResultMinor)
                 {
-                    throw new InvalidOperationException(response?.Result?.ResultMinor 
+                    throw new InvalidOperationException(response?.Result?.ResultMinor
                         + ": " + response?.Result?.ResultMessage?.Value);
                 }
             }
@@ -556,7 +603,7 @@ namespace EContract.Dssp.Client
             VerifyResponse(response, "urn:oasis:names:tc:dss:1.0:resultmajor:Success", null);
 
             //Is there security info?
-            if (response.OptionalOutputs == null 
+            if (response.OptionalOutputs == null
                 || response.OptionalOutputs.VerificationReport == null
                 || response.OptionalOutputs.VerificationReport.IndividualReport == null)
             {

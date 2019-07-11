@@ -395,7 +395,7 @@ namespace EContract.Dssp.Client
             FormUrlEncodedContent pendingRequestForm = new FormUrlEncodedContent(new KeyValuePair<string, string>[] { pendingRequestFormEntry });
             HttpResponseMessage rsp = client.PostAsync("https://www.e-contract.be/dss-ws/start", pendingRequestForm).Result;
             Assert.AreEqual(System.Net.HttpStatusCode.Redirect, rsp.StatusCode, "pending request response status");
-            Assert.AreEqual(new Uri("https://www.e-contract.be/dss-ws/view.xhtml"), rsp.Headers.Location, "pending request response redirect location");
+            Assert.AreEqual(new Uri("https://www.e-contract.be/dss-ws/view.xhtml?faces-redirect=true"), rsp.Headers.Location, "pending request response redirect location");
 
             //obtain view
             String view = client.GetStringAsync(rsp.Headers.Location).Result;

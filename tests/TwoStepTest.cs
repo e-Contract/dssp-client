@@ -53,7 +53,7 @@ namespace EContract.Dssp.Client
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
             dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
-            dsspClient.Signer = Signer;
+            dsspClient.SignerChain = new X509Certificate2[] { Signer };
 
             Dssp2StepSession s;
             SignatureRequestProperties props = new SignatureRequestProperties()
