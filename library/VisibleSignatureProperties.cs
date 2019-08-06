@@ -40,6 +40,26 @@
         public string CustomText { get; set; }
 
         /// <summary>
+        /// Optional secondary custom text.
+        /// </summary>
+        public string CustomText2 { get; set; }
+
+        /// <summary>
+        /// Optional tertiary custom text.
+        /// </summary>
+        public string CustomText3 { get; set; }
+
+        /// <summary>
+        /// Optional quaternary custom text.
+        /// </summary>
+        public string CustomText4 { get; set; }
+
+        /// <summary>
+        /// Optional quinary custom text.
+        /// </summary>
+        public string CustomText5 { get; set; }
+
+        /// <summary>
         /// Default constructor.
         /// </summary>
         public ImageVisibleSignature()

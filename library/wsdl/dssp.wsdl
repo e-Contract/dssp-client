@@ -1726,14 +1726,32 @@
       </xs:simpleType>
 
     </xs:schema>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:be:e-contract:dssp:1.0" targetNamespace="urn:be:e-contract:dssp:1.0" version="1.0">
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vs="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#" xmlns:tns="urn:be:e-contract:dssp:1.0" targetNamespace="urn:be:e-contract:dssp:1.0" version="1.0">
 
+      <xs:import namespace="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#"/>
+      
       <xs:element name="TimeStampRenewal" type="tns:DeadlineType"/>
 
       <xs:complexType name="DeadlineType">
         <xs:sequence/>
         <xs:attribute name="Before" type="xs:dateTime" use="required"/>
       </xs:complexType>
+      
+      <xs:element name="ItemValueStringsTypeElement" type="tns:ItemValueStringsType"/>
+      
+      <xs:complexType name="ItemValueStringsType">
+		    <xs:complexContent>
+	  		    <xs:extension base="vs:ItemValueType">
+	     		    <xs:sequence>
+					      <xs:element name="ItemValue1" type="xs:string" minOccurs="0"/>
+					      <xs:element name="ItemValue2" type="xs:string" minOccurs="0"/>
+					      <xs:element name="ItemValue3" type="xs:string" minOccurs="0"/>
+					      <xs:element name="ItemValue4" type="xs:string" minOccurs="0"/>
+					      <xs:element name="ItemValue5" type="xs:string" minOccurs="0"/>
+	     		    </xs:sequence>
+	   		    </xs:extension>
+		    </xs:complexContent>
+	    </xs:complexType>
 
     </xs:schema>
     <!--xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.w3.org/XML/1998/namespace" version="1.0">

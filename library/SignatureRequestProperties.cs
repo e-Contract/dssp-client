@@ -61,13 +61,33 @@ namespace EContract.Dssp.Client
 
                         if (!string.IsNullOrEmpty(photoProp.CustomText))
                         {
+                            ItemValueType itemValue;
+                            if (string.IsNullOrEmpty(photoProp.CustomText2) &&
+                                string.IsNullOrEmpty(photoProp.CustomText3) &&
+                                string.IsNullOrEmpty(photoProp.CustomText4) &&
+                                string.IsNullOrEmpty(photoProp.CustomText5))
+                            {
+                                itemValue = new ItemValueStringType()
+                                {
+                                    ItemValue = photoProp.CustomText
+                                };
+                            }
+                            else
+                            {
+                                itemValue = new ItemValueStringsType()
+                                {
+                                    ItemValue1 = photoProp.CustomText,
+                                    ItemValue2 = photoProp.CustomText2,
+                                    ItemValue3 = photoProp.CustomText3,
+                                    ItemValue4 = photoProp.CustomText4,
+                                    ItemValue5 = photoProp.CustomText5
+                                };
+                            }
+
                             items.Add(new VisibleSignatureItemType()
                             {
                                 ItemName = ItemNameEnum.CustomText,
-                                ItemValue = new ItemValueStringType()
-                                {
-                                    ItemValue = photoProp.CustomText
-                                }
+                                ItemValue = itemValue
                             });
                         }
                     }

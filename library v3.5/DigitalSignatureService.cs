@@ -37,15 +37,15 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AgreementMethodType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignaturePropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ManifestType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType1))]
@@ -80,15 +80,15 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AgreementMethodType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignaturePropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ManifestType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType1))]
@@ -123,15 +123,15 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(QualifyingPropertiesReferenceType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(GenericTimeStampType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AgreementMethodType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DerivedKeyTokenType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EncryptedType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ProblemActionType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributedAnyType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(UsernameTokenType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(TransformationParametersType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(EmbeddedType))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SecurityHeaderType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SignaturePropertiesType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(ManifestType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(AttributeDesignatorType1))]
@@ -8810,6 +8810,449 @@ namespace EContract.Dssp.Client.Proxy
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PasswordString))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EncodedString))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(KeyIdentifierType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BinarySecurityTokenType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class AttributedString
+    {
+        
+        private string idField;
+        
+        private string valueField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
+            "d")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value
+        {
+            get
+            {
+                return this.valueField;
+            }
+            set
+            {
+                this.valueField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class PasswordString : AttributedString
+    {
+        
+        private string typeField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string Type
+        {
+            get
+            {
+                return this.typeField;
+            }
+            set
+            {
+                this.typeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(KeyIdentifierType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BinarySecurityTokenType))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class EncodedString : AttributedString
+    {
+        
+        private string encodingTypeField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string EncodingType
+        {
+            get
+            {
+                return this.encodingTypeField;
+            }
+            set
+            {
+                this.encodingTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class KeyIdentifierType : EncodedString
+    {
+        
+        private string valueTypeField;
+        
+        private System.Xml.XmlAttribute[] anyAttr1Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string ValueType
+        {
+            get
+            {
+                return this.valueTypeField;
+            }
+            set
+            {
+                this.valueTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr1
+        {
+            get
+            {
+                return this.anyAttr1Field;
+            }
+            set
+            {
+                this.anyAttr1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class BinarySecurityTokenType : EncodedString
+    {
+        
+        private string valueTypeField;
+        
+        private System.Xml.XmlAttribute[] anyAttr1Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string ValueType
+        {
+            get
+            {
+                return this.valueTypeField;
+            }
+            set
+            {
+                this.valueTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr1
+        {
+            get
+            {
+                return this.anyAttr1Field;
+            }
+            set
+            {
+                this.anyAttr1Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class UsernameTokenType
+    {
+        
+        private AttributedString usernameField;
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        private string idField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public AttributedString Username
+        {
+            get
+            {
+                return this.usernameField;
+            }
+            set
+            {
+                this.usernameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=1)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
+            "d")]
+        public string Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class TransformationParametersType
+    {
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class EmbeddedType
+    {
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        private string valueTypeField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
+        public string ValueType
+        {
+            get
+            {
+                return this.valueTypeField;
+            }
+            set
+            {
+                this.valueTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
+        "")]
+    public partial class SecurityHeaderType
+    {
+        
+        private System.Xml.XmlElement[] anyField;
+        
+        private System.Xml.XmlAttribute[] anyAttrField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
+        public System.Xml.XmlElement[] Any
+        {
+            get
+            {
+                return this.anyField;
+            }
+            set
+            {
+                this.anyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        public System.Xml.XmlAttribute[] AnyAttr
+        {
+            get
+            {
+                return this.anyAttrField;
+            }
+            set
+            {
+                this.anyAttrField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -9206,6 +9649,32 @@ namespace EContract.Dssp.Client.Proxy
         
         /// <remarks/>
         RecipientKeyInfo,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:be:e-contract:dssp:1.0")]
+    public partial class DeadlineType
+    {
+        
+        private System.DateTime beforeField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime Before
+        {
+            get
+            {
+                return this.beforeField;
+            }
+            set
+            {
+                this.beforeField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -11693,475 +12162,6 @@ namespace EContract.Dssp.Client.Proxy
         /// <remarks/>
         [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
         public System.Xml.XmlElement Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:be:e-contract:dssp:1.0")]
-    public partial class DeadlineType
-    {
-        
-        private System.DateTime beforeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public System.DateTime Before
-        {
-            get
-            {
-                return this.beforeField;
-            }
-            set
-            {
-                this.beforeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PasswordString))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EncodedString))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(KeyIdentifierType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BinarySecurityTokenType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class AttributedString
-    {
-        
-        private string idField;
-        
-        private string valueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
-            "d")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string Value
-        {
-            get
-            {
-                return this.valueField;
-            }
-            set
-            {
-                this.valueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class PasswordString : AttributedString
-    {
-        
-        private string typeField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Type
-        {
-            get
-            {
-                return this.typeField;
-            }
-            set
-            {
-                this.typeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(KeyIdentifierType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(BinarySecurityTokenType))]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class EncodedString : AttributedString
-    {
-        
-        private string encodingTypeField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string EncodingType
-        {
-            get
-            {
-                return this.encodingTypeField;
-            }
-            set
-            {
-                this.encodingTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class KeyIdentifierType : EncodedString
-    {
-        
-        private string valueTypeField;
-        
-        private System.Xml.XmlAttribute[] anyAttr1Field;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string ValueType
-        {
-            get
-            {
-                return this.valueTypeField;
-            }
-            set
-            {
-                this.valueTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr1
-        {
-            get
-            {
-                return this.anyAttr1Field;
-            }
-            set
-            {
-                this.anyAttr1Field = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class BinarySecurityTokenType : EncodedString
-    {
-        
-        private string valueTypeField;
-        
-        private System.Xml.XmlAttribute[] anyAttr1Field;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string ValueType
-        {
-            get
-            {
-                return this.valueTypeField;
-            }
-            set
-            {
-                this.valueTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr1
-        {
-            get
-            {
-                return this.anyAttr1Field;
-            }
-            set
-            {
-                this.anyAttr1Field = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class UsernameTokenType
-    {
-        
-        private AttributedString usernameField;
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        private string idField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
-        public AttributedString Username
-        {
-            get
-            {
-                return this.usernameField;
-            }
-            set
-            {
-                this.usernameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=1)]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(Form=System.Xml.Schema.XmlSchemaForm.Qualified, Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xs" +
-            "d")]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class TransformationParametersType
-    {
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class EmbeddedType
-    {
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        private string valueTypeField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlElement[] Any
-        {
-            get
-            {
-                return this.anyField;
-            }
-            set
-            {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string ValueType
-        {
-            get
-            {
-                return this.valueTypeField;
-            }
-            set
-            {
-                this.valueTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
-        public System.Xml.XmlAttribute[] AnyAttr
-        {
-            get
-            {
-                return this.anyAttrField;
-            }
-            set
-            {
-                this.anyAttrField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" +
-        "")]
-    public partial class SecurityHeaderType
-    {
-        
-        private System.Xml.XmlElement[] anyField;
-        
-        private System.Xml.XmlAttribute[] anyAttrField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute(Order=0)]
-        public System.Xml.XmlElement[] Any
         {
             get
             {
@@ -17239,6 +17239,7 @@ namespace EContract.Dssp.Client.Proxy
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ItemValueStringsType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ItemValueURIType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ItemValueImageType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ItemValueStringType))]
@@ -17250,6 +17251,96 @@ namespace EContract.Dssp.Client.Proxy
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#")]
     public abstract partial class ItemValueType
     {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("svcutil", "4.6.1055.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="urn:be:e-contract:dssp:1.0")]
+    public partial class ItemValueStringsType : ItemValueType
+    {
+        
+        private string itemValue1Field;
+        
+        private string itemValue2Field;
+        
+        private string itemValue3Field;
+        
+        private string itemValue4Field;
+        
+        private string itemValue5Field;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=0)]
+        public string ItemValue1
+        {
+            get
+            {
+                return this.itemValue1Field;
+            }
+            set
+            {
+                this.itemValue1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=1)]
+        public string ItemValue2
+        {
+            get
+            {
+                return this.itemValue2Field;
+            }
+            set
+            {
+                this.itemValue2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=2)]
+        public string ItemValue3
+        {
+            get
+            {
+                return this.itemValue3Field;
+            }
+            set
+            {
+                this.itemValue3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=3)]
+        public string ItemValue4
+        {
+            get
+            {
+                return this.itemValue4Field;
+            }
+            set
+            {
+                this.itemValue4Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified, Order=4)]
+        public string ItemValue5
+        {
+            get
+            {
+                return this.itemValue5Field;
+            }
+            set
+            {
+                this.itemValue5Field = value;
+            }
+        }
     }
     
     /// <remarks/>

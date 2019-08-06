@@ -1,4 +1,5 @@
 ﻿using EContract.Dssp.Client.Proxy;
+using Egelke.Eid.Client;
 using Microsoft.Owin.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Owin;
@@ -32,6 +33,15 @@ namespace EContract.Dssp.Client
 
             X509Certificate2Collection collection = store.Certificates.Find(X509FindType.FindBySubjectName, "Bryan Brouckaert (Signature)", true);
             Signer = collection.Cast<X509Certificate2>().AsQueryable().FirstOrDefault();
+
+            using (Readers readers = new Readers(ReaderScope.User))
+            {
+                EidCard target = readers.WaitForEid(new TimeSpan(0, 5, 0));
+                using (target)
+                {
+                    X509Certificate2 auth = target.ReadCertificate(CertificateId.Authentication);
+                }
+            }
         }
 
         [TestMethod]
