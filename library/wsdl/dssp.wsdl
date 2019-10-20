@@ -1726,7 +1726,7 @@
       </xs:simpleType>
 
     </xs:schema>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vs="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#" xmlns:tns="urn:be:e-contract:dssp:1.0" targetNamespace="urn:be:e-contract:dssp:1.0" version="1.0">
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vs="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#" xmlns:tns="urn:be:e-contract:dssp:1.0" targetNamespace="urn:be:e-contract:dssp:1.0" version="1.0"  attributeFormDefault="unqualified" elementFormDefault="qualified" >
 
       <xs:import namespace="urn:oasis:names:tc:dssx:1.0:profiles:VisibleSignatures:schema#"/>
       
