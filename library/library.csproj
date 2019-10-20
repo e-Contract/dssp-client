@@ -1,100 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{708746C9-C5BF-4A76-B83D-3093320DE289}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EContract.Dssp.Client</RootNamespace>
+    <TargetFrameworks>net45;net35</TargetFrameworks>
     <AssemblyName>EContract.Dssp.Client</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <SignAssembly>false</SignAssembly>
+    <version>1.6.0</version>
+    <authors>Egelke BVBA,e-Contract.be BVBA</authors>
+    <owners>Egelke BVBA,e-Contract.be BVBA</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Client for the "Digital Signature Service Protocol" as offered by e-Contract.be</description>
+    <summary>
+      The new Digital Signature Service creates PAdES LTV signatures using the eID card according to the latest ETSI PAdES Baseline Profile version 2.2.2.
+      This standard is being pushed by the EC e-Signatures Expert Group to guarantee maximum recognition and interoperability of signed documents between
+      EU member states. Furthermore the Digital Signature Service product is not limited to PDF signatures. It also support XAdES-X-L and ETSI XAdES Baseline
+      Profile version 2.1.1 signatures (LT-Level compliance). The new DSS is the only solution today on the market offering such compliance.
+
+      The new Digital Signature Service comes with a new and highly secure Digital Signature Service Protocol. This protocol is a derivative of work that
+      we performed within the OASIS DSS-X group and offers maximum protection against various types of attacks. From a security point of view, this new protocol
+      is just it. The old protocol, as implemented in the original eID DSS, could easily be integrated in an insecure way by the developer. For the new protocol,
+      this is no longer possible given the design of the protocol. As we all know that protocols (and their implementation, especially authentication protocols)
+      are very vulnerable to attacks, this new protocol is a huge step forward. This makes the new Digital Signature Service truly unique compared to other
+      solutions.
+    </summary>
+    <copyright>2014-2019 (c) Egelke BVBA and e-Contract.be BVBA</copyright>
+    <RepositoryUrl>https://github.com/egelke/dssp-client</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>http://www.e-contract.be/products/dssp</PackageProjectUrl>
+    <PackageIconUrl>http://www.e-contract.be/images/eid-signing.png</PackageIconUrl>
+    <PackageTags>e-Contract.be DSS eSigning eID</PackageTags>
+    <AssemblyVersion>1.6.0.0</AssemblyVersion>
+    <FileVersion>1.6.0.0</FileVersion>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <PackageReleaseNotes>Upgrade to spec 1.6 (multi text in visual signature)
+Allow override of certificate chain with 2 step</PackageReleaseNotes>
+    <Product>Digital Signature Service Protocol Client</Product>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Debug\EContract.Dssp.Client.XML</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Release\EContract.Dssp.Client.XML</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
     <Reference Include="System.IdentityModel" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AppCredentials.cs" />
-    <Compile Include="Authorization.cs" />
-    <Compile Include="AuthorizationError.cs" />
-    <Compile Include="DigitalSignatureService.cs" />
-    <Compile Include="Document.cs" />
-    <Compile Include="DssHelper.cs" />
-    <Compile Include="Dssp2StepSession.cs" />
-    <Compile Include="DsspClientAsync.cs" />
-    <Compile Include="IncorrectSignatureException.cs" />
-    <Compile Include="SecurityInfo.cs" />
-    <Compile Include="SignatureInfo.cs" />
-    <Compile Include="SignatureProperties.cs" />
-    <Compile Include="SignatureRequestProperties.cs" />
-    <Compile Include="VisibleSignatureProperties.cs" />
-    <Compile Include="WcfBinding\X509DsspBinding.cs" />
-    <Compile Include="WcfBinding\UTDsspBinding.cs" />
-    <Compile Include="WcfBinding\PlainDsspBinding.cs" />
-    <Compile Include="DsspClient.cs" />
-    <Compile Include="DsspSession.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Psha1DerivedKeyGenerator.cs" />
-    <Compile Include="RequestError.cs" />
-    <Compile Include="WcfBinding\ScDsspBinding.cs" />
-    <Compile Include="WcfBinding\ScDsspClientCredentials.cs" />
-    <Compile Include="WcfBinding\ScDsspClientCredentialsSecurityTokenManager.cs" />
-    <Compile Include="WcfBinding\ScDsspSecurityTokenParameter.cs" />
-    <Compile Include="WcfBinding\ScDsspSecurityTokenProvider.cs" />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="COPYING" />
-    <None Include="gen.bat" />
-    <None Include="wsdl\dssp.wsdl">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

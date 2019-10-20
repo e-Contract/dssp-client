@@ -29,6 +29,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Xml.Serialization;
+#if NET45
+using System.Threading.Tasks;
+#endif
 
 namespace EContract.Dssp.Client
 {
@@ -186,6 +189,22 @@ namespace EContract.Dssp.Client
             return ProcessAsyncSignResponse(response, clientNonce);
         }
 
+#if NET45
+        /// <summary>
+        /// Uploads a document to e-Contract, asynchronously.
+        /// </summary>
+        /// <see cref="UploadDocument"/>
+        public async Task<DsspSession> UploadDocumentAsync(Document document)
+        {
+            if (document == null) throw new ArgumentNullException("document");
+
+            var client = CreateDSSPClient();
+            var request = CreateAsyncSignRequest(document, out var clientNonce);
+            signResponse1 responseWrapper = await client.signAsync(request);
+            return ProcessAsyncSignResponse(responseWrapper.SignResponse, clientNonce);
+        }
+#endif
+
         /// <summary>
         /// Uploads the document to e-Contract for offline signature.
         /// </summary>
@@ -198,6 +217,17 @@ namespace EContract.Dssp.Client
         {
             return UploadDocumentFor2Step(document, null);
         }
+
+#if NET45
+        /// <summary>
+        /// Uploads a document to e-Contract, asynchronously.
+        /// </summary>
+        /// <see cref="UploadDocumentFor2Step(Document)"/>
+        public async Task<Dssp2StepSession> UploadDocumentFor2StepAsync(Document document)
+        {
+            return await UploadDocumentFor2StepAsync(document, null);
+        }
+#endif
 
         /// <summary>
         /// Uploads the document to e-Contract for offline signature.
@@ -222,6 +252,23 @@ namespace EContract.Dssp.Client
             return Process2StepSignResponse(response);
         }
 
+#if NET45
+        /// <summary>
+        /// Uploads a document to e-Contract, asynchronously.
+        /// </summary>
+        /// <see cref="UploadDocumentFor2Step(Document, SignatureRequestProperties)"/>
+        public async Task<Dssp2StepSession> UploadDocumentFor2StepAsync(Document document, SignatureRequestProperties properties)
+        {
+            if (document == null) throw new ArgumentNullException("document");
+            if (!(Signer?.HasPrivateKey ?? false && Signer?.PrivateKey is RSACryptoServiceProvider)) throw new InvalidOperationException("Singner must be set and have a private key");
+
+            var client = CreateDSSPClient();
+            var request = Create2StepSignRequest(document, properties);
+            signResponse1 response = await client.signAsync(request);
+            return Process2StepSignResponse(response.SignResponse);
+        }
+#endif
+
         /// <summary>
         /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol.
         /// </summary>
@@ -241,6 +288,22 @@ namespace EContract.Dssp.Client
             SignResponse downloadResponse = client.pendingRequest(downloadRequest);
             return ProcessResponseWithSignedDoc(downloadResponse);
         }
+
+#if NET45
+        /// <summary>
+        /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol, asynchronously.
+        /// </summary>
+        /// <see cref="DownloadDocument(DsspSession)"/>
+        public async Task<Document> DownloadDocumentAsync(DsspSession session)
+        {
+            if (session == null) throw new ArgumentNullException("session");
+
+            var client = CreateDSSPClient(session);
+            var downloadRequest = CreateDownloadRequest(session);
+            pendingRequestResponse downloadResponseWrapper = await client.pendingRequestAsync(downloadRequest);
+            return ProcessResponseWithSignedDoc(downloadResponseWrapper.SignResponse);
+        }
+#endif
 
         /// <summary>
         /// Downloads the document that was uploaded before and signed offline.
@@ -262,6 +325,22 @@ namespace EContract.Dssp.Client
             return ProcessResponseWithSignedDoc(downloadResponse);
         }
 
+#if NET45
+        /// <summary>
+        /// Downloads the document that was uploaded before and signed offline.
+        /// </summary>
+        /// <see cref="DownloadDocument(Dssp2StepSession)"/>
+        public async Task<Document> DownloadDocumentAsync(Dssp2StepSession session)
+        {
+            if (session == null) throw new ArgumentNullException("session");
+
+            var client = CreateDSSPClient();
+            var downloadRequest = CreateDownloadRequest(session);
+            signResponse1 downloadResponse = await client.signAsync(downloadRequest);
+            return ProcessResponseWithSignedDoc(downloadResponse.SignResponse);
+        }
+#endif
+
         /// <summary>
         /// Validates the provided document via the e-contract service.
         /// </summary>
@@ -281,6 +360,22 @@ namespace EContract.Dssp.Client
             return ProcessVerifyResponse(response);
         }
 
+#if NET45
+        /// <summary>
+        /// Validates the provided document via the e-contract service, asynchronously.
+        /// </summary>
+        /// <see cref="Verify"/>
+        public async Task<SecurityInfo> VerifyAsync(Document document)
+        {
+            if (document == null) throw new ArgumentNullException("document");
+
+            var client = CreateDSSPClient();
+            var request = CreateVerifyRequest(document);
+            verifyResponse responseWrapper = await client.verifyAsync(request);
+            return ProcessVerifyResponse(responseWrapper.VerifyResponse1);
+        }
+#endif
+
         /// <summary>
         /// Add an eSeal to the document via the e-contract service.
         /// </summary>
@@ -294,6 +389,8 @@ namespace EContract.Dssp.Client
         {
             return Seal(document, null);
         }
+
+
 
         /// <summary>
         /// Add an eSeal to the document via the e-contract service.
@@ -314,6 +411,22 @@ namespace EContract.Dssp.Client
             SignResponse response = client.sign(request);
             return ProcessResponseWithSignedDoc(response);
         }
+
+#if NET45
+        /// <summary>
+        /// Add an eSeal to the document via the e-contract service.
+        /// </summary>
+        /// <see cref="Seal(Document, SignatureRequestProperties)"/>
+        public async Task<Document> SealAsync(Document document, SignatureRequestProperties properties)
+        {
+            if (document == null) throw new ArgumentNullException("document");
+
+            var client = CreateDSSPClient();
+            var request = CreateSealRequest(document, properties);
+            signResponse1 responseWrapper = await client.signAsync(request);
+            return ProcessResponseWithSignedDoc(responseWrapper.SignResponse);
+        }
+#endif
 
         private DigitalSignatureServicePortTypeClient CreateDSSPClient()
         {

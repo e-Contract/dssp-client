@@ -1,1 +1,0 @@
-SvcUtil.exe /noConfig /internal /syncOnly /namespace:*,EContract.Dssp.Client.Proxy ..\library\wsdl\dssp.wsdl

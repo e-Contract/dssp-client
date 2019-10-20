@@ -59,10 +59,12 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestBaseType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.verifyResponse verify(EContract.Dssp.Client.Proxy.verify request);
-        
+
+#if NET45
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.verifyResponse> verifyAsync(EContract.Dssp.Client.Proxy.verify request);
-        
+#endif
+
         // CODEGEN: Generating message contract since the operation sign is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute()]
@@ -105,9 +107,11 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestBaseType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.signResponse1 sign(EContract.Dssp.Client.Proxy.sign request);
-        
+
+#if NET45
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.signResponse1> signAsync(EContract.Dssp.Client.Proxy.sign request);
+#endif
         
         // CODEGEN: Generating message contract since the operation pendingRequest is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
@@ -151,9 +155,11 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RequestBaseType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.pendingRequestResponse pendingRequest(EContract.Dssp.Client.Proxy.pendingRequest1 request);
-        
+
+#if NET45
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.pendingRequestResponse> pendingRequestAsync(EContract.Dssp.Client.Proxy.pendingRequest1 request);
+#endif
     }
     
     /// <remarks/>
@@ -19865,20 +19871,22 @@ namespace EContract.Dssp.Client.Proxy
             EContract.Dssp.Client.Proxy.verifyResponse retVal = ((EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType)(this)).verify(inValue);
             return retVal.VerifyResponse1;
         }
-        
+
+#if NET45
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.verifyResponse> EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType.verifyAsync(EContract.Dssp.Client.Proxy.verify request)
         {
             return base.Channel.verifyAsync(request);
         }
-        
+
         public System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.verifyResponse> verifyAsync(EContract.Dssp.Client.Proxy.VerifyRequest VerifyRequest)
         {
             EContract.Dssp.Client.Proxy.verify inValue = new EContract.Dssp.Client.Proxy.verify();
             inValue.VerifyRequest = VerifyRequest;
             return ((EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType)(this)).verifyAsync(inValue);
         }
-        
+#endif
+
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         EContract.Dssp.Client.Proxy.signResponse1 EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType.sign(EContract.Dssp.Client.Proxy.sign request)
         {
@@ -19892,7 +19900,8 @@ namespace EContract.Dssp.Client.Proxy
             EContract.Dssp.Client.Proxy.signResponse1 retVal = ((EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType)(this)).sign(inValue);
             return retVal.SignResponse;
         }
-        
+
+#if NET45
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.signResponse1> EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType.signAsync(EContract.Dssp.Client.Proxy.sign request)
         {
@@ -19905,7 +19914,8 @@ namespace EContract.Dssp.Client.Proxy
             inValue.SignRequest = SignRequest;
             return ((EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType)(this)).signAsync(inValue);
         }
-        
+#endif
+
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         EContract.Dssp.Client.Proxy.pendingRequestResponse EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType.pendingRequest(EContract.Dssp.Client.Proxy.pendingRequest1 request)
         {
@@ -19919,7 +19929,8 @@ namespace EContract.Dssp.Client.Proxy
             EContract.Dssp.Client.Proxy.pendingRequestResponse retVal = ((EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType)(this)).pendingRequest(inValue);
             return retVal.SignResponse;
         }
-        
+
+#if NET45
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.pendingRequestResponse> EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType.pendingRequestAsync(EContract.Dssp.Client.Proxy.pendingRequest1 request)
         {
@@ -19932,5 +19943,6 @@ namespace EContract.Dssp.Client.Proxy
             inValue.PendingRequest = PendingRequest;
             return ((EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType)(this)).pendingRequestAsync(inValue);
         }
+#endif
     }
 }
