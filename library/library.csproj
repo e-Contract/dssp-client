@@ -34,6 +34,7 @@
     <PackageReleaseNotes>Upgrade to spec 1.6 (multi text in visual signature)
 Allow override of certificate chain with 2 step</PackageReleaseNotes>
     <Product>Digital Signature Service Protocol Client</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
