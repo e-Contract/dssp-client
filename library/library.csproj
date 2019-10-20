@@ -41,6 +41,10 @@ Allow override of certificate chain with 2 step</PackageReleaseNotes>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <DocumentationFile>C:\Users\bryan\Source\Repos\egelke\dssp-client\library\EContract.Dssp.Client.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Security" />
