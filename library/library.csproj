@@ -35,6 +35,7 @@
 Allow override of certificate chain with 2 step</PackageReleaseNotes>
     <Product>Digital Signature Service Protocol Client</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>EContract.Dssp.Client</PackageId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
