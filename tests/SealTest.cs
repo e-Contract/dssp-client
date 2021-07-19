@@ -1,18 +1,27 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client
 {
-    [TestClass]
+    [TestFixture]
     public class SealTest
     {
-        [TestMethod]
+        [OneTimeSetUp]
+        public static void SetupClass()
+        {
+            String pdir = TestContext.CurrentContext.WorkDirectory;
+            String wdir = Directory.GetCurrentDirectory();
+            File.Copy(Path.Combine(pdir, "certificate.p12"), Path.Combine(wdir, "certificate.p12"), true);
+            File.Copy(Path.Combine(pdir, "Blank.pdf"), Path.Combine(wdir, "Blank.pdf"), true);
+        }
+
+        [Test]
         public void SealInvisibleNoProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -33,7 +42,7 @@ namespace EContract.Dssp.Client
             VerifySeal(od, null, null);
         }
 
-        [TestMethod]
+        [Test]
         public void SealInvisibleProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -61,7 +70,7 @@ namespace EContract.Dssp.Client
             VerifySeal(od, "Witness", "Iddergem");
         }
 
-        [TestMethod]
+        [Test]
         public void SealVisibleProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -105,15 +114,15 @@ namespace EContract.Dssp.Client
             Assert.AreEqual(1, si.Signatures.Count, "Signature Count");
 
             //Validate signature 1
-            Assert.AreEqual("SERIALNUMBER=12345, CN=Test Signing Key, C=BE", si.Signatures[0].SignerSubject, "Signature 1: SignerSubject (DSS notation)");
-            Assert.AreEqual("SERIALNUMBER=12345, CN=Test Signing Key, C=BE", si.Signatures[0].Signer.Subject, "Signature 1: Signer.Subject (Windows notation)");
+            Assert.AreEqual("SERIALNUMBER=123456, CN=Test Signing Key, C=BE", si.Signatures[0].SignerSubject, "Signature 1: SignerSubject (DSS notation)");
+            Assert.AreEqual("SERIALNUMBER=123456, CN=Test Signing Key, C=BE", si.Signatures[0].Signer.Subject, "Signature 1: Signer.Subject (Windows notation)");
             Assert.IsTrue(si.Signatures[0].SigningTime > (DateTime.Now - TimeSpan.FromMinutes(5))
                 && si.Signatures[0].SigningTime < (DateTime.Now + TimeSpan.FromMinutes(5)), "Signature 1: SigningTime");
             Assert.AreEqual(role, si.Signatures[0].SignerRole, "Signature 1: SignerRole");
             Assert.AreEqual(location, si.Signatures[0].SignatureProductionPlace, "Signature 1: SignatureProductionPlace");
 
             //Validate timestamp validity
-            Assert.AreEqual(new DateTime(2020, 8, 18, 19, 11, 6, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
+            Assert.AreEqual(new DateTime(2025, 12, 31, 22, 00, 01, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
     }
 }

@@ -17,17 +17,30 @@
  *  along with DSS-P client.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using NUnit.Framework;
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.ServiceModel;
 
 namespace EContract.Dssp.Client
 {
-    [TestClass]
+    [TestFixture]
     public class VerifyTest
     {
-        [TestMethod]
+        [OneTimeSetUp]
+        public static void SetupClass()
+        {
+            String pdir = TestContext.CurrentContext.WorkDirectory;
+            String wdir = Directory.GetCurrentDirectory();
+            File.Copy(Path.Combine(pdir, "certificate.p12"), Path.Combine(wdir, "certificate.p12"), true);
+            File.Copy(Path.Combine(pdir, "Blank.pdf"), Path.Combine(wdir, "Blank.pdf"), true);
+            File.Copy(Path.Combine(pdir, "Signed.pdf"), Path.Combine(wdir, "Signed.pdf"), true);
+            File.Copy(Path.Combine(pdir, "Signed.xml"), Path.Combine(wdir, "Signed.xml"), true);
+            File.Copy(Path.Combine(pdir, "SignedDouble.pdf"), Path.Combine(wdir, "SignedDouble.pdf"), true);
+            File.Copy(Path.Combine(pdir, "SignedStamped.pdf"), Path.Combine(wdir, "SignedStamped.pdf"), true);
+        }
+
+        [Test]
         public void VerifyPdfNoSignSync()
         {
             //Use alternative ways to specify URL
@@ -40,7 +53,7 @@ namespace EContract.Dssp.Client
             Assert.IsNull(si, "Verify must return null");
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyPdfSingleSignSync()
         {
             //Specify signature type, which isn't used here
@@ -62,7 +75,7 @@ namespace EContract.Dssp.Client
             Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyPdfDoubleSignSync()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -91,7 +104,7 @@ namespace EContract.Dssp.Client
             Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyPdfSignStampSync()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -112,7 +125,8 @@ namespace EContract.Dssp.Client
             Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
 
-        [TestMethod]
+#if NET45_OR_GREATER
+        [Test]
         public void VerifyPdfSingleSignASync()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -132,8 +146,9 @@ namespace EContract.Dssp.Client
             //Validate timestamp validity
             Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
+#endif
 
-        [TestMethod]
+        [Test]
         public void VerifyXmlSingleSignSync()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");

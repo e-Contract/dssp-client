@@ -1,20 +1,16 @@
 ﻿using EContract.Dssp.Client.Proxy;
-using Egelke.Eid.Client;
-using Microsoft.Owin.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Owin;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
+using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web.Http;
+using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -22,7 +18,7 @@ using System.Xml.Serialization;
 namespace EContract.Dssp.Client
 {
 
-    [TestClass]
+    [TestFixture]
     public class SignAsyncTest
     {
         private static readonly TraceSource trace = new TraceSource("EContract.Dssp.Client");
@@ -35,8 +31,8 @@ namespace EContract.Dssp.Client
         private static XmlSerializer XmlIdRspSer = new XmlSerializer(typeof(IdentificationResponse));
         private static XmlSerializer XmlSigRspSer = new XmlSerializer(typeof(SignatureResponse));
 
-        [ClassInitialize]
-        public static void ClassInit(TestContext ctx)
+        [OneTimeSetUp]
+        public static void ClassInit()
         {
             X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
             store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
@@ -44,6 +40,7 @@ namespace EContract.Dssp.Client
             X509Certificate2Collection collection = store.Certificates.Find(X509FindType.FindBySubjectName, "Bryan Brouckaert (Signature)", true);
             Signer = collection.Cast<X509Certificate2>().AsQueryable().First();
 
+            /*
             using (Readers readers = new Readers(ReaderScope.User))
             {
                 EidCard eid = (EidCard) readers.ListCards(EidCard.KNOWN_NAMES).AsQueryable().First();
@@ -66,9 +63,10 @@ namespace EContract.Dssp.Client
                     SigRsp.CertificateChain = IdRsp.SigningCertificateChain;
                 }
             }
+            */
         }
 
-        [TestMethod]
+        [Test]
         public void SignAsyncNoLangInvisibleNoProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -99,7 +97,7 @@ namespace EContract.Dssp.Client
             Verify(od, null, null);
         }
         
-        [TestMethod]
+        [Test]
         public void SignAsyncAuthZViaSubject()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -152,7 +150,7 @@ namespace EContract.Dssp.Client
             }
         }
 
-        [TestMethod]
+        [Test]
         public void SignAsyncAuthZViaSubjectRegEx()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -207,7 +205,7 @@ namespace EContract.Dssp.Client
             }
         }
 
-        [TestMethod]
+        [Test]
         public void SignAsyncAuthZViaCardNr()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -263,7 +261,7 @@ namespace EContract.Dssp.Client
         }
 
 
-        [TestMethod]
+        [Test]
         public void SignAsyncNLInvisibleNoProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -294,7 +292,7 @@ namespace EContract.Dssp.Client
         }
 
 
-        [TestMethod]
+        [Test]
         public void SignAsyncNLInvisibleProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -330,7 +328,7 @@ namespace EContract.Dssp.Client
         }
 
 
-        [TestMethod]
+        [Test]
         public void SignAsyncNLVisibleProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -374,7 +372,7 @@ namespace EContract.Dssp.Client
             Verify(od, "Developer", "Oost-Vlaanderen");
         }
 
-        [TestMethod]
+        [Test]
         public void SignAsyncNLVisiblePropsMultiText()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -422,7 +420,7 @@ namespace EContract.Dssp.Client
             Verify(od, "Developer", "Oost-Vlaanderen");
         }
 
-        [TestMethod]
+        [Test]
         public void SignAsyncWithSerialization()
         {
             MemoryStream ss = new MemoryStream();
@@ -467,6 +465,60 @@ namespace EContract.Dssp.Client
             Verify(od, null, null);
         }
 
+        private String emulateBrowser(String pendingRequest, String title)
+        {
+            HttpWebRequest request;
+            HttpWebResponse rsp;
+            CookieContainer cookies = new CookieContainer();
+
+            //Post pending request
+            request = (HttpWebRequest) WebRequest.Create("https://www.e-contract.be/dss-ws/start");
+            request.AllowAutoRedirect = false;
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.CookieContainer = cookies;
+            using (TextWriter requestBody = new StreamWriter(request.GetRequestStream()))
+            {
+                requestBody.Write("PendingRequest=");
+                requestBody.Write(HttpUtility.UrlEncode(pendingRequest));
+            }
+            rsp = (HttpWebResponse) request.GetResponse();
+            Assert.AreEqual(HttpStatusCode.Redirect, rsp.StatusCode, "pending request response status");
+            Assert.AreEqual("https://www.e-contract.be/dss-ws/view.xhtml?faces-redirect=true", rsp.Headers[HttpResponseHeader.Location], "pending request response redirect location");
+
+            //obtain view
+            request = (HttpWebRequest)WebRequest.Create(rsp.Headers[HttpResponseHeader.Location]);
+            request.CookieContainer = cookies;
+            rsp = (HttpWebResponse) request.GetResponse();
+            using(TextReader responseBody = new StreamReader(rsp.GetResponseStream())) {
+                String view = responseBody.ReadToEnd();
+                Assert.IsTrue(view.Contains(title), "View page is in the correct language");
+            }
+
+            //Applet Init: send version ignore response
+            //var xmlVrsRsp = new XmlDocument() { PreserveWhitespace = true };
+            String versionRsp = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><eid:VersionResponse xmlns:eid=\"urn:be:e-contract:eid:protocol:1.0.0\" xmlns:eid110=\"urn:be:e-contract:eid:protocol:1.1.0\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"><eid:ExtensionVersion>1.0.0</eid:ExtensionVersion><eid:UserAgent>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36</eid:UserAgent><eid:MiddlewareVersion>1.3.1</eid:MiddlewareVersion><eid:JavaVersion>1.8.0_291</eid:JavaVersion><eid:JavaVendor>Oracle Corporation</eid:JavaVendor><eid:OperatingSystem>Windows 10</eid:OperatingSystem><eid:OperatingSystemVersion>10.0</eid:OperatingSystemVersion><eid:OperatingSystemArchitecture>amd64</eid:OperatingSystemArchitecture></eid:VersionResponse>";
+            request = (HttpWebRequest)WebRequest.Create("https://www.e-contract.be/dss-ws/chrome-service");
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
+            request.Method = "POST";
+            request.ContentType = "text/xml";
+            request.CookieContainer = cookies;
+            using (TextWriter requestBody = new StreamWriter(request.GetRequestStream()))
+            {
+                requestBody.Write(versionRsp);
+            }
+            rsp = (HttpWebResponse)request.GetResponse();
+            Assert.AreEqual(HttpStatusCode.OK, rsp.StatusCode, "eid:VersionResponse status");
+            using (TextReader responseBody = new StreamReader(rsp.GetResponseStream()))
+            {
+                String view = responseBody.ReadToEnd();
+                Assert.IsTrue(view.Contains("IdentificationRequest"), "The version response is invalid");
+            }
+
+            return String.Empty;
+        }
+
+        /*
         private String emulateBrowser(String pendingRequest, String title)
         {
             WebRequestHandler webRequestHandler = new WebRequestHandler();
@@ -550,6 +602,7 @@ namespace EContract.Dssp.Client
             int endIndex = signed.IndexOf('"', startIndex);
             return signed.Substring(startIndex, endIndex - startIndex);
         }
+        */
 
         private void Verify(Document d, String role, String location)
         {

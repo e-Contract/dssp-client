@@ -1,12 +1,12 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
+using System;
 
 namespace EContract.Dssp.Client
 {
-    [TestClass]
+    [TestFixture]
     public class MemTest
     {
-        [TestMethod]
+        [Test]
         public void TestMethod1()
         {
             for(int i=0;i<100000; i++)

@@ -29,7 +29,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Xml.Serialization;
-#if NET45
+#if NET45_OR_GREATER
 using System.Threading.Tasks;
 #endif
 
@@ -189,7 +189,7 @@ namespace EContract.Dssp.Client
             return ProcessAsyncSignResponse(response, clientNonce);
         }
 
-#if NET45
+#if NET45_OR_GREATER
         /// <summary>
         /// Uploads a document to e-Contract, asynchronously.
         /// </summary>
@@ -218,7 +218,7 @@ namespace EContract.Dssp.Client
             return UploadDocumentFor2Step(document, null);
         }
 
-#if NET45
+#if NET45_OR_GREATER
         /// <summary>
         /// Uploads a document to e-Contract, asynchronously.
         /// </summary>
@@ -242,8 +242,8 @@ namespace EContract.Dssp.Client
         {
             if (document == null) throw new ArgumentNullException("document");
             if ((SignerChain?.Length ?? 0) == 0 ||
-                SignerChain?[0] == null ||
-                !(SignerChain?[0].PrivateKey is RSACryptoServiceProvider))
+                SignerChain[0] == null ||
+                !SignerChain[0].HasPrivateKey)
                 throw new InvalidOperationException("SignerChain must be set and the end (first) certificate must have a private key");
 
             var client = CreateDSSPClient();
@@ -252,7 +252,7 @@ namespace EContract.Dssp.Client
             return Process2StepSignResponse(response);
         }
 
-#if NET45
+#if NET45_OR_GREATER
         /// <summary>
         /// Uploads a document to e-Contract, asynchronously.
         /// </summary>
@@ -289,7 +289,7 @@ namespace EContract.Dssp.Client
             return ProcessResponseWithSignedDoc(downloadResponse);
         }
 
-#if NET45
+#if NET45_OR_GREATER
         /// <summary>
         /// Downloads the document that was uploaded before and signed via the BROWSER/POST protocol, asynchronously.
         /// </summary>
@@ -325,7 +325,7 @@ namespace EContract.Dssp.Client
             return ProcessResponseWithSignedDoc(downloadResponse);
         }
 
-#if NET45
+#if NET45_OR_GREATER
         /// <summary>
         /// Downloads the document that was uploaded before and signed offline.
         /// </summary>
@@ -360,7 +360,7 @@ namespace EContract.Dssp.Client
             return ProcessVerifyResponse(response);
         }
 
-#if NET45
+#if NET45_OR_GREATER
         /// <summary>
         /// Validates the provided document via the e-contract service, asynchronously.
         /// </summary>
@@ -412,7 +412,7 @@ namespace EContract.Dssp.Client
             return ProcessResponseWithSignedDoc(response);
         }
 
-#if NET45
+#if NET45_OR_GREATER
         /// <summary>
         /// Add an eSeal to the document via the e-contract service.
         /// </summary>

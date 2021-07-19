@@ -1,21 +1,21 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client
 {
-    [TestClass]
+    [TestFixture]
     public class TwoStepTest
     {
         private static X509Certificate2 Signer;
 
-        [ClassInitialize]
-        public static void ClassInit(TestContext ctx)
+        [OneTimeSetUp]
+        public static void ClassInit()
         {
             X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
             store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
@@ -24,7 +24,7 @@ namespace EContract.Dssp.Client
             Signer = collection.Cast<X509Certificate2>().AsQueryable().FirstOrDefault();
         }
 
-        [TestMethod]
+        [Test]
         public void Sign2StepInvisibleNoProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -48,7 +48,7 @@ namespace EContract.Dssp.Client
         }
 
 
-        [TestMethod]
+        [Test]
         public void Sign2StepInvisibleProps()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -95,7 +95,7 @@ namespace EContract.Dssp.Client
             Assert.AreEqual(location, si.Signatures[0].SignatureProductionPlace, "Signature 1: SignatureProductionPlace");
 
             //Validate timestamp validity
-            Assert.AreEqual(new DateTime(2020, 8, 18, 19, 11, 6, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
+            Assert.AreEqual(new DateTime(2025, 12, 31, 22, 0, 1, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
     }
 }

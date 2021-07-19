@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;net35</TargetFrameworks>
+    <TargetFrameworks>net461;net45;net40;net35</TargetFrameworks>
     <AssemblyName>EContract.Dssp.Client</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <version>1.6.0</version>
+    <version>1.6.1</version>
     <authors>Egelke BVBA,e-Contract.be BVBA</authors>
     <owners>Egelke BVBA,e-Contract.be BVBA</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -22,36 +22,32 @@
       are very vulnerable to attacks, this new protocol is a huge step forward. This makes the new Digital Signature Service truly unique compared to other
       solutions.
     </summary>
-    <copyright>2014-2019 (c) Egelke BVBA and e-Contract.be BVBA</copyright>
+    <copyright>2014-2021 (c) Egelke BVBA and e-Contract.be BVBA</copyright>
     <RepositoryUrl>https://github.com/egelke/dssp-client</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>http://www.e-contract.be/products/dssp</PackageProjectUrl>
-    <PackageIconUrl>http://www.e-contract.be/images/eid-signing.png</PackageIconUrl>
+    <PackageIcon>eid-signing.png</PackageIcon>
     <PackageTags>e-Contract.be DSS eSigning eID</PackageTags>
-    <AssemblyVersion>1.6.0.0</AssemblyVersion>
-    <FileVersion>1.6.0.0</FileVersion>
+    <AssemblyVersion>1.6.1.0</AssemblyVersion>
+    <FileVersion>1.6.1.0</FileVersion>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-    <PackageReleaseNotes>Upgrade to spec 1.6 (multi text in visual signature)
-Allow override of certificate chain with 2 step</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for ECDSA keys (eID applet v1.8 - eID cards issued since 2021-Q2) - .Net as of 4.6.1 only
+Updated target frameworks</PackageReleaseNotes>
     <Product>Digital Signature Service Protocol Client</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>EContract.Dssp.Client</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
-    <DocumentationFile>C:\Users\bryan\Source\Repos\egelke\dssp-client\library\EContract.Dssp.Client.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45'">
-    <Reference Include="System.IdentityModel" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
+  <ItemGroup>
+    <None Include="eid-signing.png" Pack="true" PackagePath="" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net35'">
+
+  <ItemGroup>
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />

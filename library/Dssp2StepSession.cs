@@ -1,7 +1,7 @@
 ﻿/*
  *  This file is part of DSS-P client.
- *  Copyright (C) 2017 Egelke BVBA
- *  Copyright (C) 2017 e-Contract.be BVBA
+ *  Copyright (C) 2017-2021 Egelke BVBA
+ *  Copyright (C) 2017-2021 e-Contract.be BVBA
  *
  *  DSS-P client is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
@@ -74,9 +74,35 @@ namespace EContract.Dssp.Client
         /// </remarks>
         public void Sign()
         {
+#if NET461_OR_GREATER
+            RSA rsaKey;
+            ECDsa ecDsaKey;
+            if ((ecDsaKey = Signer.GetECDsaPrivateKey()) != null)
+            {
+                SignValue = ecDsaKey.SignHash(DigestValue);
+            }
+            else if ((rsaKey = Signer.GetRSAPrivateKey()) != null)
+            {
+                HashAlgorithmName hashAlgorithmName;
+                HashAlgorithm hashAlgorithm = (HashAlgorithm) CryptoConfig.CreateFromName(DigestAlgo);
+
+                if (hashAlgorithm is SHA1) hashAlgorithmName = HashAlgorithmName.SHA1;
+                else if (hashAlgorithm is SHA256) hashAlgorithmName = HashAlgorithmName.SHA256;
+                else if (hashAlgorithm is SHA384) hashAlgorithmName = HashAlgorithmName.SHA384;
+                else if (hashAlgorithm is SHA512) hashAlgorithmName = HashAlgorithmName.SHA512;
+                else throw new InvalidOperationException("Digest algo not supported");
+
+                SignValue = rsaKey.SignHash(DigestValue, hashAlgorithmName, RSASignaturePadding.Pkcs1);
+            } 
+            else
+            {
+                throw new InvalidOperationException("Key type not supported");
+            }
+#else
             var key = (RSACryptoServiceProvider)Signer.PrivateKey;
             String digestOid = CryptoConfig.MapNameToOID(CryptoConfig.CreateFromName(DigestAlgo).GetType().ToString());
             SignValue = key.SignHash(DigestValue, digestOid);
+#endif
         }
     }
 }

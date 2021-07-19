@@ -60,7 +60,7 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.verifyResponse verify(EContract.Dssp.Client.Proxy.verify request);
 
-#if NET45
+#if NET45_OR_GREATER
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.verifyResponse> verifyAsync(EContract.Dssp.Client.Proxy.verify request);
 #endif
@@ -108,7 +108,7 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.signResponse1 sign(EContract.Dssp.Client.Proxy.sign request);
 
-#if NET45
+#if NET45_OR_GREATER
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.signResponse1> signAsync(EContract.Dssp.Client.Proxy.sign request);
 #endif
@@ -156,7 +156,7 @@ namespace EContract.Dssp.Client.Proxy
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(Property[]))]
         EContract.Dssp.Client.Proxy.pendingRequestResponse pendingRequest(EContract.Dssp.Client.Proxy.pendingRequest1 request);
 
-#if NET45
+#if NET45_OR_GREATER
         [System.ServiceModel.OperationContractAttribute(Action="", ReplyAction="*")]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.pendingRequestResponse> pendingRequestAsync(EContract.Dssp.Client.Proxy.pendingRequest1 request);
 #endif
@@ -19872,7 +19872,7 @@ namespace EContract.Dssp.Client.Proxy
             return retVal.VerifyResponse1;
         }
 
-#if NET45
+#if NET45_OR_GREATER
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.verifyResponse> EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType.verifyAsync(EContract.Dssp.Client.Proxy.verify request)
         {
@@ -19901,7 +19901,7 @@ namespace EContract.Dssp.Client.Proxy
             return retVal.SignResponse;
         }
 
-#if NET45
+#if NET45_OR_GREATER
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.signResponse1> EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType.signAsync(EContract.Dssp.Client.Proxy.sign request)
         {
@@ -19930,7 +19930,7 @@ namespace EContract.Dssp.Client.Proxy
             return retVal.SignResponse;
         }
 
-#if NET45
+#if NET45_OR_GREATER
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<EContract.Dssp.Client.Proxy.pendingRequestResponse> EContract.Dssp.Client.Proxy.DigitalSignatureServicePortType.pendingRequestAsync(EContract.Dssp.Client.Proxy.pendingRequest1 request)
         {

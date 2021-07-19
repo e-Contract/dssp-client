@@ -1,17 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace EContract.Dssp.Client
 {
-    [TestClass]
+    [TestFixture]
     public class Learn
     {
 
-        [TestMethod]
+        [Test]
         public void NullCheck()
         {
             Object[] array = null;
