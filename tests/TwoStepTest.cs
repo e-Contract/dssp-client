@@ -7,6 +7,10 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
+#if NET461_OR_GREATER
+using Egelke.Eid.Client;
+#endif
+
 namespace EContract.Dssp.Client
 {
     [TestFixture]
@@ -17,12 +21,33 @@ namespace EContract.Dssp.Client
         [OneTimeSetUp]
         public static void ClassInit()
         {
+            File.Copy(Path.Combine(TestContext.CurrentContext.WorkDirectory, "Blank.pdf"), "Blank.pdf", true);
+            File.Copy(Path.Combine(TestContext.CurrentContext.WorkDirectory, "certificate.p12"), "certificate.p12", true);
+
+            string thumbprint;
+#if NET461_OR_GREATER
+            using (Readers readers = new Readers(ReaderScope.User))
+            {
+                EidCard card = readers.ListCards()
+                    .OfType<EidCard>()
+                    .FirstOrDefault();
+                if (card == null) throw new InvalidOperationException("No eID found, please make sure there is an eID present");
+                using (card)
+                {
+                    card.Open();
+                    thumbprint = card.SignCert.Thumbprint;
+                }
+            }
+#else
+            thumbprint = TestContext.Parameters["EID_THUMBPRINT"];
+            if (thumbprint == null) throw new InvalidOperationException("No eID thumbprint provided, please provide one");
+#endif
             X509Store store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
             store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
-
-            X509Certificate2Collection collection = store.Certificates.Find(X509FindType.FindBySubjectName, "Bryan Brouckaert (Signature)", true);
-            Signer = collection.Cast<X509Certificate2>().AsQueryable().FirstOrDefault();
-        }
+            X509Certificate2Collection matches = store.Certificates.Find(X509FindType.FindByThumbprint, thumbprint, true);
+            if (matches.Count == 0) throw new InvalidOperationException("Cert with provided thumbprint not found");
+            Signer = store.Certificates.Find(X509FindType.FindByThumbprint, thumbprint, true)[0];
+         }
 
         [Test]
         public void Sign2StepInvisibleNoProps()

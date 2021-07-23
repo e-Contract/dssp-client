@@ -51,5 +51,6 @@ Updated target frameworks</PackageReleaseNotes>
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <PackageReference Include="BouncyCastle" Version="1.*" />
   </ItemGroup>
 </Project>

@@ -8,10 +8,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webApi-demo", "webApi-demo\webApi-demo.csproj", "{8ACB1AE4-D555-49BC-AA11-555607544C64}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8FC9966B-BB72-4A75-84C8-A0BE3289390E}"
+	ProjectSection(SolutionItems) = preProject
+		eid5982-5643655-82.runsettings = eid5982-5643655-82.runsettings
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "forms-demo", "forms-demo\forms-demo.csproj", "{80439AB4-B43C-4EB3-8B65-39D1785D68F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{8E2342A2-0109-45CD-802D-B65B8505EC6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tests", "tests\tests.csproj", "{8E2342A2-0109-45CD-802D-B65B8505EC6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpf-demo", "wpf-demo\wpf-demo.csproj", "{234C10BA-F6C0-4680-A4D4-6ED6943A07D7}"
 EndProject

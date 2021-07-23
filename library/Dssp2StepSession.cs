@@ -17,9 +17,11 @@
  *  along with DSS-P client.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using Org.BouncyCastle.Asn1;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -79,7 +81,7 @@ namespace EContract.Dssp.Client
             ECDsa ecDsaKey;
             if ((ecDsaKey = Signer.GetECDsaPrivateKey()) != null)
             {
-                SignValue = ecDsaKey.SignHash(DigestValue);
+                SignValue = Ieee1363ToDer(ecDsaKey.SignHash(DigestValue));
             }
             else if ((rsaKey = Signer.GetRSAPrivateKey()) != null)
             {
@@ -92,6 +94,7 @@ namespace EContract.Dssp.Client
                 else if (hashAlgorithm is SHA512) hashAlgorithmName = HashAlgorithmName.SHA512;
                 else throw new InvalidOperationException("Digest algo not supported");
 
+
                 SignValue = rsaKey.SignHash(DigestValue, hashAlgorithmName, RSASignaturePadding.Pkcs1);
             } 
             else
@@ -103,6 +106,38 @@ namespace EContract.Dssp.Client
             String digestOid = CryptoConfig.MapNameToOID(CryptoConfig.CreateFromName(DigestAlgo).GetType().ToString());
             SignValue = key.SignHash(DigestValue, digestOid);
 #endif
+        }
+
+        private static byte[] Ieee1363ToDer(byte[] input)
+        {
+            // Input is (r, s), each of them exactly half of the array.
+            // Output is the DER encoded value of SEQUENCE(INTEGER(r), INTEGER(s)).
+            int halfLength = input.Length / 2;
+
+            MemoryStream encoded = new MemoryStream();
+            DerSequenceGenerator generator = new DerSequenceGenerator(encoded);
+            generator.AddObject(Ieee1363KeyParameterIntegerToDer(input, 0, halfLength)); //add r
+            generator.AddObject(Ieee1363KeyParameterIntegerToDer(input, halfLength, halfLength)); //add s
+            generator.Close();
+
+            return encoded.ToArray();
+        }
+
+        private static DerInteger Ieee1363KeyParameterIntegerToDer(byte[] paddedInt, int offset, int length)
+        {
+            int padding = 0;
+            while (padding < paddedInt.Length && paddedInt[offset + padding] == 0) padding++;
+
+            if (padding == paddedInt.Length) // all 0, we have the number 0
+                new DerInteger(0);
+
+            //false negative, so we need to add 1 more byte in front.
+            int extra = paddedInt[offset + padding] >= 0x80 ? 1 : 0;
+
+            byte[] integer = new byte[length - padding + extra];
+            Array.Copy(paddedInt, offset + padding, integer, extra, length - padding);
+
+            return new DerInteger(integer);
         }
     }
 }
