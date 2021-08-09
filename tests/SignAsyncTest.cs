@@ -18,7 +18,7 @@ using System.Xml.Serialization;
 namespace EContract.Dssp.Client
 {
 
-    [TestFixture]
+    //[TestFixture]
     public class SignAsyncTest
     {
         private static readonly TraceSource trace = new TraceSource("EContract.Dssp.Client");
@@ -39,6 +39,9 @@ namespace EContract.Dssp.Client
 
             X509Certificate2Collection collection = store.Certificates.Find(X509FindType.FindBySubjectName, "Bryan Brouckaert (Signature)", true);
             Signer = collection.Cast<X509Certificate2>().AsQueryable().First();
+
+            File.Copy(Path.Combine(TestContext.CurrentContext.WorkDirectory, "Blank.pdf"), "Blank.pdf", true);
+            File.Copy(Path.Combine(TestContext.CurrentContext.WorkDirectory, "certificate.p12"), "certificate.p12", true);
 
             /*
             using (Readers readers = new Readers(ReaderScope.User))
@@ -472,11 +475,9 @@ namespace EContract.Dssp.Client
             CookieContainer cookies = new CookieContainer();
 
             //Post pending request
-            request = (HttpWebRequest) WebRequest.Create("https://www.e-contract.be/dss-ws/start");
-            request.AllowAutoRedirect = false;
+            request = NewWebRequest("https://www.e-contract.be/dss-ws/start", cookies);
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
-            request.CookieContainer = cookies;
             using (TextWriter requestBody = new StreamWriter(request.GetRequestStream()))
             {
                 requestBody.Write("PendingRequest=");
@@ -487,8 +488,7 @@ namespace EContract.Dssp.Client
             Assert.AreEqual("https://www.e-contract.be/dss-ws/view.xhtml?faces-redirect=true", rsp.Headers[HttpResponseHeader.Location], "pending request response redirect location");
 
             //obtain view
-            request = (HttpWebRequest)WebRequest.Create(rsp.Headers[HttpResponseHeader.Location]);
-            request.CookieContainer = cookies;
+            request = NewWebRequest(rsp.Headers[HttpResponseHeader.Location], cookies);
             rsp = (HttpWebResponse) request.GetResponse();
             using(TextReader responseBody = new StreamReader(rsp.GetResponseStream())) {
                 String view = responseBody.ReadToEnd();
@@ -497,12 +497,11 @@ namespace EContract.Dssp.Client
 
             //Applet Init: send version ignore response
             //var xmlVrsRsp = new XmlDocument() { PreserveWhitespace = true };
-            String versionRsp = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><eid:VersionResponse xmlns:eid=\"urn:be:e-contract:eid:protocol:1.0.0\" xmlns:eid110=\"urn:be:e-contract:eid:protocol:1.1.0\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"><eid:ExtensionVersion>1.0.0</eid:ExtensionVersion><eid:UserAgent>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36</eid:UserAgent><eid:MiddlewareVersion>1.3.1</eid:MiddlewareVersion><eid:JavaVersion>1.8.0_291</eid:JavaVersion><eid:JavaVendor>Oracle Corporation</eid:JavaVendor><eid:OperatingSystem>Windows 10</eid:OperatingSystem><eid:OperatingSystemVersion>10.0</eid:OperatingSystemVersion><eid:OperatingSystemArchitecture>amd64</eid:OperatingSystemArchitecture></eid:VersionResponse>";
-            request = (HttpWebRequest)WebRequest.Create("https://www.e-contract.be/dss-ws/chrome-service");
-            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
+            String versionRsp = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><eid:VersionResponse xmlns:eid=\"urn:be:e-contract:eid:protocol:1.0.0\" xmlns:eid110=\"urn:be:e-contract:eid:protocol:1.1.0\" xmlns:ds=\"http://www.w3.org/2000/09/xmldsig#\"><eid:ExtensionVersion>1.0.0</eid:ExtensionVersion><eid:UserAgent>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36</eid:UserAgent><eid:MiddlewareVersion>1.3.1</eid:MiddlewareVersion><eid:JavaVersion>11.0.11</eid:JavaVersion><eid:JavaVendor>Oracle Corporation</eid:JavaVendor><eid:OperatingSystem>Windows 10</eid:OperatingSystem><eid:OperatingSystemVersion>10.0</eid:OperatingSystemVersion><eid:OperatingSystemArchitecture>amd64</eid:OperatingSystemArchitecture></eid:VersionResponse>";
+            request = NewWebRequest("https://www.e-contract.be/dss-ws/chrome-service", cookies);
             request.Method = "POST";
             request.ContentType = "text/xml";
-            request.CookieContainer = cookies;
+           
             using (TextWriter requestBody = new StreamWriter(request.GetRequestStream()))
             {
                 requestBody.Write(versionRsp);
@@ -516,6 +515,26 @@ namespace EContract.Dssp.Client
             }
 
             return String.Empty;
+        }
+
+        private HttpWebRequest NewWebRequest(string url, CookieContainer cookies)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.AllowAutoRedirect = false;
+            request.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36";
+            request.Headers["Sec-Ch-Ua"] = "\"Chromium\";v=\"92\", \" Not A; Brand\";v=\"99\", \"Google Chrome\";v=\"92\"";
+            request.Headers["Sec-Ch-Ua-Mobile"] = "?0";
+            request.CookieContainer = cookies;
+            //request.Headers["Origin"] = "https://www.e-contract.be";
+            //request.Headers["Sec-Fetch-Site"] = "same-origin";
+            //request.Headers["Sec-Fetch-Mode"] = "cors";
+            //request.Headers["Sec-Fetch-Dest"] = "empty";
+            //request.Referer = "https://www.e-contract.be/dss-ws/sign-chrome.xhtml";
+            request.Accept = "*/*";
+            request.ServicePoint.Expect100Continue = false;
+            request.Headers["Accept-Encoding"] = "gzip, deflate";
+            request.Headers["Accept-Language"] = "nl-NL,nl;q=0.9,en-US;q=0.8,en;q=0.7";
+            return request;
         }
 
         /*

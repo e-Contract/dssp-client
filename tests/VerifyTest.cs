@@ -75,7 +75,7 @@ namespace EContract.Dssp.Client
             Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
 
-        [Test]
+        //[Test]
         public void VerifyPdfDoubleSignSync()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
@@ -104,7 +104,7 @@ namespace EContract.Dssp.Client
             Assert.AreEqual(new DateTime(2019, 1, 23, 11, 0, 0, DateTimeKind.Utc), si.TimeStampValidity, "TimeStampValidity");
         }
 
-        [Test]
+        //[Test]
         public void VerifyPdfSignStampSync()
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");

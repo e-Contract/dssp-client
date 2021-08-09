@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;net45;net40;net35</TargetFrameworks>
+    <AssemblyName>DSS-P.Client</AssemblyName>
+    <SignAssembly>false</SignAssembly>
+    <version>1.6.1</version>
+    <authors>Egelke BVBA,e-Contract.be BVBA</authors>
+    <owners>Egelke BVBA,e-Contract.be BVBA</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Client for the "Digital Signature Service Protocol" as offered by e-Contract.be</description>
+    <summary>
+      The new Digital Signature Service creates PAdES LTV signatures using the eID card according to the latest ETSI PAdES Baseline Profile version 2.2.2.
+      This standard is being pushed by the EC e-Signatures Expert Group to guarantee maximum recognition and interoperability of signed documents between
+      EU member states. Furthermore the Digital Signature Service product is not limited to PDF signatures. It also support XAdES-X-L and ETSI XAdES Baseline
+      Profile version 2.1.1 signatures (LT-Level compliance). The new DSS is the only solution today on the market offering such compliance.
+
+      The new Digital Signature Service comes with a new and highly secure Digital Signature Service Protocol. This protocol is a derivative of work that
+      we performed within the OASIS DSS-X group and offers maximum protection against various types of attacks. From a security point of view, this new protocol
+      is just it. The old protocol, as implemented in the original eID DSS, could easily be integrated in an insecure way by the developer. For the new protocol,
+      this is no longer possible given the design of the protocol. As we all know that protocols (and their implementation, especially authentication protocols)
+      are very vulnerable to attacks, this new protocol is a huge step forward. This makes the new Digital Signature Service truly unique compared to other
+      solutions.
+    </summary>
+    <copyright>2014-2021 (c) Egelke BVBA and e-Contract.be BVBA</copyright>
+    <RepositoryUrl>https://github.com/egelke/dssp-client</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>http://www.e-contract.be/products/dssp</PackageProjectUrl>
+    <PackageIcon>eid-signing.png</PackageIcon>
+    <PackageTags>e-Contract.be DSS eSigning eID</PackageTags>
+    <AssemblyVersion>1.6.1.0</AssemblyVersion>
+    <FileVersion>1.6.1.0</FileVersion>
+    <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+    <PackageReleaseNotes>Added support for ECDSA keys (eID applet v1.8 - eID cards issued since 2021-Q2) - .Net as of 4.6.1 only
+Updated target frameworks</PackageReleaseNotes>
+    <Product>Digital Signature Service Protocol Client</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>EContract.Dssp.Client</PackageId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="eid-signing.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <PackageReference Include="BouncyCastle" Version="1.*" />
+  </ItemGroup>
+</Project>
