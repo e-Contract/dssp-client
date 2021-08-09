@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net461;net45;net40;net35</TargetFrameworks>
-    <AssemblyName>DSS-P.Client</AssemblyName>
+    <AssemblyName>EContract.Dssp.Client</AssemblyName>
     <SignAssembly>false</SignAssembly>
     <version>1.6.1</version>
     <authors>Egelke BVBA,e-Contract.be BVBA</authors>
@@ -35,8 +35,10 @@
 Updated target frameworks</PackageReleaseNotes>
     <Product>Digital Signature Service Protocol Client</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>EContract.Dssp.Client</PackageId>
+    <PackageId>DSS-P.Client</PackageId>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSource>true</IncludeSource>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

@@ -37,6 +37,8 @@ Updated target frameworks</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>EContract.Dssp.Client</PackageId>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSource>true</IncludeSource>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
