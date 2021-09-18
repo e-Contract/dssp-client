@@ -114,7 +114,7 @@ namespace EContract.Dssp.Client
             get
             {
                 if (SignerChain?.Length > 1)
-                    throw new NotSupportedException("This propery isn't suppored with a full chain");
+                    throw new NotSupportedException("This property isn't supported with a full chain");
 
                 return SignerChain?[0];
             }
@@ -260,7 +260,7 @@ namespace EContract.Dssp.Client
         public async Task<Dssp2StepSession> UploadDocumentFor2StepAsync(Document document, SignatureRequestProperties properties)
         {
             if (document == null) throw new ArgumentNullException("document");
-            if (!(Signer?.HasPrivateKey ?? false && Signer?.PrivateKey is RSACryptoServiceProvider)) throw new InvalidOperationException("Singner must be set and have a private key");
+            if (!(SignerChain?[0]?.HasPrivateKey ?? false && SignerChain?[0]?.PrivateKey is RSACryptoServiceProvider)) throw new InvalidOperationException("Singner must be set and have a private key");
 
             var client = CreateDSSPClient();
             var request = Create2StepSignRequest(document, properties);
@@ -672,7 +672,7 @@ namespace EContract.Dssp.Client
             //Capture session info & store it
             return new Dssp2StepSession()
             {
-                Signer = this.Signer,
+                Signer = this.SignerChain?[0],
                 CorrelationId = signResponse.OptionalOutputs.CorrelationID,
                 DigestAlgo = signResponse.OptionalOutputs.DocumentHash?.DigestMethod?.Algorithm,
                 DigestValue = signResponse.OptionalOutputs.DocumentHash?.DigestValue

@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net461;net45;net40;net35</TargetFrameworks>
+    <TargetFrameworks>net462;net45;net40;net35</TargetFrameworks>
     <AssemblyName>EContract.Dssp.Client</AssemblyName>
     <SignAssembly>false</SignAssembly>
-    <version>1.6.1</version>
+    <version>1.6.2</version>
     <authors>Egelke BVBA,e-Contract.be BVBA</authors>
     <owners>Egelke BVBA,e-Contract.be BVBA</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -28,11 +28,10 @@
     <PackageProjectUrl>http://www.e-contract.be/products/dssp</PackageProjectUrl>
     <PackageIcon>eid-signing.png</PackageIcon>
     <PackageTags>e-Contract.be DSS eSigning eID</PackageTags>
-    <AssemblyVersion>1.6.1.0</AssemblyVersion>
-    <FileVersion>1.6.1.0</FileVersion>
+    <AssemblyVersion>1.6.2.0</AssemblyVersion>
+    <FileVersion>1.6.2.0</FileVersion>
     <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
-    <PackageReleaseNotes>Added support for ECDSA keys (eID applet v1.8 - eID cards issued since 2021-Q2) - .Net as of 4.6.1 only
-Updated target frameworks</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed the issue with the clienchain propery</PackageReleaseNotes>
     <Product>Digital Signature Service Protocol Client</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>EContract.Dssp.Client</PackageId>
@@ -50,9 +49,12 @@ Updated target frameworks</PackageReleaseNotes>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="BouncyCastle" Version="1.8.9" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
-    <PackageReference Include="BouncyCastle" Version="1.*" />
   </ItemGroup>
 </Project>

@@ -103,6 +103,43 @@ namespace EContract.Dssp.Client
             Verify(od, "Witness", "Iddergem");
         }
 
+        [Test]
+        public void Sign2StepInvisiblePropsAndProvidedChain()
+        {
+            DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
+            dsspClient.Application.X509.Certificate = new X509Certificate2("certificate.p12", "");
+            X509Chain chain = new X509Chain();
+            chain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+            chain.ChainPolicy.VerificationFlags = X509VerificationFlags.AllFlags;
+            Assert.IsTrue(chain.Build(Signer), "Failed to build the chain");
+            dsspClient.SignerChain = chain.ChainElements
+                .OfType<X509ChainElement>()
+                .Select(e => e.Certificate)
+                .ToArray();
+
+            Dssp2StepSession s;
+            SignatureRequestProperties props = new SignatureRequestProperties()
+            {
+                SignerRole = "Witness",
+                SignatureProductionPlace = "Iddergem"
+            };
+            using (Stream i = File.OpenRead("Blank.pdf"))
+            {
+                Document id = new Document("application/pdf", i);
+                s = dsspClient.UploadDocumentFor2Step(id, props);
+            }
+
+            s.Sign();
+            Document od = dsspClient.DownloadDocument(s);
+            using (Stream o = File.OpenWrite("Output.pdf"))
+            {
+                od.Content.CopyTo(o);
+            }
+            od.Content.Seek(0, SeekOrigin.Current);
+
+            Verify(od, "Witness", "Iddergem");
+        }
+
         private void Verify(Document d, String role, String location)
         {
             DsspClient dsspClient = new DsspClient("https://www.e-contract.be/dss-ws/dss");
